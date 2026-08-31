@@ -94,6 +94,12 @@
   endif
   assign videos_stars_text = videos_stars_text | default: '★★★★★'
   assign videos_stars_position = videos_stars_position | default: 'below_videos'
+
+  if buybox_blocks != blank
+    assign _blocks = buybox_blocks
+  else
+    assign _blocks = section.blocks
+  endif
 %}
 
 {% capture videos_panel %}
@@ -169,7 +175,7 @@
     assign first_variant = product.selected_or_first_available_variant
     assign first_price = first_variant.price
     assign first_compare = first_variant.compare_at_price
-    assign compare_blocks = section.blocks | where: 'type', 'variant_compare'
+    assign compare_blocks = _blocks | where: 'type', 'variant_compare'
     if compare_blocks.size > 0
       for block in compare_blocks
         assign match_title = block.settings.variant_title | strip
@@ -350,7 +356,7 @@
 
         {% if show_benefits %}
           {% liquid
-            assign benefit_blocks = section.blocks | where: 'type', 'benefit'
+            assign benefit_blocks = _blocks | where: 'type', 'benefit'
             assign icon_cycle = '✓,★,♥,◆,●,✦' | split: ','
           %}
           <div class="pg-p-benefits" style="--pg-benefits-n: {% if benefit_blocks.size > 0 %}{{ benefit_blocks.size }}{% else %}3{% endif %};">
@@ -417,8 +423,8 @@
 
         <div class="pg-p-deals">
           {% liquid
-            assign badge_blocks = section.blocks | where: 'type', 'variant_badge'
-            assign compare_blocks = section.blocks | where: 'type', 'variant_compare'
+            assign badge_blocks = _blocks | where: 'type', 'variant_badge'
+            assign compare_blocks = _blocks | where: 'type', 'variant_compare'
           %}
           {% for variant in product.variants %}
             {% liquid

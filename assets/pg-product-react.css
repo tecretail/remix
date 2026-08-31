@@ -555,46 +555,19 @@ a.pg-p-cta--cod {
   width: 100% !important;
 }
 
-/* PDP: boton COD verde con gradiente */
-.pg-main-product .pg-preventify-host .preventify-product-card-button button,
-.pg-main-product .pg-preventify-host .preventify-product-card-button [role="button"],
-.pg-main-product .pg-preventify-host .quick-add button,
-.pg-main-product .pg-preventify-host .quick-add [role="button"],
-.pg-pdp-wrap .pg-preventify-host .preventify-product-card-button button,
-.pg-pdp-wrap .pg-preventify-host .quick-add button {
-  width: 100% !important;
-  min-height: 56px !important;
-  box-sizing: border-box !important;
-  background: linear-gradient(180deg, #45c963 0%, #2f9e44 55%, #268a3a 100%) !important;
-  color: #fff !important;
-  border: 3px solid #1a6b2e !important;
-  border-radius: 14px !important;
-  font-weight: 900 !important;
-  font-size: 15px !important;
-  letter-spacing: 0.5px !important;
-  text-transform: uppercase !important;
-  box-shadow: 0 8px 22px rgba(47, 158, 68, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  cursor: pointer !important;
-  font-family: "Montserrat", system-ui, sans-serif !important;
-}
-
-.pg-main-product .pg-preventify-host .preventify-product-card-button button:hover,
-.pg-main-product .pg-preventify-host .quick-add button:hover,
-.pg-pdp-wrap .pg-preventify-host .quick-add button:hover {
-  filter: brightness(1.05) !important;
-}
-
-/* Preview home: boton COD con bordes y estilo limpio */
-.pg-section-product .pg-preventify-host .preventify-product-card-button button,
-.pg-section-product .pg-preventify-host .preventify-product-card-button [role="button"],
-.pg-section-product .pg-preventify-host .quick-add button,
-.pg-section-product .pg-preventify-host .quick-add [role="button"],
-.pg-section-product .pg-preventify-host .quick-add a,
-.lv-preview-embed-wrap .pg-preventify-host button,
-.lv-preview-embed-wrap .pg-preventify-host [role="button"],
-.lv-preview-embed-wrap .pg-preventify-host a[href*="rsi"],
-.lv-preview-embed-wrap .pg-preventify-host [class*="preventify"] button,
-.lv-preview-embed-wrap .pg-preventify-host [class*="Preventify"] button {
+/* Boton COD unificado: home (preview) + PDP — con bordes */
+.pg-preventify-host .preventify-product-card-button button,
+.pg-preventify-host .preventify-product-card-button [role="button"],
+.pg-preventify-host .quick-add button,
+.pg-preventify-host .quick-add [role="button"],
+.pg-preventify-host .quick-add a,
+.pg-preventify-host button,
+.pg-preventify-host [role="button"],
+.pg-preventify-host a[href*="rsi"],
+.pg-preventify-host [class*="preventify"] button,
+.pg-preventify-host [class*="Preventify"] button,
+.pg-preventify-host [class*="cod"] button,
+.pg-preventify-host [class*="COD"] button {
   width: 100% !important;
   min-height: 58px !important;
   box-sizing: border-box !important;
@@ -618,10 +591,10 @@ a.pg-p-cta--cod {
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease !important;
 }
 
-.pg-section-product .pg-preventify-host .preventify-product-card-button button:hover,
-.pg-section-product .pg-preventify-host .quick-add button:hover,
-.lv-preview-embed-wrap .pg-preventify-host button:hover,
-.lv-preview-embed-wrap .pg-preventify-host [role="button"]:hover {
+.pg-preventify-host .preventify-product-card-button button:hover,
+.pg-preventify-host .quick-add button:hover,
+.pg-preventify-host button:hover,
+.pg-preventify-host [role="button"]:hover {
   transform: translateY(-1px) !important;
   border-color: #054497 !important;
   color: #054497 !important;
@@ -631,8 +604,7 @@ a.pg-p-cta--cod {
   filter: none !important;
 }
 
-.pg-section-product .pg-preventify-host .quick-add,
-.lv-preview-embed-wrap .pg-preventify-host .quick-add {
+.pg-preventify-host .quick-add {
   padding: 2px !important;
   border-radius: 18px !important;
   background: linear-gradient(135deg, rgba(5, 68, 151, 0.08), rgba(47, 158, 68, 0.1)) !important;

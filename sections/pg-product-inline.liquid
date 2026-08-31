@@ -12,7 +12,7 @@
 %}
 
 <section class="lv-preview-embed-wrap">
-  {% render 'pg-buybox-from-section', product: featured, hide_description: true %}
+  {% render 'pg-buybox-from-section', product: featured, hide_description: true, section_obj: section %}
 
   {% for block in section.blocks %}
     {% if block.type == '@app' %}
