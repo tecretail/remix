@@ -232,24 +232,26 @@
 
 .pg-p-deal {
   display: block; width: 100%; text-align: left; cursor: pointer;
-  border: 2px solid #e3e6ee; background: #fff; border-radius: 12px;
-  padding: 18px 16px 16px; position: relative; margin: 0;
-  box-sizing: border-box;
+  border: 2px solid #c9d4e8; background: #fff; border-radius: 16px;
+  padding: 0; position: relative; margin: 0;
+  box-sizing: border-box; overflow: visible;
 }
-.pg-p-deal.is-active { border-color: var(--pg-blue, #054497); background: #eef3fb; }
+.pg-p-deal.is-active { border-color: var(--pg-blue, #054497); box-shadow: 0 0 0 1px rgba(5, 68, 151, 0.12); }
+.pg-p-deal.is-active .pg-p-deal-body { background: #eef3fb; }
+.pg-p-deal-body { border-radius: 14px; overflow: hidden; background: #fff; }
 .pg-p-deal-badge {
-  position: absolute; top: -10px; left: 12px;
-  background: var(--pg-blue, #054497); color: #fff; padding: 3px 10px;
-  border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+  position: absolute; top: -10px; left: 14px;
+  background: var(--pg-blue, #054497); color: #fff; padding: 4px 12px;
+  border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: 0.8px; z-index: 2;
 }
-.pg-p-deal-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pg-p-deal-row { display: flex; align-items: center; gap: 12px; padding: 16px 14px; }
 .pg-p-radio {
-  width: 18px; height: 18px; border-radius: 50%; border: 2px solid #c9cee0;
-  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 20px; height: 20px; border-radius: 50%; border: 2px solid #c9cee0;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; background: #fff;
 }
 .pg-p-deal.is-active .pg-p-radio { border-color: var(--pg-blue, #054497); }
 .pg-p-radio-dot {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--pg-blue, #054497); display: none;
+  width: 10px; height: 10px; border-radius: 50%; background: var(--pg-blue, #054497); display: none;
 }
 .pg-p-deal.is-active .pg-p-radio-dot { display: block; }
 .pg-p-desc img { width: 100% !important; max-width: 100% !important; height: auto !important; border-radius: 12px; display: block; }
