@@ -558,7 +558,7 @@ a.pg-p-cta--cod {
   width: 100% !important;
 }
 
-/* Boton COD unificado: estilo neon con bordes */
+/* Boton COD unificado: estilo neon con bordes + movimiento */
 @keyframes pg-cod-neon-pulse {
   0%, 100% {
     box-shadow:
@@ -575,6 +575,30 @@ a.pg-p-cta--cod {
       0 0 20px rgba(47, 220, 90, 0.38),
       0 0 32px rgba(47, 158, 68, 0.22),
       0 4px 14px rgba(5, 68, 151, 0.12);
+  }
+}
+
+@keyframes pg-cod-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  12% {
+    transform: translateY(-5px) scale(1.012);
+  }
+  24% {
+    transform: translateY(0) scale(1);
+  }
+  36% {
+    transform: translateY(-3px) scale(1.006);
+  }
+  48% {
+    transform: translateY(0) scale(1);
+  }
+  60% {
+    transform: translateY(-2px) scale(1.004);
+  }
+  72%, 100% {
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -615,8 +639,11 @@ a.pg-p-cta--cod {
     0 4px 14px rgba(5, 68, 151, 0.1) !important;
   cursor: pointer !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
-  animation: pg-cod-neon-pulse 2.8s ease-in-out infinite !important;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+  animation:
+    pg-cod-neon-pulse 2.8s ease-in-out infinite,
+    pg-cod-bounce 2.8s ease-in-out infinite !important;
+  will-change: transform, box-shadow !important;
 }
 
 .pg-preventify-host .preventify-product-card-button button:hover,
