@@ -555,7 +555,26 @@ a.pg-p-cta--cod {
   width: 100% !important;
 }
 
-/* Boton COD unificado: home (preview) + PDP — con bordes */
+/* Boton COD unificado: estilo neon con bordes */
+@keyframes pg-cod-neon-pulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 0 8px rgba(57, 255, 120, 0.45),
+      0 0 18px rgba(47, 220, 90, 0.35),
+      0 0 32px rgba(47, 158, 68, 0.2),
+      0 4px 14px rgba(5, 68, 151, 0.12);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 0 12px rgba(57, 255, 120, 0.65),
+      0 0 26px rgba(47, 220, 90, 0.5),
+      0 0 44px rgba(47, 158, 68, 0.28),
+      0 6px 18px rgba(5, 68, 151, 0.14);
+  }
+}
+
 .pg-preventify-host .preventify-product-card-button button,
 .pg-preventify-host .preventify-product-card-button [role="button"],
 .pg-preventify-host .quick-add button,
@@ -571,43 +590,67 @@ a.pg-p-cta--cod {
   width: 100% !important;
   min-height: 58px !important;
   box-sizing: border-box !important;
-  background: linear-gradient(180deg, #ffffff 0%, #f3fbf5 48%, #e8f6eb 100%) !important;
-  color: #1a6b2e !important;
-  border: 3px solid #2f9e44 !important;
-  outline: 2px solid rgba(5, 68, 151, 0.12) !important;
-  outline-offset: 2px !important;
+  background: linear-gradient(180deg, #ffffff 0%, #edfff1 45%, #d8f9de 100%) !important;
+  color: #158a2e !important;
+  border: 3px solid #39e85a !important;
+  outline: 2px solid rgba(57, 255, 120, 0.35) !important;
+  outline-offset: 3px !important;
   border-radius: 16px !important;
   font-weight: 900 !important;
   font-size: 14px !important;
-  letter-spacing: 0.55px !important;
+  letter-spacing: 0.65px !important;
   text-transform: uppercase !important;
-  text-shadow: none !important;
+  text-shadow:
+    0 0 6px rgba(57, 255, 120, 0.55),
+    0 0 14px rgba(47, 200, 80, 0.25) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -2px 0 rgba(47, 158, 68, 0.12),
-    0 6px 18px rgba(5, 68, 151, 0.1) !important;
+    inset 0 -2px 0 rgba(47, 158, 68, 0.15),
+    0 0 8px rgba(57, 255, 120, 0.45),
+    0 0 18px rgba(47, 220, 90, 0.35),
+    0 0 32px rgba(47, 158, 68, 0.2),
+    0 4px 14px rgba(5, 68, 151, 0.1) !important;
   cursor: pointer !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+  animation: pg-cod-neon-pulse 2.8s ease-in-out infinite !important;
 }
 
 .pg-preventify-host .preventify-product-card-button button:hover,
 .pg-preventify-host .quick-add button:hover,
 .pg-preventify-host button:hover,
 .pg-preventify-host [role="button"]:hover {
-  transform: translateY(-1px) !important;
-  border-color: #054497 !important;
-  color: #054497 !important;
+  transform: translateY(-2px) scale(1.01) !important;
+  border-color: #5dff7a !important;
+  color: #0d6b22 !important;
+  animation: none !important;
+  text-shadow:
+    0 0 8px rgba(57, 255, 120, 0.75),
+    0 0 18px rgba(47, 220, 90, 0.45) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 10px 24px rgba(5, 68, 151, 0.14) !important;
+    0 0 14px rgba(57, 255, 120, 0.75),
+    0 0 28px rgba(47, 220, 90, 0.55),
+    0 0 48px rgba(47, 158, 68, 0.35),
+    0 0 64px rgba(5, 68, 151, 0.15),
+    0 10px 26px rgba(47, 158, 68, 0.25) !important;
   filter: none !important;
 }
 
 .pg-preventify-host .quick-add {
-  padding: 2px !important;
-  border-radius: 18px !important;
-  background: linear-gradient(135deg, rgba(5, 68, 151, 0.08), rgba(47, 158, 68, 0.1)) !important;
+  padding: 4px !important;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, rgba(57, 255, 120, 0.12), rgba(5, 68, 151, 0.1)) !important;
+  box-shadow:
+    0 0 12px rgba(57, 255, 120, 0.2),
+    inset 0 0 12px rgba(57, 255, 120, 0.08) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-preventify-host button,
+  .pg-preventify-host [role="button"] {
+    animation: none !important;
+  }
 }
 
 .pg-p-stars {
