@@ -1,0 +1,295 @@
+{% comment %} Estilos editables (toda la seccion) {% endcomment %}
+<div
+  class="pg-sec-style pg-sec-align-{{ section.settings.style_align }}{% if section.settings.style_hide_mobile %} pg-sec-hide-mobile{% endif %}{% if section.settings.style_hide_desktop %} pg-sec-hide-desktop{% endif %}"
+  style="
+    --pg-sec-pad-y: {{ section.settings.style_pad_y }}px;
+    --pg-sec-pad-x: {{ section.settings.style_pad_x }}px;
+    --pg-sec-max: {% if section.settings.style_max_width > 0 %}{{ section.settings.style_max_width }}px{% else %}none{% endif %};
+    --pg-sec-h-size: {{ section.settings.style_heading_size }}px;
+    --pg-sec-t-size: {{ section.settings.style_text_size }}px;
+    --pg-sec-bg: {{ section.settings.style_bg | default: 'transparent' }};
+    --pg-sec-h-color: {{ section.settings.style_heading_color }};
+    --pg-sec-t-color: {{ section.settings.style_text_color }};
+    --pg-sec-btn-fs: {{ section.settings.style_btn_font }}px;
+    --pg-sec-btn-py: {{ section.settings.style_btn_pad_y }}px;
+    --pg-sec-btn-px: {{ section.settings.style_btn_pad_x }}px;
+    --pg-sec-btn-radius: {{ section.settings.style_btn_radius }}px;
+    --pg-sec-btn-bg: {{ section.settings.style_btn_bg }};
+    --pg-sec-btn-color: {{ section.settings.style_btn_text }};
+    --pg-sec-min-h: {{ section.settings.style_min_height }}px;
+    --pg-sec-img-w: {{ section.settings.style_image_width }}%;
+    --pg-sec-img-h: {% if section.settings.style_image_max_height > 0 %}{{ section.settings.style_image_max_height }}px{% else %}none{% endif %};
+    --pg-sec-img-radius: {{ section.settings.style_image_radius }}px;
+  "
+>
+<div class="praward body_full_nomar">
+  <div class="body_full wrapper">
+    <div class="copy">
+      {% if section.settings.heading != blank %}
+        <span class="heading">{{ section.settings.heading }}</span>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <div>{{ section.settings.body }}</div>
+      {% endif %}
+    </div>
+    {% if section.settings.award != blank %}
+      <img class="award" src="{{ section.settings.award | image_url: width: 500 }}" alt="Award" width="400" height="400" loading="lazy">
+    {% else %}
+      <img class="award" src="{{ section.settings.award_url }}" alt="Rated #1 by Prostate Report" width="400" height="400" loading="lazy">
+    {% endif %}
+  </div>
+  <div class="bottom">
+    <div class="body_full">
+      {% if section.settings.logo != blank %}
+        <img class="logo" src="{{ section.settings.logo | image_url: width: 500 }}" alt="Logo" width="400" height="400" loading="lazy">
+      {% else %}
+        <img class="logo" src="{{ section.settings.logo_url }}" alt="National Health Federation" width="400" height="400" loading="lazy">
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "PG Premios",
+  "tag": "section",
+  "class": "pg-section-awards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "The Most Honored Name In Prostate Health"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Texto",
+      "default": "<p>There are close to 200 natural prostate supplements available in the world today. We were honored that we have been named as the number one product in the world.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "award",
+      "label": "Imagen premio"
+    },
+    {
+      "type": "text",
+      "id": "award_url",
+      "label": "URL premio (fallback)",
+      "default": "https://www.prostagenix.com/special/special-offer/img/prostate-report-award.png"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo organización"
+    },
+    {
+      "type": "text",
+      "id": "logo_url",
+      "label": "URL logo (fallback)",
+      "default": "https://www.prostagenix.com/special/special-offer/img/national-health-federation.jpg"
+    },
+    {
+      "type": "header",
+      "content": "Estilos de seccion"
+    },
+    {
+      "type": "range",
+      "id": "style_pad_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_pad_x",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_max_width",
+      "min": 0,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_heading_size",
+      "min": 14,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulos",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "style_bg",
+      "label": "Fondo seccion"
+    },
+    {
+      "type": "color",
+      "id": "style_heading_color",
+      "label": "Color titulos",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "style_text_color",
+      "label": "Color texto",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "style_btn_font",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano botones",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_y",
+      "min": 6,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_x",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_btn_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio botones",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "style_btn_bg",
+      "label": "Boton fondo",
+      "default": "#e65600"
+    },
+    {
+      "type": "color",
+      "id": "style_btn_text",
+      "label": "Boton texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "style_min_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Altura minima (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "style_align",
+      "label": "Alineacion del contenido",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "style_image_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Ancho maximo de imagenes",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "style_image_max_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Alto maximo imagenes (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio de imagenes",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_mobile",
+      "label": "Ocultar en celular",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_desktop",
+      "label": "Ocultar en desktop",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "PG Premios"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{% comment %} Offer card — CTA a la ficha del producto {% endcomment %}
+
+{% liquid
+  assign pitch = product.metafields.custom.short_pitch.value
+  assign badge = product.metafields.custom.badge_text.value
+  if badge == blank
+    assign badge = 'OFERTA'
+  endif
+
+  assign variant = product.selected_or_first_available_variant
+  assign price_cents = variant.price
+  assign compare_cents = variant.compare_at_price
+  if compare_cents == blank or compare_cents <= price_cents
+    assign compare_cents = price_cents | times: 25 | divided_by: 10
+  endif
+  assign save_cents = compare_cents | minus: price_cents
+  if save_cents < 0
+    assign save_cents = 0
+  endif
+  assign save_pct = 0
+  if compare_cents > 0
+    assign save_pct = save_cents | times: 100 | divided_by: compare_cents
+  endif
+
+  assign price_str = price_cents | money_without_currency | strip | replace: ',', '.'
+  assign retail_str = compare_cents | money_without_currency | strip | replace: ',', '.'
+  assign save_str = save_cents | money_without_currency | strip | replace: ',', '.'
+  assign images = product.images
+%}
+
+<article class="lv-offer-pod">
+  <div class="lv-offer-visual">
+    <span class="lv-offer-bonus">{{ badge }}</span>
+    <div class="lv-offer-bottles">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.title | escape }}" width="900" height="900" loading="lazy">
+      {% endif %}
+    </div>
+    {% if images.size > 1 %}
+      <div class="lv-offer-thumbs" data-pg-offer-thumbs>
+        {% for image in images limit: 10 %}
+          <button
+            type="button"
+            class="lv-offer-thumb{% if forloop.first %} is-active{% endif %}"
+            data-src="{{ image | image_url: width: 900 }}"
+            aria-label="Imagen {{ forloop.index }}"
+          >
+            <img src="{{ image | image_url: width: 120 }}" alt="" width="120" height="120" loading="lazy">
+          </button>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="lv-offer-copy">
+    <h3 class="lv-offer-title">{{ product.title }}</h3>
+    {% if pitch != blank %}
+      <p class="lv-offer-pitch">{{ pitch }}</p>
+    {% endif %}
+
+    <ul class="lv-offer-list">
+      <li>Precio retail: <s>S/ {{ retail_str }}</s></li>
+      <li>Ahorras: <strong>S/ {{ save_str }}</strong></li>
+    </ul>
+
+    <div class="lv-offer-price-block">
+      <span class="lv-offer-instant">INSTANT SAVINGS</span>
+      <div class="lv-offer-price">S/ {{ price_str }}</div>
+      <span class="lv-offer-pct">{{ save_pct }}% SAVINGS</span>
+    </div>
+
+    <div class="lv-offer-actions">
+      <a href="{{ product.url }}" class="lv-offer-cta" aria-label="Ver {{ product.title | escape }}">
+        ORDER NOW
+      </a>
+      <div class="lv-offer-guarantee">{{ guarantee }}</div>
+    </div>
+  </div>
+</article>

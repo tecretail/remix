@@ -1,0 +1,278 @@
+{% comment %} Carrito — estilo alineado al buybox / landing {% endcomment %}
+{{ 'pg-cart.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="pg-sec-style pg-sec-align-{{ section.settings.style_align }}{% if section.settings.style_hide_mobile %} pg-sec-hide-mobile{% endif %}{% if section.settings.style_hide_desktop %} pg-sec-hide-desktop{% endif %}"
+  style="
+    --pg-sec-pad-y: {{ section.settings.style_pad_y }}px;
+    --pg-sec-pad-x: {{ section.settings.style_pad_x }}px;
+    --pg-sec-max: {% if section.settings.style_max_width > 0 %}{{ section.settings.style_max_width }}px{% else %}none{% endif %};
+    --pg-sec-h-size: {{ section.settings.style_heading_size }}px;
+    --pg-sec-t-size: {{ section.settings.style_text_size }}px;
+    --pg-sec-bg: {{ section.settings.style_bg | default: 'transparent' }};
+    --pg-sec-h-color: {{ section.settings.style_heading_color }};
+    --pg-sec-t-color: {{ section.settings.style_text_color }};
+    --pg-sec-btn-fs: {{ section.settings.style_btn_font }}px;
+    --pg-sec-btn-py: {{ section.settings.style_btn_pad_y }}px;
+    --pg-sec-btn-px: {{ section.settings.style_btn_pad_x }}px;
+    --pg-sec-btn-radius: {{ section.settings.style_btn_radius }}px;
+    --pg-sec-btn-bg: {{ section.settings.style_btn_bg }};
+    --pg-sec-btn-color: {{ section.settings.style_btn_text }};
+    --pg-sec-min-h: {{ section.settings.style_min_height }}px;
+  "
+>
+  <section class="pg-cart">
+    <div class="pg-cart__inner">
+      <header class="pg-cart__head">
+        <h1 class="pg-cart__title">Carrito</h1>
+        {% if cart.item_count > 0 %}
+          <p class="pg-cart__count">{{ cart.item_count }} {% if cart.item_count == 1 %}producto{% else %}productos{% endif %}</p>
+        {% endif %}
+      </header>
+
+      {% if cart.item_count == 0 %}
+        <div class="pg-cart__empty">
+          <p class="pg-cart__empty-text">Tu carrito está vacío.</p>
+          <a class="pg-cart__link-btn" href="{{ routes.root_url }}">Seguir comprando</a>
+        </div>
+      {% else %}
+        <form class="pg-cart__form" action="{{ routes.cart_url }}" method="post" novalidate>
+          <ul class="pg-cart__list">
+            {% for item in cart.items %}
+              <li class="pg-cart__item">
+                <a class="pg-cart__thumb" href="{{ item.url }}">
+                  {% if item.image %}
+                    <img
+                      src="{{ item.image | image_url: width: 240 }}"
+                      alt="{{ item.product.title | escape }}"
+                      width="96"
+                      height="96"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <span class="pg-cart__thumb-ph" aria-hidden="true"></span>
+                  {% endif %}
+                </a>
+
+                <div class="pg-cart__info">
+                  <a class="pg-cart__name" href="{{ item.url }}">{{ item.product.title }}</a>
+                  {% unless item.variant.title == 'Default Title' %}
+                    <p class="pg-cart__variant">{{ item.variant.title }}</p>
+                  {% endunless %}
+                  <p class="pg-cart__unit">
+                    S/ {{ item.final_price | money_without_currency | strip | replace: ',', '.' }}
+                  </p>
+                  <a class="pg-cart__remove" href="{{ item.url_to_remove }}">Quitar</a>
+                </div>
+
+                <div class="pg-cart__qty">
+                  <label class="pg-cart__qty-label" for="updates-{{ item.key }}">Cant.</label>
+                  <input
+                    id="updates-{{ item.key }}"
+                    class="pg-cart__qty-input"
+                    type="number"
+                    name="updates[]"
+                    value="{{ item.quantity }}"
+                    min="0"
+                    inputmode="numeric"
+                  >
+                </div>
+
+                <div class="pg-cart__line">
+                  <span class="pg-cart__line-label">Total</span>
+                  <span class="pg-cart__line-price">
+                    S/ {{ item.final_line_price | money_without_currency | strip | replace: ',', '.' }}
+                  </span>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <div class="pg-cart__footer">
+            <button type="submit" name="update" class="pg-cart__btn pg-cart__btn--ghost">
+              Actualizar
+            </button>
+
+            <div class="pg-cart__summary">
+              <div class="pg-cart__total">
+                <span>Total</span>
+                <strong>S/ {{ cart.total_price | money_without_currency | strip | replace: ',', '.' }}</strong>
+              </div>
+              <button type="submit" name="checkout" class="pg-cart__btn pg-cart__btn--primary">
+                IR A PAGAR →
+              </button>
+              <a class="pg-cart__continue" href="{{ routes.root_url }}">← Seguir comprando</a>
+            </div>
+          </div>
+        </form>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "ProstaGenix Cart",
+  "tag": "section",
+  "class": "pg-section-cart",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Estilos de seccion"
+    },
+    {
+      "type": "range",
+      "id": "style_pad_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "style_pad_x",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "style_max_width",
+      "min": 0,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo (0 = auto)",
+      "default": 960
+    },
+    {
+      "type": "range",
+      "id": "style_heading_size",
+      "min": 14,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulos",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "style_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "style_bg",
+      "label": "Fondo seccion",
+      "default": "#f7f8fb"
+    },
+    {
+      "type": "color",
+      "id": "style_heading_color",
+      "label": "Color titulos",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "style_text_color",
+      "label": "Color texto",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "style_btn_font",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano botones",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_y",
+      "min": 6,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_x",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_btn_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio botones",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "style_btn_bg",
+      "label": "Boton fondo",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "style_btn_text",
+      "label": "Boton texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "style_min_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Altura minima (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "style_align",
+      "label": "Alineacion del contenido",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_mobile",
+      "label": "Ocultar en celular",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_desktop",
+      "label": "Ocultar en desktop",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

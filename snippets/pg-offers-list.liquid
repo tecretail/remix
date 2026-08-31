@@ -1,0 +1,59 @@
+{% comment %} Ofertas = React /productos igualito {% endcomment %}
+
+{% liquid
+  assign react_heading = heading | default: 'Special Internet-Only Offer'
+  if react_heading == blank
+    assign react_heading = 'Special Internet-Only Offer'
+  endif
+  assign react_guarantee = guarantee | default: '90 DAY MONEY BACK GUARANTEE'
+  if react_guarantee == blank
+    assign react_guarantee = '90 DAY MONEY BACK GUARANTEE'
+  endif
+  assign list_all = show_all_collections | default: false
+%}
+
+{{ 'pg-offers-react.css' | asset_url | stylesheet_tag }}
+
+<div class="lv-react-offers" data-embed-root>
+  <div class="lv-offers-wrap">
+    <h1 class="lv-offers-heading">{{ react_heading }}</h1>
+
+    {% if list_all %}
+      {% assign any_products = false %}
+      {% for col in collections %}
+        {% if col.products_count > 0 %}
+          {% assign any_products = true %}
+          <section class="lv-collection">
+            <h2 class="lv-collection-title">{{ col.title }}</h2>
+            {% if col.description != blank %}
+              <p class="lv-collection-desc">{{ col.description | strip_html }}</p>
+            {% endif %}
+            <div class="lv-offers-list">
+              {% for product in col.products %}
+                {% render 'pg-offer-card', product: product, guarantee: react_guarantee %}
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+      {% endfor %}
+      {% unless any_products %}
+        <p class="lv-offers-empty">No hay productos aún.</p>
+      {% endunless %}
+
+    {% elsif collection != blank and collection.products_count > 0 %}
+      <section class="lv-collection">
+        <h2 class="lv-collection-title">{{ collection.title }}</h2>
+        {% if collection.description != blank %}
+          <p class="lv-collection-desc">{{ collection.description | strip_html }}</p>
+        {% endif %}
+        <div class="lv-offers-list">
+          {% for product in collection.products %}
+            {% render 'pg-offer-card', product: product, guarantee: react_guarantee %}
+          {% endfor %}
+        </div>
+      </section>
+    {% else %}
+      <p class="lv-offers-empty">No hay productos aún.</p>
+    {% endif %}
+  </div>
+</div>

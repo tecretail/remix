@@ -1,0 +1,86 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "ProstaGenix",
+    "theme_version": "1.1.0",
+    "theme_author": "NovaShop",
+    "theme_documentation_url": "https://help.shopify.com/",
+    "theme_support_url": "https://help.shopify.com/"
+  },
+  {
+    "name": "Brand / colores globales",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_blue",
+        "label": "Azul marca",
+        "default": "#054497"
+      },
+      {
+        "type": "color",
+        "id": "color_orange",
+        "label": "Naranja CTA",
+        "default": "#f39200"
+      },
+      {
+        "type": "color",
+        "id": "color_red",
+        "label": "Rojo urgencia",
+        "default": "#d40000"
+      },
+      {
+        "type": "color",
+        "id": "color_page_bg",
+        "label": "Fondo de pagina",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Color texto global",
+        "default": "#0b1a3a"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_url",
+        "label": "URL WhatsApp",
+        "default": "https://wa.me/51977750367"
+      }
+    ]
+  },
+  {
+    "name": "Tipografia global",
+    "settings": [
+      {
+        "type": "range",
+        "id": "font_body_size",
+        "min": 12,
+        "max": 22,
+        "step": 1,
+        "unit": "px",
+        "label": "Tamano texto base",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "font_heading_scale",
+        "min": 80,
+        "max": 140,
+        "step": 5,
+        "unit": "%",
+        "label": "Escala de titulos",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "section_gap",
+        "min": 0,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "label": "Espacio entre secciones",
+        "default": 0
+      }
+    ]
+  }
+]

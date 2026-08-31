@@ -1,0 +1,19 @@
+<section class="pg-simple">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;">Mi cuenta</h1>
+  <p>Hola, {{ customer.first_name }}!</p>
+  <p><a href="{{ routes.account_addresses_url }}">Direcciones</a> · <a href="{{ routes.account_logout_url }}">Cerrar sesión</a></p>
+
+  <h2 style="margin-top:32px;font-weight:800;">Pedidos</h2>
+  {% if customer.orders.size == 0 %}
+    <p>Aún no tienes pedidos.</p>
+  {% else %}
+    <ul style="list-style:none;padding:0;">
+      {% for order in customer.orders %}
+        <li style="padding:12px 0;border-bottom:1px solid #e3e6ee;">
+          <a href="{{ order.customer_url }}" style="font-weight:800;color:var(--pg-blue,#054497);">{{ order.name }}</a>
+          — {{ order.created_at | date: '%d/%m/%Y' }} — {{ order.total_price | money }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>

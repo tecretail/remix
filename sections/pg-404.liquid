@@ -1,0 +1,19 @@
+{% comment %} 404 simple y estable — no carga producto ni logos (evita romper preview) {% endcomment %}
+<section class="pg-simple" style="text-align:center;max-width:640px;margin:0 auto;padding:48px 16px;">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;font-size:48px;margin:0;">404</h1>
+  <p style="font-weight:700;margin:12px 0 24px;">Página no encontrada</p>
+  <a
+    href="{{ routes.root_url }}"
+    style="display:inline-block;padding:12px 24px;background:var(--pg-orange,#f39200);color:#fff;font-weight:900;border-radius:999px;text-decoration:none;"
+  >
+    Volver al inicio
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "PG 404",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

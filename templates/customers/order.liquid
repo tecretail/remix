@@ -1,0 +1,14 @@
+<section class="pg-simple">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;">Pedido {{ order.name }}</h1>
+  <p>{{ order.created_at | date: '%d/%m/%Y' }} · {{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+  <ul style="list-style:none;padding:0;margin:24px 0;">
+    {% for line_item in order.line_items %}
+      <li style="padding:12px 0;border-bottom:1px solid #e3e6ee;display:flex;justify-content:space-between;gap:12px;">
+        <span>{{ line_item.title }} × {{ line_item.quantity }}</span>
+        <strong>{{ line_item.final_line_price | money }}</strong>
+      </li>
+    {% endfor %}
+  </ul>
+  <p style="font-weight:900;font-size:20px;">Total: {{ order.total_price | money }}</p>
+  <p><a href="{{ routes.account_url }}">← Volver a la cuenta</a></p>
+</section>

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "pg-cart",
+      "settings": {
+        "style_pad_y": 24,
+        "style_pad_x": 16,
+        "style_max_width": 960,
+        "style_bg": "#f7f8fb",
+        "style_btn_bg": "#054497",
+        "style_btn_text": "#ffffff",
+        "style_btn_radius": 12
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,15 @@
+<section class="pg-simple">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;">Direcciones</h1>
+  {% paginate customer.addresses by 10 %}
+    {% for address in customer.addresses %}
+      <div style="padding:16px;border:1px solid #e3e6ee;border-radius:12px;margin-bottom:12px;">
+        {{ address | format_address }}
+        {% if address == customer.default_address %}
+          <div style="font-size:12px;color:var(--pg-orange,#f39200);font-weight:800;">Predeterminada</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    {{ paginate | default_pagination }}
+  {% endpaginate %}
+  <p><a href="{{ routes.account_url }}">← Volver a la cuenta</a></p>
+</section>

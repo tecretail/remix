@@ -1,0 +1,336 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "announce": {
+      "type": "pg-announce",
+      "blocks": {
+        "a1": {
+          "type": "item",
+          "settings": {
+            "text": "✨ ¡Bienvenido(a) a ProstaGenix! ✨"
+          }
+        },
+        "a2": {
+          "type": "item",
+          "settings": {
+            "text": "💎 Garantía de 90 Días · Devolución Total"
+          }
+        },
+        "a3": {
+          "type": "item",
+          "settings": {
+            "text": "🔥 ¡Envíos a TODO el Perú! 🇵🇪"
+          }
+        },
+        "a4": {
+          "type": "item",
+          "settings": {
+            "text": "⚡ Hasta 70% OFF · ¡Solo hoy!"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4"
+      ],
+      "settings": {}
+    },
+    "hero": {
+      "type": "pg-hero",
+      "settings": {
+        "hero_subtitle": "GREAT DEAL - Order Now!",
+        "hero_title": "<p>One Day <strong>Super Sale</strong> <span>Stock Up Now!</span></p>",
+        "hero_urgency": "HUGE SAVINGS - 70% OFF NOW!",
+        "countdown_label": "Hurry Up! Time is Ticking...",
+        "show_countdown": true,
+        "show_bottles": true
+      }
+    },
+    "product": {
+      "type": "pg-product-inline",
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "✓",
+            "text": "Reduce DHT"
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "★",
+            "text": "100% Natural"
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "♥",
+            "text": "Clinicamente Probado"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "featured_product": "2x1-desatorador-multifuncional-premium",
+        "show_bar": false,
+        "show_rating": true,
+        "show_benefits": true,
+        "show_hot_sale": true,
+        "show_description": false,
+        "cta_label": "IR A PAGAR AHORA →"
+      }
+    },
+    "consumerlab": {
+      "type": "pg-consumerlab",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "pg-testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "image_url": "https://www.prostagenix.com/images/home/dudley-danoff.png",
+            "quote": "I highly recommend ProstaGenix to all men with prostate concerns. It is a natural alpha-blocker which is what you want. It is very effective, a truly remarkable product.",
+            "name": "Dudley Danoff, M.D., F.A.C.S.",
+            "line_1": "Cedars-Sinai Medical Center",
+            "line_2": "Tower Urology",
+            "line_3": "Yale School of Medicine"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "image_url": "https://www.prostagenix.com/special/special-offer/img/neil-diamond.png",
+            "quote": "I have battled nagging prostate issues for years and I tried many of the products on the market and nothing worked. But then I discovered ProstaGenix and it was a game changer!",
+            "name": "Neil Diamond",
+            "line_1": "Legendary American",
+            "line_2": "Singer-Songwriter",
+            "line_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2"
+      ],
+      "settings": {}
+    },
+    "benefits": {
+      "type": "pg-benefits",
+      "blocks": {
+        "b1": {
+          "type": "left",
+          "settings": {
+            "text": "End Nighttime Bathroom Trips Get a full night's sleep"
+          }
+        },
+        "b2": {
+          "type": "left",
+          "settings": {
+            "text": "Wake up with Energy"
+          }
+        },
+        "b3": {
+          "type": "left",
+          "settings": {
+            "text": "Reduce your Constant daytime Bathrooms Trips"
+          }
+        },
+        "b4": {
+          "type": "left",
+          "settings": {
+            "text": "Halt the embarrassing Dribbling or Hesitancy"
+          }
+        },
+        "b5": {
+          "type": "left",
+          "settings": {
+            "text": "Stop the Burning and Urgency"
+          }
+        },
+        "b6": {
+          "type": "right",
+          "settings": {
+            "text": "Empty Your bladder fully when you go"
+          }
+        },
+        "b7": {
+          "type": "right",
+          "settings": {
+            "text": "Protect your prostate health"
+          }
+        },
+        "b8": {
+          "type": "right",
+          "settings": {
+            "text": "Bedroom Boost - Enjoy The Return To Better Erections Our Customers RAVE About!"
+          }
+        },
+        "b9": {
+          "type": "right",
+          "settings": {
+            "text": "Enjoy Sex Again!"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9"
+      ],
+      "settings": {}
+    },
+    "offers": {
+      "type": "pg-offers-page",
+      "settings": {
+        "collection": "products",
+        "heading": "Special Internet-Only Offer",
+        "guarantee_text": "90 DAY MONEY BACK GUARANTEE"
+      }
+    },
+    "guarantee": {
+      "type": "pg-guarantee",
+      "settings": {}
+    },
+    "faqs": {
+      "type": "pg-faqs",
+      "blocks": {
+        "f1": {
+          "type": "answer",
+          "settings": {
+            "question": "How many bottles should I order?",
+            "answer": "<p>The most popular order for new customers is the 3 bottle package, and that's what I recommend to start with.</p>"
+          }
+        },
+        "f2": {
+          "type": "answer",
+          "settings": {
+            "question": "How long does a bottle last and how do I use ProstaGenix?",
+            "answer": "<p>Each bottle is a full 30-day supply. Simply take three capsules every day.</p>"
+          }
+        },
+        "f3": {
+          "type": "ingredients",
+          "settings": {}
+        },
+        "f4": {
+          "type": "answer",
+          "settings": {
+            "question": "How safe is ProstaGenix?",
+            "answer": "<p>ProstaGenix is completely safe. It contains only 100% safe and natural ingredients.</p>"
+          }
+        },
+        "f5": {
+          "type": "answer",
+          "settings": {
+            "question": "What if it doesn't work for me? Is there a guarantee?",
+            "answer": "<p>If you're unsatisfied for any reason after a full 90 days of use, we will return your money 100%, hassle-free.</p>"
+          }
+        },
+        "f6": {
+          "type": "answer",
+          "settings": {
+            "question": "When can I expect results?",
+            "answer": "<p>Most men report feeling a distinctive and noticeable change in the first 10 days of use.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "title": "FAQs"
+      }
+    },
+    "comparison": {
+      "type": "pg-comparison",
+      "settings": {}
+    },
+    "awards": {
+      "type": "pg-awards",
+      "settings": {}
+    },
+    "buy": {
+      "type": "pg-buy-cta",
+      "settings": {}
+    },
+    "footer": {
+      "type": "pg-footer",
+      "blocks": {
+        "s1": {
+          "type": "social",
+          "settings": {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/prostagenix/",
+            "icon_url": "https://www.prostagenix.com/images/footer_social_facebook.png"
+          }
+        },
+        "s2": {
+          "type": "social",
+          "settings": {
+            "label": "Twitter",
+            "url": "https://twitter.com/prostagenix",
+            "icon_url": "https://www.prostagenix.com/images/footer_social_twitter.png"
+          }
+        },
+        "s3": {
+          "type": "social",
+          "settings": {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/prostagenixpills",
+            "icon_url": "https://www.prostagenix.com/images/footer_social_instagram.png"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "announce",
+    "hero",
+    "product",
+    "consumerlab",
+    "testimonials",
+    "benefits",
+    "offers",
+    "guarantee",
+    "faqs",
+    "comparison",
+    "awards",
+    "buy",
+    "footer"
+  ]
+}

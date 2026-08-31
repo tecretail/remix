@@ -1,0 +1,888 @@
+{% comment %} Estilos editables (toda la seccion) — mismo CSS que el producto del home {% endcomment %}
+{{ 'pg-product-react.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="pg-sec-style pg-sec-align-{{ section.settings.style_align }}{% if section.settings.style_hide_mobile %} pg-sec-hide-mobile{% endif %}{% if section.settings.style_hide_desktop %} pg-sec-hide-desktop{% endif %}"
+  style="
+    --pg-sec-pad-y: {{ section.settings.style_pad_y }}px;
+    --pg-sec-pad-x: {{ section.settings.style_pad_x }}px;
+    --pg-sec-max: {% if section.settings.style_max_width > 0 %}{{ section.settings.style_max_width }}px{% else %}none{% endif %};
+    --pg-sec-h-size: {{ section.settings.style_heading_size }}px;
+    --pg-sec-t-size: {{ section.settings.style_text_size }}px;
+    --pg-sec-bg: {{ section.settings.style_bg | default: 'transparent' }};
+    --pg-sec-h-color: {{ section.settings.style_heading_color }};
+    --pg-sec-t-color: {{ section.settings.style_text_color }};
+    --pg-sec-btn-fs: {{ section.settings.style_btn_font }}px;
+    --pg-sec-btn-py: {{ section.settings.style_btn_pad_y }}px;
+    --pg-sec-btn-px: {{ section.settings.style_btn_pad_x }}px;
+    --pg-sec-btn-radius: {{ section.settings.style_btn_radius }}px;
+    --pg-sec-btn-bg: {{ section.settings.style_btn_bg }};
+    --pg-sec-btn-color: {{ section.settings.style_btn_text }};
+    --pg-sec-min-h: {{ section.settings.style_min_height }}px;
+    --pg-sec-img-w: {{ section.settings.style_image_width }}%;
+    --pg-sec-img-h: {% if section.settings.style_image_max_height > 0 %}{{ section.settings.style_image_max_height }}px{% else %}none{% endif %};
+    --pg-sec-img-radius: {{ section.settings.style_image_radius }}px;
+  "
+>
+<div class="pg-pdp-wrap">
+  {% render 'pg-buybox-from-section', product: product %}
+  {% render 'pg-section-extra-blocks', sec: section %}
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "PG Producto PDP",
+  "tag": "section",
+  "class": "pg-main-product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Barra superior azul",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Mostrar rating / badge medico",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Mostrar beneficios",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hot_sale",
+      "label": "Mostrar HOT SALE + countdown",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Mostrar descripcion",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_videos",
+      "label": "Mostrar carrusel de videos",
+      "default": true,
+      "info": "Se muestra antes de Descripcion. Los videos son por producto (no globales)."
+    },
+    {
+      "type": "checkbox",
+      "id": "videos_from_media",
+      "label": "Usar videos de medios del producto",
+      "default": true,
+      "info": "Si no hay metafields, usa los videos subidos en Medios de cada producto."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back",
+      "label": "Mostrar enlace volver",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_releasit",
+      "label": "Mostrar form Releasit COD",
+      "default": true,
+      "info": "Gancho del formulario debajo de la imagen"
+    },
+    {
+      "type": "header",
+      "content": "Textos / botones"
+    },
+    {
+      "type": "text",
+      "id": "releasit_label",
+      "label": "Texto boton Releasit COD",
+      "default": "PEDIR CONTRA ENTREGA (COD)"
+    },    {
+      "type": "text",
+      "id": "bar_text",
+      "label": "Texto barra superior",
+      "default": "GREAT DEAL · Envio GRATIS en pedidos hoy · Garantia 90 Dias"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Texto rating",
+      "default": "4.8 (13,167)"
+    },
+    {
+      "type": "text",
+      "id": "doctor_badge",
+      "label": "Badge medico",
+      "default": "RECOMENDADO POR MEDICOS"
+    },
+    {
+      "type": "header",
+      "content": "Beneficios (bloques abajo)"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Beneficio 1 (fallback)",
+      "default": "Reduce DHT",
+      "info": "Solo si no hay bloques Beneficio"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Beneficio 2 (fallback)",
+      "default": "100% Natural"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Beneficio 3 (fallback)",
+      "default": "Clinicamente Probado"
+    },
+    {
+      "type": "text",
+      "id": "hot_sale_label",
+      "label": "Titulo HOT SALE",
+      "default": "HOT SALE"
+    },
+    {
+      "type": "text",
+      "id": "hot_sale_text",
+      "label": "Texto HOT SALE",
+      "default": "Ordena hoy para asegurar tu descuento y regalos GRATIS"
+    },    {
+      "type": "text",
+      "id": "offer_badge",
+      "label": "Badge por defecto (todas)",
+      "default": "MEJOR OFERTA",
+      "info": "Se usa solo si NO agregaste bloques 'Badge variante'. Con bloques, cada variante se edita por separado."
+    },
+    {
+      "type": "text",
+      "id": "off_prefix",
+      "label": "Prefijo % OFF",
+      "default": "UP TO"
+    },
+    {
+      "type": "text",
+      "id": "off_suffix",
+      "label": "Sufijo % OFF",
+      "default": "% OFF"
+    },
+    {
+      "type": "text",
+      "id": "in_stock_label",
+      "label": "Texto en stock",
+      "default": "En stock"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Texto agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "Etiqueta Total",
+      "default": "Total"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "Etiqueta Ahorras",
+      "default": "Ahorras"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto boton pagar",
+      "default": "IR A PAGAR"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Texto volver",
+      "default": "Volver a la oferta"
+    },
+    {
+      "type": "text",
+      "id": "description_title",
+      "label": "Palabra / titulo Descripcion (editable)",
+      "default": "Descripcion",
+      "info": "Cambia este texto (ej: Descripcion, Detalles, Beneficios)."
+    },
+    {
+      "type": "header",
+      "content": "Layout / posicion"
+    },
+    {
+      "type": "select",
+      "id": "gallery_position",
+      "label": "Posicion galeria",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "description_placement",
+      "label": "Posicion panel descripcion",
+      "options": [
+        {
+          "value": "below",
+          "label": "Debajo de todo (ancho completo)"
+        },
+        {
+          "value": "under_buybox",
+          "label": "Debajo del buybox (columna derecha)"
+        },
+        {
+          "value": "under_gallery",
+          "label": "Debajo de la galeria"
+        },
+        {
+          "value": "none",
+          "label": "Ocultar"
+        }
+      ],
+      "default": "below"
+    },
+    {
+      "type": "header",
+      "content": "Tamanos"
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo seccion",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "section_pad_y",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_pad_x",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulo",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "gallery_min_height",
+      "min": 240,
+      "max": 640,
+      "step": 20,
+      "unit": "px",
+      "label": "Alto minimo galeria",
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto boton",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "cta_pad_y",
+      "min": 8,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cta_pad_x",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cta_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio boton",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto descripcion",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desc_max_width",
+      "min": 480,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho max. descripcion",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "desc_pad",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding descripcion",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desc_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio descripcion",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desc_margin_top",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Margen superior descripcion",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "color_bar",
+      "label": "Barra superior",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Titulo",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "color_badge",
+      "label": "Badge medico",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_off",
+      "label": "Badge % OFF",
+      "default": "#d40000"
+    },
+    {
+      "type": "color",
+      "id": "color_cta_bg",
+      "label": "Boton fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_cta_text",
+      "label": "Boton texto",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_cta_border",
+      "label": "Boton borde",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_desc_bg",
+      "label": "Descripcion fondo",
+      "default": "#f7f8fb"
+    },
+    {
+      "type": "color",
+      "id": "color_desc_title",
+      "label": "Descripcion titulo",
+      "default": "#054497"
+    },
+    {
+      "type": "header",
+      "content": "Carrusel de videos (antes de Descripcion)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Los videos se cargan por producto: Admin → Producto → Medios. Edita el titulo y el texto social abajo. Los captions blancos bajo cada video estan ocultos por defecto."
+    },
+    {
+      "type": "textarea",
+      "id": "videos_heading",
+      "label": "Titulo / descripcion de la seccion de videos",
+      "default": "¡MILES DE PERSONAS YA LO USAN!",
+      "info": "Este texto se edita aqui. Tambien puedes sobreescribirlo por producto con el metafield custom.videos_heading."
+    },
+    {
+      "type": "text",
+      "id": "videos_social_proof",
+      "label": "Texto social proof",
+      "default": "Compradores felices",
+      "info": "Editable. Por producto: metafield custom.videos_social_proof."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video_stars",
+      "label": "Mostrar estrellas",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "videos_stars_text",
+      "label": "Estrellas (texto editable)",
+      "default": "★★★★★",
+      "info": "Puedes poner ★★★★★, ★★★★☆, ⭐⭐⭐⭐⭐, etc."
+    },
+    {
+      "type": "select",
+      "id": "videos_stars_position",
+      "label": "Posicion de estrellas",
+      "options": [
+        { "value": "above_heading", "label": "Arriba del titulo" },
+        { "value": "below_heading", "label": "Debajo del titulo" },
+        { "value": "below_videos", "label": "Debajo de los videos" },
+        { "value": "none", "label": "Ocultar" }
+      ],
+      "default": "below_videos"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video_captions",
+      "label": "Mostrar captions bajo cada video",
+      "default": false,
+      "info": "Dejar apagado para ocultar las cajas blancas. Solo aplica a metafields con caption."
+    },
+    {
+      "type": "color",
+      "id": "videos_bg",
+      "label": "Fondo videos",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "videos_heading_color",
+      "label": "Color titulo videos",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "videos_caption_bg",
+      "label": "Fondo caption",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "videos_caption_color",
+      "label": "Color caption",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "videos_stars_color",
+      "label": "Color estrellas",
+      "default": "#f5c518"
+    },
+    {
+      "type": "header",
+      "content": "Estilos de seccion"
+    },
+    {
+      "type": "range",
+      "id": "style_pad_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_pad_x",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_max_width",
+      "min": 0,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_heading_size",
+      "min": 14,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulos",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "style_bg",
+      "label": "Fondo seccion"
+    },
+    {
+      "type": "color",
+      "id": "style_heading_color",
+      "label": "Color titulos",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "style_text_color",
+      "label": "Color texto",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "style_btn_font",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano botones",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_y",
+      "min": 6,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_x",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_btn_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio botones",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "style_btn_bg",
+      "label": "Boton fondo",
+      "default": "#e65600"
+    },
+    {
+      "type": "color",
+      "id": "style_btn_text",
+      "label": "Boton texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "style_min_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Altura minima (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "style_align",
+      "label": "Alineacion del contenido",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "style_image_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Ancho maximo de imagenes",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "style_image_max_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Alto maximo imagenes (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio de imagenes",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_mobile",
+      "label": "Ocultar en celular",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_desktop",
+      "label": "Ocultar en desktop",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "extra_text",
+      "name": "Texto extra",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titulo",
+          "default": "Informacion del producto"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Contenido",
+          "default": "<p>Agrega aqui mas detalles sobre tu producto.</p>"
+        }
+      ]
+    },
+    {
+      "type": "trust_item",
+      "name": "Icono confianza",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icono (emoji)",
+          "default": "🔒"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Pago seguro"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icono (emoji o simbolo)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Beneficio"
+        }
+      ]
+    },
+    {
+      "type": "variant_badge",
+      "name": "Badge variante",
+      "settings": [
+        {
+          "type": "range",
+          "id": "variant_position",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "label": "Numero de variante",
+          "default": 1,
+          "info": "1 = primera caja, 2 = segunda, etc."
+        },
+        {
+          "type": "text",
+          "id": "variant_title",
+          "label": "Nombre variante (opcional)",
+          "info": "Si lo llenas, tiene prioridad sobre el numero. Usa el nombre exacto de la variante en Admin."
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Texto del badge",
+          "default": "MEJOR OFERTA"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "label": "Mostrar badge",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "variant_compare",
+      "name": "Precio tachado variante",
+      "settings": [
+        {
+          "type": "range",
+          "id": "variant_position",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "label": "Numero de variante",
+          "default": 1,
+          "info": "1 = primera caja, 2 = segunda, etc."
+        },
+        {
+          "type": "text",
+          "id": "variant_title",
+          "label": "Nombre variante (opcional)",
+          "info": "Si lo llenas, tiene prioridad sobre el numero."
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Precio tachado (antes)",
+          "default": "187.25",
+          "info": "Solo el precio tachado. El precio en negrita sigue saliendo de la variante en Shopify. Ej: 187.25"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PG Producto PDP",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": { "icon": "✓", "text": "Reduce DHT" }
+        },
+        {
+          "type": "benefit",
+          "settings": { "icon": "★", "text": "100% Natural" }
+        },
+        {
+          "type": "benefit",
+          "settings": { "icon": "♥", "text": "Clinicamente Probado" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

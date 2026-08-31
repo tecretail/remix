@@ -1,0 +1,669 @@
+{% comment %} ProstaGenix product buy box {% endcomment %}
+
+{% liquid
+  assign show_bar = show_bar | default: false
+  assign show_back = show_back | default: false
+  assign show_description = show_description
+  if show_description == nil
+    assign show_description = true
+  endif
+  assign show_rating = show_rating
+  if show_rating == nil
+    assign show_rating = true
+  endif
+  assign show_benefits = show_benefits
+  if show_benefits == nil
+    assign show_benefits = true
+  endif
+  assign show_hot_sale = show_hot_sale
+  if show_hot_sale == nil
+    assign show_hot_sale = true
+  endif
+  assign show_releasit = show_releasit
+  if show_releasit == nil
+    assign show_releasit = true
+  endif
+  assign releasit_label = releasit_label | default: 'PEDIR CONTRA ENTREGA (COD)'
+
+  assign bar_text = bar_text | default: 'GREAT DEAL · Envío GRATIS en pedidos hoy · Garantía 90 Días'
+  assign rating_text = rating_text | default: '4.8 (13,167)'
+  assign doctor_badge = doctor_badge | default: 'RECOMENDADO POR MÉDICOS'
+  assign hot_sale_label = hot_sale_label | default: '🔥 HOT SALE'
+  assign hot_sale_text = hot_sale_text | default: 'Ordena hoy para asegurar tu descuento y regalos GRATIS'
+  assign offer_badge = offer_badge | default: 'MEJOR OFERTA'
+  assign in_stock_label = in_stock_label | default: 'En stock'
+  assign sold_out_label = sold_out_label | default: 'Agotado'
+  assign total_label = total_label | default: 'Total'
+  assign save_label = save_label | default: 'Ahorras'
+  assign cta_label = cta_label | default: 'IR A PAGAR AHORA →'
+  assign back_label = back_label | default: '← Volver a la oferta'
+  assign description_title = description_title
+  if description_title == nil
+    assign description_title = 'Descripcion'
+  endif
+  assign off_prefix = off_prefix | default: 'UP TO'
+  assign off_suffix = off_suffix | default: '% OFF'
+
+  assign description_placement = description_placement | default: 'below'
+  assign gallery_position = gallery_position | default: 'left'
+  assign title_size = title_size | default: 34
+  assign cta_font_size = cta_font_size | default: 15
+  assign cta_pad_y = cta_pad_y | default: 14
+  assign cta_pad_x = cta_pad_x | default: 20
+  assign cta_radius = cta_radius | default: 12
+  assign desc_font_size = desc_font_size | default: 14
+  assign desc_max_width = desc_max_width | default: 1280
+  assign desc_pad = desc_pad | default: 16
+  assign desc_radius = desc_radius | default: 14
+  assign desc_margin_top = desc_margin_top | default: 8
+  assign section_max_width = section_max_width | default: 1280
+  assign section_pad_y = section_pad_y | default: 32
+  assign section_pad_x = section_pad_x | default: 24
+  assign gallery_min_height = gallery_min_height | default: 0
+  assign color_bar = color_bar | default: '#054497'
+  assign color_cta_bg = color_cta_bg | default: '#ffffff'
+  assign color_cta_text = color_cta_text | default: '#054497'
+  assign color_cta_border = color_cta_border | default: '#054497'
+  assign color_desc_bg = color_desc_bg | default: '#f7f8fb'
+  assign color_desc_title = color_desc_title | default: '#054497'
+  assign color_title = color_title | default: '#0b1a3a'
+  assign color_badge = color_badge | default: '#054497'
+  assign color_off = color_off | default: '#d40000'
+  assign show_videos = show_videos
+  if show_videos == nil
+    assign show_videos = true
+  endif
+  assign videos_from_media = videos_from_media
+  if videos_from_media == nil
+    assign videos_from_media = true
+  endif
+  assign videos_heading = videos_heading | default: '¡MILES DE PERSONAS YA LO USAN!'
+  assign videos_social_proof = videos_social_proof | default: 'Compradores felices'
+  assign videos_bg = videos_bg | default: '#054497'
+  assign videos_heading_color = videos_heading_color | default: '#ffffff'
+  assign videos_caption_bg = videos_caption_bg | default: '#ffffff'
+  assign videos_caption_color = videos_caption_color | default: '#0b1a3a'
+  assign videos_stars_color = videos_stars_color | default: '#f5c518'
+  assign show_video_captions = show_video_captions
+  if show_video_captions == nil
+    assign show_video_captions = false
+  endif
+  assign show_video_stars = show_video_stars
+  if show_video_stars == nil
+    assign show_video_stars = true
+  endif
+  assign videos_stars_text = videos_stars_text | default: '★★★★★'
+  assign videos_stars_position = videos_stars_position | default: 'below_videos'
+%}
+
+{% capture videos_panel %}
+  {% render 'pg-product-videos',
+    product: product,
+    show_videos: show_videos,
+    videos_from_media: videos_from_media,
+    show_video_captions: show_video_captions,
+    show_video_stars: show_video_stars,
+    videos_stars_text: videos_stars_text,
+    videos_stars_position: videos_stars_position,
+    videos_heading: videos_heading,
+    videos_social_proof: videos_social_proof,
+    videos_bg: videos_bg,
+    videos_heading_color: videos_heading_color,
+    videos_caption_bg: videos_caption_bg,
+    videos_caption_color: videos_caption_color,
+    videos_stars_color: videos_stars_color
+  %}
+{% endcapture %}
+
+{% capture brand_slider_set %}
+  <div class="pg-brand-set">
+    <div class="pg-brand-slide">
+      <img class="pg-brand-image" src="{{ 'RP.png' | asset_url }}" alt="Clínica Ricardo Palma" loading="lazy">
+    </div>
+    <div class="pg-brand-slide">
+      <img class="pg-brand-image" src="{{ 'logo-essalud-v2.png' | asset_url }}" alt="EsSalud" loading="lazy">
+    </div>
+    <div class="pg-brand-slide">
+      <img class="pg-brand-image" src="{{ 'Logotipo.png' | asset_url }}" alt="Clínica Internacional" loading="lazy">
+    </div>
+    <div class="pg-brand-slide">
+      <img class="pg-brand-image" src="{{ 'logo.png' | asset_url }}" alt="Logo adicional" loading="lazy">
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture brand_slider_panel %}
+  <div class="pg-brand-slider-wrap" aria-label="Marcas asociadas">
+    <div class="pg-brand-slider-track">
+      {{ brand_slider_set }}
+      {{ brand_slider_set }}
+      {{ brand_slider_set }}
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture description_panel %}
+  {% if show_description and product != blank and product.description != blank and description_placement != 'none' %}
+    <div class="pg-p-desc-panel" data-pg-desc>
+      {% if description_title != blank %}
+        <div class="pg-p-desc-title">{{ description_title }}</div>
+      {% endif %}
+      <div class="pg-p-desc">{{ product.description }}</div>
+    </div>
+  {% endif %}
+{% endcapture %}
+
+{% if product == blank %}
+  <div class="pg-simple" style="text-align:center;padding:48px 16px;">
+    <p>Selecciona un producto en el editor del tema.</p>
+  </div>
+{% else %}
+  {% liquid
+    assign pitch = product.metafields.custom.short_pitch.value
+    assign benefit_1 = benefit_1 | default: product.metafields.custom.benefit_1.value | default: 'Reduce DHT'
+    assign benefit_2 = benefit_2 | default: product.metafields.custom.benefit_2.value | default: '100% Natural'
+    assign benefit_3 = benefit_3 | default: product.metafields.custom.benefit_3.value | default: 'Clínicamente Probado'
+    if product.metafields.custom.badge_text.value != blank and offer_badge == 'MEJOR OFERTA'
+      assign offer_badge = product.metafields.custom.badge_text.value
+    endif
+    assign first_variant = product.selected_or_first_available_variant
+    assign first_price = first_variant.price
+    assign first_compare = first_variant.compare_at_price
+    assign compare_blocks = section.blocks | where: 'type', 'variant_compare'
+    if compare_blocks.size > 0
+      for block in compare_blocks
+        assign match_title = block.settings.variant_title | strip
+        assign match_pos = block.settings.variant_position | default: 0
+        assign is_match = false
+        if match_title != blank
+          assign first_id_str = first_variant.id | append: ''
+          assign first_label = first_variant.title
+          if first_label == 'Default Title'
+            assign first_label = product.title
+          endif
+          if match_title == first_variant.title or match_title == first_label or match_title == first_id_str
+            assign is_match = true
+          endif
+        elsif match_pos == 1
+          assign is_match = true
+        endif
+        if is_match and block.settings.compare_price != blank
+          assign cmp_raw = block.settings.compare_price | strip | downcase | replace: 's/.', '' | replace: 's/', '' | replace: ' ', '' | replace: ',', '.'
+          assign cmp_parts = cmp_raw | split: '.'
+          assign cmp_cents = cmp_parts[0] | times: 100
+          if cmp_parts.size > 1
+            assign cmp_dec = cmp_parts[1] | append: '00' | slice: 0, 2
+            assign cmp_cents = cmp_cents | plus: cmp_dec
+          endif
+          if cmp_cents > first_price
+            assign first_compare = cmp_cents
+          endif
+        endif
+      endfor
+    endif
+    if first_compare == blank or first_compare <= first_price
+      assign first_compare = first_price | times: 25 | divided_by: 10
+    endif
+    assign max_pct = 0
+    for v in product.variants
+      assign vp = v.price
+      assign vc = v.compare_at_price
+      assign v_idx = forloop.index
+      if compare_blocks.size > 0
+        for block in compare_blocks
+          assign match_title = block.settings.variant_title | strip
+          assign match_pos = block.settings.variant_position | default: 0
+          assign is_match = false
+          if match_title != blank
+            assign vid = v.id | append: ''
+            assign vlab = v.title
+            if vlab == 'Default Title'
+              assign vlab = product.title
+            endif
+            if match_title == v.title or match_title == vlab or match_title == vid
+              assign is_match = true
+            endif
+          elsif match_pos == v_idx
+            assign is_match = true
+          endif
+          if is_match and block.settings.compare_price != blank
+            assign cmp_raw = block.settings.compare_price | strip | downcase | replace: 's/.', '' | replace: 's/', '' | replace: ' ', '' | replace: ',', '.'
+            assign cmp_parts = cmp_raw | split: '.'
+            assign cmp_cents = cmp_parts[0] | times: 100
+            if cmp_parts.size > 1
+              assign cmp_dec = cmp_parts[1] | append: '00' | slice: 0, 2
+              assign cmp_cents = cmp_cents | plus: cmp_dec
+            endif
+            if cmp_cents > vp
+              assign vc = cmp_cents
+            endif
+          endif
+        endfor
+      endif
+      if vc == blank or vc <= vp
+        assign vc = vp | times: 25 | divided_by: 10
+      endif
+      if vc > 0
+        assign save_amt = vc | minus: vp
+        assign pct = save_amt | times: 100 | divided_by: vc
+        if pct > max_pct
+          assign max_pct = pct
+        endif
+      endif
+    endfor
+  %}
+
+  <div
+    class="pg-buybox pg-buybox--gallery-{{ gallery_position }} pg-buybox--desc-{{ description_placement }}"
+    data-pg-product
+    data-currency="{{ cart.currency.iso_code }}"
+    data-shop="{{ shop.permanent_domain }}"
+    data-checkout-host=""
+    style="
+      --pg-title-size: {{ title_size }}px;
+      --pg-title-color: {{ color_title }};
+      --pg-cta-fs: {{ cta_font_size }}px;
+      --pg-cta-py: {{ cta_pad_y }}px;
+      --pg-cta-px: {{ cta_pad_x }}px;
+      --pg-cta-radius: {{ cta_radius }}px;
+      --pg-cta-bg: {{ color_cta_bg }};
+      --pg-cta-color: {{ color_cta_text }};
+      --pg-cta-border: {{ color_cta_border }};
+      --pg-desc-fs: {{ desc_font_size }}px;
+      --pg-desc-max: {{ desc_max_width }}px;
+      --pg-desc-pad: {{ desc_pad }}px;
+      --pg-desc-radius: {{ desc_radius }}px;
+      --pg-desc-mt: {{ desc_margin_top }}px;
+      --pg-desc-bg: {{ color_desc_bg }};
+      --pg-desc-title: {{ color_desc_title }};
+      --pg-max: {{ section_max_width }}px;
+      --pg-pad-y: {{ section_pad_y }}px;
+      --pg-pad-x: {{ section_pad_x }}px;
+      --pg-gallery-h: {% if gallery_min_height > 0 %}{{ gallery_min_height }}px{% else %}auto{% endif %};
+      --pg-bar-bg: {{ color_bar }};
+      --pg-badge-bg: {{ color_badge }};
+      --pg-off-bg: {{ color_off }};
+    "
+  >
+    {% if show_bar %}
+      <div class="pg-p-bar">{{ bar_text }}</div>
+    {% endif %}
+
+    <main class="pg-p-main">
+      <section class="pg-p-col-gallery" style="min-width:0">
+        <div class="pg-p-gallery" data-pg-gallery>
+          <div class="pg-p-hero">
+            {% if max_pct > 0 %}
+              <span class="pg-p-off-badge">{{ off_prefix }} {{ max_pct }}{{ off_suffix }}</span>
+            {% endif %}
+            {% if product.featured_image %}
+              <img
+                data-pg-hero
+                data-pg-hero-default="{{ product.featured_image | image_url: width: 1200 }}"
+                src="{{ product.featured_image | image_url: width: 1200 }}"
+                alt="{{ product.title | escape }}"
+                width="{{ product.featured_image.width }}"
+                height="{{ product.featured_image.height }}"
+                loading="eager"
+              >
+            {% endif %}
+          </div>
+          {% if product.images.size > 1 %}
+            <div class="pg-p-thumbs">
+              {% for image in product.images %}
+                <button
+                  type="button"
+                  class="pg-p-thumb{% if forloop.first %} is-active{% endif %}"
+                  data-pg-thumb
+                  data-src="{{ image | image_url: width: 900 }}"
+                  aria-label="Imagen {{ forloop.index }}"
+                >
+                  {{ image | image_url: width: 160 | image_tag: loading: 'lazy', alt: product.title }}
+                </button>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+            {% if description_placement == 'under_gallery' %}
+          {{ videos_panel }}
+          {{ brand_slider_panel }}
+          {{ description_panel }}
+        {% endif %}
+
+      </section>
+
+      <section class="pg-p-col-buy" style="min-width:0">
+        {% if show_rating %}
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="pg-p-stars">★★★★★</span>
+            <span style="color:#555;font-weight:600;">{{ rating_text }}</span>
+            {% if doctor_badge != blank %}
+              <span class="pg-p-badge">{{ doctor_badge }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <h1 class="pg-p-h1">{{ product.title }}</h1>
+        {% if pitch != blank %}
+          <p style="margin:0 0 14px;color:#555;font-size:15px;font-weight:600;">{{ pitch }}</p>
+        {% endif %}
+
+        {% if show_benefits %}
+          {% liquid
+            assign benefit_blocks = section.blocks | where: 'type', 'benefit'
+            assign icon_cycle = '✓,★,♥,◆,●,✦' | split: ','
+          %}
+          <div class="pg-p-benefits" style="--pg-benefits-n: {% if benefit_blocks.size > 0 %}{{ benefit_blocks.size }}{% else %}3{% endif %};">
+            {% if benefit_blocks.size > 0 %}
+              {% for block in benefit_blocks %}
+                {% liquid
+                  assign b_text = block.settings.text
+                  assign b_icon = block.settings.icon
+                  if b_icon == blank
+                    assign icon_i = forloop.index0 | modulo: icon_cycle.size
+                    assign b_icon = icon_cycle[icon_i]
+                  endif
+                %}
+                {% if b_text != blank %}
+                  <div class="pg-p-benefit" {{ block.shopify_attributes }}>
+                    <div class="pg-p-benefit-icon">{{ b_icon }}</div>
+                    <div class="pg-p-benefit-label">{{ b_text }}</div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <div class="pg-p-benefit">
+                <div class="pg-p-benefit-icon">✓</div>
+                <div class="pg-p-benefit-label">{{ benefit_1 }}</div>
+              </div>
+              <div class="pg-p-benefit">
+                <div class="pg-p-benefit-icon">★</div>
+                <div class="pg-p-benefit-label">{{ benefit_2 }}</div>
+              </div>
+              <div class="pg-p-benefit">
+                <div class="pg-p-benefit-icon">♥</div>
+                <div class="pg-p-benefit-label">{{ benefit_3 }}</div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if show_hot_sale %}
+          <div class="pg-p-hot" data-pg-countdown>
+            <div>
+              <div style="color:var(--pg-red,#d40000);font-weight:900;letter-spacing:1px;">{{ hot_sale_label }}</div>
+              <div style="font-size:13px;color:#5a1010;">
+                {{ hot_sale_text }}{% if max_pct > 0 %} ({{ max_pct }}% OFF){% endif %}
+              </div>
+            </div>
+            <div class="pg-p-hot-timers">
+              <div class="pg-p-hot-box">
+                <div class="pg-p-hot-num" data-h>00</div>
+                <div class="pg-p-hot-lbl">HRS</div>
+              </div>
+              <span class="pg-p-hot-sep" aria-hidden="true">:</span>
+              <div class="pg-p-hot-box">
+                <div class="pg-p-hot-num" data-m>00</div>
+                <div class="pg-p-hot-lbl">MIN</div>
+              </div>
+              <span class="pg-p-hot-sep" aria-hidden="true">:</span>
+              <div class="pg-p-hot-box">
+                <div class="pg-p-hot-num" data-s>00</div>
+                <div class="pg-p-hot-lbl">SEG</div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="pg-p-deals">
+          {% liquid
+            assign badge_blocks = section.blocks | where: 'type', 'variant_badge'
+            assign compare_blocks = section.blocks | where: 'type', 'variant_compare'
+          %}
+          {% for variant in product.variants %}
+            {% liquid
+              assign v_price = variant.price
+              assign v_compare = variant.compare_at_price
+              assign v_index = forloop.index
+              if compare_blocks.size > 0
+                for block in compare_blocks
+                  assign match_title = block.settings.variant_title | strip
+                  assign match_pos = block.settings.variant_position | default: 0
+                  assign is_match = false
+                  if match_title != blank
+                    assign variant_id_str = variant.id | append: ''
+                    if variant.title == 'Default Title'
+                      assign v_label_tmp = product.title
+                    else
+                      assign v_label_tmp = variant.title
+                    endif
+                    if match_title == variant.title or match_title == v_label_tmp or match_title == variant_id_str
+                      assign is_match = true
+                    endif
+                  elsif match_pos == v_index
+                    assign is_match = true
+                  endif
+                  if is_match and block.settings.compare_price != blank
+                    assign cmp_raw = block.settings.compare_price | strip | downcase | replace: 's/.', '' | replace: 's/', '' | replace: ' ', '' | replace: ',', '.'
+                    assign cmp_parts = cmp_raw | split: '.'
+                    assign cmp_cents = cmp_parts[0] | times: 100
+                    if cmp_parts.size > 1
+                      assign cmp_dec = cmp_parts[1] | append: '00' | slice: 0, 2
+                      assign cmp_cents = cmp_cents | plus: cmp_dec
+                    endif
+                    if cmp_cents > v_price
+                      assign v_compare = cmp_cents
+                    endif
+                  endif
+                endfor
+              endif
+              if v_compare == blank or v_compare <= v_price
+                assign v_compare = v_price | times: 25 | divided_by: 10
+              endif
+              assign v_save = v_compare | minus: v_price
+              if variant.title == 'Default Title'
+                assign v_label = product.title
+              else
+                assign v_label = variant.title
+              endif
+
+              assign v_badge = blank
+              assign v_badge_matched = false
+              if badge_blocks.size > 0
+                for block in badge_blocks
+                  assign match_title = block.settings.variant_title | strip
+                  assign match_pos = block.settings.variant_position | default: 0
+                  assign is_match = false
+                  if match_title != blank
+                    assign variant_id_str = variant.id | append: ''
+                    if match_title == variant.title or match_title == v_label or match_title == variant_id_str
+                      assign is_match = true
+                    endif
+                  elsif match_pos == v_index
+                    assign is_match = true
+                  endif
+                  if is_match
+                    assign v_badge_matched = true
+                    if block.settings.show_badge and block.settings.badge_text != blank
+                      assign v_badge = block.settings.badge_text
+                    else
+                      assign v_badge = blank
+                    endif
+                  endif
+                endfor
+              elsif variant.metafields.custom.offer_badge.value != blank
+                assign v_badge = variant.metafields.custom.offer_badge.value
+                assign v_badge_matched = true
+              elsif offer_badge != blank
+                assign v_badge = offer_badge
+              endif
+            %}
+            <button
+              type="button"
+              class="pg-p-deal{% if variant.id == first_variant.id %} is-active{% endif %}"
+              data-pg-variant
+              data-id="{{ variant.id }}"
+              data-price="{{ v_price }}"
+              data-compare="{{ v_compare }}"
+              {% if variant.featured_media %}
+                data-image="{{ variant.featured_media | image_url: width: 1200 }}"
+              {% elsif variant.image %}
+                data-image="{{ variant.image | image_url: width: 1200 }}"
+              {% endif %}
+            >
+              {% if v_badge != blank %}
+                <span class="pg-p-deal-badge">{{ v_badge }}</span>
+              {% endif %}
+              <div class="pg-p-deal-row">
+                <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+                  <span class="pg-p-radio"><span class="pg-p-radio-dot"></span></span>
+                  <div style="min-width:0;">
+                    <div style="font-weight:800;font-size:14px;">{{ v_label }}</div>
+                    <div style="font-size:11px;color:#666;margin-top:2px;">
+                      {% assign stock_label = variant.metafields.custom.etiqueta_stock.value %}
+                      {% if stock_label == blank %}{% assign stock_label = in_stock_label %}{% endif %}
+                      {% if variant.available %}{{ stock_label }}{% else %}{{ sold_out_label }}{% endif %}
+                    </div> 
+                  </div>
+                </div>
+                <div style="text-align:right;flex:0 0 auto;">
+                  <div style="color:#888;text-decoration:line-through;font-size:12px;">S/ {{ v_compare | money_without_currency | strip | replace: ',', '.' }}</div>
+                  <div style="font-weight:900;font-size:18px;color:#0b1a3a;">S/ {{ v_price | money_without_currency | strip | replace: ',', '.' }}</div>
+                  <div style="color:#054497;font-size:10px;font-weight:700;">
+                    {{ save_label }} S/ {{ v_save | money_without_currency | strip | replace: ',', '.' }}
+                  </div>
+                </div>
+              </div>
+            </button>
+          {% endfor %}
+        </div>
+
+        <div class="pg-p-bar">
+          Ordena antes de hoy a medianoche para recibir regalos GRATIS
+        </div>
+
+        <div class="pg-p-total-row">
+          <span style="color:#666;">{{ total_label }}</span>
+          <div style="white-space:nowrap;">
+            <span data-pg-total-compare style="color:#888;text-decoration:line-through;margin-right:10px;">S/ {{ first_compare | money_without_currency | strip | replace: ',', '.' }}</span>
+            <span data-pg-total-price style="font-weight:900;font-size:28px;color:#0b1a3a;">S/ {{ first_price | money_without_currency | strip | replace: ',', '.' }}</span>
+          </div>
+        </div>
+        <div class="pg-p-total-save">
+          {{ save_label }} <span data-pg-total-save>S/ {{ first_compare | minus: first_price | money_without_currency | strip | replace: ',', '.' }}</span>
+        </div>
+
+        {%- comment -%}
+          Preventify en homepage NO usa el buybox de PDP: solo busca product-card[data-product-id]
+          (modo popup). Este wrapper + .quick-add hace que el botón COD aparezca bajo el CTA.
+        {%- endcomment -%}
+        {% if show_releasit %}
+          <product-card
+            class="pg-preventify-host"
+            data-product-id="{{ product.id }}"
+            data-pg-preventify-host
+          >
+            {%- comment -%} Datos solo para que Preventify lea el card; nunca visibles {%- endcomment -%}
+            <h3 class="pg-preventify-meta" hidden aria-hidden="true" style="display:none !important;">{{ product.title }}</h3>
+            <span class="price-item--sale pg-preventify-meta" hidden aria-hidden="true" style="display:none !important;">{{ first_price | money }}</span>
+            {% if product.featured_image %}
+              <div class="card__media pg-preventify-meta" hidden aria-hidden="true" style="display:none !important;">
+                {{
+                  product.featured_image
+                  | image_url: width: 120
+                  | image_tag: loading: 'lazy', alt: '', width: 1, height: 1
+                }}
+              </div>
+            {% endif %}
+        {% endif %}
+        
+        {% form 'product', product, id: 'pg-product-form' %}
+          <input type="hidden" name="id" value="{{ first_variant.id }}" data-pg-variant-input>
+          <input type="hidden" name="return_to" value="/checkout">
+          {% comment %}
+          <button
+            type="submit"
+            name="add"
+            class="pg-p-cta product-form__submit"
+            data-pg-checkout
+            data-pg-variant-id="{{ first_variant.id }}"
+          >
+            {{ cta_label }}
+          </button>
+          {% endcomment %}
+        {% endform %}
+
+        {% if show_releasit %}
+            <div class="quick-add" data-pg-preventify-slot></div>
+            <div class="pg-releasit-embed" data-pg-releasit>
+              <div id="_rsi-cod-form-embed-custom-hook"></div>
+              <a href="/rsi-embed-hook" class="pg-releasit-hook-link" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">COD</a>
+            </div>
+          </product-card>
+        {% endif %}
+
+        {% if show_back %}
+          <div style="margin-top:18px;">
+            <a href="{{ routes.root_url }}" style="color:var(--pg-blue,#054497);font-weight:700;text-decoration:none;">
+              {{ back_label }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% if description_placement == 'under_buybox' %}
+          {{ videos_panel }}
+          {{ brand_slider_panel }}
+          {{ description_panel }}
+        {% endif %}
+      </section>
+    </main>
+
+    {% if description_placement == 'below' %}
+      {{ videos_panel }}
+      {{ brand_slider_panel }}
+      {{ description_panel }}
+    {% endif %}
+
+    {% if description_placement == 'none' %}
+      {{ videos_panel }}
+    {% endif %}
+
+    {% if show_releasit %}
+      <script type="application/json" id="pg-product-json-{{ product.id }}">
+        {
+          "id": {{ product.id | json }},
+          "title": {{ product.title | json }},
+          "handle": {{ product.handle | json }},
+          "vendor": {{ product.vendor | json }},
+          "type": {{ product.type | json }},
+          "variants": [
+            {%- for v in product.variants -%}
+              {
+                "id": {{ v.id | json }},
+                "title": {{ v.title | json }},
+                "price": {{ v.price | json }},
+                "available": {{ v.available | json }}
+              }{%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+          ]
+        }
+      </script>
+      <script>
+        (function () {
+          try {
+            var el = document.getElementById('pg-product-json-{{ product.id }}');
+            if (!el) return;
+            var data = JSON.parse(el.textContent);
+            window.meta = window.meta || {};
+            if (!window.meta.product) window.meta.product = data;
+            window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+            window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+            if (!window.ShopifyAnalytics.meta.product) {
+              window.ShopifyAnalytics.meta.product = { id: data.id, gid: 'gid://shopify/Product/' + data.id };
+            }
+          } catch (e) {}
+        })();
+      </script>
+    {% endif %}
+  </div>
+{% endif %}

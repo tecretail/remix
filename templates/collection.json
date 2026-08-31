@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "offers_main": {
+      "type": "pg-offers-page",
+      "settings": {
+        "heading": "Special Internet-Only Offer",
+        "guarantee_text": "90 DAY MONEY BACK GUARANTEE"
+      }
+    }
+  },
+  "order": ["offers_main"]
+}

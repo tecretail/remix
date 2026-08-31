@@ -1,0 +1,291 @@
+{% comment %} Estilos editables (toda la seccion) {% endcomment %}
+<div
+  class="pg-sec-style pg-sec-align-{{ section.settings.style_align }}{% if section.settings.style_hide_mobile %} pg-sec-hide-mobile{% endif %}{% if section.settings.style_hide_desktop %} pg-sec-hide-desktop{% endif %}"
+  style="
+    --pg-sec-pad-y: {{ section.settings.style_pad_y }}px;
+    --pg-sec-pad-x: {{ section.settings.style_pad_x }}px;
+    --pg-sec-max: {% if section.settings.style_max_width > 0 %}{{ section.settings.style_max_width }}px{% else %}none{% endif %};
+    --pg-sec-h-size: {{ section.settings.style_heading_size }}px;
+    --pg-sec-t-size: {{ section.settings.style_text_size }}px;
+    --pg-sec-bg: {{ section.settings.style_bg | default: 'transparent' }};
+    --pg-sec-h-color: {{ section.settings.style_heading_color }};
+    --pg-sec-t-color: {{ section.settings.style_text_color }};
+    --pg-sec-btn-fs: {{ section.settings.style_btn_font }}px;
+    --pg-sec-btn-py: {{ section.settings.style_btn_pad_y }}px;
+    --pg-sec-btn-px: {{ section.settings.style_btn_pad_x }}px;
+    --pg-sec-btn-radius: {{ section.settings.style_btn_radius }}px;
+    --pg-sec-btn-bg: {{ section.settings.style_btn_bg }};
+    --pg-sec-btn-color: {{ section.settings.style_btn_text }};
+    --pg-sec-min-h: {{ section.settings.style_min_height }}px;
+    --pg-sec-img-w: {{ section.settings.style_image_width }}%;
+    --pg-sec-img-h: {% if section.settings.style_image_max_height > 0 %}{{ section.settings.style_image_max_height }}px{% else %}none{% endif %};
+    --pg-sec-img-radius: {{ section.settings.style_image_radius }}px;
+  "
+>
+<div class="banner_consumerlab body_full_nomar">
+  <div class="body_full wrapper">
+    <div class="split">
+      {% if section.settings.logo != blank %}
+        <img class="logo" src="{{ section.settings.logo | image_url: width: 400 }}" alt="" width="400" height="400" loading="lazy">
+      {% else %}
+        <img class="logo" src="https://www.prostagenix.com/images/home/consumerlab-logo.png" alt="" width="400" height="400" loading="lazy">
+      {% endif %}
+      {% if section.settings.award != blank %}
+        <img class="award" src="{{ section.settings.award | image_url: width: 400 }}" alt="#1 award" width="400" height="400" loading="lazy">
+      {% else %}
+        <img class="award" src="https://www.prostagenix.com/special/special-offer/img/number-one-award.png" alt="#1 award badge" width="400" height="400" loading="lazy">
+      {% endif %}
+      {% if section.settings.trophy != blank %}
+        <img class="trophie" src="{{ section.settings.trophy | image_url: width: 400 }}" alt="trophy" width="400" height="400" loading="lazy">
+      {% else %}
+        <img class="trophie" src="https://www.prostagenix.com/special/special-offer/img/trophie.png" alt="trophie" width="400" height="400" loading="lazy">
+      {% endif %}
+    </div>
+    <div class="split">
+      {% if section.settings.text_1 != blank %}
+        <div>{{ section.settings.text_1 }}</div>
+      {% endif %}
+      {% if section.settings.text_2 != blank %}
+        <div>{{ section.settings.text_2 }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "PG ConsumerLab",
+  "tag": "section",
+  "class": "pg-section-consumerlab",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Texto 1",
+      "default": "<p>To Celebrate Our <strong>HUGE VICTORY</strong> Being Crowned The <span>#1 Rated Prostate Pill In The World...</span></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Texto 2",
+      "default": "<p>In The Famous ConsumerLab.com Competition, We Are <strong><u>Slashing Prices</u> Across The Board - TODAY ONLY!</strong></p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo ConsumerLab"
+    },
+    {
+      "type": "image_picker",
+      "id": "award",
+      "label": "Badge #1"
+    },
+    {
+      "type": "image_picker",
+      "id": "trophy",
+      "label": "Trofeo"
+    },
+    {
+      "type": "header",
+      "content": "Estilos de seccion"
+    },
+    {
+      "type": "range",
+      "id": "style_pad_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_pad_x",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_max_width",
+      "min": 0,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_heading_size",
+      "min": 14,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulos",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "style_bg",
+      "label": "Fondo seccion"
+    },
+    {
+      "type": "color",
+      "id": "style_heading_color",
+      "label": "Color titulos",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "style_text_color",
+      "label": "Color texto",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "style_btn_font",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano botones",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_y",
+      "min": 6,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_x",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_btn_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio botones",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "style_btn_bg",
+      "label": "Boton fondo",
+      "default": "#e65600"
+    },
+    {
+      "type": "color",
+      "id": "style_btn_text",
+      "label": "Boton texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "style_min_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Altura minima (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "style_align",
+      "label": "Alineacion del contenido",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "style_image_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Ancho maximo de imagenes",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "style_image_max_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Alto maximo imagenes (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio de imagenes",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_mobile",
+      "label": "Ocultar en celular",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_desktop",
+      "label": "Ocultar en desktop",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "PG ConsumerLab"
+    }
+  ]
+}
+{% endschema %}

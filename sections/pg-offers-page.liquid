@@ -1,0 +1,64 @@
+{% liquid
+  assign offers_collection = section.settings.collection
+  if offers_collection == blank and collection != blank
+    assign offers_collection = collection
+  endif
+
+  comment
+    En index (sin collection de pagina): listar todas las colecciones como React.
+    En pagina de coleccion: usar esa coleccion (o la del setting).
+  endcomment
+  assign list_all = false
+  if offers_collection == blank and collection == blank
+    assign list_all = true
+  endif
+
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'Special Internet-Only Offer'
+  endif
+
+  assign guarantee = section.settings.guarantee_text
+  if guarantee == blank
+    assign guarantee = '90 DAY MONEY BACK GUARANTEE'
+  endif
+%}
+
+{% render 'pg-offers-list',
+  collection: offers_collection,
+  heading: heading,
+  guarantee: guarantee,
+  show_all_collections: list_all
+%}
+
+{% schema %}
+{
+  "name": "PG Ofertas",
+  "tag": "section",
+  "class": "pg-offers-page",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Colección (vacío = todas / página actual)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título (como React)",
+      "default": "Special Internet-Only Offer"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Garantía bajo el botón",
+      "default": "90 DAY MONEY BACK GUARANTEE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PG Ofertas"
+    }
+  ]
+}
+{% endschema %}

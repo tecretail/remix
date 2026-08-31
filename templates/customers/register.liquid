@@ -1,0 +1,14 @@
+<section class="pg-simple" style="max-width:480px;">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;">Crear cuenta</h1>
+  {% form 'create_customer' %}
+    {{ form.errors | default_errors }}
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+      <input type="text" name="customer[first_name]" placeholder="Nombre" style="padding:12px;border:2px solid #e3e6ee;border-radius:10px;">
+      <input type="text" name="customer[last_name]" placeholder="Apellido" style="padding:12px;border:2px solid #e3e6ee;border-radius:10px;">
+      <input type="email" name="customer[email]" placeholder="Email" style="padding:12px;border:2px solid #e3e6ee;border-radius:10px;">
+      <input type="password" name="customer[password]" placeholder="Contraseña" style="padding:12px;border:2px solid #e3e6ee;border-radius:10px;">
+      <button type="submit" style="padding:14px;background:var(--pg-orange,#f39200);color:#fff;border:0;border-radius:999px;font-weight:900;cursor:pointer;">Registrarse</button>
+    </div>
+  {% endform %}
+  <p style="margin-top:16px;"><a href="{{ routes.account_login_url }}">Ya tengo cuenta</a></p>
+</section>

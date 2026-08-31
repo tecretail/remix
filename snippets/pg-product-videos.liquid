@@ -1,0 +1,408 @@
+{% liquid
+  assign hosted_videos = product.media | where: 'media_type', 'video'
+  assign external_videos = product.media | where: 'media_type', 'external_video'
+  assign media_videos = hosted_videos | concat: external_videos
+%}
+
+{% if show_videos and product != blank and media_videos.size > 0 %}
+  <div class="pg-product-videos" style="--pg-videos-bg: {{ videos_bg | default: '#054497' }}; --pg-videos-heading: {{ videos_heading_color | default: '#ffffff' }};">
+    {% if videos_heading != blank %}
+      <h2 class="pg-product-videos__heading">{{ videos_heading }}</h2>
+    {% endif %}
+
+    <div class="pg-product-videos__carousel">
+      <button class="pg-product-videos__nav pg-product-videos__nav--prev" type="button" aria-label="Videos anteriores">‹</button>
+      <div class="pg-product-videos__rail">
+      {% for media in media_videos %}
+        {% liquid
+          assign poster_url = ''
+          if media.preview_image
+            assign poster_url = media.preview_image | image_url: width: 1600
+          endif
+          assign best_source = nil
+          assign best_w = 0
+          if media.sources != blank
+            for source in media.sources
+              if source.format == 'mp4' and source.width > best_w
+                assign best_w = source.width
+                assign best_source = source
+              endif
+            endfor
+            if best_source == nil
+              assign best_source = media.sources.last
+            endif
+          endif
+        %}
+        <article class="pg-product-video-card">
+          <div class="pg-product-video-card__media">
+            {% if media.media_type == 'external_video' %}
+              {{ media | external_video_tag: class: 'pg-product-videos__el pg-product-videos__el--external', loading: 'lazy' }}
+            {% else %}
+              <video
+                class="pg-product-videos__el"
+                {% if poster_url != blank %}poster="{{ poster_url }}"{% endif %}
+                playsinline
+                preload="metadata"
+                controlslist="nodownload nofullscreen noremoteplayback"
+                disablepictureinpicture
+              >
+                {% if best_source %}
+                  <source src="{{ best_source.url }}" type="{{ best_source.mime_type }}">
+                {% endif %}
+                {% for source in media.sources %}
+                  {% if best_source == blank or source.url != best_source.url %}
+                    <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                  {% endif %}
+                {% endfor %}
+              </video>
+            {% endif %}
+            <button class="pg-product-videos__play" type="button" aria-label="Reproducir video">
+              <span class="pg-product-videos__play-icon"></span>
+            </button>
+          </div>
+        </article>
+      {% endfor %}
+      </div>
+      <button class="pg-product-videos__nav pg-product-videos__nav--next" type="button" aria-label="Videos siguientes">›</button>
+    </div>
+    {% if show_video_stars != false %}
+      <div class="pg-product-videos__proof">
+        <span class="pg-product-videos__stars">{{ videos_stars_text | default: '★★★★★' }}</span>
+        {% if videos_social_proof != blank %}
+          <span class="pg-product-videos__proof-text">{{ videos_social_proof }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <style>
+    .pg-product-videos {
+      --pg-videos-bg: #054497;
+      --pg-videos-heading: #ffffff;
+      --pg-vid-gap: 12px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      max-width: 1280px;
+      width: 100%;
+      margin: 28px auto 48px !important;
+      padding: 18px 16px 16px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      background:
+        radial-gradient(900px 280px at 12% -10%, rgba(255, 255, 255, 0.2), transparent 55%),
+        radial-gradient(700px 260px at 88% 110%, rgba(0, 0, 0, 0.28), transparent 55%),
+        linear-gradient(152deg, color-mix(in srgb, var(--pg-videos-bg) 72%, #001833) 0%, var(--pg-videos-bg) 48%, color-mix(in srgb, var(--pg-videos-bg) 78%, #6eb6ff) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 20px 48px rgba(5, 40, 100, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+    .pg-product-videos__heading {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(16px, 2vw, 22px);
+      color: var(--pg-videos-heading);
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+    }
+    .pg-product-videos__carousel {
+      position: relative;
+      z-index: 1;
+    }
+    .pg-product-videos__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.94);
+      color: #0b1a3a;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+      display: none;
+    }
+    .pg-product-videos.is-scrollable .pg-product-videos__nav,
+    .pg-product-videos__nav {
+      display: none !important;
+    }
+    .pg-product-videos__nav--prev { left: 4px; }
+    .pg-product-videos__nav--next { right: 4px; }
+    .pg-product-videos__rail {
+      display: flex;
+      gap: var(--pg-vid-gap);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x proximity;
+      padding: 2px 2px 8px;
+      box-sizing: border-box;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      user-select: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pg-product-videos__rail::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    .pg-product-videos__rail.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+    }
+    .pg-product-videos__rail.is-dragging * {
+      pointer-events: none;
+    }
+    .pg-product-video-card {
+      flex: 0 0 calc((100% - var(--pg-vid-gap)) / 2);
+      width: calc((100% - var(--pg-vid-gap)) / 2);
+      max-width: calc((100% - var(--pg-vid-gap)) / 2);
+      scroll-snap-align: start;
+    }
+    @media (min-width: 750px) {
+      .pg-product-videos {
+        --pg-vid-gap: 12px;
+        padding: 20px 18px 18px;
+      }
+      .pg-product-video-card {
+        flex: 0 0 calc((100% - (3 * var(--pg-vid-gap))) / 4);
+        width: calc((100% - (3 * var(--pg-vid-gap))) / 4);
+        max-width: calc((100% - (3 * var(--pg-vid-gap))) / 4);
+      }
+    }
+    .pg-product-video-card__media {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0b1220;
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.32),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    }
+    .pg-product-videos__el {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border: 0;
+      background: #0b1220;
+      pointer-events: none;
+    }
+    .pg-product-videos__play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.34));
+      cursor: pointer;
+      padding: 0;
+      z-index: 2;
+    }
+    .pg-product-videos__play-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #34d399 0%, #16a34a 100%);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+      position: relative;
+      transition: transform 0.18s ease;
+    }
+    .pg-product-videos__play:hover .pg-product-videos__play-icon {
+      transform: scale(1.06);
+    }
+    .pg-product-videos__play-icon::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 54%;
+      transform: translate(-50%, -50%);
+      border-style: solid;
+      border-width: 8px 0 8px 13px;
+      border-color: transparent transparent transparent #fff;
+    }
+    .pg-product-video-card.is-playing .pg-product-videos__play {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .pg-product-video-card.is-playing .pg-product-videos__el {
+      pointer-events: auto;
+    }
+    .pg-product-video-card.is-playing .pg-product-video-card__media {
+      cursor: pointer;
+    }
+    .pg-product-videos__proof {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .pg-product-videos__stars {
+      color: {{ videos_stars_color | default: '#f5c518' }};
+      letter-spacing: 1px;
+      font-size: 16px;
+      line-height: 1;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+    }
+    .pg-product-videos__proof-text {
+      color: var(--pg-videos-heading);
+      font-weight: 800;
+      font-size: 14px;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    }
+    @media (max-width: 749px) {
+      .pg-product-videos {
+        margin: 22px 0 40px !important;
+        padding: 14px 12px 12px;
+        border-radius: 16px;
+      }
+      .pg-product-videos__play-icon {
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var wrap = document.currentScript;
+      while (wrap && wrap.previousElementSibling) {
+        wrap = wrap.previousElementSibling;
+        if (wrap.classList && wrap.classList.contains('pg-product-videos')) break;
+      }
+      if (!wrap || !wrap.classList || !wrap.classList.contains('pg-product-videos')) {
+        wrap = document.querySelector('.pg-product-videos');
+      }
+      if (!wrap || wrap.dataset.ready === '1') return;
+      wrap.dataset.ready = '1';
+
+      var rail = wrap.querySelector('.pg-product-videos__rail');
+      if (!rail) return;
+
+      function updateScrollable() {
+        wrap.classList.toggle('is-scrollable', rail.scrollWidth > rail.clientWidth + 8);
+      }
+      updateScrollable();
+      window.addEventListener('resize', updateScrollable);
+
+      function scrollByCard(dir) {
+        var card = rail.querySelector('.pg-product-video-card');
+        var amount = card ? card.getBoundingClientRect().width + 12 : rail.clientWidth * 0.7;
+        rail.scrollBy({ left: dir * amount, behavior: 'smooth' });
+      }
+
+      var prevBtn = wrap.querySelector('.pg-product-videos__nav--prev');
+      var nextBtn = wrap.querySelector('.pg-product-videos__nav--next');
+      if (prevBtn) prevBtn.addEventListener('click', function (e) { e.preventDefault(); scrollByCard(-1); });
+      if (nextBtn) nextBtn.addEventListener('click', function (e) { e.preventDefault(); scrollByCard(1); });
+
+      var isDown = false;
+      var startX = 0;
+      var scrollLeft = 0;
+      var dragged = false;
+
+      rail.addEventListener('mousedown', function (e) {
+        if (e.button !== 0) return;
+        isDown = true;
+        dragged = false;
+        startX = e.pageX;
+        scrollLeft = rail.scrollLeft;
+      });
+
+      window.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        var walk = e.pageX - startX;
+        if (Math.abs(walk) > 6) {
+          dragged = true;
+          rail.classList.add('is-dragging');
+          e.preventDefault();
+          rail.scrollLeft = scrollLeft - walk;
+        }
+      });
+
+      window.addEventListener('mouseup', function () {
+        isDown = false;
+        rail.classList.remove('is-dragging');
+      });
+
+      rail.addEventListener('click', function (e) {
+        if (!dragged) return;
+        e.preventDefault();
+        e.stopPropagation();
+        dragged = false;
+      }, true);
+
+      wrap.querySelectorAll('.pg-product-video-card').forEach(function (card) {
+        var video = card.querySelector('video');
+        var playBtn = card.querySelector('.pg-product-videos__play');
+        if (!video || !playBtn) return;
+
+        function pauseOthers() {
+          wrap.querySelectorAll('.pg-product-video-card.is-playing').forEach(function (other) {
+            if (other === card) return;
+            var otherVideo = other.querySelector('video');
+            other.classList.remove('is-playing');
+            if (otherVideo) otherVideo.pause();
+          });
+        }
+
+        function playWithSound() {
+          pauseOthers();
+          video.muted = false;
+          video.volume = 1;
+          video.controls = false;
+          var playPromise = video.play();
+          card.classList.add('is-playing');
+          if (playPromise && playPromise.catch) {
+            playPromise.catch(function () {
+              video.muted = false;
+              video.play();
+            });
+          }
+        }
+
+        playBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (dragged) return;
+          playWithSound();
+        });
+
+        card.querySelector('.pg-product-video-card__media').addEventListener('click', function (e) {
+          if (dragged) return;
+          if (!card.classList.contains('is-playing')) return;
+          if (e.target === playBtn || playBtn.contains(e.target)) return;
+          e.preventDefault();
+          if (video.paused) {
+            playWithSound();
+          } else {
+            video.pause();
+            card.classList.remove('is-playing');
+          }
+        });
+
+        video.addEventListener('ended', function () {
+          card.classList.remove('is-playing');
+          video.currentTime = 0;
+        });
+      });
+    })();
+  </script>
+{% endif %}

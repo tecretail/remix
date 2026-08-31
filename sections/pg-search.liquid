@@ -1,0 +1,263 @@
+{% comment %} Estilos editables (toda la seccion) {% endcomment %}
+<div
+  class="pg-sec-style pg-sec-align-{{ section.settings.style_align }}{% if section.settings.style_hide_mobile %} pg-sec-hide-mobile{% endif %}{% if section.settings.style_hide_desktop %} pg-sec-hide-desktop{% endif %}"
+  style="
+    --pg-sec-pad-y: {{ section.settings.style_pad_y }}px;
+    --pg-sec-pad-x: {{ section.settings.style_pad_x }}px;
+    --pg-sec-max: {% if section.settings.style_max_width > 0 %}{{ section.settings.style_max_width }}px{% else %}none{% endif %};
+    --pg-sec-h-size: {{ section.settings.style_heading_size }}px;
+    --pg-sec-t-size: {{ section.settings.style_text_size }}px;
+    --pg-sec-bg: {{ section.settings.style_bg | default: 'transparent' }};
+    --pg-sec-h-color: {{ section.settings.style_heading_color }};
+    --pg-sec-t-color: {{ section.settings.style_text_color }};
+    --pg-sec-btn-fs: {{ section.settings.style_btn_font }}px;
+    --pg-sec-btn-py: {{ section.settings.style_btn_pad_y }}px;
+    --pg-sec-btn-px: {{ section.settings.style_btn_pad_x }}px;
+    --pg-sec-btn-radius: {{ section.settings.style_btn_radius }}px;
+    --pg-sec-btn-bg: {{ section.settings.style_btn_bg }};
+    --pg-sec-btn-color: {{ section.settings.style_btn_text }};
+    --pg-sec-min-h: {{ section.settings.style_min_height }}px;
+    --pg-sec-img-w: {{ section.settings.style_image_width }}%;
+    --pg-sec-img-h: {% if section.settings.style_image_max_height > 0 %}{{ section.settings.style_image_max_height }}px{% else %}none{% endif %};
+    --pg-sec-img-radius: {{ section.settings.style_image_radius }}px;
+  "
+>
+<section class="pg-simple">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;">Buscar</h1>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" style="margin:20px 0 32px;display:flex;gap:8px;flex-wrap:wrap;">
+    <input
+      type="search"
+      name="q"
+      value="{{ search.terms | escape }}"
+      placeholder="Buscar productos…"
+      style="flex:1;min-width:200px;padding:12px 14px;border:2px solid #e3e6ee;border-radius:10px;"
+    >
+    <button type="submit" style="padding:12px 20px;background:var(--pg-blue,#054497);color:#fff;border:0;border-radius:10px;font-weight:800;cursor:pointer;">
+      Buscar
+    </button>
+  </form>
+
+  {% if search.performed %}
+    {% if search.results_count == 0 %}
+      <p>No hay resultados para “{{ search.terms | escape }}”.</p>
+    {% else %}
+      <p style="margin-bottom:16px;color:#555;">{{ search.results_count }} resultado(s)</p>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px;">
+        {% for item in search.results %}
+          <li style="padding:16px;border:1px solid #e3e6ee;border-radius:12px;">
+            <a href="{{ item.url }}" style="font-weight:800;color:var(--pg-blue,#054497);text-decoration:none;">{{ item.title }}</a>
+            {% if item.object_type == 'product' %}
+              <div style="margin-top:6px;font-weight:700;">{{ item.price | money }}</div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+</section>
+</div>
+
+{% schema %}
+{
+  "name": "ProstaGenix Search",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Estilos de seccion"
+    },
+    {
+      "type": "range",
+      "id": "style_pad_y",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_pad_x",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_max_width",
+      "min": 0,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_heading_size",
+      "min": 14,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulos",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "style_bg",
+      "label": "Fondo seccion"
+    },
+    {
+      "type": "color",
+      "id": "style_heading_color",
+      "label": "Color titulos",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "style_text_color",
+      "label": "Color texto",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "style_btn_font",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano botones",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_y",
+      "min": 6,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "style_btn_pad_x",
+      "min": 10,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "style_btn_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio botones",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "style_btn_bg",
+      "label": "Boton fondo",
+      "default": "#e65600"
+    },
+    {
+      "type": "color",
+      "id": "style_btn_text",
+      "label": "Boton texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "style_min_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Altura minima (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "style_align",
+      "label": "Alineacion del contenido",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "style_image_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Ancho maximo de imagenes",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "style_image_max_height",
+      "min": 0,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Alto maximo imagenes (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "style_image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio de imagenes",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_mobile",
+      "label": "Ocultar en celular",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "style_hide_desktop",
+      "label": "Ocultar en desktop",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

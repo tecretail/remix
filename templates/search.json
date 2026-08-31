@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "pg-search",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

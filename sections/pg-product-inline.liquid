@@ -1,0 +1,623 @@
+{% comment %} Product preview = React product-embed (igualito) {% endcomment %}
+{{ 'pg-product-react.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign featured = section.settings.featured_product
+  if featured == blank
+    assign featured = collections.products.products.first
+  endif
+  if featured == blank
+    assign featured = collections.all.products.first
+  endif
+%}
+
+<section class="lv-preview-embed-wrap">
+  {% render 'pg-buybox-from-section', product: featured, hide_description: true %}
+
+  {% for block in section.blocks %}
+    {% if block.type == '@app' %}
+      <div class="pg-app-block" {{ block.shopify_attributes }}>
+        {% render block %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "PG Producto (preview)",
+  "tag": "section",
+  "class": "pg-section-product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Producto"
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Barra superior azul",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Mostrar rating / badge medico",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Mostrar beneficios",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hot_sale",
+      "label": "Mostrar HOT SALE + countdown",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Mostrar descripcion",
+      "default": false,
+      "info": "En el home dejalo apagado. Usa PG Producto PDP para la pagina de producto."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_videos",
+      "label": "Mostrar carrusel de videos",
+      "default": false,
+      "info": "En home suele ir apagado. En PDP usa PG Producto PDP."
+    },
+    {
+      "type": "checkbox",
+      "id": "videos_from_media",
+      "label": "Usar videos de medios del producto",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back",
+      "label": "Mostrar enlace volver",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_releasit",
+      "label": "Mostrar form Releasit COD",
+      "default": true,
+      "info": "Gancho del formulario debajo de la imagen"
+    },
+    {
+      "type": "header",
+      "content": "Textos / botones"
+    },
+    {
+      "type": "text",
+      "id": "releasit_label",
+      "label": "Texto boton Releasit COD",
+      "default": "PEDIR CONTRA ENTREGA (COD)"
+    },
+    {
+      "type": "text",
+      "id": "bar_text",
+      "label": "Texto barra superior",
+      "default": "GREAT DEAL · Envio GRATIS en pedidos hoy · Garantia 90 Dias"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Texto rating",
+      "default": "4.8 (13,167)"
+    },
+    {
+      "type": "text",
+      "id": "doctor_badge",
+      "label": "Badge medico",
+      "default": "RECOMENDADO POR MEDICOS"
+    },
+    {
+      "type": "header",
+      "content": "Beneficios (bloques abajo)"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Beneficio 1 (fallback)",
+      "default": "Reduce DHT",
+      "info": "Solo si no hay bloques Beneficio"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Beneficio 2 (fallback)",
+      "default": "100% Natural"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Beneficio 3 (fallback)",
+      "default": "Clinicamente Probado"
+    },
+    {
+      "type": "text",
+      "id": "hot_sale_label",
+      "label": "Titulo HOT SALE",
+      "default": "HOT SALE"
+    },
+    {
+      "type": "text",
+      "id": "hot_sale_text",
+      "label": "Texto HOT SALE",
+      "default": "Ordena hoy para asegurar tu descuento y regalos GRATIS"
+    },
+    {
+      "type": "text",
+      "id": "offer_badge",
+      "label": "Badge por defecto (todas)",
+      "default": "MEJOR OFERTA",
+      "info": "Se usa solo si NO agregaste bloques 'Badge variante'. Con bloques, cada variante se edita por separado."
+    },
+    {
+      "type": "text",
+      "id": "off_prefix",
+      "label": "Prefijo % OFF",
+      "default": "UP TO"
+    },
+    {
+      "type": "text",
+      "id": "off_suffix",
+      "label": "Sufijo % OFF",
+      "default": "% OFF"
+    },
+    {
+      "type": "text",
+      "id": "in_stock_label",
+      "label": "Texto en stock",
+      "default": "En stock"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Texto agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "Etiqueta Total",
+      "default": "Total"
+    },
+    {
+      "type": "text",
+      "id": "save_label",
+      "label": "Etiqueta Ahorras",
+      "default": "Ahorras"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto boton pagar",
+      "default": "IR A PAGAR AHORA →"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Texto volver",
+      "default": "Volver a la oferta"
+    },
+    {
+      "type": "text",
+      "id": "description_title",
+      "label": "Palabra / titulo Descripcion (editable)",
+      "default": "Descripcion"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "gallery_position",
+      "label": "Posicion galeria",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "description_placement",
+      "label": "Posicion panel descripcion",
+      "options": [
+        { "value": "below", "label": "Debajo de todo" },
+        { "value": "under_buybox", "label": "Debajo del buybox" },
+        { "value": "under_gallery", "label": "Debajo de la galeria" },
+        { "value": "none", "label": "Ocultar" }
+      ],
+      "default": "below"
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho maximo seccion",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "section_pad_y",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding vertical",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "section_pad_x",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano titulo",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "gallery_min_height",
+      "min": 0,
+      "max": 640,
+      "step": 20,
+      "unit": "px",
+      "label": "Alto minimo galeria (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto boton",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "cta_pad_y",
+      "min": 8,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding vertical boton",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cta_pad_x",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal boton",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cta_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio boton",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto descripcion",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desc_max_width",
+      "min": 480,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Ancho max. descripcion",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "desc_pad",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding descripcion",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desc_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Radio descripcion",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desc_margin_top",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Margen superior descripcion",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "color_bar",
+      "label": "Barra superior",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Titulo",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "color_badge",
+      "label": "Badge medico",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_off",
+      "label": "Badge % OFF",
+      "default": "#d40000"
+    },
+    {
+      "type": "color",
+      "id": "color_cta_bg",
+      "label": "Boton fondo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_cta_text",
+      "label": "Boton texto",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_cta_border",
+      "label": "Boton borde",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "color_desc_bg",
+      "label": "Descripcion fondo",
+      "default": "#f7f8fb"
+    },
+    {
+      "type": "color",
+      "id": "color_desc_title",
+      "label": "Descripcion titulo",
+      "default": "#054497"
+    },
+    {
+      "type": "header",
+      "content": "Carrusel de videos"
+    },
+    {
+      "type": "textarea",
+      "id": "videos_heading",
+      "label": "Titulo / descripcion de la seccion de videos",
+      "default": "¡MILES DE PERSONAS YA LO USAN!"
+    },
+    {
+      "type": "text",
+      "id": "videos_social_proof",
+      "label": "Texto social proof",
+      "default": "Compradores felices"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video_stars",
+      "label": "Mostrar estrellas",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "videos_stars_text",
+      "label": "Estrellas (texto editable)",
+      "default": "★★★★★"
+    },
+    {
+      "type": "select",
+      "id": "videos_stars_position",
+      "label": "Posicion de estrellas",
+      "options": [
+        { "value": "above_heading", "label": "Arriba del titulo" },
+        { "value": "below_heading", "label": "Debajo del titulo" },
+        { "value": "below_videos", "label": "Debajo de los videos" },
+        { "value": "none", "label": "Ocultar" }
+      ],
+      "default": "below_videos"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video_captions",
+      "label": "Mostrar captions bajo cada video",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "videos_bg",
+      "label": "Fondo videos",
+      "default": "#054497"
+    },
+    {
+      "type": "color",
+      "id": "videos_heading_color",
+      "label": "Color titulo videos",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "videos_caption_bg",
+      "label": "Fondo caption",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "videos_caption_color",
+      "label": "Color caption",
+      "default": "#0b1a3a"
+    },
+    {
+      "type": "color",
+      "id": "videos_stars_color",
+      "label": "Color estrellas",
+      "default": "#f5c518"
+    }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icono (emoji o simbolo)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Beneficio"
+        }
+      ]
+    },
+    {
+      "type": "variant_badge",
+      "name": "Badge variante",
+      "settings": [
+        {
+          "type": "range",
+          "id": "variant_position",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "label": "Numero de variante",
+          "default": 1,
+          "info": "1 = primera caja, 2 = segunda, etc."
+        },
+        {
+          "type": "text",
+          "id": "variant_title",
+          "label": "Nombre variante (opcional)",
+          "info": "Si lo llenas, tiene prioridad sobre el numero. Usa el nombre exacto de la variante en Admin."
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Texto del badge",
+          "default": "MEJOR OFERTA"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "label": "Mostrar badge",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "variant_compare",
+      "name": "Precio tachado variante",
+      "settings": [
+        {
+          "type": "range",
+          "id": "variant_position",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "label": "Numero de variante",
+          "default": 1,
+          "info": "1 = primera caja, 2 = segunda, etc."
+        },
+        {
+          "type": "text",
+          "id": "variant_title",
+          "label": "Nombre variante (opcional)",
+          "info": "Si lo llenas, tiene prioridad sobre el numero."
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Precio tachado (antes)",
+          "default": "187.25",
+          "info": "Solo el precio tachado. El precio en negrita sigue saliendo de la variante en Shopify. Ej: 187.25"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PG Producto (preview)",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": { "icon": "✓", "text": "Reduce DHT" }
+        },
+        {
+          "type": "benefit",
+          "settings": { "icon": "★", "text": "100% Natural" }
+        },
+        {
+          "type": "benefit",
+          "settings": { "icon": "♥", "text": "Clinicamente Probado" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

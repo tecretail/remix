@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_blue }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'counter.css' | asset_url | stylesheet_tag }}
+    {{ 'pg-theme.css' | asset_url | stylesheet_tag }}
+
+    {% if request.design_mode %}
+      <style>
+        .shopify-design-mode .lv-announce-track {
+          animation: none !important;
+          transform: none !important;
+        }
+        .shopify-design-mode .guarantee,
+        .shopify-design-mode .guarantee .badge,
+        .shopify-design-mode .guarantee .title .heading,
+        .shopify-design-mode .banner_special .bottom .counter {
+          filter: none !important;
+        }
+        /* Contador visible en editor, sin animaciones flip */
+        .shopify-design-mode ul.flip li div,
+        .shopify-design-mode ul.flip li section {
+          animation: none !important;
+          -webkit-animation: none !important;
+        }
+      </style>
+    {% endif %}
+
+    <style>
+      :root {
+        --pg-blue: {{ settings.color_blue }};
+        --pg-orange: {{ settings.color_orange }};
+        --pg-red: {{ settings.color_red }};
+        --pg-page-bg: {{ settings.color_page_bg }};
+        --pg-text: {{ settings.color_text }};
+        --pg-body-size: {{ settings.font_body_size }}px;
+        --pg-heading-scale: {{ settings.font_heading_scale }}%;
+        --pg-section-gap: {{ settings.section_gap }}px;
+      }
+      body.pg-body {
+        background: var(--pg-page-bg, #fff);
+        color: var(--pg-text, #0b1a3a);
+        font-size: var(--pg-body-size, 16px);
+      }
+      .shopify-section + .shopify-section {
+        margin-top: var(--pg-section-gap, 0);
+      }
+    </style>
+  </head>
+  <body class="pg-body template-{{ template.name }}{% if request.design_mode %} shopify-design-mode{% endif %}" data-pg-offers-react="1">{{ content_for_layout }}</body>
+</html>

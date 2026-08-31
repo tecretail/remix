@@ -1,0 +1,31 @@
+{% comment %} Bloques extra_text y trust_item — renderizar desde la seccion padre {% endcomment %}
+{% liquid
+  assign extra_blocks = sec.blocks | where: 'type', 'extra_text'
+  assign trust_blocks = sec.blocks | where: 'type', 'trust_item'
+%}
+{% if extra_blocks.size > 0 or trust_blocks.size > 0 %}
+  <div class="pg-preview-extra-wrap">
+    {% for block in extra_blocks %}
+      <div class="pg-preview-extra" {{ block.shopify_attributes }}>
+        {% if block.settings.heading != blank %}
+          <h3 class="pg-preview-extra__heading">{{ block.settings.heading }}</h3>
+        {% endif %}
+        {% if block.settings.body != blank %}
+          <div class="pg-preview-extra__body rte">{{ block.settings.body }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    {% if trust_blocks.size > 0 %}
+      <div class="pg-preview-trust">
+        {% for block in trust_blocks %}
+          <div class="pg-preview-trust__item" {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}
+              <span class="pg-preview-trust__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+            {% endif %}
+            <span>{{ block.settings.text }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

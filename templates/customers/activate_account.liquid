@@ -1,0 +1,11 @@
+<section class="pg-simple" style="max-width:480px;">
+  <h1 style="color:var(--pg-blue,#054497);font-weight:900;">Activar cuenta</h1>
+  {% form 'activate_customer_password' %}
+    {{ form.errors | default_errors }}
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+      <input type="password" name="customer[password]" placeholder="Contraseña" style="padding:12px;border:2px solid #e3e6ee;border-radius:10px;">
+      <input type="password" name="customer[password_confirmation]" placeholder="Confirmar contraseña" style="padding:12px;border:2px solid #e3e6ee;border-radius:10px;">
+      <button type="submit" style="padding:14px;background:var(--pg-blue,#054497);color:#fff;border:0;border-radius:999px;font-weight:900;cursor:pointer;">Activar</button>
+    </div>
+  {% endform %}
+</section>

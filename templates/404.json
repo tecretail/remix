@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "pg-404",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
