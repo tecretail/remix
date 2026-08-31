@@ -297,6 +297,56 @@
   justify-content: flex-start;
 }
 
+/* Evitar scroll / corrida horizontal en toda la tienda */
+html {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+body.pg-body {
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.shopify-section,
+.shopify-section-group,
+.pg-sec-style,
+.lv-preview-embed-wrap,
+.lv-preview-embed-wrap > section,
+.pg-buybox,
+.pg-p-main,
+.pg-p-col-buy,
+.pg-p-col-gallery {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.shopify-section.pg-section-announce,
+.pg-section-announce .pg-sec-style {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.pg-preventify-host {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 4px 2px;
+  margin-top: -6px;
+}
+
+.pg-p-deals {
+  overflow-x: clip;
+  padding-top: 14px;
+}
+
+.pg-p-thumbs {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+}
+
 /* Mobile: evitar scroll horizontal en toda la landing */
 @media (max-width: 900px) {
   html, body.pg-body {
