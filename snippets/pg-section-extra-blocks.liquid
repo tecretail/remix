@@ -6,13 +6,25 @@
 {% if extra_blocks.size > 0 or trust_blocks.size > 0 %}
   <div class="pg-preview-extra-wrap">
     {% for block in extra_blocks %}
-      <div class="pg-preview-extra" {{ block.shopify_attributes }}>
-        {% if block.settings.heading != blank %}
-          <h3 class="pg-preview-extra__heading">{{ block.settings.heading }}</h3>
+      {% liquid
+        assign extra_img = blank
+        if block.settings.image != blank
+          assign extra_img = block.settings.image | image_url: width: 80
+        endif
+        assign extra_body = block.settings.body | strip_html | strip
+      %}
+      <div class="pg-p-deal-desc pg-preview-extra-bar" {{ block.shopify_attributes }}>
+        {% if extra_img != blank %}
+          <img class="pg-p-deal-desc-img" src="{{ extra_img }}" alt="" width="36" height="36" loading="lazy">
         {% endif %}
-        {% if block.settings.body != blank %}
-          <div class="pg-preview-extra__body rte">{{ block.settings.body }}</div>
-        {% endif %}
+        <div class="pg-p-deal-desc-text">
+          {% if block.settings.heading != blank %}
+            <strong class="pg-preview-extra-bar__title">{{ block.settings.heading }}</strong>
+          {% endif %}
+          {% if block.settings.body != blank %}
+            <span class="pg-preview-extra-bar__body">{% if extra_body != blank %}{{ extra_body }}{% else %}{{ block.settings.body }}{% endif %}</span>
+          {% endif %}
+        </div>
       </div>
     {% endfor %}
     {% if trust_blocks.size > 0 %}

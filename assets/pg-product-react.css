@@ -1259,37 +1259,37 @@ a.pg-p-cta--cod {
   }
 }
 
-/* Contenido extra debajo del buybox (preview) */
+/* Contenido extra debajo del buybox (PDP) — barras estilo tarjeta */
 .pg-preview-extra-wrap {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px 24px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.pg-preview-extra {
-  background: #f7f8fb;
-  border: 1px solid #e3e6ee;
-  border-radius: 14px;
-  padding: 18px 20px;
-  margin-bottom: 14px;
+.pg-preview-extra-bar {
+  border-radius: 14px !important;
+  margin: 0 !important;
+  box-shadow: 0 6px 18px rgba(5, 68, 151, 0.18) !important;
 }
 
-.pg-preview-extra__heading {
-  margin: 0 0 10px;
-  font-size: 18px;
+.pg-preview-extra-bar__title {
+  display: block;
+  font-size: 13px;
   font-weight: 900;
-  color: #054497;
+  margin-bottom: 2px;
+  letter-spacing: 0.3px;
 }
 
-.pg-preview-extra__body {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #0b1a3a;
-}
-
-.pg-preview-extra__body p {
-  margin: 0 0 8px;
+.pg-preview-extra-bar__body {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.95;
+  line-height: 1.4;
 }
 
 .pg-preview-trust {

@@ -477,6 +477,7 @@
               assign v_badge_matched = false
               assign v_float_badge = blank
               assign v_subtext = blank
+              assign v_subtext_image = blank
               assign v_tag_shipping = blank
               assign v_tag_bonus = blank
               assign v_gift_text = blank
@@ -503,6 +504,9 @@
                     endif
                     assign v_float_badge = block.settings.float_badge
                     assign v_subtext = block.settings.subtext
+                    if block.settings.subtext_image != blank
+                      assign v_subtext_image = block.settings.subtext_image | image_url: width: 80
+                    endif
                     assign v_tag_shipping = block.settings.tag_shipping
                     assign v_tag_bonus = block.settings.tag_bonus
                     assign v_gift_text = block.settings.gift_text
@@ -528,7 +532,7 @@
             %}
             <button
               type="button"
-              class="pg-p-deal pg-p-deal--bundle{% if variant.id == first_variant.id %} is-active{% endif %}{% if v_gift_text != blank %} has-gift{% endif %}"
+              class="pg-p-deal pg-p-deal--bundle{% if variant.id == first_variant.id %} is-active{% endif %}{% if v_gift_text != blank or v_subtext != blank %} has-footer{% endif %}"
               data-pg-variant
               data-id="{{ variant.id }}"
               data-price="{{ v_price }}"
@@ -563,9 +567,7 @@
                         <span class="pg-p-deal-tag pg-p-deal-tag--bonus">{{ v_tag_bonus }}</span>
                       {% endif %}
                     </div>
-                    {% if v_subtext != blank %}
-                      <div class="pg-p-deal-sub">{{ v_subtext }}</div>
-                    {% else %}
+                    {% if v_subtext == blank %}
                       <div class="pg-p-deal-sub pg-p-deal-sub--save">
                         {{ save_label }} S/ {{ v_save | money_without_currency | strip | replace: ',', '.' }}
                       </div>
@@ -582,6 +584,14 @@
                     <div class="pg-p-deal-price">S/ {{ v_price | money_without_currency | strip | replace: ',', '.' }}</div>
                   </div>
                 </div>
+                {% if v_subtext != blank %}
+                  <div class="pg-p-deal-desc">
+                    {% if v_subtext_image != blank %}
+                      <img class="pg-p-deal-desc-img" src="{{ v_subtext_image }}" alt="" width="36" height="36" loading="lazy">
+                    {% endif %}
+                    <span class="pg-p-deal-desc-text">{{ v_subtext }}</span>
+                  </div>
+                {% endif %}
                 {% if v_gift_text != blank %}
                   <div class="pg-p-deal-gift">
                     <span class="pg-p-deal-gift-icon" aria-hidden="true">🎁</span>
