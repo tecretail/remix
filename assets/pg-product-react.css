@@ -1045,7 +1045,7 @@ a.pg-p-cta--cod {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important;
-  transition: opacity 0.42s ease, transform 0.42s ease, visibility 0.42s ease !important;
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease !important;
 }
 
 .pg-p-delivery-track.is-phase-msg .pg-p-delivery-road {

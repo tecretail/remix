@@ -1,7 +1,7 @@
 (function () {
-  var TRUCK_TRAVEL = 3200;
-  var MSG_SHOW = 2200;
-  var FADE = 420;
+  var TRUCK_TRAVEL = 3000;
+  var MSG_SHOW = 850;
+  var FADE = 280;
 
   function pgCourierDrive(track) {
     var road = track.querySelector('.pg-p-delivery-road');
@@ -66,7 +66,7 @@
     }
 
     pgCourierShowTruck(track);
-    await pgCourierWait(track, FADE + 300);
+    await pgCourierWait(track, FADE + 150);
     pgCourierRunCycle(track);
   }
 
