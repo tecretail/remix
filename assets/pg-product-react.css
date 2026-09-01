@@ -1054,8 +1054,8 @@ a.pg-p-cta--cod {
   position: absolute !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: 12px !important;
-  height: 10px !important;
+  bottom: 7px !important;
+  height: 6px !important;
   background: radial-gradient(ellipse at center, rgba(5, 68, 151, 0.08) 0%, transparent 70%) !important;
   pointer-events: none !important;
 }
