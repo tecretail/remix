@@ -377,18 +377,26 @@
           {% if social_sold != blank or social_guide != blank %}
             <div class="pg-p-social-stack">
               {% if social_sold != blank %}
-                <div class="pg-p-social-pill">
+                <div class="pg-p-social-pill pg-p-social-pill--sold">
                   <span class="pg-p-social-pill__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14 0-5.5 1-7 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.5-2.5 1.5-3.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 23c-1.1 0-2-.9-2-2 0-.74.4-1.38 1-1.72-.6-.9-1-2.04-1-3.28 0-2.76 2.24-5 5-5 .28 0 .55.02.81.07C14.55 8.82 15 7.46 15 6c0-2.21-1.79-4-4-4-.46 0-.9.08-1.31.22C10.83 1.15 11.88 1 13 1c3.87 0 7 3.13 7 7 0 1.1-.25 2.14-.7 3.07.45.34.7.98.7 1.63 0 1.1-.9 2-2 2h-6z"/>
+                    </svg>
                   </span>
                   <span class="pg-p-social-pill__text">{{ social_sold }}</span>
                 </div>
               {% endif %}
 
               {% if social_guide != blank %}
-                <div class="pg-p-social-pill">
+                <div class="pg-p-social-pill pg-p-social-pill--guide">
                   <span class="pg-p-social-pill__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.6 11.4a2.5 2.5 0 1 0-3.5-3.5l-8.2 8.2a2.5 2.5 0 1 0 3.5 3.5z"/><path d="m15 9 6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 12v8H4v-8"/>
+                      <path d="M12 22V12"/>
+                      <path d="M12 12H7.5a2.5 2.5 0 1 1 0-5C11 7 12 12 12 12z"/>
+                      <path d="M12 12h4.5a2.5 2.5 0 1 0 0-5C13 7 12 12 12 12z"/>
+                      <rect x="2" y="7" width="20" height="5" rx="1"/>
+                    </svg>
                   </span>
                   <span class="pg-p-social-pill__text">{{ social_guide }}</span>
                 </div>
@@ -415,22 +423,22 @@
                 %}
                 {% if b_text != blank %}
                   <div class="pg-p-benefit" {{ block.shopify_attributes }}>
-                    <div class="pg-p-benefit-icon">{{ b_icon }}</div>
+                    <div class="pg-p-benefit-icon">{% render 'pg-benefit-icon', icon: b_icon %}</div>
                     <div class="pg-p-benefit-label">{{ b_text }}</div>
                   </div>
                 {% endif %}
               {% endfor %}
             {% else %}
               <div class="pg-p-benefit">
-                <div class="pg-p-benefit-icon">✓</div>
+                <div class="pg-p-benefit-icon">{% render 'pg-benefit-icon', icon: '✓' %}</div>
                 <div class="pg-p-benefit-label">{{ benefit_1 }}</div>
               </div>
               <div class="pg-p-benefit">
-                <div class="pg-p-benefit-icon">★</div>
+                <div class="pg-p-benefit-icon">{% render 'pg-benefit-icon', icon: '★' %}</div>
                 <div class="pg-p-benefit-label">{{ benefit_2 }}</div>
               </div>
               <div class="pg-p-benefit">
-                <div class="pg-p-benefit-icon">♥</div>
+                <div class="pg-p-benefit-icon">{% render 'pg-benefit-icon', icon: '♥' %}</div>
                 <div class="pg-p-benefit-label">{{ benefit_3 }}</div>
               </div>
             {% endif %}
