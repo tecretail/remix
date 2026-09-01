@@ -1008,10 +1008,79 @@ a.pg-p-cta--cod {
 }
 
 /* Solo la barra de urgencia del buybox (no la superior) */
-.pg-p-col-buy > .pg-p-bar {
+.pg-p-col-buy > .pg-p-bar,
+.pg-p-urgency-wrap .pg-p-bar--urgency {
   padding: 18px 20px !important;
+  margin: 0 !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.pg-p-urgency-wrap {
   margin: 2px 0 22px !important;
   border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 22px rgba(5, 68, 151, 0.12) !important;
+}
+
+.pg-p-delivery-track {
+  position: relative !important;
+  height: 28px !important;
+  background: #f4f8fc !important;
+  border: 1px solid #d4e4f7 !important;
+  border-top: none !important;
+  border-radius: 0 0 12px 12px !important;
+}
+
+.pg-p-delivery-line {
+  position: absolute !important;
+  left: 12px !important;
+  right: 12px !important;
+  top: 50% !important;
+  height: 2px !important;
+  transform: translateY(-50%) !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #b8cfe8 8%,
+    #b8cfe8 92%,
+    transparent 100%
+  ) !important;
+}
+
+.pg-p-delivery-truck {
+  position: absolute !important;
+  top: 50% !important;
+  left: 8px !important;
+  width: 38px !important;
+  height: 20px !important;
+  transform: translateY(-58%) !important;
+  animation: pg-delivery-drive 4.5s ease-in-out infinite !important;
+  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.2)) !important;
+  will-change: left !important;
+}
+
+.pg-p-delivery-truck svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@keyframes pg-delivery-drive {
+  0%,
+  100% {
+    left: 8px;
+  }
+  50% {
+    left: calc(100% - 46px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-p-delivery-truck {
+    animation: none !important;
+    left: 50% !important;
+    transform: translate(-50%, -58%) !important;
+  }
 }
 
 .pg-p-total-row {
