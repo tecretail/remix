@@ -41,6 +41,7 @@
   endif
   assign courier_icon = courier_icon | default: 'truck'
   assign delivery_tooltip_text = delivery_tooltip_text | default: 'Envío gratis a todo el Perú'
+  assign delivery_gift_text = delivery_gift_text | default: 'Cada pedido tiene un regalo especial'
   assign hot_sale_label = hot_sale_label | default: '🔥 HOT SALE'
   assign hot_sale_text = hot_sale_text | default: 'Ordena hoy para asegurar tu descuento y regalos GRATIS'
   assign offer_badge = offer_badge | default: 'MEJOR OFERTA'
@@ -692,7 +693,7 @@
 
         <div class="pg-p-bar pg-p-bar--urgency">{{ urgency_bar_text }}</div>
         {% if show_delivery_truck %}
-          {% render 'pg-delivery-truck', courier_icon: courier_icon, delivery_tooltip_text: delivery_tooltip_text %}
+          {% render 'pg-delivery-truck', courier_icon: courier_icon, delivery_tooltip_text: delivery_tooltip_text, delivery_gift_text: delivery_gift_text %}
         {% endif %}
 
         <div class="pg-p-total-row">

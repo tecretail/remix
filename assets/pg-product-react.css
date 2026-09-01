@@ -1071,9 +1071,10 @@ a.pg-p-cta--cod {
   visibility: hidden !important;
   transform: translateY(6px) !important;
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
+  pointer-events: none !important;
 }
 
-.pg-p-delivery-track.is-show-tip .pg-p-delivery-message {
+.pg-p-delivery-track.is-show-tip .pg-p-delivery-message.is-active {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important;
@@ -1089,6 +1090,12 @@ a.pg-p-cta--cod {
   border-radius: 999px !important;
   background: #054497 !important;
   flex-shrink: 0 !important;
+}
+
+.pg-p-delivery-message__icon--gift svg {
+  display: block !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .pg-p-delivery-message__text {
@@ -1216,7 +1223,7 @@ a.pg-p-cta--cod {
     visibility: hidden !important;
   }
 
-  .pg-p-delivery-message {
+  .pg-p-delivery-message.is-active {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
