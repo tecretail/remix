@@ -1018,12 +1018,11 @@ a.pg-p-cta--cod {
 .pg-p-delivery-track {
   position: relative !important;
   width: 100% !important;
-  margin: 0 0 22px !important;
-  padding: 8px 12px !important;
-  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%) !important;
-  border: 1px solid #d4e4f7 !important;
-  border-radius: 999px !important;
-  box-shadow: 0 4px 14px rgba(5, 68, 151, 0.06) !important;
+  margin: 0 0 20px !important;
+  padding: 4px 0 6px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
 }
@@ -1031,34 +1030,35 @@ a.pg-p-cta--cod {
 .pg-p-delivery-road {
   position: relative !important;
   width: 100% !important;
-  height: 52px !important;
+  height: 48px !important;
 }
 
 .pg-p-delivery-line {
   position: absolute !important;
-  left: 6px !important;
-  right: 6px !important;
-  bottom: 11px !important;
-  height: 4px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 10px !important;
+  height: 3px !important;
   background: linear-gradient(
     90deg,
-    rgba(5, 68, 151, 0.12) 0%,
-    rgba(5, 68, 151, 0.32) 50%,
-    rgba(5, 68, 151, 0.12) 100%
+    transparent 0%,
+    rgba(5, 68, 151, 0.22) 12%,
+    rgba(5, 68, 151, 0.22) 88%,
+    transparent 100%
   ) !important;
   border-radius: 999px !important;
 }
 
 .pg-p-delivery-courier {
   position: absolute !important;
-  bottom: 8px !important;
+  bottom: 6px !important;
   left: 0 !important;
-  width: 56px !important;
-  height: 34px !important;
+  width: 52px !important;
+  height: 30px !important;
   z-index: 2 !important;
-  filter: drop-shadow(0 2px 6px rgba(5, 68, 151, 0.2)) !important;
-  animation: pg-cart-drive 3.2s ease-in-out infinite alternate !important;
-  will-change: transform !important;
+  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.18)) !important;
+  animation: pg-courier-run 4s linear infinite !important;
+  will-change: transform, opacity !important;
 }
 
 .pg-p-delivery-courier svg {
@@ -1070,19 +1070,33 @@ a.pg-p-cta--cod {
 .pg-p-delivery-courier .pg-courier-wheel {
   transform-origin: center !important;
   transform-box: fill-box !important;
-  animation: pg-cart-wheels 0.35s linear infinite !important;
+  animation: pg-courier-wheels 0.4s linear infinite !important;
 }
 
-@keyframes pg-cart-drive {
+@keyframes pg-courier-run {
   0% {
     transform: translateX(0);
+    opacity: 1;
+  }
+  78% {
+    transform: translateX(var(--pg-cart-travel, 200px));
+    opacity: 1;
+  }
+  88% {
+    transform: translateX(var(--pg-cart-travel, 200px));
+    opacity: 0;
+  }
+  89% {
+    transform: translateX(0);
+    opacity: 0;
   }
   100% {
-    transform: translateX(var(--pg-cart-travel, 200px));
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
-@keyframes pg-cart-wheels {
+@keyframes pg-courier-wheels {
   to {
     transform: rotate(360deg);
   }
