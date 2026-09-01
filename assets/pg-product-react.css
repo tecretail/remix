@@ -1018,9 +1018,9 @@ a.pg-p-cta--cod {
 .pg-p-delivery-track {
   position: relative !important;
   width: 100% !important;
-  margin: 0 0 20px !important;
-  padding: 8px 0 10px !important;
-  background: linear-gradient(180deg, rgba(238, 244, 252, 0.65) 0%, rgba(255, 255, 255, 0) 100%) !important;
+  margin: 0 0 16px !important;
+  padding: 2px 0 4px !important;
+  background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   box-sizing: border-box !important;
@@ -1030,15 +1030,15 @@ a.pg-p-cta--cod {
 .pg-p-delivery-road {
   position: relative !important;
   width: 100% !important;
-  height: 62px !important;
+  height: 38px !important;
 }
 
 .pg-p-delivery-line {
   position: absolute !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: 14px !important;
-  height: 5px !important;
+  bottom: 9px !important;
+  height: 3px !important;
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -1062,11 +1062,11 @@ a.pg-p-cta--cod {
 
 .pg-p-delivery-courier {
   position: absolute !important;
-  bottom: 6px !important;
+  bottom: 4px !important;
   left: 0 !important;
   width: auto !important;
   height: auto !important;
-  min-width: 96px !important;
+  min-width: 0 !important;
   z-index: 2 !important;
   animation: pg-courier-run 4.2s linear infinite !important;
   will-change: transform, opacity !important;
@@ -1074,10 +1074,10 @@ a.pg-p-cta--cod {
 
 .pg-courier-art {
   display: block !important;
-  width: 96px !important;
+  width: 58px !important;
   height: auto !important;
-  min-height: 46px !important;
-  filter: drop-shadow(0 4px 10px rgba(5, 68, 151, 0.28)) !important;
+  min-height: 0 !important;
+  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.2)) !important;
 }
 
 .pg-courier-art .pg-courier-wheel {
