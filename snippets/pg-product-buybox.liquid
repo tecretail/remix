@@ -688,12 +688,10 @@
           {% endfor %}
         </div>
 
-        <div class="pg-p-urgency-wrap">
-          <div class="pg-p-bar pg-p-bar--urgency">{{ urgency_bar_text }}</div>
-          {% if show_delivery_truck %}
-            {% render 'pg-delivery-truck' %}
-          {% endif %}
-        </div>
+        <div class="pg-p-bar pg-p-bar--urgency">{{ urgency_bar_text }}</div>
+        {% if show_delivery_truck %}
+          {% render 'pg-delivery-truck' %}
+        {% endif %}
 
         <div class="pg-p-total-row">
           <span style="color:#666;">{{ total_label }}</span>

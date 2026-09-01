@@ -1,20 +1,38 @@
-{% comment %} Camion animado debajo de la barra de urgencia {% endcomment %}
-<div class="pg-p-delivery-track" aria-hidden="true">
+{% comment %} Carrito animado — va debajo de la barra azul (separado) {% endcomment %}
+<div class="pg-p-delivery-track" data-pg-delivery aria-hidden="true">
   <div class="pg-p-delivery-road">
     <span class="pg-p-delivery-line"></span>
-    <span class="pg-p-delivery-truck">
-      <svg viewBox="0 0 96 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="14" width="44" height="22" rx="4" fill="#054497"/>
-        <rect x="6" y="28" width="44" height="4" rx="1" fill="#f39200"/>
-        <path d="M50 14h28v22H50V14z" fill="#054497"/>
-        <path d="M54 8h20v14H54V8z" fill="#0a6fd4"/>
-        <rect x="57" y="11" width="14" height="8" rx="2" fill="#eaf1fb"/>
-        <circle class="pg-truck-wheel" cx="22" cy="38" r="6" fill="#0b1a3a"/>
-        <circle cx="22" cy="38" r="2.5" fill="#fff"/>
-        <circle class="pg-truck-wheel" cx="62" cy="38" r="6" fill="#0b1a3a"/>
-        <circle cx="62" cy="38" r="2.5" fill="#fff"/>
-        <path d="M78 22h8v6h-8v-6z" fill="#f39200" opacity="0.9"/>
+    <div class="pg-p-delivery-cart">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 12h6l5.2 26h28.6L56 22H20.8" stroke="#054497" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="pg-cart-wheel" cx="27" cy="46" r="4.5" fill="#0b1a3a"/>
+        <circle cx="27" cy="46" r="1.8" fill="#fff"/>
+        <circle class="pg-cart-wheel" cx="43" cy="46" r="4.5" fill="#0b1a3a"/>
+        <circle cx="43" cy="46" r="1.8" fill="#fff"/>
+        <path d="M10 12h6l2 10" stroke="#f39200" stroke-width="3.2" stroke-linecap="round"/>
+        <rect x="24" y="24" width="22" height="3" rx="1.5" fill="#f39200" opacity="0.85"/>
       </svg>
-    </span>
+    </div>
   </div>
 </div>
+<script>
+  (function () {
+    function pgCartDrive(track) {
+      var road = track.querySelector('.pg-p-delivery-road');
+      var cart = track.querySelector('.pg-p-delivery-cart');
+      if (!road || !cart) return;
+      var travel = Math.max(0, road.clientWidth - cart.clientWidth);
+      cart.style.setProperty('--pg-cart-travel', travel + 'px');
+    }
+    function pgCartInitAll() {
+      document.querySelectorAll('[data-pg-delivery]').forEach(pgCartDrive);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pgCartInitAll);
+    } else {
+      pgCartInitAll();
+    }
+    window.addEventListener('resize', pgCartInitAll);
+    document.addEventListener('shopify:section:load', pgCartInitAll);
+  })();
+</script>
