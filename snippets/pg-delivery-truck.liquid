@@ -1,10 +1,10 @@
-{% comment %} Courier v12 — mensajes en orden, script inline garantizado {% endcomment %}
+{% comment %} Courier v14 — camion, luego envio, luego regalo, repite {% endcomment %}
 {% liquid
   assign courier_icon = courier_icon | default: 'truck'
   assign delivery_tooltip_text = delivery_tooltip_text | default: 'Envío gratis a todo el Perú'
   assign delivery_gift_text = delivery_gift_text | default: 'Cada pedido tiene un regalo especial'
 %}
-<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="12">
+<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="14">
   <div class="pg-p-delivery-stage">
     <div class="pg-p-delivery-road">
       <span class="pg-p-delivery-line"></span>
