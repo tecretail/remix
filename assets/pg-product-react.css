@@ -1019,7 +1019,7 @@ a.pg-p-cta--cod {
   position: relative !important;
   width: 100% !important;
   margin: 0 0 16px !important;
-  padding: 34px 0 4px !important;
+  padding: 38px 0 4px !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -1027,24 +1027,49 @@ a.pg-p-cta--cod {
   overflow: visible !important;
 }
 
+.pg-p-col-buy {
+  overflow: visible !important;
+}
+
+.pg-p-delivery-courier {
+  position: absolute !important;
+  bottom: 6px !important;
+  left: 0 !important;
+  width: max-content !important;
+  height: max-content !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  flex-shrink: 0 !important;
+  z-index: 2 !important;
+  animation: pg-courier-run 4.2s linear infinite !important;
+  will-change: transform, opacity !important;
+}
+
 .pg-p-delivery-tooltip {
   position: absolute !important;
-  top: 0 !important;
   right: 0 !important;
-  z-index: 3 !important;
+  bottom: calc(100% + 8px) !important;
+  z-index: 5 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
-  max-width: min(100%, 280px) !important;
+  max-width: 260px !important;
   padding: 7px 12px 7px 8px !important;
   background: #fdf3f6 !important;
   border-radius: 6px !important;
-  box-shadow: 0 4px 14px rgba(139, 58, 98, 0.12) !important;
+  box-shadow: 0 4px 14px rgba(139, 58, 98, 0.18) !important;
   pointer-events: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  transform: translateY(6px) scale(0.97) !important;
-  animation: pg-courier-tooltip 4.2s linear infinite !important;
+  transform: translateY(8px) scale(0.96) !important;
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease !important;
+  white-space: nowrap !important;
+}
+
+.pg-p-delivery-track.is-show-tip .pg-p-delivery-tooltip {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
 }
 
 .pg-p-delivery-tooltip__icon {
@@ -1071,36 +1096,6 @@ a.pg-p-cta--cod {
   font-style: italic !important;
   color: #9b3d62 !important;
   font-weight: 400 !important;
-}
-
-@keyframes pg-courier-tooltip {
-  0%,
-  77% {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(6px) scale(0.97) !important;
-  }
-  78% {
-    opacity: 0 !important;
-    visibility: visible !important;
-    transform: translateY(6px) scale(0.97) !important;
-  }
-  80% {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) scale(1) !important;
-  }
-  87% {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) scale(1) !important;
-  }
-  88%,
-  100% {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(4px) scale(0.98) !important;
-  }
 }
 
 .pg-p-delivery-road {
@@ -1134,20 +1129,6 @@ a.pg-p-cta--cod {
   height: 6px !important;
   background: radial-gradient(ellipse at center, rgba(5, 68, 151, 0.08) 0%, transparent 70%) !important;
   pointer-events: none !important;
-}
-
-.pg-p-delivery-courier {
-  position: absolute !important;
-  bottom: 6px !important;
-  left: 0 !important;
-  width: max-content !important;
-  height: max-content !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  flex-shrink: 0 !important;
-  z-index: 2 !important;
-  animation: pg-courier-run 4.2s linear infinite !important;
-  will-change: transform, opacity !important;
 }
 
 .pg-p-delivery-track .pg-courier-art {
@@ -1211,6 +1192,11 @@ a.pg-p-cta--cod {
 
   .pg-p-delivery-tooltip {
     animation: none !important;
+    white-space: normal !important;
+  }
+
+  .pg-p-delivery-track.is-show-tip .pg-p-delivery-tooltip,
+  .pg-p-delivery-track:not(.is-show-tip) .pg-p-delivery-tooltip {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;

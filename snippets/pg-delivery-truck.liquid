@@ -1,33 +1,37 @@
-{% comment %} Courier animado v6 — tooltip al llegar al final {% endcomment %}
+{% comment %} Courier animado v7 — tooltip JS al llegar al final {% endcomment %}
 {% liquid
   assign courier_icon = courier_icon | default: 'truck'
   assign delivery_tooltip_text = delivery_tooltip_text | default: 'Envío gratis a todo el Perú'
 %}
-<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="6">
-  <div class="pg-p-delivery-tooltip" role="status" aria-live="polite">
-    <span class="pg-p-delivery-tooltip__icon" aria-hidden="true">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 7.2L5.8 10 11 4.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-    <span class="pg-p-delivery-tooltip__text">
-      {% if delivery_tooltip_text contains 'gratis' %}
-        {% assign tip_parts = delivery_tooltip_text | split: 'gratis' %}
-        {{ tip_parts[0] }}<em class="pg-p-delivery-tooltip__em">gratis</em>{{ tip_parts[1] }}
-      {% else %}
-        {{ delivery_tooltip_text }}
-      {% endif %}
-    </span>
-  </div>
+<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="7">
   <div class="pg-p-delivery-road">
     <span class="pg-p-delivery-line"></span>
     <div class="pg-p-delivery-courier">
+      <div class="pg-p-delivery-tooltip" role="status" aria-live="polite">
+        <span class="pg-p-delivery-tooltip__icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7.2L5.8 10 11 4.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="pg-p-delivery-tooltip__text">
+          {% if delivery_tooltip_text contains 'gratis' %}
+            {% assign tip_parts = delivery_tooltip_text | split: 'gratis' %}
+            {{ tip_parts[0] }}<em class="pg-p-delivery-tooltip__em">gratis</em>{{ tip_parts[1] }}
+          {% else %}
+            {{ delivery_tooltip_text }}
+          {% endif %}
+        </span>
+      </div>
       {% render 'pg-courier-icon', type: courier_icon %}
     </div>
   </div>
 </div>
 <script>
   (function () {
+    var DURATION = 4200;
+    var SHOW_AT = 3276;
+    var SHOW_FOR = 420;
+
     function pgCourierDrive(track) {
       var road = track.querySelector('.pg-p-delivery-road');
       var courier = track.querySelector('.pg-p-delivery-courier');
@@ -35,9 +39,46 @@
       var travel = Math.max(0, road.clientWidth - courier.offsetWidth);
       courier.style.setProperty('--pg-cart-travel', travel + 'px');
     }
-    function pgCourierInitAll() {
-      document.querySelectorAll('[data-pg-delivery]').forEach(pgCourierDrive);
+
+    function pgCourierStopTooltip(track) {
+      if (track._pgTipInterval) {
+        clearInterval(track._pgTipInterval);
+        track._pgTipInterval = null;
+      }
+      if (track._pgTipTimers) {
+        track._pgTipTimers.forEach(clearTimeout);
+        track._pgTipTimers = [];
+      }
+      track.classList.remove('is-show-tip');
     }
+
+    function pgCourierStartTooltip(track) {
+      pgCourierStopTooltip(track);
+      track._pgTipTimers = [];
+
+      function tick() {
+        track.classList.remove('is-show-tip');
+        track._pgTipTimers.push(setTimeout(function () {
+          track.classList.add('is-show-tip');
+          track._pgTipTimers.push(setTimeout(function () {
+            track.classList.remove('is-show-tip');
+          }, SHOW_FOR));
+        }, SHOW_AT));
+      }
+
+      tick();
+      track._pgTipInterval = setInterval(tick, DURATION);
+    }
+
+    function pgCourierInitTrack(track) {
+      pgCourierDrive(track);
+      pgCourierStartTooltip(track);
+    }
+
+    function pgCourierInitAll() {
+      document.querySelectorAll('[data-pg-delivery]').forEach(pgCourierInitTrack);
+    }
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', pgCourierInitAll);
     } else {
