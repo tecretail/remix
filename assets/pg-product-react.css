@@ -483,7 +483,27 @@
   border-radius: 0 !important;
 }
 
-.pg-p-deal-body > .pg-p-deal-desc:last-child {
+.pg-p-deal-desc + .pg-p-deal-stock-bar,
+.pg-p-deal-stock-bar + .pg-p-deal-gift {
+  border-radius: 0 !important;
+}
+
+.pg-p-deal-stock-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 11px 14px !important;
+  background: #0b1a3a !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  border-top: 2px solid #054497 !important;
+}
+
+.pg-p-deal-body > .pg-p-deal-desc:last-child,
+.pg-p-deal-body > .pg-p-deal-stock-bar:last-child,
+.pg-p-deal-body > .pg-p-deal-gift:last-child {
   border-radius: 0 0 12px 12px !important;
 }
 

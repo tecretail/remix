@@ -172,6 +172,13 @@
     if product.metafields.custom.badge_text.value != blank and offer_badge == 'MEJOR OFERTA'
       assign offer_badge = product.metafields.custom.badge_text.value
     endif
+    assign _mf_ob = product.metafields.custom.oferta_badge.value
+    if _mf_ob == blank
+      assign _mf_ob = product.metafields.custom.offer_badge.value
+    endif
+    if _mf_ob != blank
+      assign offer_badge = _mf_ob
+    endif
     assign first_variant = product.selected_or_first_available_variant
     assign first_price = first_variant.price
     assign first_compare = first_variant.compare_at_price
@@ -482,6 +489,8 @@
               assign v_tag_bonus = blank
               assign v_gift_text = blank
               assign v_gift_image = blank
+              assign v_stock_bar = blank
+              assign v_stock_bar_image = blank
               if badge_blocks.size > 0
                 for block in badge_blocks
                   assign match_title = block.settings.variant_title | strip
@@ -515,10 +524,29 @@
                     endif
                   endif
                 endfor
-              elsif variant.metafields.custom.offer_badge.value != blank
-                assign v_badge = variant.metafields.custom.offer_badge.value
-                assign v_badge_matched = true
-              elsif offer_badge != blank
+              endif
+
+              comment
+                Metafields Shopify (producto o variante):
+                - oferta_badge / offer_badge → badge superior (MEJOR OFERTA)
+                - etiqueta_stock → barra inferior estilo regalo
+              endcomment
+              assign mf_oferta = variant.metafields.custom.oferta_badge.value
+              if mf_oferta == blank
+                assign mf_oferta = variant.metafields.custom.offer_badge.value
+              endif
+              if mf_oferta == blank
+                assign mf_oferta = product.metafields.custom.oferta_badge.value
+              endif
+              if mf_oferta == blank
+                assign mf_oferta = product.metafields.custom.offer_badge.value
+              endif
+              if mf_oferta == blank
+                assign mf_oferta = product.metafields.custom.badge_text.value
+              endif
+              if mf_oferta != blank
+                assign v_badge = mf_oferta
+              elsif v_badge == blank and offer_badge != blank
                 assign v_badge = offer_badge
               endif
 
@@ -529,10 +557,21 @@
               if v_thumb == blank
                 assign v_thumb = product.featured_media
               endif
+
+              assign mf_stock_label = variant.metafields.custom.etiqueta_stock.value
+              if mf_stock_label == blank
+                assign mf_stock_label = product.metafields.custom.etiqueta_stock.value
+              endif
+              if mf_stock_label != blank
+                assign v_stock_bar = mf_stock_label
+                if v_stock_bar_image == blank and v_thumb != blank
+                  assign v_stock_bar_image = v_thumb | image_url: width: 80
+                endif
+              endif
             %}
             <button
               type="button"
-              class="pg-p-deal pg-p-deal--bundle{% if variant.id == first_variant.id %} is-active{% endif %}{% if v_gift_text != blank or v_subtext != blank %} has-footer{% endif %}"
+              class="pg-p-deal pg-p-deal--bundle{% if variant.id == first_variant.id %} is-active{% endif %}{% if v_gift_text != blank or v_subtext != blank or v_stock_bar != blank %} has-footer{% endif %}"
               data-pg-variant
               data-id="{{ variant.id }}"
               data-price="{{ v_price }}"
@@ -573,10 +612,11 @@
                       </div>
                     {% endif %}
                     <div class="pg-p-deal-stock{% unless variant.available %} is-sold{% endunless %}">
-                      {% assign stock_label = variant.metafields.custom.etiqueta_stock.value %}
-                      {% if stock_label == blank %}{% assign stock_label = in_stock_label %}{% endif %}
-                      {% if stock_label == blank %}{% assign stock_label = 'En stock' %}{% endif %}
-                      {% if variant.available %}{{ stock_label }}{% else %}{{ sold_out_label }}{% endif %}
+                      {% if variant.available %}
+                        {% if in_stock_label != blank %}{{ in_stock_label }}{% else %}En stock{% endif %}
+                      {% else %}
+                        {{ sold_out_label }}
+                      {% endif %}
                     </div>
                   </div>
                   <div class="pg-p-deal-prices">
@@ -590,6 +630,14 @@
                       <img class="pg-p-deal-desc-img" src="{{ v_subtext_image }}" alt="" width="36" height="36" loading="lazy">
                     {% endif %}
                     <span class="pg-p-deal-desc-text">{{ v_subtext }}</span>
+                  </div>
+                {% endif %}
+                {% if v_stock_bar != blank %}
+                  <div class="pg-p-deal-stock-bar">
+                    {% if v_stock_bar_image != blank %}
+                      <img class="pg-p-deal-gift-img" src="{{ v_stock_bar_image }}" alt="" width="32" height="32" loading="lazy">
+                    {% endif %}
+                    <span class="pg-p-deal-gift-text">{{ v_stock_bar }}</span>
                   </div>
                 {% endif %}
                 {% if v_gift_text != blank %}
