@@ -1,5 +1,7 @@
 (function () {
-  var TRUCK_TRAVEL = 3000;
+  var ANIM_DURATION = 4200;
+  var ANIM_ARRIVAL = 0.78;
+  var TRUCK_TRAVEL = Math.round(ANIM_DURATION * ANIM_ARRIVAL);
   var MSG_SHOW = 850;
   var FADE = 280;
 
@@ -9,6 +11,13 @@
     if (!road || !courier) return;
     var travel = Math.max(0, road.clientWidth - courier.offsetWidth);
     courier.style.setProperty('--pg-cart-travel', travel + 'px');
+  }
+
+  function pgCourierRestartAnimation(courier) {
+    if (!courier) return;
+    courier.style.animation = 'none';
+    void courier.offsetWidth;
+    courier.style.removeProperty('animation');
   }
 
   function pgCourierWait(track, ms) {
@@ -31,10 +40,13 @@
   }
 
   function pgCourierShowTruck(track) {
+    var courier = track.querySelector('.pg-p-delivery-courier');
     track.classList.remove('is-phase-msg');
     track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
       panel.classList.remove('is-visible');
     });
+    pgCourierRestartAnimation(courier);
+    pgCourierDrive(track);
   }
 
   function pgCourierShowMessage(track, msgIndex) {
@@ -54,7 +66,6 @@
     var panelCount = track.querySelectorAll('[data-pg-msg-panel]').length || 2;
 
     pgCourierShowTruck(track);
-    pgCourierDrive(track);
     await pgCourierWait(track, TRUCK_TRAVEL);
 
     pgCourierShowMessage(track, 0);
