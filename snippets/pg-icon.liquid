@@ -1,0 +1,67 @@
+{% comment %}
+  Iconos SVG estilo Lucide (MIT) — uso: {% render 'pg-icon', name: 'car', size: 24, class: 'mi-clase' %}
+  Nombres: car, truck, bike, package, flame, gift, check, star, heart
+{% endcomment %}
+{% liquid
+  assign icon_name = name | default: 'car'
+  assign icon_size = size | default: 24
+  assign icon_class = class | default: ''
+  assign icon_stroke = stroke | default: '#054497'
+%}
+
+<svg
+  class="pg-icon pg-icon--{{ icon_name }}{% if icon_class != blank %} {{ icon_class }}{% endif %}"
+  width="{{ icon_size }}"
+  height="{{ icon_size }}"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  stroke="{{ icon_stroke }}"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  {% case icon_name %}
+    {% when 'car' %}
+      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2"/>
+      <circle class="pg-icon-wheel" cx="7" cy="17" r="2"/>
+      <path d="M9 17h6"/>
+      <circle class="pg-icon-wheel" cx="17" cy="17" r="2"/>
+    {% when 'truck' %}
+      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+      <path d="M15 18H9"/>
+      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+      <circle class="pg-icon-wheel" cx="17" cy="18" r="2"/>
+      <circle class="pg-icon-wheel" cx="7" cy="18" r="2"/>
+    {% when 'bike' %}
+      <circle class="pg-icon-wheel" cx="18.5" cy="17.5" r="3.5"/>
+      <circle class="pg-icon-wheel" cx="5.5" cy="17.5" r="3.5"/>
+      <path d="M15 6h5l-3 5"/>
+      <path d="M6 17.5V14l4-7 4 4 4-4"/>
+    {% when 'package' %}
+      <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/>
+      <path d="M12 22V12"/>
+      <path d="m3.3 7 7.7 4.5 7.7-4.5"/>
+      <path d="M7.5 4.2 12 6.8l4.5-2.6"/>
+    {% when 'flame' %}
+      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14 0-5.5 1-7 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.5-2.5 1.5-3.5z"/>
+    {% when 'gift' %}
+      <rect x="3" y="8" width="18" height="13" rx="1"/>
+      <path d="M12 8v13"/>
+      <path d="M3 12h18"/>
+      <path d="M7.5 8C6 8 5 6.5 5 5a2 2 0 0 1 4 0c0 2-2 3-2 3"/>
+      <path d="M16.5 8c1.5 0 2.5-1.5 2.5-3a2 2 0 0 0-4 0c0 2 2 3 2 3"/>
+    {% when 'check' %}
+      <path d="M20 6 9 17l-5-5"/>
+    {% when 'star' %}
+      <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="{{ icon_stroke }}" stroke="none"/>
+    {% when 'heart' %}
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="{{ icon_stroke }}" stroke="none"/>
+    {% else %}
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 8v4"/>
+      <path d="M12 16h.01"/>
+  {% endcase %}
+</svg>

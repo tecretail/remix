@@ -1051,23 +1051,27 @@ a.pg-p-cta--cod {
 
 .pg-p-delivery-courier {
   position: absolute !important;
-  bottom: 6px !important;
+  bottom: 4px !important;
   left: 0 !important;
-  width: 64px !important;
-  height: 34px !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   z-index: 2 !important;
-  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.18)) !important;
+  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.15)) !important;
   animation: pg-courier-run 4s linear infinite !important;
   will-change: transform, opacity !important;
 }
 
-.pg-p-delivery-courier svg {
+.pg-p-delivery-courier__svg,
+.pg-p-delivery-courier .pg-icon {
   display: block !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 32px !important;
+  height: 32px !important;
 }
 
-.pg-p-delivery-courier .pg-courier-wheel {
+.pg-p-delivery-courier .pg-icon-wheel {
   transform-origin: center !important;
   transform-box: fill-box !important;
   animation: pg-courier-wheels 0.4s linear infinite !important;
@@ -1110,6 +1114,10 @@ a.pg-p-cta--cod {
   }
 
   .pg-p-delivery-courier .pg-courier-wheel {
+    animation: none !important;
+  }
+
+  .pg-p-delivery-courier .pg-icon-wheel {
     animation: none !important;
   }
 }
