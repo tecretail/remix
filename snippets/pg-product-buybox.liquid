@@ -139,11 +139,13 @@
 {% endcapture %}
 
 {% capture brand_slider_panel %}
-  <div class="pg-brand-slider-wrap" aria-label="Marcas asociadas">
-    <div class="pg-brand-slider-track">
-      {{ brand_slider_set }}
-      {{ brand_slider_set }}
-      {{ brand_slider_set }}
+  <div class="pg-brand-slider-wrap" aria-label="Instituciones de salud asociadas">
+    <p class="pg-brand-slider-label">Respaldado por instituciones de salud en el Perú</p>
+    <div class="pg-brand-slider-viewport">
+      <div class="pg-brand-slider-track">
+        {{ brand_slider_set }}
+        {{ brand_slider_set }}
+      </div>
     </div>
   </div>
 {% endcapture %}

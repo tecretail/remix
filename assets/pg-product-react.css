@@ -798,13 +798,48 @@ a.pg-p-cta--cod {
 .pg-brand-slider-wrap {
   position: relative !important;
   width: 100% !important;
-  margin: 0 0 48px !important;
-  padding: 0 !important;
+  margin: 8px 0 40px !important;
+  padding: 18px 0 16px !important;
   overflow: hidden !important;
-  background: #eaeaea !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
-  border-radius: 14px !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9) !important;
+  background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%) !important;
+  border: 1px solid #e3e6ee !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 8px 24px rgba(5, 68, 151, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  box-sizing: border-box !important;
+}
+
+.pg-brand-slider-label {
+  margin: 0 0 14px !important;
+  padding: 0 20px !important;
+  text-align: center !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #054497 !important;
+  font-family: "Montserrat", system-ui, sans-serif !important;
+}
+
+.pg-brand-slider-viewport {
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  ) !important;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  ) !important;
 }
 
 .pg-brand-slider-wrap + .pg-p-desc-panel {
@@ -816,16 +851,17 @@ a.pg-p-cta--cod {
   align-items: center !important;
   width: max-content !important;
   min-width: 0 !important;
-  padding: 10px 0 !important;
+  padding: 4px 0 !important;
   gap: 0 !important;
-  animation: pg-brand-scroll 12s linear infinite !important;
+  animation: pg-brand-scroll 28s linear infinite !important;
+  will-change: transform !important;
 }
 
 .pg-brand-set {
   display: flex !important;
   align-items: center !important;
-  gap: 56px !important;
-  padding: 0 28px !important;
+  gap: 20px !important;
+  padding: 0 10px !important;
   flex-shrink: 0 !important;
 }
 
@@ -833,25 +869,69 @@ a.pg-p-cta--cod {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-width: 150px !important;
-  height: 52px !important;
-  padding: 0 !important;
+  min-width: 0 !important;
+  width: 148px !important;
+  height: 58px !important;
+  padding: 8px 14px !important;
   flex-shrink: 0 !important;
+  background: #fff !important;
+  border: 1px solid #e8edf5 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(5, 68, 151, 0.05) !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+.pg-brand-slide:hover {
+  border-color: rgba(5, 68, 151, 0.25) !important;
+  box-shadow: 0 6px 16px rgba(5, 68, 151, 0.1) !important;
+  transform: translateY(-1px) !important;
 }
 
 .pg-brand-image {
   display: block !important;
   max-width: 100% !important;
-  max-height: 100% !important;
+  max-height: 38px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.3));
+  filter: grayscale(15%) saturate(0.95) !important;
+  opacity: 0.92 !important;
+  transition: filter 0.2s ease, opacity 0.2s ease !important;
+}
+
+.pg-brand-slide:hover .pg-brand-image {
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 @keyframes pg-brand-scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-brand-slider-track {
+    animation: none !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 12px !important;
+    padding: 0 16px 8px !important;
+  }
+
+  .pg-brand-set {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    padding: 0 !important;
+  }
+
+  .pg-brand-slider-viewport {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
 }
 
 @media (max-width: 900px) {
