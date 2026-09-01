@@ -694,6 +694,7 @@
         <div class="pg-p-bar pg-p-bar--urgency">{{ urgency_bar_text }}</div>
         {% if show_delivery_truck %}
           {% render 'pg-delivery-truck', courier_icon: courier_icon, delivery_tooltip_text: delivery_tooltip_text, delivery_gift_text: delivery_gift_text %}
+          <script src="{{ 'pg-delivery-courier.js' | asset_url }}" defer></script>
         {% endif %}
 
         <div class="pg-p-total-row">
