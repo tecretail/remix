@@ -1,14 +1,68 @@
-{% comment %} Courier animado — ilustracion detallada {% endcomment %}
+{% comment %} Courier animado v3 — camioneta ilustrada (colores solidos, sin Lucide) {% endcomment %}
 {% liquid
-  assign courier_icon = courier_icon | default: 'car'
+  assign courier_icon = courier_icon | default: 'truck'
 %}
-<div class="pg-p-delivery-track" data-pg-delivery aria-hidden="true">
+<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="3" aria-hidden="true">
   <div class="pg-p-delivery-road">
     <span class="pg-p-delivery-line"></span>
-    <span class="pg-p-delivery-glow" aria-hidden="true"></span>
     <div class="pg-p-delivery-courier">
-      <span class="pg-p-delivery-badge">ENVIO RAPIDO</span>
-      {% render 'pg-courier-illustration', name: courier_icon %}
+      {% if courier_icon == 'bike' %}
+        <svg class="pg-courier-art" viewBox="0 0 100 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="50" cy="48" rx="36" ry="3" fill="#054497" opacity="0.15"/>
+          <circle class="pg-courier-wheel" cx="28" cy="40" r="8" fill="#0b1a3a"/>
+          <circle cx="28" cy="40" r="3" fill="#fff"/>
+          <circle class="pg-courier-wheel" cx="72" cy="40" r="8" fill="#0b1a3a"/>
+          <circle cx="72" cy="40" r="3" fill="#fff"/>
+          <rect x="10" y="14" width="22" height="18" rx="3" fill="#054497"/>
+          <rect x="10" y="26" width="22" height="3" fill="#f39200"/>
+          <path d="M28 40h16l10-16h14l8 10" stroke="#0a6fd4" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M58 18h12" stroke="#054497" stroke-width="3" stroke-linecap="round"/>
+          <path d="M64 12v14" stroke="#054497" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      {% elsif courier_icon == 'package' %}
+        <svg class="pg-courier-art" viewBox="0 0 80 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="40" cy="48" rx="28" ry="3" fill="#054497" opacity="0.15"/>
+          <path d="M16 20 40 10l24 10v22H16V20z" fill="#054497"/>
+          <path d="M16 20 40 30l24-10" stroke="#f39200" stroke-width="3" fill="none"/>
+          <path d="M40 30v22" stroke="#fff" stroke-width="2" opacity="0.45"/>
+          <rect x="30" y="32" width="20" height="4" rx="1" fill="#f39200"/>
+          <circle cx="40" cy="22" r="5" fill="#2f7a3a"/>
+          <path d="M37.5 22l2 2 4-4" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        </svg>
+      {% elsif courier_icon == 'car' %}
+        <svg class="pg-courier-art" viewBox="0 0 110 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="55" cy="48" rx="44" ry="3" fill="#054497" opacity="0.15"/>
+          <path d="M12 36h86c2 0 4-2 4-4v-2c0-2-1.5-3.5-3.5-3.5h-5L84 16H68l-10 4-12 6H12c-2 0-4 2-4 4v2c0 2 2 4 4 4z" fill="#054497"/>
+          <path d="M26 36V26l10-10h18l8 6h16l12 10v4H26z" fill="#0a6fd4"/>
+          <rect x="30" y="22" width="14" height="8" rx="1.5" fill="#eaf1fb"/>
+          <rect x="48" y="22" width="14" height="8" rx="1.5" fill="#eaf1fb"/>
+          <rect x="66" y="24" width="10" height="6" rx="1" fill="#eaf1fb"/>
+          <rect x="14" y="32" width="78" height="3" rx="1" fill="#f39200"/>
+          <circle class="pg-courier-wheel" cx="32" cy="38" r="7" fill="#0b1a3a"/>
+          <circle cx="32" cy="38" r="2.8" fill="#fff"/>
+          <circle class="pg-courier-wheel" cx="80" cy="38" r="7" fill="#0b1a3a"/>
+          <circle cx="80" cy="38" r="2.8" fill="#fff"/>
+          <circle cx="94" cy="26" r="2.5" fill="#f39200"/>
+          <rect x="70" y="12" width="16" height="11" rx="2" fill="#2f7a3a"/>
+        </svg>
+      {% else %}
+        <svg class="pg-courier-art" viewBox="0 0 110 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="55" cy="48" rx="46" ry="3" fill="#054497" opacity="0.15"/>
+          <rect x="8" y="16" width="46" height="26" rx="4" fill="#054497"/>
+          <rect x="8" y="34" width="46" height="4" rx="1" fill="#f39200"/>
+          <rect x="54" y="16" width="34" height="26" fill="#0a6fd4"/>
+          <rect x="58" y="20" width="16" height="12" rx="2" fill="#eaf1fb"/>
+          <rect x="14" y="22" width="18" height="10" rx="2" fill="#ffffff" opacity="0.25"/>
+          <rect x="82" y="20" width="10" height="16" rx="2" fill="#2f7a3a"/>
+          <path d="M85 24h4M85 28h3" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+          <circle class="pg-courier-wheel" cx="26" cy="44" r="7" fill="#0b1a3a"/>
+          <circle cx="26" cy="44" r="2.8" fill="#fff"/>
+          <circle class="pg-courier-wheel" cx="78" cy="44" r="7" fill="#0b1a3a"/>
+          <circle cx="78" cy="44" r="2.8" fill="#fff"/>
+          <rect x="6" y="10" width="28" height="8" rx="2" fill="#054497"/>
+          <text x="20" y="16.5" text-anchor="middle" fill="#fff" font-size="5" font-weight="700" font-family="Arial,sans-serif">ENVIO</text>
+        </svg>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -18,7 +72,7 @@
       var road = track.querySelector('.pg-p-delivery-road');
       var courier = track.querySelector('.pg-p-delivery-courier');
       if (!road || !courier) return;
-      var travel = Math.max(0, road.clientWidth - courier.clientWidth);
+      var travel = Math.max(0, road.clientWidth - courier.offsetWidth);
       courier.style.setProperty('--pg-cart-travel', travel + 'px');
     }
     function pgCourierInitAll() {
