@@ -1019,8 +1019,8 @@ a.pg-p-cta--cod {
   position: relative !important;
   width: 100% !important;
   margin: 0 0 20px !important;
-  padding: 4px 0 6px !important;
-  background: transparent !important;
+  padding: 8px 0 10px !important;
+  background: linear-gradient(180deg, rgba(238, 244, 252, 0.65) 0%, rgba(255, 255, 255, 0) 100%) !important;
   border: none !important;
   box-shadow: none !important;
   box-sizing: border-box !important;
@@ -1030,51 +1030,79 @@ a.pg-p-cta--cod {
 .pg-p-delivery-road {
   position: relative !important;
   width: 100% !important;
-  height: 48px !important;
+  height: 62px !important;
 }
 
 .pg-p-delivery-line {
   position: absolute !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: 10px !important;
-  height: 3px !important;
+  bottom: 14px !important;
+  height: 5px !important;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(5, 68, 151, 0.22) 12%,
-    rgba(5, 68, 151, 0.22) 88%,
+    rgba(5, 68, 151, 0.15) 8%,
+    rgba(5, 68, 151, 0.35) 50%,
+    rgba(5, 68, 151, 0.15) 92%,
     transparent 100%
   ) !important;
   border-radius: 999px !important;
 }
 
+.pg-p-delivery-glow {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 12px !important;
+  height: 10px !important;
+  background: radial-gradient(ellipse at center, rgba(5, 68, 151, 0.08) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+}
+
 .pg-p-delivery-courier {
   position: absolute !important;
-  bottom: 4px !important;
+  bottom: 8px !important;
   left: 0 !important;
-  width: 36px !important;
-  height: 36px !important;
+  width: 88px !important;
+  height: 48px !important;
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  justify-content: center !important;
+  justify-content: flex-end !important;
   z-index: 2 !important;
-  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.15)) !important;
-  animation: pg-courier-run 4s linear infinite !important;
+  animation: pg-courier-run 4.2s linear infinite !important;
   will-change: transform, opacity !important;
 }
 
-.pg-p-delivery-courier__svg,
-.pg-p-delivery-courier .pg-icon {
-  display: block !important;
-  width: 32px !important;
-  height: 32px !important;
+.pg-p-delivery-badge {
+  position: absolute !important;
+  top: -2px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: linear-gradient(90deg, #054497, #0a6fd4) !important;
+  color: #fff !important;
+  font-size: 7px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.6px !important;
+  padding: 2px 6px !important;
+  border-radius: 999px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 6px rgba(5, 68, 151, 0.25) !important;
+  line-height: 1.2 !important;
 }
 
-.pg-p-delivery-courier .pg-icon-wheel {
+.pg-courier-art {
+  display: block !important;
+  width: 88px !important;
+  height: 42px !important;
+  filter: drop-shadow(0 3px 8px rgba(5, 68, 151, 0.22)) !important;
+}
+
+.pg-courier-art .pg-courier-wheel {
   transform-origin: center !important;
   transform-box: fill-box !important;
-  animation: pg-courier-wheels 0.4s linear infinite !important;
+  animation: pg-courier-wheels 0.35s linear infinite !important;
 }
 
 @keyframes pg-courier-run {
@@ -1113,11 +1141,7 @@ a.pg-p-cta--cod {
     transform: translateX(-50%) !important;
   }
 
-  .pg-p-delivery-courier .pg-courier-wheel {
-    animation: none !important;
-  }
-
-  .pg-p-delivery-courier .pg-icon-wheel {
+  .pg-courier-art .pg-courier-wheel {
     animation: none !important;
   }
 }

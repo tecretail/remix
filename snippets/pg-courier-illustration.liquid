@@ -1,0 +1,78 @@
+{% comment %} Ilustracion courier detallada — car, truck, bike, package {% endcomment %}
+{% liquid
+  assign icon_key = name | default: 'car'
+%}
+
+<svg class="pg-courier-art" viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="pg-courier-body" x1="0" y1="0" x2="120" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#054497"/>
+      <stop offset="1" stop-color="#0a6fd4"/>
+    </linearGradient>
+    <linearGradient id="pg-courier-glass" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#eaf1fb"/>
+      <stop offset="1" stop-color="#b8cfe8"/>
+    </linearGradient>
+    <linearGradient id="pg-courier-accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#f39200"/>
+      <stop offset="1" stop-color="#e65600"/>
+    </linearGradient>
+    <filter id="pg-courier-shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#054497" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  {% case icon_key %}
+    {% when 'truck' %}
+      <ellipse cx="60" cy="50" rx="42" ry="3" fill="#054497" opacity="0.12"/>
+      <rect x="8" y="18" width="48" height="26" rx="5" fill="url(#pg-courier-body)" filter="url(#pg-courier-shadow)"/>
+      <rect x="8" y="36" width="48" height="4" rx="1" fill="url(#pg-courier-accent)"/>
+      <path d="M56 18h34v26H56V18z" fill="url(#pg-courier-body)"/>
+      <rect x="60" y="22" width="16" height="12" rx="2" fill="url(#pg-courier-glass)"/>
+      <rect x="14" y="24" width="16" height="10" rx="2" fill="#fff" fill-opacity="0.25"/>
+      <rect x="78" y="24" width="8" height="14" rx="1" fill="url(#pg-courier-accent)"/>
+      <circle class="pg-courier-wheel" cx="26" cy="46" r="7" fill="#0b1a3a"/>
+      <circle cx="26" cy="46" r="3" fill="#fff"/>
+      <circle class="pg-courier-wheel" cx="78" cy="46" r="7" fill="#0b1a3a"/>
+      <circle cx="78" cy="46" r="3" fill="#fff"/>
+      <rect x="88" y="20" width="12" height="10" rx="2" fill="#2f7a3a"/>
+      <path d="M91 23h6M91 26h4" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+    {% when 'bike' %}
+      <ellipse cx="60" cy="50" rx="38" ry="3" fill="#054497" opacity="0.12"/>
+      <circle class="pg-courier-wheel" cx="30" cy="42" r="9" fill="#0b1a3a"/>
+      <circle cx="30" cy="42" r="3.5" fill="#fff"/>
+      <circle class="pg-courier-wheel" cx="82" cy="42" r="9" fill="#0b1a3a"/>
+      <circle cx="82" cy="42" r="3.5" fill="#fff"/>
+      <path d="M30 42h18l8-14h12l6 8" stroke="url(#pg-courier-body)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="12" y="16" width="20" height="16" rx="3" fill="url(#pg-courier-body)" filter="url(#pg-courier-shadow)"/>
+      <rect x="12" y="26" width="20" height="3" fill="url(#pg-courier-accent)"/>
+      <path d="M68 20h10" stroke="#054497" stroke-width="3" stroke-linecap="round"/>
+      <path d="M73 14v12" stroke="#054497" stroke-width="3" stroke-linecap="round"/>
+    {% when 'package' %}
+      <ellipse cx="60" cy="50" rx="28" ry="3" fill="#054497" opacity="0.12"/>
+      <path d="M30 18 60 8l30 10v24H30V18z" fill="url(#pg-courier-body)" filter="url(#pg-courier-shadow)"/>
+      <path d="M30 18 60 28l30-10" stroke="url(#pg-courier-accent)" stroke-width="3"/>
+      <path d="M60 28v24" stroke="#fff" stroke-width="2" opacity="0.5"/>
+      <rect x="48" y="32" width="24" height="4" rx="1" fill="url(#pg-courier-accent)"/>
+      <circle cx="60" cy="22" r="6" fill="#2f7a3a"/>
+      <path d="M57 22l2 2 4-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    {% else %}
+      <ellipse cx="60" cy="50" rx="46" ry="3.5" fill="#054497" opacity="0.14"/>
+      <path d="M14 36h88c2.5 0 4.5-2 4.5-4.5V30c0-2.5-2-4.5-4.5-4.5h-6l-10-12c-1.2-1.5-3-2.5-5-2.5H42l-12 5-10 7H14c-2.5 0-4.5 2-4.5 4.5v3c0 2.5 2 4.5 4.5 4.5z" fill="url(#pg-courier-body)" filter="url(#pg-courier-shadow)"/>
+      <path d="M28 36V28l8-10h16l8 5h18l10 8v5H28z" fill="#0a6fd4"/>
+      <rect x="32" y="23" width="14" height="8" rx="1.5" fill="url(#pg-courier-glass)"/>
+      <rect x="50" y="23" width="14" height="8" rx="1.5" fill="url(#pg-courier-glass)"/>
+      <rect x="68" y="25" width="10" height="6" rx="1.5" fill="url(#pg-courier-glass)" opacity="0.9"/>
+      <path d="M20 33h76" stroke="url(#pg-courier-accent)" stroke-width="3" stroke-linecap="round"/>
+      <circle class="pg-courier-wheel" cx="34" cy="38" r="8" fill="#0b1a3a"/>
+      <circle cx="34" cy="38" r="3.2" fill="#fff"/>
+      <circle class="pg-courier-wheel" cx="84" cy="38" r="8" fill="#0b1a3a"/>
+      <circle cx="84" cy="38" r="3.2" fill="#fff"/>
+      <circle cx="98" cy="28" r="3" fill="#f39200"/>
+      <circle cx="16" cy="28" r="2.5" fill="#d40000"/>
+      <rect x="72" y="14" width="18" height="12" rx="2" fill="#2f7a3a"/>
+      <path d="M75 18h8M75 21h5" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M6 30h8" stroke="#054497" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+      <path d="M4 26h6" stroke="#054497" stroke-width="2" stroke-linecap="round" opacity="0.25"/>
+  {% endcase %}
+</svg>

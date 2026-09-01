@@ -1,12 +1,14 @@
-{% comment %} Courier animado — icono desde libreria pg-icon (Lucide) {% endcomment %}
+{% comment %} Courier animado — ilustracion detallada {% endcomment %}
 {% liquid
   assign courier_icon = courier_icon | default: 'car'
 %}
 <div class="pg-p-delivery-track" data-pg-delivery aria-hidden="true">
   <div class="pg-p-delivery-road">
     <span class="pg-p-delivery-line"></span>
+    <span class="pg-p-delivery-glow" aria-hidden="true"></span>
     <div class="pg-p-delivery-courier">
-      {% render 'pg-icon', name: courier_icon, size: 32, class: 'pg-p-delivery-courier__svg', stroke: '#054497' %}
+      <span class="pg-p-delivery-badge">ENVIO RAPIDO</span>
+      {% render 'pg-courier-illustration', name: courier_icon %}
     </div>
   </div>
 </div>
