@@ -1,5 +1,6 @@
 {% comment %} Estilos editables (toda la seccion) — mismo CSS que el producto del home {% endcomment %}
 {{ 'pg-product-react.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pg-delivery-courier.js' | asset_url }}" defer></script>
 
 <div
   class="pg-sec-style pg-sec-align-{{ section.settings.style_align }}{% if section.settings.style_hide_mobile %} pg-sec-hide-mobile{% endif %}{% if section.settings.style_hide_desktop %} pg-sec-hide-desktop{% endif %}"

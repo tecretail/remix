@@ -1074,7 +1074,14 @@ a.pg-p-cta--cod {
   pointer-events: none !important;
 }
 
-.pg-p-delivery-track.is-show-tip .pg-p-delivery-message.is-active {
+.pg-p-delivery-track.is-show-tip .pg-p-delivery-message[data-pg-msg-panel="0"],
+.pg-p-delivery-track.is-show-tip .pg-p-delivery-message[data-pg-msg-panel="1"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.pg-p-delivery-track.is-show-tip[data-pg-msg="0"] .pg-p-delivery-message[data-pg-msg-panel="0"],
+.pg-p-delivery-track.is-show-tip[data-pg-msg="1"] .pg-p-delivery-message[data-pg-msg-panel="1"] {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important;
@@ -1223,7 +1230,8 @@ a.pg-p-cta--cod {
     visibility: hidden !important;
   }
 
-  .pg-p-delivery-message.is-active {
+  .pg-p-delivery-track.is-show-tip[data-pg-msg="0"] .pg-p-delivery-message[data-pg-msg-panel="0"],
+  .pg-p-delivery-track.is-show-tip[data-pg-msg="1"] .pg-p-delivery-message[data-pg-msg-panel="1"] {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;

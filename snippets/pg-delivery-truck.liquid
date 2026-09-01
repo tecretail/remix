@@ -1,10 +1,10 @@
-{% comment %} Courier v9 — alterna 2 mensajes al llegar al final {% endcomment %}
+{% comment %} Courier v10 — mensajes alternos sincronizados con animacion {% endcomment %}
 {% liquid
   assign courier_icon = courier_icon | default: 'truck'
   assign delivery_tooltip_text = delivery_tooltip_text | default: 'Envío gratis a todo el Perú'
   assign delivery_gift_text = delivery_gift_text | default: 'Cada pedido tiene un regalo especial'
 %}
-<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="9">
+<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="10" data-pg-msg="0">
   <div class="pg-p-delivery-stage">
     <div class="pg-p-delivery-road">
       <span class="pg-p-delivery-line"></span>
@@ -12,7 +12,7 @@
         {% render 'pg-courier-icon', type: courier_icon %}
       </div>
     </div>
-    <div class="pg-p-delivery-message pg-p-delivery-message--shipping is-active" data-pg-msg="0" role="status" aria-live="polite" aria-hidden="true">
+    <div class="pg-p-delivery-message" data-pg-msg-panel="0" role="status" aria-live="polite">
       <span class="pg-p-delivery-message__icon" aria-hidden="true">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 7.2L5.8 10 11 4.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -27,7 +27,7 @@
         {% endif %}
       </span>
     </div>
-    <div class="pg-p-delivery-message pg-p-delivery-message--gift" data-pg-msg="1" role="status" aria-live="polite" aria-hidden="true">
+    <div class="pg-p-delivery-message" data-pg-msg-panel="1" role="status" aria-live="polite" hidden>
       <span class="pg-p-delivery-message__icon pg-p-delivery-message__icon--gift" aria-hidden="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="8" width="18" height="13" rx="1"/>
@@ -48,88 +48,3 @@
     </div>
   </div>
 </div>
-<script>
-  (function () {
-    var DURATION = 4200;
-    var SHOW_AT = 3276;
-    var SHOW_FOR = 520;
-
-    function pgCourierDrive(track) {
-      var road = track.querySelector('.pg-p-delivery-road');
-      var courier = track.querySelector('.pg-p-delivery-courier');
-      if (!road || !courier) return;
-      var travel = Math.max(0, road.clientWidth - courier.offsetWidth);
-      courier.style.setProperty('--pg-cart-travel', travel + 'px');
-    }
-
-    function pgCourierHideMessages(track) {
-      track.classList.remove('is-show-tip');
-      track.querySelectorAll('.pg-p-delivery-message').forEach(function (msg) {
-        msg.classList.remove('is-active');
-        msg.setAttribute('aria-hidden', 'true');
-      });
-    }
-
-    function pgCourierStopTooltip(track) {
-      if (track._pgTipInterval) {
-        clearInterval(track._pgTipInterval);
-        track._pgTipInterval = null;
-      }
-      if (track._pgTipTimers) {
-        track._pgTipTimers.forEach(clearTimeout);
-        track._pgTipTimers = [];
-      }
-      pgCourierHideMessages(track);
-    }
-
-    function pgCourierPickMessage(track) {
-      var messages = track.querySelectorAll('.pg-p-delivery-message');
-      if (!messages.length) return null;
-      var index = track._pgMsgIndex || 0;
-      track._pgMsgIndex = (index + 1) % messages.length;
-      messages.forEach(function (msg, i) {
-        var active = i === index;
-        msg.classList.toggle('is-active', active);
-        msg.setAttribute('aria-hidden', active ? 'false' : 'true');
-      });
-      return messages[index];
-    }
-
-    function pgCourierStartTooltip(track) {
-      pgCourierStopTooltip(track);
-      track._pgTipTimers = [];
-      if (typeof track._pgMsgIndex !== 'number') track._pgMsgIndex = 0;
-
-      function tick() {
-        pgCourierHideMessages(track);
-        var activeMsg = pgCourierPickMessage(track);
-        track._pgTipTimers.push(setTimeout(function () {
-          track.classList.add('is-show-tip');
-          track._pgTipTimers.push(setTimeout(function () {
-            pgCourierHideMessages(track);
-          }, SHOW_FOR));
-        }, SHOW_AT));
-      }
-
-      tick();
-      track._pgTipInterval = setInterval(tick, DURATION);
-    }
-
-    function pgCourierInitTrack(track) {
-      pgCourierDrive(track);
-      pgCourierStartTooltip(track);
-    }
-
-    function pgCourierInitAll() {
-      document.querySelectorAll('[data-pg-delivery]').forEach(pgCourierInitTrack);
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', pgCourierInitAll);
-    } else {
-      pgCourierInitAll();
-    }
-    window.addEventListener('resize', pgCourierInitAll);
-    document.addEventListener('shopify:section:load', pgCourierInitAll);
-  })();
-</script>
