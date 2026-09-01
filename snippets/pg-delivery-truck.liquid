@@ -1,8 +1,8 @@
-{% comment %} Courier animado v3 — camioneta ilustrada (colores solidos, sin Lucide) {% endcomment %}
+{% comment %} Courier animado v4 — vehiculo rediseñado (silueta limpia, colores marca) {% endcomment %}
 {% liquid
-  assign courier_icon = courier_icon | default: 'truck'
+  assign courier_icon = courier_icon | default: 'car'
 %}
-<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="3" aria-hidden="true">
+<div class="pg-p-delivery-track" data-pg-delivery data-pg-courier-v="4" aria-hidden="true">
   <div class="pg-p-delivery-road">
     <span class="pg-p-delivery-line"></span>
     <div class="pg-p-delivery-courier">
@@ -30,35 +30,33 @@
           <path d="M37.5 22l2 2 4-4" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/>
         </svg>
       {% elsif courier_icon == 'car' %}
-        <svg class="pg-courier-art" viewBox="0 0 110 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="55" cy="48" rx="44" ry="3" fill="#054497" opacity="0.15"/>
-          <path d="M12 36h86c2 0 4-2 4-4v-2c0-2-1.5-3.5-3.5-3.5h-5L84 16H68l-10 4-12 6H12c-2 0-4 2-4 4v2c0 2 2 4 4 4z" fill="#054497"/>
-          <path d="M26 36V26l10-10h18l8 6h16l12 10v4H26z" fill="#0a6fd4"/>
-          <rect x="30" y="22" width="14" height="8" rx="1.5" fill="#eaf1fb"/>
-          <rect x="48" y="22" width="14" height="8" rx="1.5" fill="#eaf1fb"/>
-          <rect x="66" y="24" width="10" height="6" rx="1" fill="#eaf1fb"/>
-          <rect x="14" y="32" width="78" height="3" rx="1" fill="#f39200"/>
-          <circle class="pg-courier-wheel" cx="32" cy="38" r="7" fill="#0b1a3a"/>
-          <circle cx="32" cy="38" r="2.8" fill="#fff"/>
-          <circle class="pg-courier-wheel" cx="80" cy="38" r="7" fill="#0b1a3a"/>
-          <circle cx="80" cy="38" r="2.8" fill="#fff"/>
-          <circle cx="94" cy="26" r="2.5" fill="#f39200"/>
-          <rect x="70" y="12" width="16" height="11" rx="2" fill="#2f7a3a"/>
+        <svg class="pg-courier-art" viewBox="0 0 100 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="50" cy="41" rx="38" ry="2" fill="#054497" opacity="0.12"/>
+          <path d="M10 30c0-1.1.9-2 2-2h7l6.5-10.5c.7-1.1 2-1.8 3.4-1.8h19c1.2 0 2.3.5 3 1.4l4.8 7.9h23c1.7 0 3 1.3 3 3v1H10V30z" fill="#054497"/>
+          <path d="M18 28.5 25 18h21l5.5 10.5H18z" fill="#0a6fd4"/>
+          <rect x="22" y="19.5" width="9" height="5.5" rx="1" fill="#eaf1fb"/>
+          <rect x="35" y="19.5" width="9" height="5.5" rx="1" fill="#eaf1fb"/>
+          <rect x="48" y="20.5" width="7" height="4.5" rx="1" fill="#eaf1fb" opacity="0.85"/>
+          <path d="M14 27.5h68" stroke="#f39200" stroke-width="2" stroke-linecap="round"/>
+          <circle class="pg-courier-wheel" cx="28" cy="30" r="5" fill="#0b1a3a"/>
+          <circle cx="28" cy="30" r="2" fill="#fff"/>
+          <circle class="pg-courier-wheel" cx="72" cy="30" r="5" fill="#0b1a3a"/>
+          <circle cx="72" cy="30" r="2" fill="#fff"/>
+          <circle cx="86" cy="24" r="1.8" fill="#f39200"/>
         </svg>
       {% else %}
-        <svg class="pg-courier-art" viewBox="0 0 110 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="55" cy="48" rx="46" ry="3" fill="#054497" opacity="0.15"/>
-          <rect x="8" y="16" width="46" height="26" rx="4" fill="#054497"/>
-          <rect x="8" y="34" width="46" height="4" rx="1" fill="#f39200"/>
-          <rect x="54" y="16" width="34" height="26" fill="#0a6fd4"/>
-          <rect x="58" y="20" width="16" height="12" rx="2" fill="#eaf1fb"/>
-          <rect x="14" y="22" width="18" height="10" rx="2" fill="#ffffff" opacity="0.25"/>
-          <rect x="82" y="20" width="10" height="16" rx="2" fill="#2f7a3a"/>
-          <path d="M85 24h4M85 28h3" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
-          <circle class="pg-courier-wheel" cx="26" cy="44" r="7" fill="#0b1a3a"/>
-          <circle cx="26" cy="44" r="2.8" fill="#fff"/>
-          <circle class="pg-courier-wheel" cx="78" cy="44" r="7" fill="#0b1a3a"/>
-          <circle cx="78" cy="44" r="2.8" fill="#fff"/>
+        <svg class="pg-courier-art" viewBox="0 0 100 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="50" cy="41" rx="40" ry="2" fill="#054497" opacity="0.12"/>
+          <path d="M8 30V18c0-1.5 1.2-2.5 2.5-2.5h34c.8 0 1.5.4 2 1l5 7h24c2.2 0 4 1.5 4 3.5V30H8z" fill="#054497"/>
+          <path d="M46.5 15.5 54 23H46.5V15.5z" fill="#0a6fd4"/>
+          <rect x="47" y="17" width="6" height="5" rx="0.5" fill="#eaf1fb"/>
+          <rect x="12" y="20" width="30" height="7" rx="1" fill="#ffffff" opacity="0.1"/>
+          <rect x="8" y="27" width="36" height="2" rx="1" fill="#f39200"/>
+          <circle class="pg-courier-wheel" cx="24" cy="32" r="5" fill="#0b1a3a"/>
+          <circle cx="24" cy="32" r="2" fill="#fff"/>
+          <circle class="pg-courier-wheel" cx="72" cy="32" r="5" fill="#0b1a3a"/>
+          <circle cx="72" cy="32" r="2" fill="#fff"/>
+          <circle cx="88" cy="24" r="1.8" fill="#f39200"/>
         </svg>
       {% endif %}
     </div>
