@@ -1,7 +1,7 @@
 (function () {
-  var TRUCK_TRAVEL = 3276;
-  var MSG_SHOW = 900;
-  var MSG_GAP = 200;
+  var TRUCK_TRAVEL = 3200;
+  var MSG_SHOW = 2200;
+  var FADE = 420;
 
   function pgCourierDrive(track) {
     var road = track.querySelector('.pg-p-delivery-road');
@@ -11,17 +11,11 @@
     courier.style.setProperty('--pg-cart-travel', travel + 'px');
   }
 
-  function pgCourierRestartAnimation(courier) {
-    if (!courier) return;
-    courier.style.animation = 'none';
-    void courier.offsetWidth;
-    courier.style.removeProperty('animation');
-  }
-
-  function pgCourierHide(track) {
-    track.classList.remove('is-show-tip');
-    track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
-      panel.classList.remove('is-visible');
+  function pgCourierWait(track, ms) {
+    return new Promise(function (resolve) {
+      var id = setTimeout(resolve, ms);
+      if (!track._pgTimers) track._pgTimers = [];
+      track._pgTimers.push(id);
     });
   }
 
@@ -30,50 +24,54 @@
       track._pgTimers.forEach(clearTimeout);
       track._pgTimers = [];
     }
-    pgCourierHide(track);
-  }
-
-  function pgCourierWait(track, ms) {
-    return new Promise(function (resolve) {
-      var id = setTimeout(resolve, ms);
-      track._pgTimers.push(id);
+    track.classList.remove('is-phase-msg');
+    track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
+      panel.classList.remove('is-visible');
     });
   }
 
-  function pgCourierShowPanel(track, msgIndex) {
-    pgCourierHide(track);
-    var panel = track.querySelector('[data-pg-msg-panel="' + msgIndex + '"]');
-    if (panel) panel.classList.add('is-visible');
-    track.classList.add('is-show-tip');
+  function pgCourierShowTruck(track) {
+    track.classList.remove('is-phase-msg');
+    track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
+      panel.classList.remove('is-visible');
+    });
+  }
+
+  function pgCourierShowMessage(track, msgIndex) {
+    track.classList.add('is-phase-msg');
+    track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel, i) {
+      panel.classList.toggle('is-visible', i === msgIndex);
+    });
+  }
+
+  function pgCourierSwapMessage(track, msgIndex) {
+    track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel, i) {
+      panel.classList.toggle('is-visible', i === msgIndex);
+    });
   }
 
   async function pgCourierRunCycle(track) {
-    var courier = track.querySelector('.pg-p-delivery-courier');
     var panelCount = track.querySelectorAll('[data-pg-msg-panel]').length || 2;
 
-    pgCourierHide(track);
-    pgCourierRestartAnimation(courier);
+    pgCourierShowTruck(track);
     pgCourierDrive(track);
-
     await pgCourierWait(track, TRUCK_TRAVEL);
 
-    for (var i = 0; i < panelCount; i += 1) {
-      pgCourierShowPanel(track, i);
-      await pgCourierWait(track, MSG_SHOW);
-      if (i < panelCount - 1) {
-        pgCourierHide(track);
-        await pgCourierWait(track, MSG_GAP);
-      }
+    pgCourierShowMessage(track, 0);
+    await pgCourierWait(track, FADE + MSG_SHOW);
+
+    if (panelCount > 1) {
+      pgCourierSwapMessage(track, 1);
+      await pgCourierWait(track, FADE + MSG_SHOW);
     }
 
-    pgCourierHide(track);
-    await pgCourierWait(track, 200);
+    pgCourierShowTruck(track);
+    await pgCourierWait(track, FADE + 300);
     pgCourierRunCycle(track);
   }
 
   function pgCourierStartTrack(track) {
     pgCourierStop(track);
-    track._pgTimers = [];
     pgCourierRunCycle(track);
   }
 

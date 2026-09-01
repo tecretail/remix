@@ -1035,6 +1035,7 @@ a.pg-p-cta--cod {
   position: relative !important;
   width: 100% !important;
   min-height: 48px !important;
+  overflow: hidden !important;
 }
 
 .pg-p-delivery-road {
@@ -1043,12 +1044,14 @@ a.pg-p-cta--cod {
   height: 48px !important;
   opacity: 1 !important;
   visibility: visible !important;
-  transition: opacity 0.25s ease, visibility 0.25s ease !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.42s ease, transform 0.42s ease, visibility 0.42s ease !important;
 }
 
-.pg-p-delivery-track.is-show-tip .pg-p-delivery-road {
+.pg-p-delivery-track.is-phase-msg .pg-p-delivery-road {
   opacity: 0 !important;
   visibility: hidden !important;
+  transform: translateY(4px) !important;
   pointer-events: none !important;
 }
 
@@ -1056,7 +1059,7 @@ a.pg-p-cta--cod {
   position: absolute !important;
   inset: 0 !important;
   z-index: 4 !important;
-  display: none !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 10px !important;
@@ -1069,16 +1072,16 @@ a.pg-p-cta--cod {
   box-sizing: border-box !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  transform: translateY(6px) !important;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
+  transform: translateY(10px) !important;
+  transition: opacity 0.42s ease, transform 0.42s ease, visibility 0.42s ease !important;
   pointer-events: none !important;
 }
 
-.pg-p-delivery-track.is-show-tip .pg-p-delivery-message.is-visible {
-  display: flex !important;
+.pg-p-delivery-message.is-visible {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important;
+  z-index: 5 !important;
 }
 
 .pg-p-delivery-message__icon {
@@ -1109,7 +1112,7 @@ a.pg-p-cta--cod {
 }
 
 .pg-p-delivery-message__text,
-.pg-p-delivery-message__text * {
+.pg-p-delivery-message__text *:not(.pg-p-delivery-message__em) {
   color: #0b1a3a !important;
 }
 
@@ -1219,20 +1222,15 @@ a.pg-p-cta--cod {
     animation: none !important;
   }
 
-  .pg-p-delivery-road {
+  .pg-p-delivery-track.is-phase-msg .pg-p-delivery-road {
     opacity: 0 !important;
     visibility: hidden !important;
   }
 
   .pg-p-delivery-message.is-visible {
-    display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-  }
-
-  .pg-p-delivery-track.is-show-tip .pg-p-delivery-message.is-visible {
-    display: flex !important;
   }
 }
 
