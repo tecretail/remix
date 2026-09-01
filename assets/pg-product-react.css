@@ -1024,38 +1024,46 @@ a.pg-p-cta--cod {
 
 .pg-p-delivery-track {
   position: relative !important;
-  height: 28px !important;
-  background: #f4f8fc !important;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4fc 100%) !important;
   border: 1px solid #d4e4f7 !important;
   border-top: none !important;
   border-radius: 0 0 12px 12px !important;
+  padding: 6px 0 8px !important;
+  overflow: hidden !important;
+}
+
+.pg-p-delivery-road {
+  position: relative !important;
+  width: 100% !important;
+  height: 46px !important;
 }
 
 .pg-p-delivery-line {
   position: absolute !important;
-  left: 12px !important;
-  right: 12px !important;
-  top: 50% !important;
-  height: 2px !important;
-  transform: translateY(-50%) !important;
-  background: linear-gradient(
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 10px !important;
+  height: 3px !important;
+  background: repeating-linear-gradient(
     90deg,
-    transparent 0%,
-    #b8cfe8 8%,
-    #b8cfe8 92%,
-    transparent 100%
+    #b8cfe8 0,
+    #b8cfe8 10px,
+    transparent 10px,
+    transparent 18px
   ) !important;
+  border-radius: 2px !important;
+  opacity: 0.9 !important;
 }
 
 .pg-p-delivery-truck {
   position: absolute !important;
-  top: 50% !important;
-  left: 8px !important;
-  width: 38px !important;
-  height: 20px !important;
-  transform: translateY(-58%) !important;
-  animation: pg-delivery-drive 4.5s ease-in-out infinite !important;
-  filter: drop-shadow(0 2px 4px rgba(5, 68, 151, 0.2)) !important;
+  bottom: 12px !important;
+  left: 4px !important;
+  width: 58px !important;
+  height: 30px !important;
+  z-index: 2 !important;
+  filter: drop-shadow(0 3px 6px rgba(5, 68, 151, 0.25)) !important;
+  animation: pg-delivery-drive 2.8s ease-in-out infinite alternate !important;
   will-change: left !important;
 }
 
@@ -1065,13 +1073,24 @@ a.pg-p-cta--cod {
   height: 100% !important;
 }
 
+.pg-p-delivery-truck .pg-truck-wheel {
+  transform-origin: center !important;
+  transform-box: fill-box !important;
+  animation: pg-truck-wheels 0.45s linear infinite !important;
+}
+
 @keyframes pg-delivery-drive {
-  0%,
-  100% {
-    left: 8px;
+  0% {
+    left: 4px;
   }
-  50% {
-    left: calc(100% - 46px);
+  100% {
+    left: calc(100% - 62px);
+  }
+}
+
+@keyframes pg-truck-wheels {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -1079,7 +1098,11 @@ a.pg-p-cta--cod {
   .pg-p-delivery-truck {
     animation: none !important;
     left: 50% !important;
-    transform: translate(-50%, -58%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .pg-p-delivery-truck .pg-truck-wheel {
+    animation: none !important;
   }
 }
 

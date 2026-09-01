@@ -691,21 +691,7 @@
         <div class="pg-p-urgency-wrap">
           <div class="pg-p-bar pg-p-bar--urgency">{{ urgency_bar_text }}</div>
           {% if show_delivery_truck %}
-            <div class="pg-p-delivery-track" aria-hidden="true">
-              <span class="pg-p-delivery-line"></span>
-              <span class="pg-p-delivery-truck">
-                <svg viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="11" width="30" height="13" rx="2" fill="#054497"/>
-                  <path d="M32 11h16v13h-6l-4-6h-6z" fill="#054497"/>
-                  <rect x="34" y="7" width="12" height="8" rx="1.5" fill="#0a6fd4"/>
-                  <circle cx="14" cy="26" r="4" fill="#0b1a3a"/>
-                  <circle cx="14" cy="26" r="1.8" fill="#fff"/>
-                  <circle cx="40" cy="26" r="4" fill="#0b1a3a"/>
-                  <circle cx="40" cy="26" r="1.8" fill="#fff"/>
-                  <rect x="36" y="13" width="8" height="5" rx="1" fill="#eaf1fb" opacity="0.9"/>
-                </svg>
-              </span>
-            </div>
+            {% render 'pg-delivery-truck' %}
           {% endif %}
         </div>
 
