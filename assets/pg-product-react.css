@@ -1062,10 +1062,10 @@ a.pg-p-cta--cod {
   gap: 10px !important;
   width: 100% !important;
   padding: 10px 14px !important;
-  background: #fdf3f6 !important;
-  border: 1px solid rgba(155, 61, 98, 0.14) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 16px rgba(155, 61, 98, 0.12) !important;
+  background: #eef4fc !important;
+  border: 1px solid rgba(5, 68, 151, 0.16) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 18px rgba(5, 68, 151, 0.1) !important;
   box-sizing: border-box !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -1087,28 +1087,28 @@ a.pg-p-cta--cod {
   height: 24px !important;
   min-width: 24px !important;
   border-radius: 999px !important;
-  background: #9b3d62 !important;
+  background: #054497 !important;
   flex-shrink: 0 !important;
 }
 
 .pg-p-delivery-message__text {
-  font-family: Georgia, "Times New Roman", Times, serif !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  line-height: 1.3 !important;
-  color: #111111 !important;
-  letter-spacing: 0.01em !important;
+  font-family: "Montserrat", system-ui, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: #0b1a3a !important;
+  letter-spacing: 0 !important;
 }
 
 .pg-p-delivery-message__text,
 .pg-p-delivery-message__text * {
-  color: #111111 !important;
+  color: #0b1a3a !important;
 }
 
 .pg-p-delivery-message__em {
   font-style: italic !important;
-  color: #9b3d62 !important;
-  font-weight: 600 !important;
+  color: #f39200 !important;
+  font-weight: 800 !important;
 }
 
 .pg-p-delivery-courier {
