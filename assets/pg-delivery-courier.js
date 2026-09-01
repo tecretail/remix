@@ -41,6 +41,29 @@
     });
   }
 
+  function pgCourierWaitForTruck(track) {
+    var courier = track.querySelector('.pg-p-delivery-courier');
+    return new Promise(function (resolve) {
+      if (!courier) {
+        resolve();
+        return;
+      }
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+        courier.removeEventListener('animationend', onEnd);
+        resolve();
+      }
+      function onEnd(e) {
+        if (e.target !== courier) return;
+        finish();
+      }
+      courier.addEventListener('animationend', onEnd);
+      track._pgTimers.push(setTimeout(finish, TRUCK_TRAVEL + 150));
+    });
+  }
+
   function pgCourierStop(track) {
     if (track._pgTimers) {
       track._pgTimers.forEach(clearTimeout);
@@ -60,6 +83,11 @@
     });
     pgCourierResetCourier(courier);
     pgCourierDrive(track);
+    if (courier) {
+      courier.style.removeProperty('transform');
+      courier.style.removeProperty('opacity');
+      courier.style.removeProperty('animation');
+    }
     track.classList.remove('is-phase-msg');
     requestAnimationFrame(function () {
       pgCourierStartRun(courier);
@@ -68,8 +96,8 @@
 
   function pgCourierShowMessage(track, msgIndex) {
     var courier = track.querySelector('.pg-p-delivery-courier');
-    if (courier) courier.classList.remove('is-running');
     track.classList.add('is-phase-msg');
+    if (courier) courier.classList.remove('is-running');
     track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel, i) {
       panel.classList.toggle('is-visible', i === msgIndex);
     });
@@ -82,10 +110,11 @@
   }
 
   async function pgCourierRunCycle(track) {
+    if (!track._pgTimers) track._pgTimers = [];
     var panelCount = track.querySelectorAll('[data-pg-msg-panel]').length || 2;
 
     pgCourierShowTruck(track);
-    await pgCourierWait(track, TRUCK_TRAVEL);
+    await pgCourierWaitForTruck(track);
 
     pgCourierShowMessage(track, 0);
     await pgCourierWait(track, FADE + MSG_SHOW);
@@ -99,6 +128,16 @@
       panel.classList.remove('is-visible');
     });
     await pgCourierWait(track, FADE);
+
+    var courier = track.querySelector('.pg-p-delivery-courier');
+    pgCourierResetCourier(courier);
+    pgCourierDrive(track);
+    if (courier) {
+      courier.style.removeProperty('transform');
+      courier.style.removeProperty('opacity');
+      courier.style.removeProperty('animation');
+    }
+
     pgCourierRunCycle(track);
   }
 

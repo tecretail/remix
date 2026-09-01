@@ -1048,10 +1048,11 @@ a.pg-p-cta--cod {
   transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease !important;
 }
 
-.pg-p-delivery-track.is-phase-msg .pg-p-delivery-road {
+.pg-p-delivery-track.is-phase-msg .pg-p-delivery-road,
+.pg-p-delivery-track.is-phase-msg .pg-p-delivery-courier {
   opacity: 0 !important;
   visibility: hidden !important;
-  transform: translateY(4px) !important;
+  transition: none !important;
   pointer-events: none !important;
 }
 
