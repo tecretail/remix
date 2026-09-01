@@ -1,7 +1,5 @@
 (function () {
-  var ANIM_DURATION = 4200;
-  var ANIM_ARRIVAL = 0.78;
-  var TRUCK_TRAVEL = Math.round(ANIM_DURATION * ANIM_ARRIVAL);
+  var TRUCK_TRAVEL = 3276;
   var MSG_SHOW = 850;
   var FADE = 280;
 
@@ -11,13 +9,21 @@
     if (!road || !courier) return;
     var travel = Math.max(0, road.clientWidth - courier.offsetWidth);
     courier.style.setProperty('--pg-cart-travel', travel + 'px');
+    courier.style.setProperty('--pg-courier-duration', TRUCK_TRAVEL + 'ms');
   }
 
-  function pgCourierRestartAnimation(courier) {
+  function pgCourierResetCourier(courier) {
     if (!courier) return;
-    courier.style.animation = 'none';
+    courier.classList.remove('is-running');
+    courier.style.transform = 'translateX(0)';
+    courier.style.opacity = '1';
+  }
+
+  function pgCourierStartRun(courier) {
+    if (!courier) return;
+    pgCourierResetCourier(courier);
     void courier.offsetWidth;
-    courier.style.removeProperty('animation');
+    courier.classList.add('is-running');
   }
 
   function pgCourierWait(track, ms) {
@@ -34,6 +40,7 @@
       track._pgTimers = [];
     }
     track.classList.remove('is-phase-msg');
+    pgCourierResetCourier(track.querySelector('.pg-p-delivery-courier'));
     track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
       panel.classList.remove('is-visible');
     });
@@ -41,15 +48,22 @@
 
   function pgCourierShowTruck(track) {
     var courier = track.querySelector('.pg-p-delivery-courier');
-    track.classList.remove('is-phase-msg');
     track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
       panel.classList.remove('is-visible');
     });
-    pgCourierRestartAnimation(courier);
+    pgCourierResetCourier(courier);
     pgCourierDrive(track);
+    track.classList.remove('is-phase-msg');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        pgCourierStartRun(courier);
+      });
+    });
   }
 
   function pgCourierShowMessage(track, msgIndex) {
+    var courier = track.querySelector('.pg-p-delivery-courier');
+    if (courier) courier.classList.remove('is-running');
     track.classList.add('is-phase-msg');
     track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel, i) {
       panel.classList.toggle('is-visible', i === msgIndex);
@@ -76,8 +90,10 @@
       await pgCourierWait(track, FADE + MSG_SHOW);
     }
 
-    pgCourierShowTruck(track);
-    await pgCourierWait(track, FADE + 150);
+    track.querySelectorAll('.pg-p-delivery-message').forEach(function (panel) {
+      panel.classList.remove('is-visible');
+    });
+    await pgCourierWait(track, FADE);
     pgCourierRunCycle(track);
   }
 

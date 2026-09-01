@@ -1073,7 +1073,7 @@ a.pg-p-cta--cod {
   opacity: 0 !important;
   visibility: hidden !important;
   transform: translateY(10px) !important;
-  transition: opacity 0.42s ease, transform 0.42s ease, visibility 0.42s ease !important;
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease !important;
   pointer-events: none !important;
 }
 
@@ -1132,8 +1132,13 @@ a.pg-p-cta--cod {
   max-width: none !important;
   flex-shrink: 0 !important;
   z-index: 2 !important;
-  animation: pg-courier-run 4.2s linear infinite !important;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
   will-change: transform, opacity !important;
+}
+
+.pg-p-delivery-courier.is-running {
+  animation: pg-courier-run-once var(--pg-courier-duration, 3.276s) linear forwards !important;
 }
 
 .pg-p-delivery-line {
@@ -1178,7 +1183,22 @@ a.pg-p-cta--cod {
 .pg-courier-art .pg-courier-wheel {
   transform-origin: center !important;
   transform-box: fill-box !important;
+  animation: none !important;
+}
+
+.pg-p-delivery-courier.is-running .pg-courier-wheel {
   animation: pg-courier-wheels 0.35s linear infinite !important;
+}
+
+@keyframes pg-courier-run-once {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(var(--pg-cart-travel, 200px));
+    opacity: 1;
+  }
 }
 
 @keyframes pg-courier-run {
