@@ -15,14 +15,21 @@
   function pgCourierResetCourier(courier) {
     if (!courier) return;
     courier.classList.remove('is-running');
+    courier.style.animation = 'none';
     courier.style.transform = 'translateX(0)';
     courier.style.opacity = '1';
   }
 
   function pgCourierStartRun(courier) {
     if (!courier) return;
-    pgCourierResetCourier(courier);
+    courier.classList.remove('is-running');
+    courier.style.animation = 'none';
+    courier.style.transform = 'translateX(0)';
+    courier.style.opacity = '1';
     void courier.offsetWidth;
+    courier.style.removeProperty('animation');
+    courier.style.removeProperty('transform');
+    courier.style.removeProperty('opacity');
     courier.classList.add('is-running');
   }
 
@@ -55,9 +62,7 @@
     pgCourierDrive(track);
     track.classList.remove('is-phase-msg');
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        pgCourierStartRun(courier);
-      });
+      pgCourierStartRun(courier);
     });
   }
 
