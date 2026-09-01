@@ -1,1 +1,395 @@
-{"sections":{"announce":{"type":"pg-announce","blocks":{"a1":{"type":"item","settings":{"text":"✨ ¡Bienvenido(a) a ProstaGenix! ✨"}},"a2":{"type":"item","settings":{"text":"💎 Garantía de 90 Días · Devolución Total"}},"a3":{"type":"item","settings":{"text":"⚡ Hasta 70% OFF · ¡Solo hoy!"}}},"block_order":["a1","a2","a3"],"settings":{"style_pad_y":0,"style_pad_x":0,"style_max_width":0,"style_heading_size":28,"style_text_size":16,"style_bg":"","style_heading_color":"#0b1a3a","style_text_color":"#333333","style_btn_font":15,"style_btn_pad_y":14,"style_btn_pad_x":28,"style_btn_radius":24,"style_btn_bg":"#e65600","style_btn_text":"#ffffff","style_min_height":0,"style_align":"left","style_image_width":100,"style_image_max_height":0,"style_image_radius":0,"style_hide_mobile":false,"style_hide_desktop":false}},"main":{"type":"pg-main-product","blocks":{"b1":{"type":"benefit","settings":{"icon":"✓","text":"Reduce DHT"}},"b2":{"type":"benefit","settings":{"icon":"★","text":"100% Natural"}},"b3":{"type":"benefit","settings":{"icon":"♥","text":"Clinicamente Probado"}},"t1":{"type":"trust_item","settings":{"icon":"🔒","text":"Pago seguro"}},"t2":{"type":"trust_item","settings":{"icon":"🚚","text":"Envio a todo el Peru"}},"t3":{"type":"trust_item","settings":{"icon":"✅","text":"Garantia 90 dias"}},"e1":{"type":"extra_text","settings":{"heading":"Envios rapidos y seguros","body":"<p>Procesamos cada pedido con cuidado. Entrega en Lima en 24h y provincia de 1 a 2 dias.</p>"}},"vb1":{"type":"variant_badge","settings":{"variant_position":1,"variant_title":"","badge_text":"MEJOR OFERTA","show_badge":true,"float_badge":"","subtext":"","tag_shipping":"Envio Gratis","tag_bonus":"","gift_text":"","gift_image":""}}},"block_order":["b1","b2","b3","t1","t2","t3","e1","vb1"],"settings":{"show_bar":true,"show_rating":true,"show_benefits":false,"show_hot_sale":false,"show_description":true,"show_videos":true,"videos_from_media":true,"show_back":false,"show_releasit":true,"releasit_label":"PEDIR CONTRA ENTREGA (COD)","bar_text":"GREAT DEAL · Envio GRATIS en pedidos hoy · Garantia 90 Dias","rating_text":"4.8 (13,167)","doctor_badge":"RECOMENDADO POR MEDICOS","benefit_1":"Reduce DHT","benefit_2":"100% Natural","benefit_3":"Clinicamente Probado","hot_sale_label":"HOT SALE","hot_sale_text":"Ordena hoy para asegurar tu descuento y regalos GRATIS","offer_badge":"MEJOR OFERTA","off_prefix":"UP TO","off_suffix":"% OFF","in_stock_label":"","sold_out_label":"Agotado","total_label":"Total","save_label":"Ahorras","cta_label":"","back_label":"Volver a la oferta","description_title":"","gallery_position":"left","description_placement":"below","section_max_width":1280,"section_pad_y":32,"section_pad_x":24,"title_size":34,"gallery_min_height":480,"cta_font_size":15,"cta_pad_y":14,"cta_pad_x":20,"cta_radius":12,"desc_font_size":14,"desc_max_width":1280,"desc_pad":16,"desc_radius":14,"desc_margin_top":8,"color_bar":"#054497","color_title":"#0b1a3a","color_badge":"#054497","color_off":"#d40000","color_cta_bg":"#ffffff","color_cta_text":"#054497","color_cta_border":"#054497","color_desc_bg":"#f7f8fb","color_desc_title":"#054497","videos_heading":"MILES DE PERSONAS YA LO USAN!","videos_social_proof":"Compradores felices","show_video_stars":true,"videos_stars_text":"★★★★★","videos_stars_position":"below_videos","show_video_captions":false,"videos_bg":"#054497","videos_heading_color":"#ffffff","videos_caption_bg":"#ffffff","videos_caption_color":"#0b1a3a","videos_stars_color":"#f5c518","style_pad_y":0,"style_pad_x":0,"style_max_width":0,"style_heading_size":28,"style_text_size":16,"style_bg":"","style_heading_color":"#0b1a3a","style_text_color":"#333333","style_btn_font":15,"style_btn_pad_y":14,"style_btn_pad_x":28,"style_btn_radius":24,"style_btn_bg":"#e65600","style_btn_text":"#ffffff","style_min_height":0,"style_align":"left","style_image_width":100,"style_image_max_height":0,"style_image_radius":0,"style_hide_mobile":false,"style_hide_desktop":false}},"guarantee":{"type":"pg-guarantee","disabled":true,"settings":{"heading_1":"100% Iron-Clad","heading_2":"Guarantee","body":"<p>We don't just offer a <strong>money-back guarantee<\/strong> — if you are not 100% thrilled with ProstaGenix you can get a <strong>complete 100% refund<\/strong> within 90 days of purchase.<\/p>","style_pad_y":0,"style_pad_x":0,"style_max_width":0,"style_heading_size":28,"style_text_size":16,"style_bg":"","style_heading_color":"#0b1a3a","style_text_color":"#333333","style_btn_font":15,"style_btn_pad_y":14,"style_btn_pad_x":28,"style_btn_radius":24,"style_btn_bg":"#e65600","style_btn_text":"#ffffff","style_min_height":0,"style_align":"left","style_image_width":100,"style_image_max_height":0,"style_image_radius":0,"style_hide_mobile":false,"style_hide_desktop":false}},"faqs":{"type":"pg-faqs","blocks":{"f1":{"type":"answer","settings":{"question":"How many bottles should I order?","answer":"<p>The most popular order for new customers is the 3 bottle package.<\/p>"}},"f2":{"type":"answer","settings":{"question":"How safe is ProstaGenix?","answer":"<p>ProstaGenix is completely safe with 100% natural ingredients.<\/p>"}}},"block_order":["f1","f2"],"disabled":true,"settings":{"title":"FAQs","style_pad_y":0,"style_pad_x":0,"style_max_width":0,"style_heading_size":28,"style_text_size":16,"style_bg":"","style_heading_color":"#0b1a3a","style_text_color":"#333333","style_btn_font":15,"style_btn_pad_y":14,"style_btn_pad_x":28,"style_btn_radius":24,"style_btn_bg":"#e65600","style_btn_text":"#ffffff","style_min_height":0,"style_align":"left","style_image_width":100,"style_image_max_height":0,"style_image_radius":0,"style_hide_mobile":false,"style_hide_desktop":false}},"buy":{"type":"pg-buy-cta","disabled":true,"settings":{"heading":"<p><strong>Buy ProstaGenix<\/strong> today and save!<\/p>","body":"<p>No stone has been left unturned in our quest to produce the finest prostate health product in the world.<\/p>","button_label":"Buy Now","button_link":"","product":"","product_image_url":"https:\/\/www.prostagenix.com\/images\/product\/bottle_box.png","badge_url":"https:\/\/www.prostagenix.com\/images\/home\/90-day-money-back-guarantee.png","style_pad_y":0,"style_pad_x":0,"style_max_width":0,"style_heading_size":28,"style_text_size":16,"style_bg":"","style_heading_color":"#0b1a3a","style_text_color":"#333333","style_btn_font":15,"style_btn_pad_y":14,"style_btn_pad_x":28,"style_btn_radius":24,"style_btn_bg":"#e65600","style_btn_text":"#ffffff","style_min_height":0,"style_align":"left","style_image_width":100,"style_image_max_height":0,"style_image_radius":0,"style_hide_mobile":false,"style_hide_desktop":false}},"footer":{"type":"pg-footer","blocks":{"s1":{"type":"social","settings":{"label":"Facebook","url":"https:\/\/www.facebook.com\/prostagenix\/","icon_url":"https:\/\/www.prostagenix.com\/images\/footer_social_facebook.png"}}},"block_order":["s1"],"disabled":true,"settings":{"disclaimer":"<p>These statements have not been evaluated by the Food and Drug Administration and are for informational purposes only.<\/p>","legal_links":"<p><a href=\"https:\/\/www.prostagenix.com\/terms.html\">terms &amp; conditions<\/a> | <a href=\"https:\/\/www.prostagenix.com\/privacy.html\">privacy policy<\/a> | <a href=\"https:\/\/www.prostagenix.com\/guarantee.html\">guarantee\/return policy<\/a><\/p>","copyright_suffix":"ProstaGenix, LLC. All rights reserved.","note":"*Larry King is a paid endorser of ProstaGenix.","logo_url":"https:\/\/www.prostagenix.com\/190109\/img\/logo.png","style_pad_y":0,"style_pad_x":0,"style_max_width":0,"style_heading_size":28,"style_text_size":16,"style_bg":"","style_heading_color":"#0b1a3a","style_text_color":"#333333","style_btn_font":15,"style_btn_pad_y":14,"style_btn_pad_x":28,"style_btn_radius":24,"style_btn_bg":"#e65600","style_btn_text":"#ffffff","style_min_height":0,"style_align":"left","style_image_width":100,"style_image_max_height":0,"style_image_radius":0,"style_hide_mobile":false,"style_hide_desktop":false}}},"order":["announce","main","guarantee","faqs","buy","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "announce": {
+      "type": "pg-announce",
+      "blocks": {
+        "a1": {
+          "type": "item",
+          "settings": {
+            "text": "✨ ¡Bienvenido(a) a ProstaGenix! ✨"
+          }
+        },
+        "a2": {
+          "type": "item",
+          "settings": {
+            "text": "💎 Garantía de 90 Días · Devolución Total"
+          }
+        },
+        "a3": {
+          "type": "item",
+          "settings": {
+            "text": "⚡ Hasta 70% OFF · ¡Solo hoy!"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
+    },
+    "main": {
+      "type": "pg-main-product",
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "✓",
+            "text": "Reduce DHT"
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "★",
+            "text": "100% Natural"
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "♥",
+            "text": "Clinicamente Probado"
+          }
+        },
+        "t1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🔒",
+            "text": "Pago seguro"
+          }
+        },
+        "t2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🚚",
+            "text": "Envio a todo el Peru"
+          }
+        },
+        "t3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✅",
+            "text": "Garantia 90 dias"
+          }
+        },
+        "e1": {
+          "type": "extra_text",
+          "settings": {
+            "heading": "Envios rapidos y seguros",
+            "body": "<p>Procesamos cada pedido con cuidado. Entrega en Lima en 24h y provincia de 1 a 2 dias.</p>"
+          }
+        },
+        "vb1": {
+          "type": "variant_badge",
+          "settings": {
+            "variant_position": 1,
+            "variant_title": "",
+            "badge_text": "MEJOR OFERTA",
+            "show_badge": true,
+            "float_badge": "",
+            "subtext": "",
+            "tag_shipping": "Envio Gratis",
+            "tag_bonus": "",
+            "gift_text": "",
+            "gift_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "t1",
+        "t2",
+        "t3",
+        "e1",
+        "vb1"
+      ],
+      "settings": {
+        "show_bar": true,
+        "show_rating": true,
+        "show_benefits": false,
+        "show_hot_sale": false,
+        "show_description": true,
+        "show_videos": true,
+        "videos_from_media": true,
+        "show_back": false,
+        "show_releasit": true,
+        "releasit_label": "PEDIR CONTRA ENTREGA (COD)",
+        "bar_text": "GREAT DEAL · Envio GRATIS en pedidos hoy · Garantia 90 Dias",
+        "rating_text": "4.8 (13,167)",
+        "doctor_badge": "RECOMENDADO POR MEDICOS",
+        "benefit_1": "Reduce DHT",
+        "benefit_2": "100% Natural",
+        "benefit_3": "Clinicamente Probado",
+        "hot_sale_label": "HOT SALE",
+        "hot_sale_text": "Ordena hoy para asegurar tu descuento y regalos GRATIS",
+        "offer_badge": "MEJOR OFERTA",
+        "off_prefix": "UP TO",
+        "off_suffix": "% OFF",
+        "in_stock_label": "",
+        "sold_out_label": "Agotado",
+        "total_label": "Total",
+        "save_label": "Ahorras",
+        "cta_label": "",
+        "back_label": "Volver a la oferta",
+        "description_title": "",
+        "gallery_position": "left",
+        "description_placement": "below",
+        "section_max_width": 1280,
+        "section_pad_y": 32,
+        "section_pad_x": 24,
+        "title_size": 34,
+        "gallery_min_height": 480,
+        "cta_font_size": 15,
+        "cta_pad_y": 14,
+        "cta_pad_x": 20,
+        "cta_radius": 12,
+        "desc_font_size": 14,
+        "desc_max_width": 1280,
+        "desc_pad": 16,
+        "desc_radius": 14,
+        "desc_margin_top": 8,
+        "color_bar": "#054497",
+        "color_title": "#0b1a3a",
+        "color_badge": "#054497",
+        "color_off": "#d40000",
+        "color_cta_bg": "#ffffff",
+        "color_cta_text": "#054497",
+        "color_cta_border": "#054497",
+        "color_desc_bg": "#f7f8fb",
+        "color_desc_title": "#054497",
+        "videos_heading": "MILES DE PERSONAS YA LO USAN!",
+        "videos_social_proof": "Compradores felices",
+        "show_video_stars": true,
+        "videos_stars_text": "★★★★★",
+        "videos_stars_position": "below_videos",
+        "show_video_captions": false,
+        "videos_bg": "#054497",
+        "videos_heading_color": "#ffffff",
+        "videos_caption_bg": "#ffffff",
+        "videos_caption_color": "#0b1a3a",
+        "videos_stars_color": "#f5c518",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
+    },
+    "guarantee": {
+      "type": "pg-guarantee",
+      "disabled": true,
+      "settings": {
+        "heading_1": "100% Iron-Clad",
+        "heading_2": "Guarantee",
+        "body": "<p>We don't just offer a <strong>money-back guarantee</strong> — if you are not 100% thrilled with ProstaGenix you can get a <strong>complete 100% refund</strong> within 90 days of purchase.</p>",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
+    },
+    "faqs": {
+      "type": "pg-faqs",
+      "blocks": {
+        "f1": {
+          "type": "answer",
+          "settings": {
+            "question": "How many bottles should I order?",
+            "answer": "<p>The most popular order for new customers is the 3 bottle package.</p>"
+          }
+        },
+        "f2": {
+          "type": "answer",
+          "settings": {
+            "question": "How safe is ProstaGenix?",
+            "answer": "<p>ProstaGenix is completely safe with 100% natural ingredients.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "FAQs",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
+    },
+    "buy": {
+      "type": "pg-buy-cta",
+      "disabled": true,
+      "settings": {
+        "heading": "<p><strong>Buy ProstaGenix</strong> today and save!</p>",
+        "body": "<p>No stone has been left unturned in our quest to produce the finest prostate health product in the world.</p>",
+        "button_label": "Buy Now",
+        "button_link": "",
+        "product": "",
+        "product_image_url": "https://www.prostagenix.com/images/product/bottle_box.png",
+        "badge_url": "https://www.prostagenix.com/images/home/90-day-money-back-guarantee.png",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
+    },
+    "footer": {
+      "type": "pg-footer",
+      "blocks": {
+        "s1": {
+          "type": "social",
+          "settings": {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/prostagenix/",
+            "icon_url": "https://www.prostagenix.com/images/footer_social_facebook.png"
+          }
+        }
+      },
+      "block_order": [
+        "s1"
+      ],
+      "disabled": true,
+      "settings": {
+        "disclaimer": "<p>These statements have not been evaluated by the Food and Drug Administration and are for informational purposes only.</p>",
+        "legal_links": "<p><a href=\"https://www.prostagenix.com/terms.html\">terms &amp; conditions</a> | <a href=\"https://www.prostagenix.com/privacy.html\">privacy policy</a> | <a href=\"https://www.prostagenix.com/guarantee.html\">guarantee/return policy</a></p>",
+        "copyright_suffix": "ProstaGenix, LLC. All rights reserved.",
+        "note": "*Larry King is a paid endorser of ProstaGenix.",
+        "logo_url": "https://www.prostagenix.com/190109/img/logo.png",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
+    }
+  },
+  "order": [
+    "announce",
+    "main",
+    "guarantee",
+    "faqs",
+    "buy",
+    "footer"
+  ]
+}

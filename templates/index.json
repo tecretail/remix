@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "announce": {
@@ -34,7 +43,29 @@
         "a3",
         "a4"
       ],
-      "settings": {}
+      "settings": {
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "hero": {
       "type": "pg-hero",
@@ -44,7 +75,38 @@
         "hero_urgency": "HUGE SAVINGS - 70% OFF NOW!",
         "countdown_label": "Hurry Up! Time is Ticking...",
         "show_countdown": true,
-        "show_bottles": true
+        "show_bottles": true,
+        "hero_content_max_width": 1200,
+        "banner_width": 320,
+        "banner_radius": 12,
+        "bottle_width": 280,
+        "counter_scale": 100,
+        "counter_width": 40,
+        "counter_digit_width": 100,
+        "counter_digit_height": 75,
+        "counter_digit_font": 34,
+        "counter_label_size": 16,
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 48,
+        "style_text_size": 18,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 520,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
       }
     },
     "product": {
@@ -84,12 +146,97 @@
         "show_benefits": true,
         "show_hot_sale": true,
         "show_description": false,
-        "cta_label": "IR A PAGAR AHORA →"
+        "show_videos": false,
+        "videos_from_media": true,
+        "show_back": false,
+        "show_releasit": true,
+        "releasit_label": "PEDIR CONTRA ENTREGA (COD)",
+        "bar_text": "GREAT DEAL · Envio GRATIS en pedidos hoy · Garantia 90 Dias",
+        "rating_text": "4.8 (13,167)",
+        "doctor_badge": "RECOMENDADO POR MEDICOS",
+        "show_social_stack": true,
+        "social_sold": "+20k Frascos vendidos en el ultimo mes",
+        "social_guide": "Guias gratis para resultados en 15 dias 📈🍑🍒",
+        "benefit_1": "Reduce DHT",
+        "benefit_2": "100% Natural",
+        "benefit_3": "Clinicamente Probado",
+        "hot_sale_label": "HOT SALE",
+        "hot_sale_text": "Ordena hoy para asegurar tu descuento y regalos GRATIS",
+        "offer_badge": "MEJOR OFERTA",
+        "off_prefix": "UP TO",
+        "off_suffix": "% OFF",
+        "in_stock_label": "En stock",
+        "sold_out_label": "Agotado",
+        "total_label": "Total",
+        "save_label": "Ahorras",
+        "cta_label": "IR A PAGAR AHORA →",
+        "back_label": "Volver a la oferta",
+        "description_title": "Descripcion",
+        "gallery_position": "left",
+        "description_placement": "below",
+        "section_max_width": 1280,
+        "section_pad_y": 24,
+        "section_pad_x": 24,
+        "title_size": 34,
+        "gallery_min_height": 0,
+        "cta_font_size": 15,
+        "cta_pad_y": 14,
+        "cta_pad_x": 20,
+        "cta_radius": 12,
+        "desc_font_size": 14,
+        "desc_max_width": 1280,
+        "desc_pad": 16,
+        "desc_radius": 14,
+        "desc_margin_top": 8,
+        "color_bar": "#054497",
+        "color_title": "#0b1a3a",
+        "color_badge": "#054497",
+        "color_off": "#d40000",
+        "color_cta_bg": "#ffffff",
+        "color_cta_text": "#054497",
+        "color_cta_border": "#054497",
+        "color_desc_bg": "#f7f8fb",
+        "color_desc_title": "#054497",
+        "videos_heading": "¡MILES DE PERSONAS YA LO USAN!",
+        "videos_social_proof": "Compradores felices",
+        "show_video_stars": true,
+        "videos_stars_text": "★★★★★",
+        "videos_stars_position": "below_videos",
+        "show_video_captions": false,
+        "videos_bg": "#054497",
+        "videos_heading_color": "#ffffff",
+        "videos_caption_bg": "#ffffff",
+        "videos_caption_color": "#0b1a3a",
+        "videos_stars_color": "#f5c518"
       }
     },
     "consumerlab": {
       "type": "pg-consumerlab",
-      "settings": {}
+      "settings": {
+        "text_1": "<p>To Celebrate Our <strong>HUGE VICTORY</strong> Being Crowned The <span>#1 Rated Prostate Pill In The World...</span></p>",
+        "text_2": "<p>In The Famous ConsumerLab.com Competition, We Are <strong><u>Slashing Prices</u> Across The Board - TODAY ONLY!</strong></p>",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "testimonials": {
       "type": "pg-testimonials",
@@ -121,7 +268,29 @@
         "t1",
         "t2"
       ],
-      "settings": {}
+      "settings": {
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "benefits": {
       "type": "pg-benefits",
@@ -192,7 +361,31 @@
         "b8",
         "b9"
       ],
-      "settings": {}
+      "settings": {
+        "heading": "With ProstaGenix You Will Have A Lot To Look Forward To!",
+        "subheading": "Here Are Some Of The Benefits Our Customers Report:",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "offers": {
       "type": "pg-offers-page",
@@ -204,7 +397,32 @@
     },
     "guarantee": {
       "type": "pg-guarantee",
-      "settings": {}
+      "settings": {
+        "heading_1": "100% Iron-Clad",
+        "heading_2": "Guarantee",
+        "body": "<p>We don't just offer a <strong>money-back guarantee</strong> — if you are not 100% thrilled with ProstaGenix you can get a <strong>complete 100% refund</strong> within 90 days of purchase.</p>",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "faqs": {
       "type": "pg-faqs",
@@ -225,7 +443,11 @@
         },
         "f3": {
           "type": "ingredients",
-          "settings": {}
+          "settings": {
+            "question": "What are the ingredients in ProstaGenix?",
+            "facts_url": "https://www.prostagenix.com/special/special-offer/img/supplement-facts.jpg",
+            "bottle_url": "https://www.prostagenix.com/special/special-offer/img/prostagenix-bottle-back.png"
+          }
         },
         "f4": {
           "type": "answer",
@@ -258,20 +480,122 @@
         "f6"
       ],
       "settings": {
-        "title": "FAQs"
+        "title": "FAQs",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
       }
     },
     "comparison": {
       "type": "pg-comparison",
-      "settings": {}
+      "settings": {
+        "desktop_url": "https://www.prostagenix.com/images/home/prostagenix-comparison-chart-desktop.jpg",
+        "mobile_url": "https://www.prostagenix.com/images/home/prostagenix-comparison-chart-mobile.jpg",
+        "alt": "Comparison chart",
+        "caption": "<p><strong>This chart shows how we compare to the leading prostate supplements.</strong></p>",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "awards": {
       "type": "pg-awards",
-      "settings": {}
+      "settings": {
+        "heading": "The Most Honored Name In Prostate Health",
+        "body": "<p>There are close to 200 natural prostate supplements available in the world today. We were honored that we have been named as the number one product in the world.</p>",
+        "award_url": "https://www.prostagenix.com/special/special-offer/img/prostate-report-award.png",
+        "logo_url": "https://www.prostagenix.com/special/special-offer/img/national-health-federation.jpg",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "buy": {
       "type": "pg-buy-cta",
-      "settings": {}
+      "settings": {
+        "heading": "<p><strong>Buy ProstaGenix</strong> today and save!</p>",
+        "body": "<p>No stone has been left unturned in our quest to produce the finest prostate health product in the world.</p>",
+        "button_label": "Buy Now",
+        "button_link": "",
+        "product": "",
+        "product_image_url": "https://www.prostagenix.com/images/product/bottle_box.png",
+        "badge_url": "https://www.prostagenix.com/images/home/90-day-money-back-guarantee.png",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     },
     "footer": {
       "type": "pg-footer",
@@ -306,7 +630,34 @@
         "s2",
         "s3"
       ],
-      "settings": {}
+      "settings": {
+        "disclaimer": "<p>These statements have not been evaluated by the Food and Drug Administration and are for informational purposes only.</p>",
+        "legal_links": "<p><a href=\"https://www.prostagenix.com/terms.html\">terms &amp; conditions</a> | <a href=\"https://www.prostagenix.com/privacy.html\">privacy policy</a> | <a href=\"https://www.prostagenix.com/guarantee.html\">guarantee/return policy</a></p>",
+        "copyright_suffix": "ProstaGenix, LLC. All rights reserved.",
+        "note": "*Larry King is a paid endorser of ProstaGenix.",
+        "logo_url": "https://www.prostagenix.com/190109/img/logo.png",
+        "style_pad_y": 0,
+        "style_pad_x": 0,
+        "style_max_width": 0,
+        "style_heading_size": 28,
+        "style_text_size": 16,
+        "style_bg": "",
+        "style_heading_color": "#0b1a3a",
+        "style_text_color": "#333333",
+        "style_btn_font": 15,
+        "style_btn_pad_y": 14,
+        "style_btn_pad_x": 28,
+        "style_btn_radius": 24,
+        "style_btn_bg": "#e65600",
+        "style_btn_text": "#ffffff",
+        "style_min_height": 0,
+        "style_align": "left",
+        "style_image_width": 100,
+        "style_image_max_height": 0,
+        "style_image_radius": 0,
+        "style_hide_mobile": false,
+        "style_hide_desktop": false
+      }
     }
   },
   "order": [
