@@ -1,5 +1,4 @@
 (function () {
-  var DURATION = 4200;
   var SHOW_AT = 3276;
   var SHOW_FOR = 700;
 
@@ -11,6 +10,13 @@
     courier.style.setProperty('--pg-cart-travel', travel + 'px');
   }
 
+  function pgCourierClearTimers(track) {
+    if (track._pgShowTimer) clearTimeout(track._pgShowTimer);
+    if (track._pgHideTimer) clearTimeout(track._pgHideTimer);
+    track._pgShowTimer = null;
+    track._pgHideTimer = null;
+  }
+
   function pgCourierHide(track) {
     track.classList.remove('is-show-tip');
     track.querySelectorAll('[data-pg-msg-panel]').forEach(function (panel) {
@@ -19,48 +25,56 @@
   }
 
   function pgCourierStop(track) {
-    if (track._pgCourierTimers) {
-      track._pgCourierTimers.forEach(clearTimeout);
-      track._pgCourierTimers = [];
-    }
+    pgCourierClearTimers(track);
     pgCourierHide(track);
   }
 
-  function pgCourierCycle(track) {
+  function pgCourierShow(track, msgIndex) {
+    pgCourierClearTimers(track);
+    pgCourierHide(track);
+    track.setAttribute('data-pg-msg', String(msgIndex));
+
+    track._pgShowTimer = setTimeout(function () {
+      var panel = track.querySelector('[data-pg-msg-panel="' + msgIndex + '"]');
+      if (panel) panel.hidden = false;
+      track.classList.add('is-show-tip');
+
+      track._pgHideTimer = setTimeout(function () {
+        pgCourierHide(track);
+      }, SHOW_FOR);
+    }, SHOW_AT);
+  }
+
+  function pgCourierBindTrack(track) {
+    var courier = track.querySelector('.pg-p-delivery-courier');
+    if (!courier) return;
+
+    pgCourierDrive(track);
+
+    if (courier.dataset.pgBound === '1') return;
+    courier.dataset.pgBound = '1';
+
     var panels = track.querySelectorAll('[data-pg-msg-panel]');
     var count = panels.length || 1;
-    if (typeof track._pgMsgIndex !== 'number') track._pgMsgIndex = 0;
+    track._pgMsgIndex = 0;
 
-    var msgIndex = track._pgMsgIndex % count;
-    track._pgMsgIndex = msgIndex + 1;
-    track.setAttribute('data-pg-msg', String(msgIndex));
-    track._pgCourierTimers = track._pgCourierTimers || [];
+    function runNextInOrder() {
+      var msgIndex = track._pgMsgIndex % count;
+      track._pgMsgIndex = msgIndex + 1;
+      pgCourierShow(track, msgIndex);
+    }
 
-    track._pgCourierTimers.push(
-      setTimeout(function () {
-        var panel = track.querySelector('[data-pg-msg-panel="' + msgIndex + '"]');
-        if (panel) panel.hidden = false;
-        track.classList.add('is-show-tip');
-
-        track._pgCourierTimers.push(
-          setTimeout(function () {
-            pgCourierHide(track);
-            track._pgCourierTimers.push(
-              setTimeout(function () {
-                pgCourierCycle(track);
-              }, Math.max(0, DURATION - SHOW_AT - SHOW_FOR))
-            );
-          }, SHOW_FOR)
-        );
-      }, SHOW_AT)
-    );
+    courier.addEventListener('animationiteration', runNextInOrder);
+    runNextInOrder();
   }
 
   function pgCourierInitTrack(track) {
+    var courier = track.querySelector('.pg-p-delivery-courier');
+    if (courier) courier.dataset.pgBound = '0';
     pgCourierStop(track);
     track._pgMsgIndex = 0;
-    pgCourierDrive(track);
-    pgCourierCycle(track);
+    track.setAttribute('data-pg-msg', '0');
+    pgCourierBindTrack(track);
   }
 
   function pgCourierInitAll() {
