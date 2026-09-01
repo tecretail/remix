@@ -799,7 +799,7 @@ a.pg-p-cta--cod {
   position: relative !important;
   width: 100% !important;
   margin: 8px 0 40px !important;
-  padding: 18px 0 16px !important;
+  padding: 14px 0 !important;
   overflow: hidden !important;
   background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%) !important;
   border: 1px solid #e3e6ee !important;
@@ -808,18 +808,6 @@ a.pg-p-cta--cod {
     0 8px 24px rgba(5, 68, 151, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
   box-sizing: border-box !important;
-}
-
-.pg-brand-slider-label {
-  margin: 0 0 14px !important;
-  padding: 0 20px !important;
-  text-align: center !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  color: #054497 !important;
-  font-family: "Montserrat", system-ui, sans-serif !important;
 }
 
 .pg-brand-slider-viewport {
