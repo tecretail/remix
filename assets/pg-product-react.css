@@ -1019,62 +1019,58 @@ a.pg-p-cta--cod {
   position: relative !important;
   width: 100% !important;
   margin: 0 0 22px !important;
-  padding: 10px 14px 12px !important;
-  background: #fff !important;
+  padding: 8px 12px !important;
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%) !important;
   border: 1px solid #d4e4f7 !important;
-  border-radius: 12px !important;
+  border-radius: 999px !important;
   box-shadow: 0 4px 14px rgba(5, 68, 151, 0.06) !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
 }
 
 .pg-p-delivery-road {
-  container-type: inline-size !important;
-  container-name: pg-delivery-road !important;
   position: relative !important;
   width: 100% !important;
-  height: 48px !important;
+  height: 52px !important;
 }
 
 .pg-p-delivery-line {
   position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 8px !important;
-  height: 3px !important;
-  background: repeating-linear-gradient(
+  left: 6px !important;
+  right: 6px !important;
+  bottom: 11px !important;
+  height: 4px !important;
+  background: linear-gradient(
     90deg,
-    #054497 0,
-    #054497 8px,
-    transparent 8px,
-    transparent 16px
+    rgba(5, 68, 151, 0.12) 0%,
+    rgba(5, 68, 151, 0.32) 50%,
+    rgba(5, 68, 151, 0.12) 100%
   ) !important;
-  opacity: 0.35 !important;
-  border-radius: 2px !important;
+  border-radius: 999px !important;
 }
 
-.pg-p-delivery-cart {
+.pg-p-delivery-courier {
   position: absolute !important;
-  bottom: 10px !important;
+  bottom: 8px !important;
   left: 0 !important;
-  width: 44px !important;
-  height: 44px !important;
+  width: 56px !important;
+  height: 34px !important;
   z-index: 2 !important;
-  filter: drop-shadow(0 2px 5px rgba(5, 68, 151, 0.22)) !important;
-  animation: pg-cart-drive 3s ease-in-out infinite alternate !important;
+  filter: drop-shadow(0 2px 6px rgba(5, 68, 151, 0.2)) !important;
+  animation: pg-cart-drive 3.2s ease-in-out infinite alternate !important;
   will-change: transform !important;
 }
 
-.pg-p-delivery-cart svg {
+.pg-p-delivery-courier svg {
   display: block !important;
   width: 100% !important;
   height: 100% !important;
 }
 
-.pg-p-delivery-cart .pg-cart-wheel {
+.pg-p-delivery-courier .pg-courier-wheel {
   transform-origin: center !important;
   transform-box: fill-box !important;
-  animation: pg-cart-wheels 0.4s linear infinite !important;
+  animation: pg-cart-wheels 0.35s linear infinite !important;
 }
 
 @keyframes pg-cart-drive {
@@ -1093,13 +1089,13 @@ a.pg-p-cta--cod {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pg-p-delivery-cart {
+  .pg-p-delivery-courier {
     animation: none !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
 
-  .pg-p-delivery-cart .pg-cart-wheel {
+  .pg-p-delivery-courier .pg-courier-wheel {
     animation: none !important;
   }
 }
