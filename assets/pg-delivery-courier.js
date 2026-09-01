@@ -1,7 +1,6 @@
 (function () {
-  var DURATION = 4200;
-  var SHOW_AT = 3276;
-  var SHOW_FOR = 800;
+  var TRUCK_TRAVEL = 3276;
+  var MSG_SHOW = 800;
 
   function pgCourierDrive(track) {
     var road = track.querySelector('.pg-p-delivery-road');
@@ -9,6 +8,13 @@
     if (!road || !courier) return;
     var travel = Math.max(0, road.clientWidth - courier.offsetWidth);
     courier.style.setProperty('--pg-cart-travel', travel + 'px');
+  }
+
+  function pgCourierRestartAnimation(courier) {
+    if (!courier) return;
+    courier.style.animation = 'none';
+    void courier.offsetWidth;
+    courier.style.removeProperty('animation');
   }
 
   function pgCourierHide(track) {
@@ -21,46 +27,42 @@
   function pgCourierStop(track) {
     if (track._pgShowTimer) clearTimeout(track._pgShowTimer);
     if (track._pgHideTimer) clearTimeout(track._pgHideTimer);
-    if (track._pgLoopTimer) clearInterval(track._pgLoopTimer);
+    if (track._pgCycleTimer) clearTimeout(track._pgCycleTimer);
     track._pgShowTimer = null;
     track._pgHideTimer = null;
-    track._pgLoopTimer = null;
+    track._pgCycleTimer = null;
     pgCourierHide(track);
   }
 
-  function pgCourierShowMessage(track, msgIndex) {
-    if (track._pgShowTimer) clearTimeout(track._pgShowTimer);
-    if (track._pgHideTimer) clearTimeout(track._pgHideTimer);
+  function pgCourierRunCycle(track) {
+    var courier = track.querySelector('.pg-p-delivery-courier');
+    var panels = track.querySelectorAll('[data-pg-msg-panel]');
+    var count = panels.length || 2;
+    var msgIndex = track._pgMsgStep % count;
+    track._pgMsgStep += 1;
+
     pgCourierHide(track);
+    pgCourierRestartAnimation(courier);
+    pgCourierDrive(track);
 
     track._pgShowTimer = setTimeout(function () {
       var panel = track.querySelector('[data-pg-msg-panel="' + msgIndex + '"]');
-      if (!panel) return;
-      panel.classList.add('is-visible');
+      if (panel) panel.classList.add('is-visible');
       track.classList.add('is-show-tip');
 
       track._pgHideTimer = setTimeout(function () {
         pgCourierHide(track);
-      }, SHOW_FOR);
-    }, SHOW_AT);
+        track._pgCycleTimer = setTimeout(function () {
+          pgCourierRunCycle(track);
+        }, 120);
+      }, MSG_SHOW);
+    }, TRUCK_TRAVEL);
   }
 
   function pgCourierStartTrack(track) {
     pgCourierStop(track);
-    pgCourierDrive(track);
-
-    var panels = track.querySelectorAll('[data-pg-msg-panel]');
-    var count = panels.length || 1;
-    var step = 0;
-
-    function runStep() {
-      var msgIndex = step % count;
-      step += 1;
-      pgCourierShowMessage(track, msgIndex);
-    }
-
-    runStep();
-    track._pgLoopTimer = setInterval(runStep, DURATION);
+    track._pgMsgStep = 0;
+    pgCourierRunCycle(track);
   }
 
   function pgCourierInitAll() {
