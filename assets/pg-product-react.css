@@ -799,14 +799,12 @@ a.pg-p-cta--cod {
   position: relative !important;
   width: 100% !important;
   margin: 8px 0 40px !important;
-  padding: 14px 0 !important;
+  padding: 12px 0 !important;
   overflow: hidden !important;
-  background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%) !important;
-  border: 1px solid #e3e6ee !important;
-  border-radius: 16px !important;
-  box-shadow:
-    0 8px 24px rgba(5, 68, 151, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
   box-sizing: border-box !important;
 }
 
@@ -817,15 +815,15 @@ a.pg-p-cta--cod {
   mask-image: linear-gradient(
     90deg,
     transparent 0%,
-    #000 8%,
-    #000 92%,
+    #000 6%,
+    #000 94%,
     transparent 100%
   ) !important;
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent 0%,
-    #000 8%,
-    #000 92%,
+    #000 6%,
+    #000 94%,
     transparent 100%
   ) !important;
 }
@@ -838,18 +836,19 @@ a.pg-p-cta--cod {
   display: flex !important;
   align-items: center !important;
   width: max-content !important;
-  min-width: 0 !important;
-  padding: 4px 0 !important;
+  min-width: 100% !important;
+  padding: 2px 0 !important;
   gap: 0 !important;
-  animation: pg-brand-scroll 28s linear infinite !important;
+  animation: pg-brand-scroll 24s linear infinite !important;
   will-change: transform !important;
 }
 
 .pg-brand-set {
   display: flex !important;
   align-items: center !important;
-  gap: 20px !important;
-  padding: 0 10px !important;
+  justify-content: space-around !important;
+  gap: 32px !important;
+  padding: 0 24px !important;
   flex-shrink: 0 !important;
 }
 
@@ -857,63 +856,69 @@ a.pg-p-cta--cod {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-width: 0 !important;
-  width: 148px !important;
-  height: 58px !important;
-  padding: 8px 14px !important;
-  flex-shrink: 0 !important;
-  background: #fff !important;
-  border: 1px solid #e8edf5 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 2px 8px rgba(5, 68, 151, 0.05) !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 100px !important;
+  max-width: 150px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   box-sizing: border-box !important;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
 }
 
 .pg-brand-slide:hover {
-  border-color: rgba(5, 68, 151, 0.25) !important;
-  box-shadow: 0 6px 16px rgba(5, 68, 151, 0.1) !important;
-  transform: translateY(-1px) !important;
+  transform: scale(1.03) !important;
 }
 
 .pg-brand-image {
   display: block !important;
-  max-width: 100% !important;
-  max-height: 38px !important;
+  max-width: 140px !important;
+  max-height: 40px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
-  filter: grayscale(15%) saturate(0.95) !important;
-  opacity: 0.92 !important;
-  transition: filter 0.2s ease, opacity 0.2s ease !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
 }
 
 .pg-brand-slide:hover .pg-brand-image {
-  filter: none !important;
+  transform: scale(1.04) !important;
   opacity: 1 !important;
 }
 
 @keyframes pg-brand-scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.shopify-design-mode .pg-brand-slider-track {
+  animation: pg-brand-scroll 24s linear infinite !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .pg-brand-slider-track {
     animation: none !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
     width: 100% !important;
     max-width: 100% !important;
-    gap: 12px !important;
-    padding: 0 16px 8px !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+    padding: 0 12px !important;
   }
 
   .pg-brand-set {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 12px !important;
+    justify-content: space-evenly !important;
+    flex: 1 1 100% !important;
+    gap: 20px !important;
     padding: 0 !important;
+  }
+
+  .pg-brand-set ~ .pg-brand-set {
+    display: none !important;
   }
 
   .pg-brand-slider-viewport {

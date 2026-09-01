@@ -124,16 +124,16 @@
 {% capture brand_slider_set %}
   <div class="pg-brand-set">
     <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'RP.png' | asset_url }}" alt="Clínica Ricardo Palma" loading="lazy">
+      <img class="pg-brand-image" src="{{ 'RP.png' | asset_url }}" alt="Clínica Ricardo Palma" loading="lazy" width="140" height="40">
     </div>
     <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'logo-essalud-v2.png' | asset_url }}" alt="EsSalud" loading="lazy">
+      <img class="pg-brand-image" src="{{ 'logo-essalud-v2.png' | asset_url }}" alt="EsSalud" loading="lazy" width="140" height="40">
     </div>
     <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'Logotipo.png' | asset_url }}" alt="Clínica Internacional" loading="lazy">
+      <img class="pg-brand-image" src="{{ 'Logotipo.png' | asset_url }}" alt="Clínica Internacional" loading="lazy" width="140" height="40">
     </div>
     <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'logo.png' | asset_url }}" alt="Logo adicional" loading="lazy">
+      <img class="pg-brand-image" src="{{ 'logo.png' | asset_url }}" alt="Clínica Cayetano Heredia" loading="lazy" width="140" height="40">
     </div>
   </div>
 {% endcapture %}
@@ -142,6 +142,7 @@
   <div class="pg-brand-slider-wrap" aria-label="Instituciones de salud asociadas">
     <div class="pg-brand-slider-viewport">
       <div class="pg-brand-slider-track">
+        {{ brand_slider_set }}
         {{ brand_slider_set }}
         {{ brand_slider_set }}
       </div>
