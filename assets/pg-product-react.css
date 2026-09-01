@@ -744,19 +744,184 @@ a.pg-p-cta--cod {
   }
 }
 
+.pg-p-rating-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 12px !important;
+  flex-wrap: wrap !important;
+}
+
 .pg-p-stars {
   color: #f39200 !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
+  letter-spacing: 1px !important;
+  line-height: 1 !important;
+}
+
+.pg-p-stars--sm {
+  font-size: 15px !important;
+  letter-spacing: 0.5px !important;
+}
+
+.pg-p-rating-text {
+  color: #333 !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
 }
 
 .pg-p-badge {
   background: #054497 !important;
   color: #fff !important;
   font-weight: 800 !important;
-  font-size: 11px !important;
-  padding: 4px 10px !important;
+  font-size: 10px !important;
+  padding: 6px 14px !important;
   border-radius: 999px !important;
-  letter-spacing: 1px !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.pg-p-social-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 0 0 18px !important;
+}
+
+.pg-p-social-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 10px 18px !important;
+  background: #fff !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08) !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.pg-p-social-avatars {
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+.pg-p-social-avatar {
+  display: block !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  border: 2px solid #fff !important;
+  overflow: hidden !important;
+  margin-left: -10px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.pg-p-social-avatar:first-child {
+  margin-left: 0 !important;
+}
+
+.pg-p-social-avatar img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.pg-p-social-avatar--1 {
+  background: linear-gradient(135deg, #fbbf24, #f97316) !important;
+}
+
+.pg-p-social-avatar--2 {
+  background: linear-gradient(135deg, #60a5fa, #2563eb) !important;
+}
+
+.pg-p-social-avatar--3 {
+  background: linear-gradient(135deg, #f472b6, #db2777) !important;
+}
+
+.pg-p-social-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+}
+
+.pg-p-social-stars-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.pg-p-social-score {
+  color: #1a1a1a !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+}
+
+.pg-p-social-reviews {
+  color: #9b4dca !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  line-height: 1.25 !important;
+}
+
+.pg-p-social-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 10px 18px !important;
+  background: #fce7f0 !important;
+  border-radius: 999px !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.pg-p-social-pill__icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 22px !important;
+  height: 22px !important;
+  color: #1a1a1a !important;
+}
+
+.pg-p-social-pill__icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+}
+
+.pg-p-social-pill__text {
+  color: #1a1a1a !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 600px) {
+  .pg-p-social-card,
+  .pg-p-social-pill {
+    width: 100% !important;
+  }
+
+  .pg-p-rating-row {
+    gap: 8px !important;
+  }
+
+  .pg-p-badge {
+    font-size: 9px !important;
+    padding: 5px 12px !important;
+  }
 }
 
 .pg-p-bar {

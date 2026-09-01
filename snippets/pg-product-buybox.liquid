@@ -28,6 +28,14 @@
   assign bar_text = bar_text | default: 'GREAT DEAL · Envío GRATIS en pedidos hoy · Garantía 90 Días'
   assign rating_text = rating_text | default: '4.8 (13,167)'
   assign doctor_badge = doctor_badge | default: 'RECOMENDADO POR MÉDICOS'
+  assign show_social_stack = show_social_stack
+  if show_social_stack == nil
+    assign show_social_stack = true
+  endif
+  assign social_score = social_score | default: '4.9/5'
+  assign social_reviews = social_reviews | default: '+1,024 reseñas verificadas'
+  assign social_sold = social_sold | default: '+20k Frascos vendidos en el último mes'
+  assign social_guide = social_guide | default: 'Guías gratis para resultados en 15 días 📈🍑🍒'
   assign hot_sale_label = hot_sale_label | default: '🔥 HOT SALE'
   assign hot_sale_text = hot_sale_text | default: 'Ordena hoy para asegurar tu descuento y regalos GRATIS'
   assign offer_badge = offer_badge | default: 'MEJOR OFERTA'
@@ -349,9 +357,9 @@
 
       <section class="pg-p-col-buy" style="min-width:0">
         {% if show_rating %}
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-            <span class="pg-p-stars">★★★★★</span>
-            <span style="color:#555;font-weight:600;">{{ rating_text }}</span>
+          <div class="pg-p-rating-row">
+            <span class="pg-p-stars" aria-hidden="true">★★★★★</span>
+            <span class="pg-p-rating-text">{{ rating_text }}</span>
             {% if doctor_badge != blank %}
               <span class="pg-p-badge">{{ doctor_badge }}</span>
             {% endif %}
@@ -361,6 +369,57 @@
         <h1 class="pg-p-h1">{{ product.title }}</h1>
         {% if pitch != blank %}
           <p style="margin:0 0 14px;color:#555;font-size:15px;font-weight:600;">{{ pitch }}</p>
+        {% endif %}
+
+        {% if show_social_stack %}
+          <div class="pg-p-social-stack">
+            <div class="pg-p-social-card">
+              <div class="pg-p-social-avatars" aria-hidden="true">
+                {% if social_avatar_1 != blank %}
+                  <span class="pg-p-social-avatar"><img src="{{ social_avatar_1 | image_url: width: 80 }}" alt="" width="40" height="40" loading="lazy"></span>
+                {% else %}
+                  <span class="pg-p-social-avatar pg-p-social-avatar--1"></span>
+                {% endif %}
+                {% if social_avatar_2 != blank %}
+                  <span class="pg-p-social-avatar"><img src="{{ social_avatar_2 | image_url: width: 80 }}" alt="" width="40" height="40" loading="lazy"></span>
+                {% else %}
+                  <span class="pg-p-social-avatar pg-p-social-avatar--2"></span>
+                {% endif %}
+                {% if social_avatar_3 != blank %}
+                  <span class="pg-p-social-avatar"><img src="{{ social_avatar_3 | image_url: width: 80 }}" alt="" width="40" height="40" loading="lazy"></span>
+                {% else %}
+                  <span class="pg-p-social-avatar pg-p-social-avatar--3"></span>
+                {% endif %}
+              </div>
+              <div class="pg-p-social-meta">
+                <div class="pg-p-social-stars-row">
+                  <span class="pg-p-stars pg-p-stars--sm" aria-hidden="true">★★★★★</span>
+                  <span class="pg-p-social-score">{{ social_score }}</span>
+                </div>
+                {% if social_reviews != blank %}
+                  <span class="pg-p-social-reviews">{{ social_reviews }}</span>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if social_sold != blank %}
+              <div class="pg-p-social-pill">
+                <span class="pg-p-social-pill__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14 0-5.5 1-7 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.5-2.5 1.5-3.5z"/></svg>
+                </span>
+                <span class="pg-p-social-pill__text">{{ social_sold }}</span>
+              </div>
+            {% endif %}
+
+            {% if social_guide != blank %}
+              <div class="pg-p-social-pill">
+                <span class="pg-p-social-pill__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.6 11.4a2.5 2.5 0 1 0-3.5-3.5l-8.2 8.2a2.5 2.5 0 1 0 3.5 3.5z"/><path d="m15 9 6 6"/></svg>
+                </span>
+                <span class="pg-p-social-pill__text">{{ social_guide }}</span>
+              </div>
+            {% endif %}
+          </div>
         {% endif %}
 
         {% if show_benefits %}
