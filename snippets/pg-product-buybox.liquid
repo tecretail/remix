@@ -490,7 +490,6 @@
               assign v_gift_text = blank
               assign v_gift_image = blank
               assign v_stock_bar = blank
-              assign v_stock_bar_image = blank
               if badge_blocks.size > 0
                 for block in badge_blocks
                   assign match_title = block.settings.variant_title | strip
@@ -564,9 +563,6 @@
               endif
               if mf_stock_label != blank
                 assign v_stock_bar = mf_stock_label
-                if v_stock_bar_image == blank and v_thumb != blank
-                  assign v_stock_bar_image = v_thumb | image_url: width: 80
-                endif
               endif
             %}
             <button
@@ -634,10 +630,7 @@
                 {% endif %}
                 {% if v_stock_bar != blank %}
                   <div class="pg-p-deal-stock-bar">
-                    {% if v_stock_bar_image != blank %}
-                      <img class="pg-p-deal-gift-img" src="{{ v_stock_bar_image }}" alt="" width="32" height="32" loading="lazy">
-                    {% endif %}
-                    <span class="pg-p-deal-gift-text">{{ v_stock_bar }}</span>
+                    <span class="pg-p-deal-stock-bar-text">{{ v_stock_bar }}</span>
                   </div>
                 {% endif %}
                 {% if v_gift_text != blank %}

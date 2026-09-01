@@ -491,14 +491,21 @@
 .pg-p-deal-stock-bar {
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
-  padding: 11px 14px !important;
-  background: #0b1a3a !important;
-  color: #fff !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  padding: 12px 16px !important;
+  background: linear-gradient(180deg, #f4f9ff 0%, #eef6f0 55%, #e8f2eb 100%) !important;
+  color: #0b5a28 !important;
   font-size: 12px !important;
   font-weight: 700 !important;
-  line-height: 1.35 !important;
-  border-top: 2px solid #054497 !important;
+  line-height: 1.4 !important;
+  border-top: 1px solid rgba(5, 68, 151, 0.12) !important;
+  text-align: center !important;
+}
+
+.pg-p-deal-stock-bar-text {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
 }
 
 .pg-p-deal-body > .pg-p-deal-desc:last-child,
