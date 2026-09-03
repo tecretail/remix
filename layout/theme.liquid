@@ -67,11 +67,25 @@
         color: var(--pg-text, #0b1a3a);
         font-size: var(--pg-body-size, 16px);
         font-family: var(--pg-font) !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         letter-spacing: 0.01em !important;
         -webkit-font-smoothing: antialiased !important;
         -moz-osx-font-smoothing: grayscale !important;
         text-rendering: optimizeLegibility !important;
+      }
+      body.pg-body,
+      body.pg-body p,
+      body.pg-body span,
+      body.pg-body a,
+      body.pg-body li,
+      body.pg-body label,
+      body.pg-body input,
+      body.pg-body select,
+      body.pg-body textarea,
+      body.pg-body .pg-buybox,
+      body.pg-body .lv-pe-root {
+        font-family: var(--pg-font) !important;
+        font-weight: 700 !important;
       }
       body.pg-body h1,
       body.pg-body h2,
@@ -86,14 +100,18 @@
       body.pg-body .pg-p-deal-title,
       body.pg-body .pg-p-deal-badge,
       body.pg-body .pg-p-deal-float,
+      body.pg-body .pg-p-deal-sub,
+      body.pg-body .pg-p-deal-stock,
       body.pg-body .pg-p-bar,
       body.pg-body .banner_special,
-      body.pg-body .guarantee {
+      body.pg-body .guarantee,
+      body.pg-body .pg-p-total-label,
+      body.pg-body .pg-p-total-save {
         font-family: var(--pg-font-display) !important;
         font-weight: 900 !important;
         letter-spacing: 0.01em !important;
       }
-      /* Numeros / precios: romano claro, mismo tamaño */
+      /* Numeros / precios: negrita maxima */
       body.pg-body .pg-p-deal-price,
       body.pg-body .pg-p-deal-compare,
       body.pg-body .pg-p-total-price,
