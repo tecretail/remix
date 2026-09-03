@@ -862,44 +862,32 @@ a.pg-p-cta--cod {
   letter-spacing: 0.02em !important;
 }
 
-/* Fila producto del resumen — card con fondo y borde */
+/* Fila producto del resumen — card premium */
 .jaldi-modal-overlay [style*="gap: 12px"],
 .jaldi-modal-overlay [style*="gap:12px"] {
-  background: #eef4fc !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f3f8ff 55%, #e8f1fc 100%) !important;
   background-color: #eef4fc !important;
-  background-image: none !important;
-  border: 1.5px solid rgba(5, 68, 151, 0.2) !important;
-  border-radius: 12px !important;
-  padding: 12px !important;
+  border: 1px solid rgba(5, 68, 151, 0.18) !important;
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
   margin-bottom: 12px !important;
-  box-shadow: 0 2px 10px rgba(5, 68, 151, 0.08) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 6px 16px rgba(5, 68, 151, 0.1) !important;
   align-items: center !important;
 }
 
-/* No pintar de azul el bloque de totales (tambien usa gap en hijos) */
-.jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#F3F4F6"] [style*="gap: 12px"],
-.jaldi-modal-overlay [style*="padding:10px 12px"][style*="#F3F4F6"] [style*="gap:12px"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.jaldi-modal-overlay [style*="gap: 12px"][style*="margin-bottom: 12px"] [style*="width: 52px"],
-.jaldi-modal-overlay [style*="gap:12px"][style*="margin-bottom:12px"] [style*="width: 52px"],
 .jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
 .jaldi-modal-overlay [style*="width:52px"][style*="height:52px"] {
-  border-radius: 10px !important;
-  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(5, 68, 151, 0.16) !important;
   background: #ffffff !important;
   background-color: #ffffff !important;
   overflow: hidden !important;
-  box-shadow: 0 1px 4px rgba(5, 68, 151, 0.08) !important;
+  box-shadow: 0 2px 8px rgba(5, 68, 151, 0.12) !important;
 }
 
-/* Totales Subtotal/Shipping/Total — card con fondo y borde */
+/* Totales Subtotal/Shipping/Total — misma card */
 .jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#F3F4F6"],
 .jaldi-modal-overlay [style*="padding:10px 12px"][style*="#F3F4F6"],
 .jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#f3f4f6"],
@@ -908,22 +896,23 @@ a.pg-p-cta--cod {
 .jaldi-modal-overlay [style*="#F3F4F6"][style*="border-radius:8px"],
 .jaldi-modal-overlay [style*="#f3f4f6"][style*="border-radius: 8px"],
 .jaldi-modal-overlay [style*="#f3f4f6"][style*="border-radius:8px"] {
-  background: linear-gradient(180deg, #f5f9ff 0%, #eef4fc 100%) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f3f8ff 55%, #e8f1fc 100%) !important;
   background-color: #eef4fc !important;
-  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
-  border-radius: 12px !important;
+  border: 1px solid rgba(5, 68, 151, 0.18) !important;
+  border-radius: 14px !important;
   padding: 12px 14px !important;
-  box-shadow: 0 2px 10px rgba(5, 68, 151, 0.06) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 6px 16px rgba(5, 68, 151, 0.1) !important;
   color: #0b1a3a !important;
 }
 
-/* Fallback resumen totals (otros nodos con #F3F4F6) */
 .jaldi-modal-overlay [style*="#F3F4F6"],
 .jaldi-modal-overlay [style*="#f3f4f6"],
 .jaldi-modal-overlay [style*="background-color: rgb(243, 244, 246)"],
 #preventify-popup [style*="#F3F4F6"],
 #preventify-embedded [style*="#F3F4F6"] {
-  background: #eef4fc !important;
+  background: linear-gradient(180deg, #ffffff 0%, #eef4fc 100%) !important;
   background-color: #eef4fc !important;
 }
 
@@ -985,14 +974,16 @@ a.pg-p-cta--cod {
   font-size: 13px !important;
   font-weight: 600 !important;
   color: #0b1a3a !important;
-  background: #f8fbff !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%) !important;
   background-color: #f8fbff !important;
-  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
-  border-radius: 10px !important;
+  border: 1px solid rgba(5, 68, 151, 0.16) !important;
+  border-radius: 12px !important;
   padding: 10px 12px !important;
   min-height: 42px !important;
   height: auto !important;
-  box-shadow: inset 0 1px 2px rgba(5, 68, 151, 0.04) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 8px rgba(5, 68, 151, 0.06) !important;
   outline: none !important;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease !important;
 }
@@ -1018,12 +1009,14 @@ a.pg-p-cta--cod {
 /* Wrapper input con icono */
 .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"],
 .jaldi-modal-overlay .jaldi-phone-wrapper {
-  border-radius: 10px !important;
-  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(5, 68, 151, 0.16) !important;
   overflow: hidden !important;
   min-height: 42px !important;
-  background: #f8fbff !important;
-  box-shadow: inset 0 1px 2px rgba(5, 68, 151, 0.04) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 8px rgba(5, 68, 151, 0.06) !important;
 }
 
 .jaldi-phone-wrapper input,

@@ -177,12 +177,12 @@
       if (cs.indexOf('gap: 12px') === -1 && cs.indexOf('gap:12px') === -1) return;
       if (cs.indexOf('width: 52px') !== -1 || cs.indexOf('width:52px') !== -1) return;
       if (el.querySelector('img') && el.querySelector('button')) {
-        el.style.setProperty('background', '#eef4fc', 'important');
+        el.style.setProperty('background', 'linear-gradient(180deg, #ffffff 0%, #f3f8ff 55%, #e8f1fc 100%)', 'important');
         el.style.setProperty('background-color', '#eef4fc', 'important');
-        el.style.setProperty('border', '1.5px solid rgba(5, 68, 151, 0.2)', 'important');
-        el.style.setProperty('border-radius', '12px', 'important');
-        el.style.setProperty('padding', '12px', 'important');
-        el.style.setProperty('box-shadow', '0 2px 10px rgba(5, 68, 151, 0.08)', 'important');
+        el.style.setProperty('border', '1px solid rgba(5, 68, 151, 0.18)', 'important');
+        el.style.setProperty('border-radius', '14px', 'important');
+        el.style.setProperty('padding', '12px 14px', 'important');
+        el.style.setProperty('box-shadow', 'inset 0 1px 0 rgba(255,255,255,0.95), 0 6px 16px rgba(5, 68, 151, 0.1)', 'important');
       }
     });
   }
