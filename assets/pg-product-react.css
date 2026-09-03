@@ -862,7 +862,50 @@ a.pg-p-cta--cod {
   letter-spacing: 0.02em !important;
 }
 
-/* Resumen totals: fondo gris #F3F4F6 → azul claro marca */
+/* Fila producto del resumen — card con fondo y borde */
+.jaldi-modal-overlay [style*="gap: 12px"][style*="margin-bottom: 12px"],
+.jaldi-modal-overlay [style*="gap:12px"][style*="margin-bottom:12px"] {
+  background: #f8fbff !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.16) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  margin-bottom: 12px !important;
+  box-shadow: 0 2px 10px rgba(5, 68, 151, 0.06) !important;
+  align-items: center !important;
+  border-bottom: 1.5px solid rgba(5, 68, 151, 0.16) !important;
+}
+
+.jaldi-modal-overlay [style*="gap: 12px"][style*="margin-bottom: 12px"] [style*="width: 52px"],
+.jaldi-modal-overlay [style*="gap:12px"][style*="margin-bottom:12px"] [style*="width: 52px"],
+.jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
+.jaldi-modal-overlay [style*="width:52px"][style*="height:52px"] {
+  border-radius: 10px !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 4px rgba(5, 68, 151, 0.08) !important;
+}
+
+/* Totales Subtotal/Shipping/Total — card con fondo y borde */
+.jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#F3F4F6"],
+.jaldi-modal-overlay [style*="padding:10px 12px"][style*="#F3F4F6"],
+.jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#f3f4f6"],
+.jaldi-modal-overlay [style*="padding:10px 12px"][style*="#f3f4f6"],
+.jaldi-modal-overlay [style*="#F3F4F6"][style*="border-radius: 8px"],
+.jaldi-modal-overlay [style*="#F3F4F6"][style*="border-radius:8px"],
+.jaldi-modal-overlay [style*="#f3f4f6"][style*="border-radius: 8px"],
+.jaldi-modal-overlay [style*="#f3f4f6"][style*="border-radius:8px"] {
+  background: linear-gradient(180deg, #f5f9ff 0%, #eef4fc 100%) !important;
+  background-color: #eef4fc !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 2px 10px rgba(5, 68, 151, 0.06) !important;
+  color: #0b1a3a !important;
+}
+
+/* Fallback resumen totals (otros nodos con #F3F4F6) */
 .jaldi-modal-overlay [style*="#F3F4F6"],
 .jaldi-modal-overlay [style*="#f3f4f6"],
 .jaldi-modal-overlay [style*="background-color: rgb(243, 244, 246)"],
