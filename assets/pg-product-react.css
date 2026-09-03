@@ -881,38 +881,42 @@ a.pg-p-cta--cod {
   border-radius: 12px !important;
 }
 
-/* Filas / labels */
+/* Filas / labels — layout más limpio */
 .jaldi-field-row {
-  gap: 8px !important;
-  margin-bottom: 8px !important;
+  gap: 10px !important;
+  margin-bottom: 12px !important;
   align-items: center !important;
 }
 
 .jaldi-field-label {
   color: #0b1a3a !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
   font-size: 12px !important;
-  line-height: 1.25 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.01em !important;
 }
 
-/* Prefijo icono gris #E9ECEF → azul claro, más compacto */
+/* Prefijo icono → azul marca, más fino */
 .jaldi-modal-overlay [style*="#E9ECEF"],
 .jaldi-modal-overlay [style*="#e9ecef"],
 .jaldi-modal-overlay [style*="background-color: rgb(233, 236, 239)"] {
-  background: #eef4fc !important;
+  background: linear-gradient(180deg, #f5f9ff 0%, #e8f0fb 100%) !important;
   background-color: #eef4fc !important;
-  border-right-color: rgba(5, 68, 151, 0.18) !important;
-  padding: 0 8px !important;
+  border-right: 1px solid rgba(5, 68, 151, 0.16) !important;
+  padding: 0 10px !important;
+  min-width: 38px !important;
 }
 
 .jaldi-modal-overlay [style*="#E9ECEF"] svg,
 .jaldi-modal-overlay [style*="#e9ecef"] svg {
-  width: 15px !important;
-  height: 15px !important;
+  width: 14px !important;
+  height: 14px !important;
   fill: #054497 !important;
+  color: #054497 !important;
+  stroke: #054497 !important;
 }
 
-/* Inputs */
+/* Inputs — estilo unificado ProstaGenix */
 .jaldi-modal-overlay input,
 .jaldi-modal-overlay select,
 .jaldi-modal-overlay textarea,
@@ -924,17 +928,24 @@ a.pg-p-cta--cod {
 #preventify-embedded textarea {
   font-family: Montserrat, system-ui, sans-serif !important;
   font-size: 13px !important;
+  font-weight: 600 !important;
   color: #0b1a3a !important;
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  border-color: rgba(5, 68, 151, 0.22) !important;
-  border-radius: 8px !important;
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
-  min-height: 36px !important;
+  background: #f8fbff !important;
+  background-color: #f8fbff !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  min-height: 42px !important;
   height: auto !important;
-  box-shadow: none !important;
+  box-shadow: inset 0 1px 2px rgba(5, 68, 151, 0.04) !important;
   outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease !important;
+}
+
+.jaldi-modal-overlay input::placeholder,
+.jaldi-modal-overlay textarea::placeholder {
+  color: #8a9bb5 !important;
+  font-weight: 500 !important;
 }
 
 .jaldi-modal-overlay input:focus,
@@ -942,44 +953,56 @@ a.pg-p-cta--cod {
 .jaldi-modal-overlay textarea:focus,
 #preventify-popup input:focus,
 #preventify-embedded input:focus {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
   border-color: #054497 !important;
-  box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.14) !important;
   outline: none !important;
 }
 
-/* Wrapper input con borde (F style) */
+/* Wrapper input con icono */
 .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"],
 .jaldi-modal-overlay .jaldi-phone-wrapper {
-  border-radius: 8px !important;
-  border-color: rgba(5, 68, 151, 0.22) !important;
+  border-radius: 10px !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.18) !important;
   overflow: hidden !important;
-  min-height: 36px !important;
+  min-height: 42px !important;
+  background: #f8fbff !important;
+  box-shadow: inset 0 1px 2px rgba(5, 68, 151, 0.04) !important;
 }
 
-.jaldi-phone-wrapper input {
+.jaldi-phone-wrapper input,
+.jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"] input {
   border: 0 !important;
   box-shadow: none !important;
-  min-height: 34px !important;
-  padding-top: 7px !important;
-  padding-bottom: 7px !important;
+  min-height: 40px !important;
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
 }
 
 .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"]:focus-within,
 .jaldi-phone-wrapper:focus-within {
   border-color: #054497 !important;
-  box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.15) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.14) !important;
 }
 
 .jaldi-modal-overlay input[type="checkbox"],
 #preventify-popup input[type="checkbox"] {
-  width: 15px !important;
-  height: 15px !important;
-  min-height: 15px !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-height: 16px !important;
   padding: 0 !important;
   accent-color: #054497 !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.35) !important;
+  border-radius: 4px !important;
+  background: #fff !important;
 }
 
-/* CTA HACER PEDIDO — verde marca, menos alto (override neon inline) */
+/* CTA HACER PEDIDO — mismo estilo que botón COD principal (no sólido) */
 .jaldi-modal-overlay button[type="button"][style*="width: 100%"],
 .jaldi-modal-overlay button[type="button"][style*="width:100%"],
 .jaldi-modal-overlay button[type="submit"],
@@ -993,40 +1016,53 @@ a.pg-p-cta--cod {
 #preventify-embedded button[type="button"][style*="width:100%"],
 #preventify-embedded button[type="submit"] {
   width: 100% !important;
-  min-height: 44px !important;
+  min-height: 52px !important;
   height: auto !important;
-  padding: 10px 14px !important;
-  background: linear-gradient(180deg, #2fdc5a 0%, #1f9e3f 55%, #178a34 100%) !important;
-  background-color: #1f9e3f !important;
-  color: #ffffff !important;
-  border: 2px solid #39e85a !important;
-  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  box-sizing: border-box !important;
+  background: linear-gradient(180deg, #ffffff 0%, #edfff1 45%, #d8f9de 100%) !important;
+  background-color: #edfff1 !important;
+  color: #158a2e !important;
+  border: 3px solid #39e85a !important;
+  outline: 2px solid rgba(57, 255, 120, 0.35) !important;
+  outline-offset: 0 !important;
+  border-radius: 14px !important;
   font-family: Montserrat, system-ui, sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.04em !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.65px !important;
   text-transform: uppercase !important;
+  text-shadow:
+    0 0 6px rgba(57, 255, 120, 0.45),
+    0 0 12px rgba(47, 200, 80, 0.2) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    0 6px 16px rgba(31, 158, 63, 0.28) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2px 0 rgba(47, 158, 68, 0.12),
+    0 0 8px rgba(57, 255, 120, 0.35),
+    0 0 18px rgba(47, 220, 90, 0.25),
+    0 4px 14px rgba(5, 68, 151, 0.1) !important;
   opacity: 1 !important;
   cursor: pointer !important;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease !important;
 }
 
 /* Botones chicos dentro de filas (cupón, etc.) — no CTA */
 .jaldi-modal-overlay .jaldi-field-row button,
 #preventify-popup .jaldi-field-row button {
   width: auto !important;
-  min-height: 36px !important;
-  padding: 7px 12px !important;
+  min-height: 38px !important;
+  padding: 8px 14px !important;
   background: #054497 !important;
   background-color: #054497 !important;
+  color: #ffffff !important;
   border: 1px solid #054497 !important;
-  border-radius: 8px !important;
+  outline: none !important;
+  border-radius: 10px !important;
   font-size: 12px !important;
   font-weight: 700 !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
+  text-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -1034,8 +1070,15 @@ a.pg-p-cta--cod {
 .jaldi-modal-overlay button[type="button"][style*="width:100%"]:hover:not(:disabled),
 .jaldi-modal-overlay button[type="submit"]:hover:not(:disabled) {
   opacity: 1 !important;
-  filter: brightness(1.04) !important;
+  filter: none !important;
   transform: translateY(-1px) !important;
+  border-color: #5dff7a !important;
+  color: #0d6b22 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(57, 255, 120, 0.5),
+    0 0 22px rgba(47, 220, 90, 0.35),
+    0 8px 18px rgba(47, 158, 68, 0.18) !important;
 }
 
 @media (max-width: 640px) {
@@ -1054,9 +1097,9 @@ a.pg-p-cta--cod {
 
   .jaldi-modal-overlay button[type="button"][style*="width:100%"],
   .jaldi-modal-overlay button[type="button"][style*="width: 100%"] {
-    min-height: 42px !important;
-    padding: 10px 12px !important;
-    font-size: 12px !important;
+    min-height: 48px !important;
+    padding: 11px 14px !important;
+    font-size: 13px !important;
   }
 }
 
