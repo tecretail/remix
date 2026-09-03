@@ -401,18 +401,18 @@
         '.jaldi-modal-overlay .jaldi-button-shake,',
         '.jaldi-modal-overlay button{animation:none!important;transform:none!important}',
         '@keyframes pg-cod-neon-pulse{',
-        '0%,100%{box-shadow:0 0 0 3px rgba(57,232,90,.22),0 0 10px rgba(57,255,120,.3),0 4px 12px rgba(5,68,151,.08);border-color:#39e85a}',
-        '50%{box-shadow:0 0 0 4px rgba(57,232,90,.38),0 0 18px rgba(57,255,120,.55),0 6px 16px rgba(47,158,68,.18);border-color:#5dff7a}',
+        '0%,100%{box-shadow:0 0 0 3px rgba(57,232,90,.28),0 0 12px rgba(57,255,120,.4),0 4px 14px rgba(5,68,151,.1);border-color:#39e85a}',
+        '50%{box-shadow:0 0 0 6px rgba(57,232,90,.5),0 0 28px rgba(57,255,120,.85),0 8px 20px rgba(47,158,68,.28);border-color:#7dff95}',
         '}',
         '.pg-cod-bounce-wrap{',
         'display:block!important;width:100%!important;max-width:100%!important;',
-        'overflow:visible!important;padding:14px 0 10px!important;box-sizing:border-box!important;',
+        'overflow:visible!important;padding:16px 0 12px!important;box-sizing:border-box!important;',
         'will-change:transform!important;',
         '}',
         '.pg-preventify-host,.pg-preventify-host .quick-add{overflow:visible!important}',
         '.pg-cod-bounce-wrap > button,',
         '.pg-cod-bounce-wrap > [role="button"]{',
-        'animation:pg-cod-neon-pulse 1.6s ease-in-out infinite!important;',
+        'animation:pg-cod-neon-pulse 1.2s ease-in-out infinite!important;',
         'width:100%!important',
         '}'
       ].join('');
@@ -459,7 +459,7 @@
         wrap.style.setProperty('overflow', 'visible', 'important');
         wrap.style.setProperty('width', '100%', 'important');
         wrap.style.setProperty('will-change', 'transform', 'important');
-        btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.6s ease-in-out infinite', 'important');
+        btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.2s ease-in-out infinite', 'important');
         btn.style.setProperty('width', '100%', 'important');
       });
       document.querySelectorAll('.pg-preventify-host, .pg-preventify-host .quick-add').forEach(function (host) {
@@ -473,12 +473,12 @@
       var pgCodT0 = performance.now();
       function pgCodRafTick(now) {
         /* Ciclo largo y fluido: sube y baja con ease, sin pausas secas */
-        var period = 1600;
+        var period = 1200;
         var t = ((now - pgCodT0) % period) / period;
-        /* seno suave: 0 → -8px → 0 → -4px → 0 */
+        /* seno más marcado: movimiento llamativo pero suave */
         var wave = Math.sin(t * Math.PI * 2);
         var wave2 = Math.sin(t * Math.PI * 4);
-        var y = wave * -7 - wave2 * 1.5;
+        var y = wave * -11 - wave2 * 2.2;
         document.querySelectorAll('.pg-cod-bounce-wrap').forEach(function (wrap) {
           wrap.style.setProperty('transform', 'translate3d(0,' + y.toFixed(2) + 'px,0)', 'important');
           wrap.style.setProperty('transition', 'none', 'important');
