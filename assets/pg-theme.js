@@ -271,6 +271,45 @@
     });
   }
 
+  function lockHorizontalOverflow() {
+    document.documentElement.style.setProperty("overflow-x", "clip", "important");
+    document.body.style.setProperty("overflow-x", "clip", "important");
+    document.body.style.setProperty("max-width", "100%", "important");
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+    if (window.scrollX) window.scrollTo(0, window.scrollY);
+
+    var nodes = document.querySelectorAll(
+      ".shopify-section, .pg-sec-style, .banner_special, .body_full, .body_full_nomar, .lv-announce, .pg-brand-slider-wrap, .pg-buybox, .clock, .counter"
+    );
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      el.style.setProperty("max-width", "100%", "important");
+      el.style.setProperty("min-width", "0", "important");
+      el.style.setProperty("box-sizing", "border-box", "important");
+      if (el.classList.contains("lv-announce") || el.classList.contains("pg-brand-slider-wrap") || el.classList.contains("banner_special")) {
+        el.style.setProperty("overflow-x", "clip", "important");
+      }
+    }
+
+    /* Si algo sigue ensanchando el documento, forzar clip en el culpable */
+    if (document.documentElement.scrollWidth > document.documentElement.clientWidth + 2) {
+      var all = document.body.getElementsByTagName("*");
+      var vw = document.documentElement.clientWidth;
+      for (var j = 0; j < all.length; j++) {
+        var n = all[j];
+        if (!n.getBoundingClientRect) continue;
+        var r = n.getBoundingClientRect();
+        if (r.width > vw + 8 && r.left < 2) {
+          n.style.setProperty("max-width", "100%", "important");
+          n.style.setProperty("overflow-x", "clip", "important");
+        }
+      }
+      document.documentElement.scrollLeft = 0;
+      document.body.scrollLeft = 0;
+    }
+  }
+
   function init() {
     setupYear();
     setupWhatsApp();
@@ -280,6 +319,10 @@
     setupCheckoutButtons();
     tickHeroCounters();
     tickPgCountdowns();
+    lockHorizontalOverflow();
+    setTimeout(lockHorizontalOverflow, 300);
+    setTimeout(lockHorizontalOverflow, 1200);
+    window.addEventListener("resize", lockHorizontalOverflow);
     if (designMode) return;
     setInterval(function () {
       tickHeroCounters();

@@ -1570,26 +1570,31 @@
   box-sizing: border-box;
   line-height: 1;
   display: block;
-  white-space: nowrap;
-  min-height: 36px;
+  height: 36px;
   isolation: isolate;
 }
+.lv-announce-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  height: 36px;
+  animation: lv-marquee 28s linear infinite;
+  will-change: transform;
+}
 .lv-announce-track {
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-around;
   gap: 0;
-  min-width: 100%;
+  flex: 0 0 auto;
   width: max-content;
-  max-width: none;
-  white-space: nowrap;
   height: 36px;
   margin: 0;
   padding: 0;
-  vertical-align: top;
-  animation: lv-marquee 28s linear infinite;
-  will-change: transform;
+  white-space: nowrap;
 }
 .lv-announce-item {
   padding: 0 20px;
@@ -1607,12 +1612,13 @@
 }
 @keyframes lv-marquee {
   from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-100%, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lv-announce-track {
+  .lv-announce-rail {
     animation: none;
     transform: none;
+    position: relative;
   }
   .lv-announce-track[aria-hidden="true"] {
     display: none;
@@ -1620,8 +1626,8 @@
 }
 @media (max-width: 760px) {
   .lv-announce,
+  .lv-announce-rail,
   .lv-announce-track {
-    min-height: 34px;
     height: 34px;
   }
   .lv-announce {
