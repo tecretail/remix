@@ -395,46 +395,97 @@
     if (!document.getElementById('pg-cod-anim-kill')) {
       var st = document.createElement('style');
       st.id = 'pg-cod-anim-kill';
-      /* Solo apaga animación DENTRO del popup — no el botón COD de la página */
       st.textContent = [
         '.jaldi-modal-overlay .jaldi-button-pulse,',
         '.jaldi-modal-overlay .jaldi-button-bounce,',
         '.jaldi-modal-overlay .jaldi-button-shake,',
         '.jaldi-modal-overlay button{animation:none!important;transform:none!important}',
-        '@keyframes pg-cod-neon-pulse{0%,100%{border-color:#39e85a;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 3px rgba(57,232,90,.22),0 0 10px rgba(57,255,120,.4),0 0 22px rgba(47,220,90,.28),0 4px 14px rgba(5,68,151,.1)}50%{border-color:#5dff7a;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 0 0 5px rgba(57,232,90,.4),0 0 18px rgba(57,255,120,.75),0 0 36px rgba(47,220,90,.5),0 6px 18px rgba(47,158,68,.22)}}',
-        '@keyframes pg-cod-bounce{0%,100%{transform:translateY(0)}15%{transform:translateY(-7px)}30%{transform:translateY(0)}45%{transform:translateY(-4px)}60%{transform:translateY(0)}75%{transform:translateY(-2px)}90%,100%{transform:translateY(0)}}',
-        '@keyframes pg-cod-shine{0%{background-position:200% 0,0 0}100%{background-position:-200% 0,0 0}}',
-        '.pg-preventify-host button,',
-        '.pg-preventify-host [role="button"],',
-        '.pg-preventify-host a[role="button"],',
-        '.pg-preventify-host .jaldi-button-pulse,',
-        '.pg-preventify-host .jaldi-button-bounce,',
-        '.pg-preventify-host .jaldi-button-shake{',
-        'animation:pg-cod-neon-pulse 1.8s ease-in-out infinite,pg-cod-bounce 2s ease-in-out infinite,pg-cod-shine 2.6s linear infinite!important;',
-        'will-change:transform,box-shadow,background-position!important}',
-        '.pg-preventify-host{overflow:visible!important;padding-top:12px!important;padding-bottom:8px!important}'
+        '.pg-cod-bounce-wrap{',
+        'display:block!important;width:100%!important;max-width:100%!important;',
+        'overflow:visible!important;padding:12px 0 8px!important;box-sizing:border-box!important;',
+        'will-change:transform!important;transform:translateZ(0);',
+        '}',
+        '.pg-preventify-host,.pg-preventify-host .quick-add{overflow:visible!important}',
+        '.pg-cod-bounce-wrap > button,',
+        '.pg-cod-bounce-wrap > [role="button"]{',
+        'animation:pg-cod-neon-pulse 1.4s ease-in-out infinite!important;',
+        'width:100%!important',
+        '}'
       ].join('');
       document.head.appendChild(st);
     }
 
-    function pgAnimateCodButton() {
-      document.querySelectorAll('.pg-preventify-host button, .pg-preventify-host [role="button"]').forEach(function (btn) {
-        if (btn.closest('.jaldi-modal-overlay')) return;
-        btn.style.removeProperty('transform');
-        btn.style.setProperty(
-          'animation',
-          'pg-cod-neon-pulse 1.6s ease-in-out infinite, pg-cod-bounce 1.6s ease-in-out infinite, pg-cod-shine 2.4s linear infinite',
-          'important'
-        );
-        btn.style.setProperty('will-change', 'transform, box-shadow, background-position', 'important');
+    function pgFindCodButtons() {
+      var list = [];
+      var seen = {};
+      function add(el) {
+        if (!el || seen[el]) return;
+        if (el.closest && el.closest('.jaldi-modal-overlay')) return;
+        seen[el] = 1;
+        list.push(el);
+      }
+      document.querySelectorAll('.pg-preventify-host button, .pg-preventify-host [role="button"]').forEach(add);
+      document.querySelectorAll('button.jaldi-button-pulse, button.jaldi-button-bounce, button.jaldi-button-shake').forEach(add);
+      document.querySelectorAll('button, [role="button"]').forEach(function (el) {
+        var t = (el.textContent || '').replace(/\s+/g, ' ').toUpperCase();
+        if (t.indexOf('REALIZA TU PEDIDO') !== -1 || t.indexOf('HACER PEDIDO') !== -1) add(el);
       });
-      document.querySelectorAll('.pg-preventify-host').forEach(function (host) {
+      return list;
+    }
+
+    function pgEnsureBounceWrap(btn) {
+      if (btn.parentElement && btn.parentElement.classList.contains('pg-cod-bounce-wrap')) {
+        return btn.parentElement;
+      }
+      var wrap = document.createElement('div');
+      wrap.className = 'pg-cod-bounce-wrap';
+      wrap.setAttribute('data-pg-cod-bounce', '1');
+      if (btn.parentNode) {
+        btn.parentNode.insertBefore(wrap, btn);
+        wrap.appendChild(btn);
+      }
+      return wrap;
+    }
+
+    function pgAnimateCodButton() {
+      var btns = pgFindCodButtons();
+      btns.forEach(function (btn) {
+        var wrap = pgEnsureBounceWrap(btn);
+        wrap.style.setProperty('display', 'block', 'important');
+        wrap.style.setProperty('overflow', 'visible', 'important');
+        wrap.style.setProperty('width', '100%', 'important');
+        wrap.style.setProperty('will-change', 'transform', 'important');
+        btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.4s ease-in-out infinite', 'important');
+        btn.style.setProperty('width', '100%', 'important');
+      });
+      document.querySelectorAll('.pg-preventify-host, .pg-preventify-host .quick-add').forEach(function (host) {
         host.style.setProperty('overflow', 'visible', 'important');
       });
     }
+
+    /* Movimiento por JS (no depende de CSS transform del boton) */
+    if (!window.__pgCodRafBounce) {
+      window.__pgCodRafBounce = true;
+      var pgCodT0 = performance.now();
+      function pgCodRafTick(now) {
+        var t = ((now - pgCodT0) % 1400) / 1400;
+        var y = 0;
+        if (t < 0.25) y = -10 * Math.sin((t / 0.25) * Math.PI);
+        else if (t < 0.5) y = 0;
+        else if (t < 0.75) y = -6 * Math.sin(((t - 0.5) / 0.25) * Math.PI);
+        else y = 0;
+        document.querySelectorAll('.pg-cod-bounce-wrap').forEach(function (wrap) {
+          wrap.style.setProperty('transform', 'translate3d(0,' + y.toFixed(2) + 'px,0)', 'important');
+        });
+        requestAnimationFrame(pgCodRafTick);
+      }
+      requestAnimationFrame(pgCodRafTick);
+    }
+
     pgAnimateCodButton();
-    setTimeout(pgAnimateCodButton, 400);
-    setTimeout(pgAnimateCodButton, 1400);
-    setInterval(pgAnimateCodButton, 2000);
+    setTimeout(pgAnimateCodButton, 500);
+    setTimeout(pgAnimateCodButton, 1500);
+    setTimeout(pgAnimateCodButton, 3000);
+    setInterval(pgAnimateCodButton, 2500);
   }
 })();
