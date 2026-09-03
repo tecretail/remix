@@ -1189,10 +1189,10 @@ a.pg-p-cta--cod {
 .jaldi-modal-overlay button[type="button"][style*="width:100%"][style*="display:flex"]:not(.jaldi-button-pulse):not(.jaldi-button-bounce):not(.jaldi-button-shake):not([type="submit"]),
 .jaldi-modal-overlay button[type="button"][style*="width: 100%"][style*="display:flex"]:not(.jaldi-button-pulse):not(.jaldi-button-bounce):not(.jaldi-button-shake):not([type="submit"]),
 .jaldi-modal-overlay button[type="button"][style*="width:100%"][style*="display: flex"]:not(.jaldi-button-pulse):not(.jaldi-button-bounce):not(.jaldi-button-shake):not([type="submit"]) {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
+  background: #eef3fb !important;
+  background-color: #eef3fb !important;
   color: #0b1a3a !important;
-  border: 1px solid #e5e7eb !important;
+  border: 1px solid #c5d4ea !important;
   outline: none !important;
   box-shadow: none !important;
   text-shadow: none !important;

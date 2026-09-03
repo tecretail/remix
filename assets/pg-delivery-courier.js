@@ -266,9 +266,11 @@
         btn.style.setProperty('transform', 'none', 'important');
         btn.style.setProperty('outline', 'none', 'important');
         btn.style.setProperty('box-shadow', 'none', 'important');
-        btn.style.setProperty('background', '#ffffff', 'important');
-        btn.style.setProperty('border', '1px solid #e5e7eb', 'important');
+        btn.style.setProperty('background', '#eef3fb', 'important');
+        btn.style.setProperty('background-color', '#eef3fb', 'important');
+        btn.style.setProperty('border', '1px solid #c5d4ea', 'important');
         btn.style.setProperty('border-radius', '12px', 'important');
+        btn.style.setProperty('color', '#0b1a3a', 'important');
         btn.style.setProperty('width', '100%', 'important');
         return;
       }
