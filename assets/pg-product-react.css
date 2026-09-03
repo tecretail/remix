@@ -714,25 +714,19 @@ a.pg-p-cta--cod {
 
 @keyframes pg-cod-bounce {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
-  15% {
-    transform: translateY(-6px);
+  20% {
+    transform: translate3d(0, -8px, 0);
   }
-  30% {
-    transform: translateY(0);
-  }
-  45% {
-    transform: translateY(-4px);
+  40% {
+    transform: translate3d(0, 0, 0);
   }
   60% {
-    transform: translateY(0);
+    transform: translate3d(0, -5px, 0);
   }
-  75% {
-    transform: translateY(-2px);
-  }
-  90%, 100% {
-    transform: translateY(0);
+  80% {
+    transform: translate3d(0, 0, 0);
   }
 }
 

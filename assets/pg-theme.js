@@ -284,7 +284,7 @@
     if (window.scrollX) window.scrollTo(0, window.scrollY);
 
     var nodes = document.querySelectorAll(
-      ".shopify-section, .pg-sec-style, .banner_special, .body_full, .body_full_nomar, .lv-announce, .pg-brand-slider-wrap, .pg-buybox, .pg-preventify-host, .clock, .counter, .lv-preview-embed-wrap"
+      ".shopify-section, .pg-sec-style, .banner_special, .body_full, .body_full_nomar, .lv-announce, .pg-brand-slider-wrap, .pg-buybox, .clock, .counter, .lv-preview-embed-wrap"
     );
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
@@ -294,11 +294,17 @@
       el.style.setProperty("overflow-x", "hidden", "important");
     }
 
-    /* Quitar outline que ensancha el scroll en iOS */
+    /* Solo quitar outline (ensancha iOS). NO tocar transform: mata la animacion del boton COD */
     var glowBtns = document.querySelectorAll(".pg-preventify-host button, .pg-preventify-host [role='button'], .jaldi-modal-overlay button.jaldi-button-pulse, .jaldi-modal-overlay button.jaldi-button-bounce, .jaldi-modal-overlay button.jaldi-button-shake");
     for (var b = 0; b < glowBtns.length; b++) {
       glowBtns[b].style.setProperty("outline", "none", "important");
-      glowBtns[b].style.setProperty("transform", "none", "important");
+      glowBtns[b].style.removeProperty("transform");
+    }
+
+    var codHost = document.querySelectorAll(".pg-preventify-host");
+    for (var h = 0; h < codHost.length; h++) {
+      codHost[h].style.setProperty("overflow", "visible", "important");
+      codHost[h].style.setProperty("max-width", "100%", "important");
     }
 
     if (html.scrollWidth > html.clientWidth + 1) {

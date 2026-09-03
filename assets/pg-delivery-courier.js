@@ -420,16 +420,21 @@
     function pgAnimateCodButton() {
       document.querySelectorAll('.pg-preventify-host button, .pg-preventify-host [role="button"]').forEach(function (btn) {
         if (btn.closest('.jaldi-modal-overlay')) return;
+        btn.style.removeProperty('transform');
         btn.style.setProperty(
           'animation',
-          'pg-cod-neon-pulse 1.8s ease-in-out infinite, pg-cod-bounce 2s ease-in-out infinite, pg-cod-shine 2.6s linear infinite',
+          'pg-cod-neon-pulse 1.6s ease-in-out infinite, pg-cod-bounce 1.6s ease-in-out infinite, pg-cod-shine 2.4s linear infinite',
           'important'
         );
-        btn.style.removeProperty('transform');
         btn.style.setProperty('will-change', 'transform, box-shadow, background-position', 'important');
+      });
+      document.querySelectorAll('.pg-preventify-host').forEach(function (host) {
+        host.style.setProperty('overflow', 'visible', 'important');
       });
     }
     pgAnimateCodButton();
-    setInterval(pgAnimateCodButton, 1500);
+    setTimeout(pgAnimateCodButton, 400);
+    setTimeout(pgAnimateCodButton, 1400);
+    setInterval(pgAnimateCodButton, 2000);
   }
 })();
