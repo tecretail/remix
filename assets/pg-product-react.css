@@ -134,11 +134,17 @@
 .lv-pe-h1,
 .pg-p-h1 {
   font-size: 34px !important;
-  line-height: 1.2 !important;
+  line-height: 1.25 !important;
   font-weight: 900 !important;
-  margin: 10px 0 28px !important;
-  color: #0b1a3a !important;
-  font-family: "Montserrat", system-ui, sans-serif !important;
+  margin: 10px 0 22px !important;
+  color: #054497 !important;
+  font-family: "Frank Ruhl Libre", "Times New Roman", Times, serif !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  position: relative !important;
+  padding-bottom: 12px !important;
+  border-bottom: 2px solid rgba(5, 68, 151, 0.18) !important;
+  text-shadow: none !important;
 }
 
 .pg-p-col-buy {
