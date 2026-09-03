@@ -198,16 +198,46 @@
     }
     overlay.querySelectorAll('button').forEach(function (btn) {
       var st = btn.getAttribute('style') || '';
-      var isRemove = st.indexOf('border-radius: 50%') !== -1 || st.indexOf('border-radius:50%') !== -1 ||
-        (btn.textContent || '').trim() === '\u00d7';
+      var txt = (btn.textContent || '').trim();
+      var inProductRow = !!(btn.closest('[style*="gap: 12px"], [style*="gap:12px"]') &&
+        btn.closest('[style*="gap: 12px"], [style*="gap:12px"]').querySelector('img'));
+      var isRound = st.indexOf('border-radius: 50%') !== -1 || st.indexOf('border-radius:50%') !== -1 ||
+        txt === '\u00d7' || txt === '×' || txt.toLowerCase() === 'x';
+      var isRemove = isRound && inProductRow;
+      var isClose = isRound && !inProductRow;
       var isCta = btn.classList.contains('jaldi-button-pulse') ||
         btn.classList.contains('jaldi-button-bounce') ||
         btn.classList.contains('jaldi-button-shake') ||
         btn.type === 'submit' ||
-        /hacer\s*pedido|pedido/i.test((btn.textContent || '').trim());
-      var isAccordion = !isCta && !isRemove &&
+        /hacer\s*pedido/i.test(txt);
+      var isAccordion = !isCta && !isRemove && !isClose &&
         (st.indexOf('width: 100%') !== -1 || st.indexOf('width:100%') !== -1) &&
         (st.indexOf('display: flex') !== -1 || st.indexOf('display:flex') !== -1);
+
+      if (isClose) {
+        btn.style.setProperty('width', '28px', 'important');
+        btn.style.setProperty('height', '28px', 'important');
+        btn.style.setProperty('min-width', '28px', 'important');
+        btn.style.setProperty('min-height', '28px', 'important');
+        btn.style.setProperty('max-width', '28px', 'important');
+        btn.style.setProperty('padding', '0', 'important');
+        btn.style.setProperty('border-radius', '50%', 'important');
+        btn.style.setProperty('background', '#054497', 'important');
+        btn.style.setProperty('color', '#fff', 'important');
+        btn.style.setProperty('border', '2px solid #ffffff', 'important');
+        btn.style.setProperty('outline', 'none', 'important');
+        btn.style.setProperty('box-shadow', '0 2px 8px rgba(5,68,151,0.25)', 'important');
+        btn.style.setProperty('animation', 'none', 'important');
+        btn.style.setProperty('transform', 'none', 'important');
+        btn.style.setProperty('position', 'absolute', 'important');
+        btn.style.setProperty('top', '12px', 'important');
+        btn.style.setProperty('right', '12px', 'important');
+        btn.style.setProperty('z-index', '5', 'important');
+        btn.style.setProperty('display', 'inline-flex', 'important');
+        btn.style.setProperty('align-items', 'center', 'important');
+        btn.style.setProperty('justify-content', 'center', 'important');
+        return;
+      }
 
       if (isRemove) {
         btn.style.setProperty('width', '22px', 'important');
@@ -319,13 +349,20 @@
     });
 
     overlay.querySelectorAll('h3').forEach(function (h) {
-      h.style.setProperty('color', '#0b1a3a', 'important');
+      h.style.setProperty('color', '#054497', 'important');
       h.style.setProperty('font-weight', '800', 'important');
       h.style.setProperty('font-size', mobile ? '13px' : '14px', 'important');
-      h.style.setProperty('letter-spacing', mobile ? '0.04em' : '0.08em', 'important');
+      h.style.setProperty('letter-spacing', mobile ? '0.05em' : '0.08em', 'important');
       h.style.setProperty('text-transform', 'uppercase', 'important');
       h.style.setProperty('text-align', 'center', 'important');
-      h.style.setProperty('margin-bottom', mobile ? '12px' : '18px', 'important');
+      h.style.setProperty('margin', mobile ? '6px 8px 12px' : '8px 12px 16px', 'important');
+      h.style.setProperty('padding', mobile ? '11px 36px 11px 14px' : '12px 40px 12px 16px', 'important');
+      h.style.setProperty('background', '#eef3fb', 'important');
+      h.style.setProperty('background-color', '#eef3fb', 'important');
+      h.style.setProperty('border', '1px solid #c5d4ea', 'important');
+      h.style.setProperty('border-radius', '10px', 'important');
+      h.style.setProperty('box-shadow', 'none', 'important');
+      h.style.setProperty('line-height', '1.35', 'important');
     });
 
     if (mobile) {
