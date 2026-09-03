@@ -697,15 +697,17 @@
           <script src="{{ 'pg-delivery-courier.js' | asset_url }}" defer></script>
         {% endif %}
 
-        <div class="pg-p-total-row">
-          <span style="color:#666;">{{ total_label }}</span>
-          <div style="white-space:nowrap;">
-            <span data-pg-total-compare style="color:#888;text-decoration:line-through;margin-right:10px;">S/ {{ first_compare | money_without_currency | strip | replace: ',', '.' }}</span>
-            <span data-pg-total-price style="font-weight:900;font-size:28px;color:#0b1a3a;">S/ {{ first_price | money_without_currency | strip | replace: ',', '.' }}</span>
+        <div class="pg-p-total-box">
+          <div class="pg-p-total-row">
+            <span class="pg-p-total-label">{{ total_label }}</span>
+            <div class="pg-p-total-amounts">
+              <span data-pg-total-compare class="pg-p-total-compare">S/ {{ first_compare | money_without_currency | strip | replace: ',', '.' }}</span>
+              <span data-pg-total-price class="pg-p-total-price">S/ {{ first_price | money_without_currency | strip | replace: ',', '.' }}</span>
+            </div>
           </div>
-        </div>
-        <div class="pg-p-total-save">
-          {{ save_label }} <span data-pg-total-save>S/ {{ first_compare | minus: first_price | money_without_currency | strip | replace: ',', '.' }}</span>
+          <div class="pg-p-total-save">
+            {{ save_label }} <span data-pg-total-save>S/ {{ first_compare | minus: first_price | money_without_currency | strip | replace: ',', '.' }}</span>
+          </div>
         </div>
 
         {%- comment -%}
