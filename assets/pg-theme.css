@@ -1102,6 +1102,16 @@ body.pg-body {
     width: 100% !important;
     max-width: 100% !important;
   }
+  .banner_special,
+  .lv-announce,
+  .shopify-section.pg-section-hero,
+  .pg-section-hero .pg-sec-style {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
   #MainContent,
   .shopify-section,
   .shopify-section.pg-section-hero,

@@ -169,9 +169,7 @@
 
   window.pgCourierInitAll = pgCourierInitAll;
 
-  function pgStyleCodProductRows() {
-    var overlay = document.querySelector('.jaldi-modal-overlay');
-    if (!overlay) return;
+  function pgLockCodOverlay(overlay) {
     var mobile = window.matchMedia('(max-width: 900px)').matches;
     overlay.style.setProperty('left', '0', 'important');
     overlay.style.setProperty('right', '0', 'important');
@@ -179,25 +177,41 @@
     overlay.style.setProperty('bottom', '0', 'important');
     overlay.style.setProperty('width', '100%', 'important');
     overlay.style.setProperty('max-width', '100%', 'important');
+    overlay.style.setProperty('height', '100%', 'important');
+    overlay.style.setProperty('max-height', 'none', 'important');
     overlay.style.setProperty('box-sizing', 'border-box', 'important');
     overlay.style.setProperty('padding', mobile ? '0' : '16px', 'important');
-    overlay.style.setProperty('overflow-x', 'hidden', 'important');
+    overlay.style.setProperty('overflow', 'hidden', 'important');
+    overlay.style.setProperty('transform', 'none', 'important');
     var box = overlay.firstElementChild;
     if (box) {
       box.style.setProperty('width', '100%', 'important');
       box.style.setProperty('max-width', mobile ? '100%' : '520px', 'important');
       box.style.setProperty('margin', mobile ? '0' : 'auto', 'important');
       box.style.setProperty('box-sizing', 'border-box', 'important');
+      box.style.setProperty('transform', 'none', 'important');
       if (mobile) {
         box.style.setProperty('height', '100%', 'important');
-        box.style.setProperty('max-height', '100dvh', 'important');
+        box.style.setProperty('max-height', 'none', 'important');
         box.style.setProperty('border-radius', '0', 'important');
       }
     }
-    overlay.querySelectorAll('.jaldi-button-pulse, .jaldi-button-bounce, .jaldi-button-shake').forEach(function (btn) {
+    overlay.querySelectorAll('button').forEach(function (btn) {
+      btn.classList.remove('jaldi-button-pulse', 'jaldi-button-bounce', 'jaldi-button-shake');
       btn.style.setProperty('animation', 'none', 'important');
       btn.style.setProperty('transform', 'none', 'important');
     });
+    overlay.querySelectorAll('input, select, textarea').forEach(function (inp) {
+      if (inp.type === 'checkbox') return;
+      inp.style.setProperty('font-size', '16px', 'important');
+    });
+  }
+
+  function pgStyleCodProductRows() {
+    var overlay = document.querySelector('.jaldi-modal-overlay');
+    if (!overlay) return;
+    pgLockCodOverlay(overlay);
+    var mobile = window.matchMedia('(max-width: 900px)').matches;
     overlay.querySelectorAll('div').forEach(function (el) {
       var cs = el.getAttribute('style') || '';
       if ((cs.indexOf('gap: 12px') !== -1 || cs.indexOf('gap:12px') !== -1) &&
@@ -273,16 +287,18 @@
     var pgCodRowTimer = null;
     var observer = new MutationObserver(function () {
       clearTimeout(pgCodRowTimer);
-      pgCodRowTimer = setTimeout(pgStyleCodProductRows, 50);
+      pgCodRowTimer = setTimeout(pgStyleCodProductRows, 120);
     });
     observer.observe(document.body, { childList: true, subtree: true });
-    window.addEventListener('resize', function () {
-      clearTimeout(pgCodRowTimer);
-      pgCodRowTimer = setTimeout(pgStyleCodProductRows, 80);
-    });
-    document.addEventListener('click', function () {
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.pg-preventify-host, .jaldi-modal-overlay, [class*="preventify"]')) return;
       setTimeout(pgStyleCodProductRows, 80);
-      setTimeout(pgStyleCodProductRows, 280);
     });
+    if (!document.getElementById('pg-cod-anim-kill')) {
+      var st = document.createElement('style');
+      st.id = 'pg-cod-anim-kill';
+      st.textContent = '.jaldi-button-pulse,.jaldi-button-bounce,.jaldi-button-shake,.jaldi-modal-overlay button{animation:none!important;transform:none!important}';
+      document.head.appendChild(st);
+    }
   }
 })();
