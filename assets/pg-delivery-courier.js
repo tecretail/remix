@@ -172,6 +172,7 @@
   function pgStyleCodProductRows() {
     var overlay = document.querySelector('.jaldi-modal-overlay');
     if (!overlay) return;
+    var mobile = window.matchMedia('(max-width: 640px)').matches;
     overlay.querySelectorAll('div').forEach(function (el) {
       var cs = el.getAttribute('style') || '';
       if ((cs.indexOf('gap: 12px') !== -1 || cs.indexOf('gap:12px') !== -1) &&
@@ -180,17 +181,19 @@
         el.style.setProperty('background', '#eef3fb', 'important');
         el.style.setProperty('background-color', '#eef3fb', 'important');
         el.style.setProperty('border', '2px solid #054497', 'important');
-        el.style.setProperty('border-radius', '16px', 'important');
-        el.style.setProperty('padding', '14px 16px', 'important');
+        el.style.setProperty('border-radius', mobile ? '12px' : '16px', 'important');
+        el.style.setProperty('padding', mobile ? '10px' : '14px 16px', 'important');
         el.style.setProperty('box-shadow', '0 0 0 1px rgba(5, 68, 151, 0.12)', 'important');
+        el.style.setProperty('max-width', '100%', 'important');
+        el.style.setProperty('min-width', '0', 'important');
       }
 
       if (cs.indexOf('#F3F4F6') !== -1 && cs.indexOf('border-radius: 8px') !== -1 && cs.indexOf('padding') !== -1) {
         el.style.setProperty('background', '#f4f7fc', 'important');
         el.style.setProperty('background-color', '#f4f7fc', 'important');
         el.style.setProperty('border', 'none', 'important');
-        el.style.setProperty('border-radius', '12px', 'important');
-        el.style.setProperty('padding', '16px 18px', 'important');
+        el.style.setProperty('border-radius', mobile ? '10px' : '12px', 'important');
+        el.style.setProperty('padding', mobile ? '12px 14px' : '16px 18px', 'important');
         el.style.setProperty('box-shadow', 'none', 'important');
         Array.prototype.forEach.call(el.children, function (row, idx) {
           var last = idx === el.children.length - 1;
@@ -211,8 +214,8 @@
         el.style.setProperty('background', '#ffffff', 'important');
         el.style.setProperty('background-color', '#ffffff', 'important');
         el.style.setProperty('border', '1px solid #dce3ee', 'important');
-        el.style.setProperty('border-radius', '14px', 'important');
-        el.style.setProperty('padding', '18px 16px 12px', 'important');
+        el.style.setProperty('border-radius', mobile ? '12px' : '14px', 'important');
+        el.style.setProperty('padding', mobile ? '14px 12px 10px' : '18px 16px 12px', 'important');
         el.style.setProperty('box-shadow', '0 1px 3px rgba(11, 26, 58, 0.05)', 'important');
       }
     });
@@ -220,12 +223,24 @@
     overlay.querySelectorAll('h3').forEach(function (h) {
       h.style.setProperty('color', '#0b1a3a', 'important');
       h.style.setProperty('font-weight', '800', 'important');
-      h.style.setProperty('font-size', '14px', 'important');
-      h.style.setProperty('letter-spacing', '0.08em', 'important');
+      h.style.setProperty('font-size', mobile ? '13px' : '14px', 'important');
+      h.style.setProperty('letter-spacing', mobile ? '0.04em' : '0.08em', 'important');
       h.style.setProperty('text-transform', 'uppercase', 'important');
       h.style.setProperty('text-align', 'center', 'important');
-      h.style.setProperty('margin-bottom', '18px', 'important');
+      h.style.setProperty('margin-bottom', mobile ? '12px' : '18px', 'important');
     });
+
+    if (mobile) {
+      overlay.querySelectorAll('.jaldi-field-label').forEach(function (lab) {
+        lab.style.setProperty('width', '100%', 'important');
+        lab.style.setProperty('min-width', '0', 'important');
+        lab.style.setProperty('max-width', '100%', 'important');
+      });
+      overlay.querySelectorAll('.jaldi-field-row').forEach(function (row) {
+        row.style.setProperty('flex-direction', 'column', 'important');
+        row.style.setProperty('align-items', 'stretch', 'important');
+      });
+    }
   }
 
   if (!window.__pgCodRowWatch) {
@@ -236,6 +251,10 @@
       pgCodRowTimer = setTimeout(pgStyleCodProductRows, 50);
     });
     observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('resize', function () {
+      clearTimeout(pgCodRowTimer);
+      pgCodRowTimer = setTimeout(pgStyleCodProductRows, 80);
+    });
     document.addEventListener('click', function () {
       setTimeout(pgStyleCodProductRows, 80);
       setTimeout(pgStyleCodProductRows, 280);
