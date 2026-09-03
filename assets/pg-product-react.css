@@ -741,53 +741,51 @@ a.pg-p-cta--cod {
 
 .payment-methods {
   display: flex !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 10px 12px !important;
+  gap: 6px !important;
   margin: 14px auto 8px !important;
-  padding: 12px 14px !important;
+  padding: 10px 12px !important;
   width: 100% !important;
   max-width: 520px !important;
   box-sizing: border-box !important;
-  background: linear-gradient(180deg, #f7fbf8 0%, #eef7f1 100%) !important;
-  border: 1px solid rgba(57, 232, 90, 0.28) !important;
+  background: linear-gradient(180deg, #e8f1fb 0%, #d6e8f8 100%) !important;
+  border: none !important;
   border-radius: 14px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 4px 14px rgba(5, 68, 151, 0.06) !important;
+  box-shadow: none !important;
 }
 
 .payment-methods img {
-  height: 34px !important;
+  height: 30px !important;
   width: auto !important;
-  max-width: 58px !important;
+  max-width: none !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
   object-fit: contain !important;
   display: block !important;
-  padding: 5px 7px !important;
-  background: #fff !important;
-  border: 1px solid rgba(5, 68, 151, 0.08) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 3px rgba(5, 68, 151, 0.06) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transition: transform 0.2s ease !important;
 }
 
 .payment-methods img:hover {
   transform: translateY(-1px) !important;
-  box-shadow: 0 3px 8px rgba(5, 68, 151, 0.12) !important;
+  box-shadow: none !important;
 }
 
 @media (max-width: 480px) {
   .payment-methods {
-    gap: 8px !important;
-    padding: 10px 10px !important;
+    gap: 4px !important;
+    padding: 8px 8px !important;
     border-radius: 12px !important;
   }
 
   .payment-methods img {
-    height: 28px !important;
-    max-width: 48px !important;
-    padding: 4px 5px !important;
+    height: 24px !important;
   }
 }
 
