@@ -491,6 +491,7 @@
 
 .pg-p-deal-prices {
   flex: 0 0 auto !important;
+  margin-left: auto !important;
   text-align: right !important;
   white-space: nowrap !important;
 }
@@ -2848,7 +2849,30 @@ a.pg-p-cta--cod {
 
   .pg-p-deal-row,
   .lv-pe-deal-row {
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+
+  .pg-p-deal-prices,
+  .lv-pe-deal-prices {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+  }
+
+  .pg-p-deal-info,
+  .lv-pe-deal-info {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .pg-p-deal-price {
+    font-size: 16px !important;
+  }
+
+  .pg-p-deal-compare {
+    font-size: 11px !important;
   }
 
   .pg-preventify-host button,
