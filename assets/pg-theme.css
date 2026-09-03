@@ -92,8 +92,8 @@
   font-weight: 900;
   margin: 10px 0 22px;
   color: var(--pg-title-color, #054497);
-  font-family: "Frank Ruhl Libre", "Times New Roman", Times, serif;
-  letter-spacing: 0.02em;
+  font-family: "Playfair Display", "Frank Ruhl Libre", "Times New Roman", Times, serif;
+  letter-spacing: 0.01em;
   padding-bottom: 12px;
   border-bottom: 2px solid rgba(5, 68, 151, 0.18);
 }
