@@ -329,8 +329,7 @@
 .pg-p-deal {
   text-align: left !important;
   cursor: pointer !important;
-  border: 2px solid #c9d4e8 !important;
-  background: #fff !important;
+  border: 2.5px solid transparent !important;
   border-radius: 16px !important;
   padding: 0 !important;
   position: relative !important;
@@ -339,78 +338,52 @@
   box-sizing: border-box !important;
   overflow: visible !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
-  isolation: isolate !important;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    conic-gradient(
+      from var(--pg-deal-angle, 0deg),
+      #c9d4e8 0%,
+      #054497 10%,
+      #39e85a 20%,
+      #7dff95 26%,
+      #054497 36%,
+      #c9d4e8 48%,
+      #c9d4e8 100%
+    ) border-box !important;
+  box-shadow: 0 0 10px rgba(5, 68, 151, 0.12) !important;
+  animation: pg-deal-angle-spin 2.6s linear infinite !important;
+  transition: box-shadow 0.2s ease !important;
 }
 
-/* Brillo que da la vuelta al borde de la tarjeta */
-@keyframes pg-deal-border-glow {
+@property --pg-deal-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes pg-deal-angle-spin {
   to {
-    transform: rotate(360deg);
+    --pg-deal-angle: 360deg;
   }
 }
 
-.lv-pe-deal-btn::before,
-.pg-p-deal::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: -3px !important;
-  border-radius: 18px !important;
-  padding: 3px !important;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 20deg,
-    rgba(5, 68, 151, 0.15) 40deg,
-    #054497 70deg,
-    #39e85a 100deg,
-    #7dff95 115deg,
-    #054497 145deg,
-    transparent 175deg,
-    transparent 360deg
-  ) !important;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0) !important;
-  -webkit-mask-composite: xor !important;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0) !important;
-  mask-composite: exclude !important;
-  animation: pg-deal-border-glow 2.4s linear infinite !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  box-sizing: border-box !important;
-}
-
-.pg-p-deal.is-active::before,
-.lv-pe-deal-btn.is-active::before {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 15deg,
-    rgba(57, 232, 90, 0.2) 35deg,
-    #054497 65deg,
-    #39e85a 95deg,
-    #f39200 120deg,
-    #39e85a 145deg,
-    #054497 170deg,
-    transparent 200deg,
-    transparent 360deg
-  ) !important;
-  animation-duration: 2s !important;
-  filter: drop-shadow(0 0 6px rgba(57, 232, 90, 0.45)) !important;
-}
-
-.pg-p-deal > *,
-.lv-pe-deal-btn > * {
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-.pg-p-deal-badge,
-.pg-p-deal-float {
-  z-index: 4 !important;
+.pg-p-deal.is-active,
+.lv-pe-deal-btn.is-active {
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    conic-gradient(
+      from var(--pg-deal-angle, 0deg),
+      #054497 0%,
+      #39e85a 12%,
+      #f39200 22%,
+      #39e85a 32%,
+      #054497 45%,
+      #054497 100%
+    ) border-box !important;
+  box-shadow:
+    0 0 0 1px rgba(5, 68, 151, 0.1),
+    0 0 14px rgba(57, 232, 90, 0.28) !important;
+  animation-duration: 2.2s !important;
 }
 
 .pg-p-deals {
@@ -418,12 +391,6 @@
   flex-direction: column !important;
   gap: 16px !important;
   margin: 0 0 24px !important;
-}
-
-.pg-p-deal.is-active {
-  border-color: #054497 !important;
-  background: #fff !important;
-  box-shadow: 0 0 0 1px rgba(5, 68, 151, 0.12) !important;
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
