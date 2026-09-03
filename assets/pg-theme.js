@@ -272,42 +272,71 @@
   }
 
   function lockHorizontalOverflow() {
-    document.documentElement.style.setProperty("overflow-x", "clip", "important");
-    document.body.style.setProperty("overflow-x", "clip", "important");
-    document.body.style.setProperty("max-width", "100%", "important");
-    document.documentElement.scrollLeft = 0;
-    document.body.scrollLeft = 0;
+    var html = document.documentElement;
+    var body = document.body;
+    html.style.setProperty("overflow-x", "hidden", "important");
+    body.style.setProperty("overflow-x", "hidden", "important");
+    body.style.setProperty("max-width", "100%", "important");
+    body.style.setProperty("overscroll-behavior-x", "none", "important");
+    body.style.setProperty("touch-action", "pan-y", "important");
+    html.scrollLeft = 0;
+    body.scrollLeft = 0;
     if (window.scrollX) window.scrollTo(0, window.scrollY);
 
     var nodes = document.querySelectorAll(
-      ".shopify-section, .pg-sec-style, .banner_special, .body_full, .body_full_nomar, .lv-announce, .pg-brand-slider-wrap, .pg-buybox, .clock, .counter"
+      ".shopify-section, .pg-sec-style, .banner_special, .body_full, .body_full_nomar, .lv-announce, .pg-brand-slider-wrap, .pg-buybox, .pg-preventify-host, .clock, .counter, .lv-preview-embed-wrap"
     );
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
       el.style.setProperty("max-width", "100%", "important");
       el.style.setProperty("min-width", "0", "important");
       el.style.setProperty("box-sizing", "border-box", "important");
-      if (el.classList.contains("lv-announce") || el.classList.contains("pg-brand-slider-wrap") || el.classList.contains("banner_special")) {
-        el.style.setProperty("overflow-x", "clip", "important");
-      }
+      el.style.setProperty("overflow-x", "hidden", "important");
     }
 
-    /* Si algo sigue ensanchando el documento, forzar clip en el culpable */
-    if (document.documentElement.scrollWidth > document.documentElement.clientWidth + 2) {
-      var all = document.body.getElementsByTagName("*");
-      var vw = document.documentElement.clientWidth;
+    /* Quitar outline que ensancha el scroll en iOS */
+    var glowBtns = document.querySelectorAll(".pg-preventify-host button, .pg-preventify-host [role='button'], .jaldi-modal-overlay button.jaldi-button-pulse, .jaldi-modal-overlay button.jaldi-button-bounce, .jaldi-modal-overlay button.jaldi-button-shake");
+    for (var b = 0; b < glowBtns.length; b++) {
+      glowBtns[b].style.setProperty("outline", "none", "important");
+      glowBtns[b].style.setProperty("transform", "none", "important");
+    }
+
+    if (html.scrollWidth > html.clientWidth + 1) {
+      var all = body.getElementsByTagName("*");
+      var vw = html.clientWidth;
       for (var j = 0; j < all.length; j++) {
         var n = all[j];
+        if (n.id === "lvWaHost" || (n.className && String(n.className).indexOf("lv-wa") !== -1)) continue;
         if (!n.getBoundingClientRect) continue;
         var r = n.getBoundingClientRect();
-        if (r.width > vw + 8 && r.left < 2) {
+        if (r.right > vw + 4 || r.left < -4 || r.width > vw + 8) {
           n.style.setProperty("max-width", "100%", "important");
-          n.style.setProperty("overflow-x", "clip", "important");
+          n.style.setProperty("overflow-x", "hidden", "important");
         }
       }
-      document.documentElement.scrollLeft = 0;
-      document.body.scrollLeft = 0;
+      html.scrollLeft = 0;
+      body.scrollLeft = 0;
+      window.scrollTo(0, window.scrollY || 0);
     }
+  }
+
+  function bindNoHorizontalScroll() {
+    if (window.__pgNoHScroll) return;
+    window.__pgNoHScroll = true;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (window.scrollX !== 0) window.scrollTo(0, window.scrollY);
+      },
+      { passive: true }
+    );
+    document.addEventListener(
+      "touchmove",
+      function () {
+        if (window.scrollX !== 0) window.scrollTo(0, window.scrollY);
+      },
+      { passive: true }
+    );
   }
 
   function init() {
@@ -320,6 +349,7 @@
     tickHeroCounters();
     tickPgCountdowns();
     lockHorizontalOverflow();
+    bindNoHorizontalScroll();
     setTimeout(lockHorizontalOverflow, 300);
     setTimeout(lockHorizontalOverflow, 1200);
     window.addEventListener("resize", lockHorizontalOverflow);

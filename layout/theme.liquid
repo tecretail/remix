@@ -67,14 +67,17 @@
       }
       @media (max-width: 900px) {
         html, body, body.pg-body {
-          overflow-x: clip !important;
+          overflow-x: hidden !important;
           width: 100% !important;
           max-width: 100% !important;
           min-width: 0 !important;
+          overscroll-behavior-x: none !important;
+          touch-action: pan-y !important;
         }
         body, body.pg-body {
           font-size: 16px !important;
           background: #fff !important;
+          position: relative !important;
         }
         .shopify-section,
         .pg-sec-style,
@@ -82,17 +85,25 @@
         .shopify-section.pg-section-hero,
         .pg-section-hero,
         .pg-section-hero .pg-sec-style,
-        .banner_special {
-          overflow-x: clip !important;
+        .banner_special,
+        .pg-preventify-host,
+        .pg-buybox,
+        .lv-preview-embed-wrap {
+          overflow-x: hidden !important;
           width: 100% !important;
           max-width: 100% !important;
           min-width: 0 !important;
           margin-left: 0 !important;
           margin-right: 0 !important;
+          box-sizing: border-box !important;
+        }
+        .shopify-section.pg-section-hero,
+        .pg-section-hero .pg-sec-style,
+        .banner_special,
+        .lv-announce {
           padding-left: 0 !important;
           padding-right: 0 !important;
           transform: none !important;
-          box-sizing: border-box !important;
         }
         .jaldi-modal-overlay {
           padding: 0 !important;

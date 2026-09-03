@@ -197,9 +197,32 @@
       }
     }
     overlay.querySelectorAll('button').forEach(function (btn) {
-      btn.classList.remove('jaldi-button-pulse', 'jaldi-button-bounce', 'jaldi-button-shake');
-      btn.style.setProperty('animation', 'none', 'important');
-      btn.style.setProperty('transform', 'none', 'important');
+      var isAccordion = (btn.getAttribute('style') || '').indexOf('display: flex') !== -1 ||
+        (btn.getAttribute('style') || '').indexOf('display:flex') !== -1;
+      if (isAccordion) {
+        btn.style.setProperty('animation', 'none', 'important');
+        btn.style.setProperty('transform', 'none', 'important');
+        btn.style.setProperty('outline', 'none', 'important');
+        btn.style.setProperty('box-shadow', 'none', 'important');
+        btn.style.setProperty('background', '#ffffff', 'important');
+        btn.style.setProperty('border', '0', 'important');
+        return;
+      }
+      if (btn.classList.contains('jaldi-button-pulse') ||
+          btn.classList.contains('jaldi-button-bounce') ||
+          btn.classList.contains('jaldi-button-shake') ||
+          btn.type === 'submit') {
+        btn.style.setProperty('animation', 'none', 'important');
+        btn.style.setProperty('transform', 'none', 'important');
+        btn.style.setProperty('outline', 'none', 'important');
+        btn.style.setProperty('background', 'linear-gradient(180deg, #ffffff 0%, #edfff1 45%, #d8f9de 100%)', 'important');
+        btn.style.setProperty('background-color', '#edfff1', 'important');
+        btn.style.setProperty('color', '#158a2e', 'important');
+        btn.style.setProperty('border', '3px solid #39e85a', 'important');
+        btn.style.setProperty('box-shadow', 'inset 0 1px 0 rgba(255,255,255,0.95), 0 0 0 3px rgba(57,232,90,0.22), 0 4px 14px rgba(5,68,151,0.1)', 'important');
+        btn.style.setProperty('font-weight', '900', 'important');
+        btn.style.setProperty('text-transform', 'uppercase', 'important');
+      }
     });
     overlay.querySelectorAll('input, select, textarea').forEach(function (inp) {
       if (inp.type === 'checkbox') return;
