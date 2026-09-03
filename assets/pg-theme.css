@@ -88,11 +88,11 @@
 }
 .pg-p-h1 {
   font-size: var(--pg-title-size, 34px);
-  line-height: 1.25;
-  font-weight: 900;
+  line-height: 1.2;
+  font-weight: 400;
   margin: 10px 0 22px;
   color: var(--pg-title-color, #054497);
-  font-family: "Playfair Display", "Frank Ruhl Libre", "Times New Roman", Times, serif;
+  font-family: "Alfa Slab One", "Frank Ruhl Libre", "Times New Roman", Times, serif;
   letter-spacing: 0.01em;
   padding-bottom: 12px;
   border-bottom: 2px solid rgba(5, 68, 151, 0.18);

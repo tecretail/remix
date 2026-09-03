@@ -26,7 +26,7 @@
     {{ 'pg-product-react.css' | asset_url | stylesheet_tag }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;600;700;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Frank+Ruhl+Libre:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
     {% if request.design_mode %}
       <style>
@@ -61,7 +61,7 @@
         --pg-section-gap: {{ settings.section_gap }}px;
         --pg-font: "Frank Ruhl Libre", "Times New Roman", Times, serif;
         --pg-font-display: "Frank Ruhl Libre", "Times New Roman", Times, serif;
-        --pg-font-title: "Playfair Display", "Frank Ruhl Libre", "Times New Roman", Times, serif;
+        --pg-font-title: "Alfa Slab One", "Frank Ruhl Libre", "Times New Roman", Times, serif;
       }
       body.pg-body {
         background: var(--pg-page-bg, #fff);
@@ -115,11 +115,12 @@
       body.pg-body .pg-p-h1,
       body.pg-body .lv-pe-h1 {
         font-family: var(--pg-font-title) !important;
-        font-weight: 900 !important;
+        font-weight: 400 !important; /* Alfa Slab One solo tiene un peso, ya es grueso */
         color: #054497 !important;
         letter-spacing: 0.01em !important;
         border-bottom: 2px solid rgba(5, 68, 151, 0.18) !important;
         padding-bottom: 12px !important;
+        -webkit-text-stroke: 0.3px #054497 !important;
       }
       /* Numeros / precios: negrita maxima */
       body.pg-body .pg-p-deal-price,
