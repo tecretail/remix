@@ -180,25 +180,51 @@
     overlay.style.setProperty('height', '100%', 'important');
     overlay.style.setProperty('max-height', 'none', 'important');
     overlay.style.setProperty('box-sizing', 'border-box', 'important');
-    overlay.style.setProperty('padding', mobile ? '0' : '16px', 'important');
+    overlay.style.setProperty('padding', mobile ? '16px' : '16px', 'important');
     overlay.style.setProperty('overflow', 'hidden', 'important');
     overlay.style.setProperty('transform', 'none', 'important');
+    overlay.style.setProperty('align-items', 'center', 'important');
+    overlay.style.setProperty('justify-content', 'center', 'important');
     var box = overlay.firstElementChild;
     if (box) {
       box.style.setProperty('width', '100%', 'important');
-      box.style.setProperty('max-width', mobile ? '100%' : '520px', 'important');
-      box.style.setProperty('margin', mobile ? '0' : 'auto', 'important');
+      box.style.setProperty('max-width', mobile ? '420px' : '520px', 'important');
+      box.style.setProperty('margin', '0 auto', 'important');
       box.style.setProperty('box-sizing', 'border-box', 'important');
       box.style.setProperty('transform', 'none', 'important');
-      if (mobile) {
-        box.style.setProperty('height', '100%', 'important');
-        box.style.setProperty('max-height', 'none', 'important');
-        box.style.setProperty('border-radius', '0', 'important');
-      }
+      box.style.setProperty('border-radius', '16px', 'important');
+      box.style.setProperty('height', 'auto', 'important');
+      box.style.setProperty('max-height', mobile ? '90dvh' : '92vh', 'important');
     }
     overlay.querySelectorAll('button').forEach(function (btn) {
-      var isAccordion = (btn.getAttribute('style') || '').indexOf('display: flex') !== -1 ||
-        (btn.getAttribute('style') || '').indexOf('display:flex') !== -1;
+      var st = btn.getAttribute('style') || '';
+      var isRemove = st.indexOf('border-radius: 50%') !== -1 || st.indexOf('border-radius:50%') !== -1 ||
+        (btn.textContent || '').trim() === '\u00d7';
+      var isAccordion = (st.indexOf('width: 100%') !== -1 || st.indexOf('width:100%') !== -1) &&
+        (st.indexOf('display: flex') !== -1 || st.indexOf('display:flex') !== -1);
+
+      if (isRemove) {
+        btn.style.setProperty('width', '22px', 'important');
+        btn.style.setProperty('height', '22px', 'important');
+        btn.style.setProperty('min-width', '22px', 'important');
+        btn.style.setProperty('min-height', '22px', 'important');
+        btn.style.setProperty('max-width', '22px', 'important');
+        btn.style.setProperty('padding', '0', 'important');
+        btn.style.setProperty('border-radius', '50%', 'important');
+        btn.style.setProperty('background', '#6b7280', 'important');
+        btn.style.setProperty('color', '#fff', 'important');
+        btn.style.setProperty('border', '2px solid #fff', 'important');
+        btn.style.setProperty('outline', 'none', 'important');
+        btn.style.setProperty('box-shadow', '0 1px 4px rgba(0,0,0,0.2)', 'important');
+        btn.style.setProperty('animation', 'none', 'important');
+        btn.style.setProperty('transform', 'none', 'important');
+        btn.style.setProperty('position', 'absolute', 'important');
+        btn.style.setProperty('top', '-4px', 'important');
+        btn.style.setProperty('right', '-4px', 'important');
+        btn.style.setProperty('z-index', '3', 'important');
+        return;
+      }
+
       if (isAccordion) {
         btn.style.setProperty('animation', 'none', 'important');
         btn.style.setProperty('transform', 'none', 'important');
@@ -206,6 +232,7 @@
         btn.style.setProperty('box-shadow', 'none', 'important');
         btn.style.setProperty('background', '#ffffff', 'important');
         btn.style.setProperty('border', '0', 'important');
+        btn.style.setProperty('width', '100%', 'important');
         return;
       }
       if (btn.classList.contains('jaldi-button-pulse') ||
@@ -248,6 +275,10 @@
         el.style.setProperty('box-shadow', '0 0 0 1px rgba(5, 68, 151, 0.12)', 'important');
         el.style.setProperty('max-width', '100%', 'important');
         el.style.setProperty('min-width', '0', 'important');
+        el.style.setProperty('position', 'relative', 'important');
+        el.style.setProperty('overflow', 'visible', 'important');
+        el.style.setProperty('width', '100%', 'important');
+        el.style.setProperty('box-sizing', 'border-box', 'important');
       }
 
       if (cs.indexOf('#F3F4F6') !== -1 && cs.indexOf('border-radius: 8px') !== -1 && cs.indexOf('padding') !== -1) {

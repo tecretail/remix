@@ -106,22 +106,35 @@
           transform: none !important;
         }
         .jaldi-modal-overlay {
-          padding: 0 !important;
+          padding: 16px !important;
           inset: 0 !important;
           width: 100% !important;
           max-width: 100% !important;
           height: 100% !important;
           max-height: none !important;
           overflow: hidden !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-sizing: border-box !important;
         }
         .jaldi-modal-overlay > div {
-          max-width: 100% !important;
+          max-width: min(100%, 420px) !important;
           width: 100% !important;
-          height: 100% !important;
-          max-height: none !important;
-          margin: 0 !important;
-          border-radius: 0 !important;
+          height: auto !important;
+          max-height: 90dvh !important;
+          margin: 0 auto !important;
+          border-radius: 16px !important;
           transform: none !important;
+        }
+        .jaldi-modal-overlay button[style*="border-radius: 50%"],
+        .jaldi-modal-overlay button[style*="border-radius:50%"] {
+          width: 22px !important;
+          height: 22px !important;
+          min-width: 22px !important;
+          min-height: 22px !important;
+          max-width: 22px !important;
+          padding: 0 !important;
+          border-radius: 50% !important;
         }
         .jaldi-modal-overlay input,
         .jaldi-modal-overlay select,
