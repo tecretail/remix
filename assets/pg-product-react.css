@@ -1988,20 +1988,44 @@ a.pg-p-cta--cod {
   }
 }
 
+@property --pg-total-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes pg-total-angle-spin {
+  to {
+    --pg-total-angle: 360deg;
+  }
+}
+
 .pg-p-total-box {
   margin: 6px 0 18px !important;
-  padding: 16px 18px 14px !important;
+  padding: 16px 18px 14px 22px !important;
   border-radius: 16px !important;
-  background: linear-gradient(165deg, #ffffff 0%, #f3f7fd 42%, #e8f0fb 100%) !important;
-  border: 2px solid #054497 !important;
+  border: 2.5px solid transparent !important;
+  background:
+    linear-gradient(165deg, #ffffff 0%, #fff8f0 45%, #ffefd9 100%) padding-box,
+    conic-gradient(
+      from var(--pg-total-angle, 0deg),
+      #f39200 0%,
+      #ffc14d 10%,
+      #ff8a00 18%,
+      #054497 28%,
+      #f39200 38%,
+      #ffe0a3 48%,
+      #f39200 58%,
+      #f39200 100%
+    ) border-box !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 0 0 1px rgba(5, 68, 151, 0.08),
-    0 8px 22px rgba(5, 68, 151, 0.12) !important;
+    0 0 14px rgba(243, 146, 0, 0.28),
+    0 6px 18px rgba(5, 68, 151, 0.08) !important;
   box-sizing: border-box !important;
   position: relative !important;
-  overflow: hidden !important;
-  animation: none !important;
+  overflow: visible !important;
+  animation: pg-total-angle-spin 3s linear infinite !important;
 }
 
 .pg-p-total-box::before {
@@ -2013,6 +2037,7 @@ a.pg-p-cta--cod {
   width: 5px !important;
   background: linear-gradient(180deg, #f39200 0%, #054497 100%) !important;
   border-radius: 16px 0 0 16px !important;
+  z-index: 1 !important;
 }
 
 .pg-p-total-row {
@@ -2027,10 +2052,11 @@ a.pg-p-cta--cod {
 }
 
 .pg-p-total-label {
-  color: #5e6d7a !important;
-  font-weight: 700 !important;
-  font-size: 14px !important;
+  color: #054497 !important;
+  font-weight: 900 !important;
+  font-size: 22px !important;
   letter-spacing: 0.02em !important;
+  line-height: 1.2 !important;
 }
 
 .pg-p-total-amounts {
