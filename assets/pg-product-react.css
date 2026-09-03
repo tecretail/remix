@@ -329,7 +329,7 @@
 .pg-p-deal {
   text-align: left !important;
   cursor: pointer !important;
-  border: 2.5px solid transparent !important;
+  border: 2.5px solid #054497 !important;
   border-radius: 16px !important;
   padding: 0 !important;
   position: relative !important;
@@ -338,52 +338,35 @@
   box-sizing: border-box !important;
   overflow: visible !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
-  background:
-    linear-gradient(#ffffff, #ffffff) padding-box,
-    conic-gradient(
-      from var(--pg-deal-angle, 0deg),
-      #c9d4e8 0%,
-      #054497 10%,
-      #39e85a 20%,
-      #7dff95 26%,
-      #054497 36%,
-      #c9d4e8 48%,
-      #c9d4e8 100%
-    ) border-box !important;
-  box-shadow: 0 0 10px rgba(5, 68, 151, 0.12) !important;
-  animation: pg-deal-angle-spin 2.6s linear infinite !important;
-  transition: box-shadow 0.2s ease !important;
+  background: #fff !important;
+  box-shadow:
+    0 0 0 1px rgba(5, 68, 151, 0.08),
+    0 0 12px rgba(5, 68, 151, 0.14) !important;
+  animation: pg-deal-glow-pulse 2.4s ease-in-out infinite !important;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
 }
 
-@property --pg-deal-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes pg-deal-angle-spin {
-  to {
-    --pg-deal-angle: 360deg;
+@keyframes pg-deal-glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(5, 68, 151, 0.08),
+      0 0 10px rgba(5, 68, 151, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(5, 68, 151, 0.14),
+      0 0 16px rgba(57, 232, 90, 0.28);
   }
 }
 
 .pg-p-deal.is-active,
 .lv-pe-deal-btn.is-active {
-  background:
-    linear-gradient(#ffffff, #ffffff) padding-box,
-    conic-gradient(
-      from var(--pg-deal-angle, 0deg),
-      #054497 0%,
-      #39e85a 12%,
-      #f39200 22%,
-      #39e85a 32%,
-      #054497 45%,
-      #054497 100%
-    ) border-box !important;
+  border-color: #054497 !important;
+  background: #fff !important;
   box-shadow:
-    0 0 0 1px rgba(5, 68, 151, 0.1),
-    0 0 14px rgba(57, 232, 90, 0.28) !important;
-  animation-duration: 2.2s !important;
+    0 0 0 1px rgba(5, 68, 151, 0.14),
+    0 0 16px rgba(57, 232, 90, 0.32) !important;
+  animation-duration: 2s !important;
 }
 
 .pg-p-deals {
@@ -391,6 +374,8 @@
   flex-direction: column !important;
   gap: 16px !important;
   margin: 0 0 24px !important;
+  overflow: visible !important;
+  padding: 2px !important;
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
@@ -398,13 +383,13 @@
 }
 
 .pg-p-deal-body {
-  border-radius: 14px !important;
+  border-radius: 13.5px !important;
   overflow: hidden !important;
   background: #fff !important;
 }
 
 .pg-p-deal.has-footer .pg-p-deal-body {
-  border-radius: 14px 14px 0 0 !important;
+  border-radius: 13.5px !important;
 }
 
 .pg-p-deal-float {
@@ -595,7 +580,7 @@
 .pg-p-deal-gift {
   background: #0b1a3a !important;
   color: #fff !important;
-  border-radius: 0 0 12px 12px !important;
+  border-radius: 0 0 13.5px 13.5px !important;
 }
 
 .pg-p-deal-desc + .pg-p-deal-gift {
@@ -630,7 +615,7 @@
 .pg-p-deal-body > .pg-p-deal-desc:last-child,
 .pg-p-deal-body > .pg-p-deal-stock-bar:last-child,
 .pg-p-deal-body > .pg-p-deal-gift:last-child {
-  border-radius: 0 0 12px 12px !important;
+  border-radius: 0 0 13.5px 13.5px !important;
 }
 
 .pg-p-deal-gift-icon {
