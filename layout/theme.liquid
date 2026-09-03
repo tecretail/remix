@@ -26,7 +26,7 @@
     {{ 'pg-product-react.css' | asset_url | stylesheet_tag }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     {% if request.design_mode %}
       <style>
@@ -59,16 +59,16 @@
         --pg-body-size: {{ settings.font_body_size }}px;
         --pg-heading-scale: {{ settings.font_heading_scale }}%;
         --pg-section-gap: {{ settings.section_gap }}px;
-        --pg-font: "Outfit", Montserrat, system-ui, sans-serif;
-        --pg-font-display: "Outfit", Montserrat-Black, Montserrat, system-ui, sans-serif;
+        --pg-font: "Poppins", Montserrat, system-ui, sans-serif;
+        --pg-font-display: "Poppins", Montserrat-Black, Montserrat, system-ui, sans-serif;
       }
       body.pg-body {
         background: var(--pg-page-bg, #fff);
         color: var(--pg-text, #0b1a3a);
         font-size: var(--pg-body-size, 16px);
         font-family: var(--pg-font) !important;
-        font-weight: 500 !important;
-        letter-spacing: 0.01em !important;
+        font-weight: 400 !important;
+        letter-spacing: 0 !important;
         -webkit-font-smoothing: antialiased !important;
         -moz-osx-font-smoothing: grayscale !important;
         text-rendering: optimizeLegibility !important;
@@ -90,10 +90,10 @@
       body.pg-body .banner_special,
       body.pg-body .guarantee {
         font-family: var(--pg-font-display) !important;
-        font-weight: 800 !important;
-        letter-spacing: -0.02em !important;
+        font-weight: 700 !important;
+        letter-spacing: 0 !important;
       }
-      /* Numeros / precios: estilo mas marcado, mismo tamaño */
+      /* Numeros / precios: claros y firmes, mismo tamaño */
       body.pg-body .pg-p-deal-price,
       body.pg-body .pg-p-deal-compare,
       body.pg-body .pg-p-total-price,
@@ -108,10 +108,10 @@
       body.pg-body .counter,
       body.pg-body ul.flip {
         font-family: var(--pg-font-display) !important;
-        font-weight: 800 !important;
-        font-variant-numeric: tabular-nums lining-nums !important;
-        font-feature-settings: "tnum" 1, "lnum" 1 !important;
-        letter-spacing: -0.03em !important;
+        font-weight: 700 !important;
+        font-variant-numeric: tabular-nums !important;
+        font-feature-settings: "tnum" 1 !important;
+        letter-spacing: 0 !important;
       }
       .shopify-section + .shopify-section {
         margin-top: var(--pg-section-gap, 0);

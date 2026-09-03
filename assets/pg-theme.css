@@ -1,9 +1,9 @@
 /* ProstaGenix theme — PDP + offers (React port) */
 .pg-body {
   margin: 0;
-  font-family: "Outfit", Montserrat-Regular, Montserrat, system-ui, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-family: "Poppins", Montserrat-Regular, Montserrat, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
   color: #0b1a3a;
   background: #fff;
   -webkit-font-smoothing: antialiased;

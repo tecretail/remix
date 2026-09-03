@@ -1,5 +1,5 @@
 /* === product-embed.tsx (React) — CSS para toda la buybox del home === */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
 
 .shopify-section.pg-section-product,
 .pg-section-product {
@@ -9,9 +9,9 @@
 
 .lv-pe-root,
 .pg-buybox {
-  font-family: "Outfit", Montserrat, system-ui, sans-serif !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.01em !important;
+  font-family: "Poppins", Montserrat, system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
   background: #fff !important;
   color: #0b1a3a !important;
   max-width: 100% !important;
