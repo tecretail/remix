@@ -739,6 +739,26 @@ a.pg-p-cta--cod {
   width: 100% !important;
 }
 
+.payment-methods {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px 10px !important;
+  margin: 12px 0 4px !important;
+  padding: 0 4px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.payment-methods img {
+  height: 28px !important;
+  width: auto !important;
+  max-width: 52px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
 /* Boton COD unificado: estilo neon con bordes + movimiento */
 @keyframes pg-cod-neon-pulse {
   0%, 100% {
