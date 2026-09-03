@@ -2588,13 +2588,14 @@ a.pg-p-cta--cod {
 /* ==== Layout móvil: anula desktop (25px body, paddings rem, 2 columnas) ==== */
 @media (max-width: 900px) {
   html {
-    overflow-x: visible !important;
+    overflow-x: clip !important;
     width: 100% !important;
   }
   body, body.pg-body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     font-size: 16px !important;
   }
 

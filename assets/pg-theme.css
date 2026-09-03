@@ -307,7 +307,19 @@ body.pg-body {
   overflow-x: clip;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   margin: 0;
+}
+
+/* Evitar que flex/marquee ensanchen el documento */
+.shopify-section,
+.pg-sec-style,
+.banner_special,
+.body_full,
+.body_full_nomar {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .shopify-section,
@@ -350,13 +362,15 @@ body.pg-body {
 /* Mobile: evitar scroll horizontal en toda la landing */
 @media (max-width: 900px) {
   html {
-    overflow-x: visible !important;
-    width: 100% !important;
-  }
-  body.pg-body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     width: 100% !important;
     max-width: 100% !important;
+  }
+  body.pg-body {
+    overflow-x: clip !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
     font-size: 16px !important;
   }
   .shopify-section,
@@ -365,10 +379,13 @@ body.pg-body {
   .body_full_nomar,
   .shopify-section.pg-section-hero,
   .pg-section-hero .pg-sec-style,
-  .pg-section-hero .banner_special {
+  .pg-section-hero .banner_special,
+  .lv-announce,
+  .pg-section-announce {
     max-width: 100% !important;
     width: 100% !important;
-    overflow-x: hidden !important;
+    min-width: 0 !important;
+    overflow-x: clip !important;
     box-sizing: border-box !important;
   }
   .pg-section-hero .pg-sec-style {
@@ -376,7 +393,24 @@ body.pg-body {
     padding-right: 0 !important;
   }
   .pg-section-hero {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
+  }
+  .pg-section-hero .banner_special .bottles > img {
+    max-width: 100% !important;
+  }
+  .pg-brand-slider-wrap,
+  .pg-brand-slider-viewport {
+    overflow: hidden !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .banner_special .headings,
+  .banner_special .bottom,
+  .banner_special .copy {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
   }
   #lvWaHost {
     bottom: max(20px, env(safe-area-inset-bottom, 0px)) !important;
@@ -1103,13 +1137,14 @@ body.pg-body {
 /* Mobile lock: anula overflow visible y 100vw residual */
 @media (max-width: 900px) {
   html {
-    overflow-x: visible !important;
+    overflow-x: clip !important;
     width: 100% !important;
   }
   body, body.pg-body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     font-size: 16px !important;
   }
   .banner_special,
@@ -1118,9 +1153,11 @@ body.pg-body {
   .pg-section-hero .pg-sec-style {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     transform: none !important;
+    overflow-x: clip !important;
   }
   #MainContent,
   .shopify-section,

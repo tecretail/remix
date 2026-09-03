@@ -66,31 +66,33 @@
         margin-top: var(--pg-section-gap, 0);
       }
       @media (max-width: 900px) {
-        html {
-          overflow-x: visible !important;
-          width: 100% !important;
-          background: #fff !important;
-        }
-        body, body.pg-body {
-          overflow-x: hidden !important;
+        html, body, body.pg-body {
+          overflow-x: clip !important;
           width: 100% !important;
           max-width: 100% !important;
+          min-width: 0 !important;
+        }
+        body, body.pg-body {
           font-size: 16px !important;
           background: #fff !important;
-          min-width: 100% !important;
         }
+        .shopify-section,
+        .pg-sec-style,
+        .lv-announce,
         .shopify-section.pg-section-hero,
         .pg-section-hero,
         .pg-section-hero .pg-sec-style,
         .banner_special {
-          overflow-x: hidden !important;
+          overflow-x: clip !important;
           width: 100% !important;
           max-width: 100% !important;
+          min-width: 0 !important;
           margin-left: 0 !important;
           margin-right: 0 !important;
           padding-left: 0 !important;
           padding-right: 0 !important;
           transform: none !important;
+          box-sizing: border-box !important;
         }
         .jaldi-modal-overlay {
           padding: 0 !important;

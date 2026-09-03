@@ -1555,8 +1555,7 @@
 .lv-announce {
   background: linear-gradient(90deg, #043579, #054497 50%, #043579);
   color: #fff;
-  overflow: hidden;
-  overflow-x: clip;
+  overflow: hidden !important;
   position: relative;
   padding: 0;
   margin: 0;
@@ -1567,29 +1566,28 @@
   border: 0;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
   line-height: 1;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
+  display: block;
+  white-space: nowrap;
   min-height: 36px;
-  contain: inline-size layout;
   isolation: isolate;
 }
 .lv-announce-track {
-  display: flex;
+  display: inline-flex;
   flex-wrap: nowrap;
-  flex: 0 0 auto;
-  flex-shrink: 0;
   align-items: center;
   justify-content: space-around;
   gap: 0;
   min-width: 100%;
   width: max-content;
+  max-width: none;
   white-space: nowrap;
   height: 36px;
   margin: 0;
   padding: 0;
+  vertical-align: top;
   animation: lv-marquee 28s linear infinite;
   will-change: transform;
 }
