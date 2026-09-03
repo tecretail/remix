@@ -172,7 +172,32 @@
   function pgStyleCodProductRows() {
     var overlay = document.querySelector('.jaldi-modal-overlay');
     if (!overlay) return;
-    var mobile = window.matchMedia('(max-width: 640px)').matches;
+    var mobile = window.matchMedia('(max-width: 900px)').matches;
+    overlay.style.setProperty('left', '0', 'important');
+    overlay.style.setProperty('right', '0', 'important');
+    overlay.style.setProperty('top', '0', 'important');
+    overlay.style.setProperty('bottom', '0', 'important');
+    overlay.style.setProperty('width', '100%', 'important');
+    overlay.style.setProperty('max-width', '100%', 'important');
+    overlay.style.setProperty('box-sizing', 'border-box', 'important');
+    overlay.style.setProperty('padding', mobile ? '0' : '16px', 'important');
+    overlay.style.setProperty('overflow-x', 'hidden', 'important');
+    var box = overlay.firstElementChild;
+    if (box) {
+      box.style.setProperty('width', '100%', 'important');
+      box.style.setProperty('max-width', mobile ? '100%' : '520px', 'important');
+      box.style.setProperty('margin', mobile ? '0' : 'auto', 'important');
+      box.style.setProperty('box-sizing', 'border-box', 'important');
+      if (mobile) {
+        box.style.setProperty('height', '100%', 'important');
+        box.style.setProperty('max-height', '100dvh', 'important');
+        box.style.setProperty('border-radius', '0', 'important');
+      }
+    }
+    overlay.querySelectorAll('.jaldi-button-pulse, .jaldi-button-bounce, .jaldi-button-shake').forEach(function (btn) {
+      btn.style.setProperty('animation', 'none', 'important');
+      btn.style.setProperty('transform', 'none', 'important');
+    });
     overlay.querySelectorAll('div').forEach(function (el) {
       var cs = el.getAttribute('style') || '';
       if ((cs.indexOf('gap: 12px') !== -1 || cs.indexOf('gap:12px') !== -1) &&

@@ -696,12 +696,13 @@ body.pg-body {
 }
 /* Hero no centra el bloque de titulos (layout original: izq + botellas der) */
 .shopify-section.pg-section-hero {
-  overflow: visible !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
   margin: 0 !important;
 }
 .pg-section-hero .pg-sec-style {
   text-align: left;
-  overflow: visible !important;
+  overflow-x: hidden !important;
   min-height: 0 !important;
 }
 .pg-section-hero .banner_special {
@@ -1092,4 +1093,24 @@ body.pg-body {
 }
 @media (min-width: 750px) {
   .pg-sec-hide-desktop { display: none !important; }
+}
+
+/* Mobile lock: anula overflow visible y 100vw residual */
+@media (max-width: 900px) {
+  html, body, body.pg-body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  #MainContent,
+  .shopify-section,
+  .shopify-section.pg-section-hero,
+  .pg-section-hero .pg-sec-style,
+  .banner_special,
+  .body_full,
+  .body_full_nomar {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
