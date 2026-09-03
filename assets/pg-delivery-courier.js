@@ -412,7 +412,7 @@
         '.pg-preventify-host,.pg-preventify-host .quick-add{overflow:visible!important}',
         '.pg-cod-bounce-wrap > button,',
         '.pg-cod-bounce-wrap > [role="button"]{',
-        'animation:pg-cod-neon-pulse 2.2s ease-in-out infinite!important;',
+        'animation:pg-cod-neon-pulse 1.6s ease-in-out infinite!important;',
         'width:100%!important',
         '}'
       ].join('');
@@ -459,7 +459,7 @@
         wrap.style.setProperty('overflow', 'visible', 'important');
         wrap.style.setProperty('width', '100%', 'important');
         wrap.style.setProperty('will-change', 'transform', 'important');
-        btn.style.setProperty('animation', 'pg-cod-neon-pulse 2.2s ease-in-out infinite', 'important');
+        btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.6s ease-in-out infinite', 'important');
         btn.style.setProperty('width', '100%', 'important');
       });
       document.querySelectorAll('.pg-preventify-host, .pg-preventify-host .quick-add').forEach(function (host) {
@@ -473,7 +473,7 @@
       var pgCodT0 = performance.now();
       function pgCodRafTick(now) {
         /* Ciclo largo y fluido: sube y baja con ease, sin pausas secas */
-        var period = 2200;
+        var period = 1600;
         var t = ((now - pgCodT0) % period) / period;
         /* seno suave: 0 → -8px → 0 → -4px → 0 */
         var wave = Math.sin(t * Math.PI * 2);
