@@ -814,202 +814,215 @@ a.pg-p-cta--cod {
   }
 }
 
-/* === Releasit / Preventify COD popup (Jaldi) — ProstaGenix === */
-#jaldi-cod-form-popup,
-#jaldi-cod-form-embedded {
+/* === Releasit / Preventify COD popup — ProstaGenix (ids reales: #preventify-*) === */
+#preventify-popup,
+#preventify-embedded,
+#preventify-drawer-popup,
+.jaldi-modal-overlay,
+.jaldi-modal-overlay * {
   font-family: Montserrat, system-ui, sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
+  box-sizing: border-box !important;
 }
 
-#jaldi-cod-form-popup .jaldi-modal-overlay,
 .jaldi-modal-overlay {
   background-color: rgba(11, 26, 58, 0.55) !important;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
   padding: 16px !important;
 }
 
-#jaldi-cod-form-popup .jaldi-modal-content,
-.jaldi-modal-content {
+/* Caja blanca del modal (div hijo directo, sin clase) */
+.jaldi-modal-overlay > div {
   background: #ffffff !important;
   border-radius: 16px !important;
   max-width: 520px !important;
   width: 100% !important;
   max-height: 92vh !important;
-  overflow: auto !important;
+  overflow: hidden !important;
   box-shadow:
     0 24px 60px rgba(5, 68, 151, 0.22),
     0 0 0 1px rgba(5, 68, 151, 0.08) !important;
   border: 1px solid rgba(5, 68, 151, 0.1) !important;
+  margin: auto !important;
 }
 
-#jaldi-cod-form-popup .jaldi-form-scrollable-content,
 .jaldi-form-scrollable-content {
-  padding: 4px 4px 8px !important;
+  padding: 4px 6px 8px !important;
 }
 
-/* Header / titles inside popup */
-#jaldi-cod-form-popup h1,
-#jaldi-cod-form-popup h2,
-#jaldi-cod-form-popup h3,
-#jaldi-cod-form-popup [style*="font-weight: 700"],
-#jaldi-cod-form-popup [style*="font-weight:700"],
-#jaldi-cod-form-popup [style*="fontWeight: 700"] {
+/* Titulos */
+.jaldi-modal-overlay h1,
+.jaldi-modal-overlay h2,
+.jaldi-modal-overlay h3,
+#preventify-popup h1,
+#preventify-popup h2,
+#preventify-popup h3 {
   color: #0b1a3a !important;
   letter-spacing: 0.02em !important;
 }
 
-/* Close button */
-#jaldi-cod-form-popup button[aria-label*="close" i],
-#jaldi-cod-form-popup button[aria-label*="Close" i],
-#jaldi-cod-form-popup .jaldi-modal-content > button:first-child {
-  color: #0b1a3a !important;
-  opacity: 0.7 !important;
+/* Resumen totals: fondo gris #F3F4F6 → azul claro marca */
+.jaldi-modal-overlay [style*="#F3F4F6"],
+.jaldi-modal-overlay [style*="#f3f4f6"],
+.jaldi-modal-overlay [style*="background-color: rgb(243, 244, 246)"],
+#preventify-popup [style*="#F3F4F6"],
+#preventify-embedded [style*="#F3F4F6"] {
+  background: #eef4fc !important;
+  background-color: #eef4fc !important;
 }
 
-#jaldi-cod-form-popup button[aria-label*="close" i]:hover,
-#jaldi-cod-form-popup .jaldi-modal-content > button:first-child:hover {
-  opacity: 1 !important;
-}
-
-/* Summary / shipping cards (bordered boxes) */
-#jaldi-cod-form-popup [style*="border: 1px solid"],
-#jaldi-cod-form-popup [style*="border:1px solid"],
-#jaldi-cod-form-embedded [style*="border: 1px solid"] {
-  border-color: rgba(5, 68, 151, 0.14) !important;
+/* Cards con borde gris */
+.jaldi-modal-overlay [style*="#E5E7EB"],
+.jaldi-modal-overlay [style*="#e5e7eb"],
+#preventify-popup [style*="border: 1px solid #E5E7EB"],
+#preventify-popup [style*="border:1px solid #E5E7EB"] {
+  border-color: rgba(5, 68, 151, 0.16) !important;
   border-radius: 12px !important;
 }
 
-#jaldi-cod-form-popup [style*="background: #F"],
-#jaldi-cod-form-popup [style*="background:#F"],
-#jaldi-cod-form-popup [style*="background-color: #F"],
-#jaldi-cod-form-popup [style*="background-color:#F"],
-#jaldi-cod-form-popup [style*="backgroundColor: #F"],
-#jaldi-cod-form-popup [style*="background: rgb(249"],
-#jaldi-cod-form-popup [style*="background:#f"],
-#jaldi-cod-form-popup [style*="background: #f"] {
-  background: #eef4fc !important;
-}
-
-/* Field rows */
-#jaldi-cod-form-popup .jaldi-field-row,
+/* Filas / labels */
 .jaldi-field-row {
-  gap: 10px !important;
-  margin-bottom: 10px !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
   align-items: center !important;
 }
 
-#jaldi-cod-form-popup .jaldi-field-label,
 .jaldi-field-label {
   color: #0b1a3a !important;
   font-weight: 700 !important;
-  font-size: 13px !important;
-  line-height: 1.3 !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
 }
 
-/* Inputs / selects */
-#jaldi-cod-form-popup input,
-#jaldi-cod-form-popup select,
-#jaldi-cod-form-popup textarea,
-#jaldi-cod-form-embedded input,
-#jaldi-cod-form-embedded select,
-#jaldi-cod-form-embedded textarea {
+/* Prefijo icono gris #E9ECEF → azul claro, más compacto */
+.jaldi-modal-overlay [style*="#E9ECEF"],
+.jaldi-modal-overlay [style*="#e9ecef"],
+.jaldi-modal-overlay [style*="background-color: rgb(233, 236, 239)"] {
+  background: #eef4fc !important;
+  background-color: #eef4fc !important;
+  border-right-color: rgba(5, 68, 151, 0.18) !important;
+  padding: 0 8px !important;
+}
+
+.jaldi-modal-overlay [style*="#E9ECEF"] svg,
+.jaldi-modal-overlay [style*="#e9ecef"] svg {
+  width: 15px !important;
+  height: 15px !important;
+  fill: #054497 !important;
+}
+
+/* Inputs */
+.jaldi-modal-overlay input,
+.jaldi-modal-overlay select,
+.jaldi-modal-overlay textarea,
+#preventify-popup input,
+#preventify-popup select,
+#preventify-popup textarea,
+#preventify-embedded input,
+#preventify-embedded select,
+#preventify-embedded textarea {
   font-family: Montserrat, system-ui, sans-serif !important;
   font-size: 13px !important;
   color: #0b1a3a !important;
   background: #ffffff !important;
-  border: 1px solid rgba(5, 68, 151, 0.2) !important;
-  border-radius: 10px !important;
-  padding: 9px 12px !important;
-  min-height: 40px !important;
+  background-color: #ffffff !important;
+  border-color: rgba(5, 68, 151, 0.22) !important;
+  border-radius: 8px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  min-height: 36px !important;
   height: auto !important;
   box-shadow: none !important;
   outline: none !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-#jaldi-cod-form-popup input:focus,
-#jaldi-cod-form-popup select:focus,
-#jaldi-cod-form-popup textarea:focus,
-#jaldi-cod-form-embedded input:focus,
-#jaldi-cod-form-embedded select:focus,
-#jaldi-cod-form-embedded textarea:focus {
+.jaldi-modal-overlay input:focus,
+.jaldi-modal-overlay select:focus,
+.jaldi-modal-overlay textarea:focus,
+#preventify-popup input:focus,
+#preventify-embedded input:focus {
   border-color: #054497 !important;
   box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.15) !important;
   outline: none !important;
 }
 
-#jaldi-cod-form-popup .jaldi-phone-wrapper,
-.jaldi-phone-wrapper {
-  border-radius: 10px !important;
-  border: 1px solid rgba(5, 68, 151, 0.2) !important;
+/* Wrapper input con borde (F style) */
+.jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"],
+.jaldi-modal-overlay .jaldi-phone-wrapper {
+  border-radius: 8px !important;
+  border-color: rgba(5, 68, 151, 0.22) !important;
   overflow: hidden !important;
-  background: #fff !important;
+  min-height: 36px !important;
 }
 
-#jaldi-cod-form-popup .jaldi-phone-wrapper input {
+.jaldi-phone-wrapper input {
   border: 0 !important;
   box-shadow: none !important;
-  min-height: 38px !important;
+  min-height: 34px !important;
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
 }
 
-#jaldi-cod-form-popup .jaldi-phone-wrapper:focus-within {
+.jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"]:focus-within,
+.jaldi-phone-wrapper:focus-within {
   border-color: #054497 !important;
   box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.15) !important;
 }
 
-/* Checkbox confirm */
-#jaldi-cod-form-popup input[type="checkbox"] {
-  width: 16px !important;
-  height: 16px !important;
-  min-height: 16px !important;
+.jaldi-modal-overlay input[type="checkbox"],
+#preventify-popup input[type="checkbox"] {
+  width: 15px !important;
+  height: 15px !important;
+  min-height: 15px !important;
   padding: 0 !important;
   accent-color: #054497 !important;
-  border-radius: 4px !important;
 }
 
-/* Primary CTA: HACER PEDIDO (type=button en popup Jaldi) — brand green, menos alto */
-#jaldi-cod-form-popup button[type="submit"],
-#jaldi-cod-form-embedded button[type="submit"],
-#jaldi-cod-form-popup button[type="button"][style*="width: 100%"],
-#jaldi-cod-form-popup button[type="button"][style*="width:100%"],
-#jaldi-cod-form-popup button.jaldi-button-pulse,
-#jaldi-cod-form-popup button.jaldi-button-bounce,
-#jaldi-cod-form-popup button.jaldi-button-shake,
-#jaldi-cod-form-embedded button[type="button"][style*="width: 100%"],
-#jaldi-cod-form-embedded button[type="button"][style*="width:100%"] {
+/* CTA HACER PEDIDO — verde marca, menos alto (override neon inline) */
+.jaldi-modal-overlay button[type="button"][style*="width: 100%"],
+.jaldi-modal-overlay button[type="button"][style*="width:100%"],
+.jaldi-modal-overlay button[type="submit"],
+.jaldi-modal-overlay button.jaldi-button-pulse,
+.jaldi-modal-overlay button.jaldi-button-bounce,
+.jaldi-modal-overlay button.jaldi-button-shake,
+#preventify-popup button[type="button"][style*="width: 100%"],
+#preventify-popup button[type="button"][style*="width:100%"],
+#preventify-popup button[type="submit"],
+#preventify-embedded button[type="button"][style*="width: 100%"],
+#preventify-embedded button[type="button"][style*="width:100%"],
+#preventify-embedded button[type="submit"] {
   width: 100% !important;
-  min-height: 48px !important;
+  min-height: 44px !important;
   height: auto !important;
-  padding: 12px 16px !important;
+  padding: 10px 14px !important;
   background: linear-gradient(180deg, #2fdc5a 0%, #1f9e3f 55%, #178a34 100%) !important;
   background-color: #1f9e3f !important;
   color: #ffffff !important;
   border: 2px solid #39e85a !important;
   border-radius: 12px !important;
   font-family: Montserrat, system-ui, sans-serif !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 800 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    0 6px 18px rgba(31, 158, 63, 0.28) !important;
+    0 6px 16px rgba(31, 158, 63, 0.28) !important;
   opacity: 1 !important;
   cursor: pointer !important;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease !important;
 }
 
-/* No aplicar el CTA verde a botones pequeños del form (ej. aplicar cupón) */
-#jaldi-cod-form-popup .jaldi-field-row button[type="button"],
-#jaldi-cod-form-popup .jaldi-field-row button {
+/* Botones chicos dentro de filas (cupón, etc.) — no CTA */
+.jaldi-modal-overlay .jaldi-field-row button,
+#preventify-popup .jaldi-field-row button {
   width: auto !important;
-  min-height: 40px !important;
-  padding: 8px 14px !important;
+  min-height: 36px !important;
+  padding: 7px 12px !important;
   background: #054497 !important;
   background-color: #054497 !important;
   border: 1px solid #054497 !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
   font-size: 12px !important;
   font-weight: 700 !important;
   letter-spacing: 0 !important;
@@ -1017,48 +1030,33 @@ a.pg-p-cta--cod {
   box-shadow: none !important;
 }
 
-#jaldi-cod-form-popup button[type="submit"]:hover:not(:disabled),
-#jaldi-cod-form-embedded button[type="submit"]:hover:not(:disabled),
-#jaldi-cod-form-popup button[type="button"][style*="width: 100%"]:hover:not(:disabled),
-#jaldi-cod-form-popup button[type="button"][style*="width:100%"]:hover:not(:disabled),
-#jaldi-cod-form-popup button.jaldi-button-pulse:hover:not(:disabled),
-#jaldi-cod-form-popup button.jaldi-button-bounce:hover:not(:disabled) {
+.jaldi-modal-overlay button[type="button"][style*="width: 100%"]:hover:not(:disabled),
+.jaldi-modal-overlay button[type="button"][style*="width:100%"]:hover:not(:disabled),
+.jaldi-modal-overlay button[type="submit"]:hover:not(:disabled) {
   opacity: 1 !important;
   filter: brightness(1.04) !important;
   transform: translateY(-1px) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 8px 22px rgba(31, 158, 63, 0.35) !important;
-}
-
-#jaldi-cod-form-popup button[type="submit"]:disabled,
-#jaldi-cod-form-embedded button[type="submit"]:disabled,
-#jaldi-cod-form-popup button[type="button"][style*="width:100%"]:disabled,
-#jaldi-cod-form-popup button[type="button"][style*="width: 100%"]:disabled {
-  opacity: 0.55 !important;
-  cursor: not-allowed !important;
-  transform: none !important;
 }
 
 @media (max-width: 640px) {
-  #jaldi-cod-form-popup .jaldi-modal-content,
-  .jaldi-modal-content {
+  .jaldi-modal-overlay {
+    padding: 10px !important;
+  }
+
+  .jaldi-modal-overlay > div {
     border-radius: 14px !important;
     max-height: 96vh !important;
   }
 
-  #jaldi-cod-form-popup .jaldi-field-row,
   .jaldi-field-row {
     align-items: stretch !important;
   }
 
-  #jaldi-cod-form-popup button[type="submit"],
-  #jaldi-cod-form-embedded button[type="submit"],
-  #jaldi-cod-form-popup button[type="button"][style*="width:100%"],
-  #jaldi-cod-form-popup button[type="button"][style*="width: 100%"] {
-    min-height: 46px !important;
-    padding: 11px 14px !important;
-    font-size: 13px !important;
+  .jaldi-modal-overlay button[type="button"][style*="width:100%"],
+  .jaldi-modal-overlay button[type="button"][style*="width: 100%"] {
+    min-height: 42px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
   }
 }
 
