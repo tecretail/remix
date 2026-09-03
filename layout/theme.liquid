@@ -24,6 +24,9 @@
     {{ 'counter.css' | asset_url | stylesheet_tag }}
     {{ 'pg-theme.css' | asset_url | stylesheet_tag }}
     {{ 'pg-product-react.css' | asset_url | stylesheet_tag }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     {% if request.design_mode %}
       <style>
@@ -56,11 +59,59 @@
         --pg-body-size: {{ settings.font_body_size }}px;
         --pg-heading-scale: {{ settings.font_heading_scale }}%;
         --pg-section-gap: {{ settings.section_gap }}px;
+        --pg-font: "Outfit", Montserrat, system-ui, sans-serif;
+        --pg-font-display: "Outfit", Montserrat-Black, Montserrat, system-ui, sans-serif;
       }
       body.pg-body {
         background: var(--pg-page-bg, #fff);
         color: var(--pg-text, #0b1a3a);
         font-size: var(--pg-body-size, 16px);
+        font-family: var(--pg-font) !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.01em !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-rendering: optimizeLegibility !important;
+      }
+      body.pg-body h1,
+      body.pg-body h2,
+      body.pg-body h3,
+      body.pg-body h4,
+      body.pg-body h5,
+      body.pg-body .heading,
+      body.pg-body .title,
+      body.pg-body strong,
+      body.pg-body b,
+      body.pg-body button,
+      body.pg-body .pg-p-deal-title,
+      body.pg-body .pg-p-deal-badge,
+      body.pg-body .pg-p-deal-float,
+      body.pg-body .pg-p-bar,
+      body.pg-body .banner_special,
+      body.pg-body .guarantee {
+        font-family: var(--pg-font-display) !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.02em !important;
+      }
+      /* Numeros / precios: estilo mas marcado, mismo tamaño */
+      body.pg-body .pg-p-deal-price,
+      body.pg-body .pg-p-deal-compare,
+      body.pg-body .pg-p-total-price,
+      body.pg-body .pg-p-total-compare,
+      body.pg-body .pg-p-total-save,
+      body.pg-body .pg-p-hot-num,
+      body.pg-body [data-pg-total-price],
+      body.pg-body [data-pg-total-compare],
+      body.pg-body [data-pg-total-save],
+      body.pg-body .price,
+      body.pg-body .money,
+      body.pg-body .counter,
+      body.pg-body ul.flip {
+        font-family: var(--pg-font-display) !important;
+        font-weight: 800 !important;
+        font-variant-numeric: tabular-nums lining-nums !important;
+        font-feature-settings: "tnum" 1, "lnum" 1 !important;
+        letter-spacing: -0.03em !important;
       }
       .shopify-section + .shopify-section {
         margin-top: var(--pg-section-gap, 0);

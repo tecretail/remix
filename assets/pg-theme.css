@@ -1,5 +1,14 @@
 /* ProstaGenix theme — PDP + offers (React port) */
-.pg-body { margin: 0; font-family: Montserrat-Regular, Montserrat, system-ui, sans-serif; color: #0b1a3a; background: #fff; }
+.pg-body {
+  margin: 0;
+  font-family: "Outfit", Montserrat-Regular, Montserrat, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #0b1a3a;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
 
 /* Contador flip (estilo original del clone) */
 
