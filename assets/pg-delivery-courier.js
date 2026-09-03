@@ -168,4 +168,36 @@
   }
 
   window.pgCourierInitAll = pgCourierInitAll;
+
+  function pgStyleCodProductRows() {
+    var overlay = document.querySelector('.jaldi-modal-overlay');
+    if (!overlay) return;
+    overlay.querySelectorAll('div').forEach(function (el) {
+      var cs = el.getAttribute('style') || '';
+      if (cs.indexOf('gap: 12px') === -1 && cs.indexOf('gap:12px') === -1) return;
+      if (cs.indexOf('width: 52px') !== -1 || cs.indexOf('width:52px') !== -1) return;
+      if (el.querySelector('img') && el.querySelector('button')) {
+        el.style.setProperty('background', '#eef4fc', 'important');
+        el.style.setProperty('background-color', '#eef4fc', 'important');
+        el.style.setProperty('border', '1.5px solid rgba(5, 68, 151, 0.2)', 'important');
+        el.style.setProperty('border-radius', '12px', 'important');
+        el.style.setProperty('padding', '12px', 'important');
+        el.style.setProperty('box-shadow', '0 2px 10px rgba(5, 68, 151, 0.08)', 'important');
+      }
+    });
+  }
+
+  if (!window.__pgCodRowWatch) {
+    window.__pgCodRowWatch = true;
+    var pgCodRowTimer = null;
+    var observer = new MutationObserver(function () {
+      clearTimeout(pgCodRowTimer);
+      pgCodRowTimer = setTimeout(pgStyleCodProductRows, 50);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('click', function () {
+      setTimeout(pgStyleCodProductRows, 80);
+      setTimeout(pgStyleCodProductRows, 280);
+    });
+  }
 })();

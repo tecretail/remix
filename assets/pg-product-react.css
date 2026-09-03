@@ -863,16 +863,28 @@ a.pg-p-cta--cod {
 }
 
 /* Fila producto del resumen — card con fondo y borde */
-.jaldi-modal-overlay [style*="gap: 12px"][style*="margin-bottom: 12px"],
-.jaldi-modal-overlay [style*="gap:12px"][style*="margin-bottom:12px"] {
-  background: #f8fbff !important;
-  border: 1.5px solid rgba(5, 68, 151, 0.16) !important;
+.jaldi-modal-overlay [style*="gap: 12px"],
+.jaldi-modal-overlay [style*="gap:12px"] {
+  background: #eef4fc !important;
+  background-color: #eef4fc !important;
+  background-image: none !important;
+  border: 1.5px solid rgba(5, 68, 151, 0.2) !important;
   border-radius: 12px !important;
   padding: 12px !important;
   margin-bottom: 12px !important;
-  box-shadow: 0 2px 10px rgba(5, 68, 151, 0.06) !important;
+  box-shadow: 0 2px 10px rgba(5, 68, 151, 0.08) !important;
   align-items: center !important;
-  border-bottom: 1.5px solid rgba(5, 68, 151, 0.16) !important;
+}
+
+/* No pintar de azul el bloque de totales (tambien usa gap en hijos) */
+.jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#F3F4F6"] [style*="gap: 12px"],
+.jaldi-modal-overlay [style*="padding:10px 12px"][style*="#F3F4F6"] [style*="gap:12px"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .jaldi-modal-overlay [style*="gap: 12px"][style*="margin-bottom: 12px"] [style*="width: 52px"],
