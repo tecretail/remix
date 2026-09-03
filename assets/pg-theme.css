@@ -299,7 +299,7 @@
 
 /* Evitar scroll / corrida horizontal en toda la tienda */
 html {
-  overflow-x: clip;
+  overflow-x: hidden;
   max-width: 100%;
 }
 
@@ -351,13 +351,26 @@ body.pg-body {
 @media (max-width: 900px) {
   html, body.pg-body {
     overflow-x: hidden !important;
-    max-width: 100vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .shopify-section,
   .pg-sec-style,
   .body_full,
-  .body_full_nomar {
-    max-width: 100vw !important;
+  .body_full_nomar,
+  .shopify-section.pg-section-hero,
+  .pg-section-hero .pg-sec-style,
+  .pg-section-hero .banner_special {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+  .pg-section-hero .pg-sec-style {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .pg-section-hero {
     overflow-x: hidden !important;
   }
   #lvWaHost {
@@ -1017,7 +1030,7 @@ body.pg-body {
     padding: 10px 8px 8px !important;
   }
   .banner_special .clock ul.flip {
-    width: min(22vw, 70px) !important;
+    width: min(22%, 70px) !important;
     height: 48px !important;
     font-size: 20px !important;
     line-height: 46px !important;
