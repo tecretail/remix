@@ -395,8 +395,41 @@
     if (!document.getElementById('pg-cod-anim-kill')) {
       var st = document.createElement('style');
       st.id = 'pg-cod-anim-kill';
-      st.textContent = '.jaldi-button-pulse,.jaldi-button-bounce,.jaldi-button-shake,.jaldi-modal-overlay button{animation:none!important;transform:none!important}';
+      /* Solo apaga animación DENTRO del popup — no el botón COD de la página */
+      st.textContent = [
+        '.jaldi-modal-overlay .jaldi-button-pulse,',
+        '.jaldi-modal-overlay .jaldi-button-bounce,',
+        '.jaldi-modal-overlay .jaldi-button-shake,',
+        '.jaldi-modal-overlay button{animation:none!important;transform:none!important}',
+        '@keyframes pg-cod-neon-pulse{0%,100%{border-color:#39e85a;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 3px rgba(57,232,90,.22),0 0 10px rgba(57,255,120,.4),0 0 22px rgba(47,220,90,.28),0 4px 14px rgba(5,68,151,.1)}50%{border-color:#5dff7a;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 0 0 5px rgba(57,232,90,.4),0 0 18px rgba(57,255,120,.75),0 0 36px rgba(47,220,90,.5),0 6px 18px rgba(47,158,68,.22)}}',
+        '@keyframes pg-cod-bounce{0%,100%{transform:translateY(0)}15%{transform:translateY(-7px)}30%{transform:translateY(0)}45%{transform:translateY(-4px)}60%{transform:translateY(0)}75%{transform:translateY(-2px)}90%,100%{transform:translateY(0)}}',
+        '@keyframes pg-cod-shine{0%{background-position:200% 0,0 0}100%{background-position:-200% 0,0 0}}',
+        '.pg-preventify-host button,',
+        '.pg-preventify-host [role="button"],',
+        '.pg-preventify-host a[role="button"],',
+        '.pg-preventify-host .jaldi-button-pulse,',
+        '.pg-preventify-host .jaldi-button-bounce,',
+        '.pg-preventify-host .jaldi-button-shake{',
+        'animation:pg-cod-neon-pulse 1.8s ease-in-out infinite,pg-cod-bounce 2s ease-in-out infinite,pg-cod-shine 2.6s linear infinite!important;',
+        'will-change:transform,box-shadow,background-position!important}',
+        '.pg-preventify-host{overflow:visible!important;padding-top:12px!important;padding-bottom:8px!important}'
+      ].join('');
       document.head.appendChild(st);
     }
+
+    function pgAnimateCodButton() {
+      document.querySelectorAll('.pg-preventify-host button, .pg-preventify-host [role="button"]').forEach(function (btn) {
+        if (btn.closest('.jaldi-modal-overlay')) return;
+        btn.style.setProperty(
+          'animation',
+          'pg-cod-neon-pulse 1.8s ease-in-out infinite, pg-cod-bounce 2s ease-in-out infinite, pg-cod-shine 2.6s linear infinite',
+          'important'
+        );
+        btn.style.removeProperty('transform');
+        btn.style.setProperty('will-change', 'transform, box-shadow, background-position', 'important');
+      });
+    }
+    pgAnimateCodButton();
+    setInterval(pgAnimateCodButton, 1500);
   }
 })();

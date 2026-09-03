@@ -822,6 +822,26 @@ a.pg-p-cta--cod {
   vertical-align: middle !important;
 }
 
+.pg-preventify-host .preventify-product-card-button button.jaldi-button-pulse,
+.pg-preventify-host .preventify-product-card-button button.jaldi-button-bounce,
+.pg-preventify-host .preventify-product-card-button button.jaldi-button-shake,
+.pg-preventify-host button.jaldi-button-pulse,
+.pg-preventify-host button.jaldi-button-bounce,
+.pg-preventify-host button.jaldi-button-shake,
+.pg-preventify-host .jaldi-button-pulse,
+.pg-preventify-host .jaldi-button-bounce,
+.pg-preventify-host .jaldi-button-shake {
+  animation:
+    pg-cod-neon-pulse 1.8s ease-in-out infinite,
+    pg-cod-bounce 2s ease-in-out infinite,
+    pg-cod-shine 2.6s linear infinite !important;
+  will-change: transform, box-shadow, background-position !important;
+}
+
+.pg-preventify-host {
+  overflow: visible !important;
+}
+
 .pg-preventify-host .preventify-product-card-button button:hover,
 .pg-preventify-host .quick-add button:hover,
 .pg-preventify-host button:hover,

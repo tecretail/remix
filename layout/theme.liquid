@@ -150,12 +150,22 @@
         .jaldi-modal-overlay textarea {
           font-size: 16px !important;
         }
-        .jaldi-button-pulse,
-        .jaldi-button-bounce,
-        .jaldi-button-shake,
+        .jaldi-modal-overlay .jaldi-button-pulse,
+        .jaldi-modal-overlay .jaldi-button-bounce,
+        .jaldi-modal-overlay .jaldi-button-shake,
         .jaldi-modal-overlay button {
           animation: none !important;
           transform: none !important;
+        }
+        .pg-preventify-host button,
+        .pg-preventify-host [role="button"],
+        .pg-preventify-host .jaldi-button-pulse,
+        .pg-preventify-host .jaldi-button-bounce,
+        .pg-preventify-host .jaldi-button-shake {
+          animation:
+            pg-cod-neon-pulse 1.8s ease-in-out infinite,
+            pg-cod-bounce 2s ease-in-out infinite,
+            pg-cod-shine 2.6s linear infinite !important;
         }
       }
     </style>
