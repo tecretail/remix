@@ -2,7 +2,6 @@
 <html lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="{{ settings.color_blue }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -18,6 +17,7 @@
     {% endif %}
 
     {{ content_for_header }}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 
     {{ 'main.css' | asset_url | stylesheet_tag }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
@@ -66,16 +66,16 @@
         margin-top: var(--pg-section-gap, 0);
       }
       @media (max-width: 900px) {
-        html, body, body.pg-body {
+        html {
+          overflow-x: visible !important;
+          width: 100% !important;
+          background: #fff !important;
+        }
+        body, body.pg-body {
           overflow-x: hidden !important;
           width: 100% !important;
           max-width: 100% !important;
           font-size: 16px !important;
-        }
-        html {
-          background: #fff !important;
-        }
-        body.pg-body {
           background: #fff !important;
           min-width: 100% !important;
         }
