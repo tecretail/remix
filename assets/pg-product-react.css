@@ -1737,17 +1737,32 @@ a.pg-p-cta--cod {
     margin: 0 auto !important;
     overflow: hidden !important;
     transform: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-form-scrollable-content {
-    padding: 6px 14px 16px !important;
+    padding: 6px 10px 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
     overflow-x: hidden !important;
+  }
+
+  .jaldi-form-scrollable-content > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-modal-overlay h3 {
     font-size: 14px !important;
     letter-spacing: 0.04em !important;
-    margin: 8px 0 12px !important;
+    margin: 8px 10px 12px !important;
     padding: 12px 40px 12px 14px !important;
     border-radius: 12px !important;
   }
@@ -1759,6 +1774,9 @@ a.pg-p-cta--cod {
     border-radius: 12px !important;
     margin: 8px 0 12px !important;
     flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
@@ -1774,6 +1792,9 @@ a.pg-p-cta--cod {
     padding: 14px 16px !important;
     border-radius: 12px !important;
     font-size: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Card DATOS DE ENVIO — más aire interno */

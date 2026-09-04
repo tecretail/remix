@@ -180,7 +180,7 @@
     overlay.style.setProperty('height', '100%', 'important');
     overlay.style.setProperty('max-height', 'none', 'important');
     overlay.style.setProperty('box-sizing', 'border-box', 'important');
-    overlay.style.setProperty('padding', mobile ? '16px' : '16px', 'important');
+    overlay.style.setProperty('padding', mobile ? '12px' : '16px', 'important');
     overlay.style.setProperty('overflow', 'hidden', 'important');
     overlay.style.setProperty('transform', 'none', 'important');
     overlay.style.setProperty('align-items', 'center', 'important');
@@ -188,13 +188,50 @@
     var box = overlay.firstElementChild;
     if (box) {
       box.style.setProperty('width', '100%', 'important');
-      box.style.setProperty('max-width', mobile ? '420px' : '520px', 'important');
+      box.style.setProperty('max-width', mobile ? 'min(100%, 400px)' : '520px', 'important');
       box.style.setProperty('margin', '0 auto', 'important');
       box.style.setProperty('box-sizing', 'border-box', 'important');
       box.style.setProperty('transform', 'none', 'important');
       box.style.setProperty('border-radius', '16px', 'important');
       box.style.setProperty('height', 'auto', 'important');
-      box.style.setProperty('max-height', mobile ? '90dvh' : '92vh', 'important');
+      box.style.setProperty('max-height', mobile ? '92dvh' : '92vh', 'important');
+      box.style.setProperty('padding-left', '0', 'important');
+      box.style.setProperty('padding-right', '0', 'important');
+    }
+
+    /* Contenido interno a todo el ancho del popup (sin huecos laterales) */
+    overlay.querySelectorAll('.jaldi-form-scrollable-content').forEach(function (sc) {
+      sc.style.setProperty('padding', mobile ? '6px 10px 14px' : '4px 8px 12px', 'important');
+      sc.style.setProperty('width', '100%', 'important');
+      sc.style.setProperty('max-width', '100%', 'important');
+      sc.style.setProperty('box-sizing', 'border-box', 'important');
+      sc.style.setProperty('margin', '0', 'important');
+      Array.prototype.forEach.call(sc.children, function (child) {
+        child.style.setProperty('width', '100%', 'important');
+        child.style.setProperty('max-width', '100%', 'important');
+        child.style.setProperty('margin-left', '0', 'important');
+        child.style.setProperty('margin-right', '0', 'important');
+        child.style.setProperty('box-sizing', 'border-box', 'important');
+        child.style.setProperty('align-self', 'stretch', 'important');
+      });
+    });
+
+    if (mobile) {
+      /* Forzar ancho en wrappers directos del contenido scrolleable */
+      overlay.querySelectorAll('.jaldi-form-scrollable-content div').forEach(function (el) {
+        var cs = el.getAttribute('style') || '';
+        var isShippingCard = cs.indexOf('#E5E7EB') !== -1 || cs.indexOf('#e5e7eb') !== -1;
+        var isTotals = cs.indexOf('#F3F4F6') !== -1 || cs.indexOf('#f3f4f6') !== -1;
+        var hasFieldRows = el.querySelector(':scope > .jaldi-field-row, :scope > h3');
+        var isProductWrap = (cs.indexOf('gap: 12px') !== -1 || cs.indexOf('gap:12px') !== -1) && el.querySelector('img');
+        if (isShippingCard || isTotals || hasFieldRows || isProductWrap) {
+          el.style.setProperty('width', '100%', 'important');
+          el.style.setProperty('max-width', '100%', 'important');
+          el.style.setProperty('margin-left', '0', 'important');
+          el.style.setProperty('margin-right', '0', 'important');
+          el.style.setProperty('box-sizing', 'border-box', 'important');
+        }
+      });
     }
     overlay.querySelectorAll('button').forEach(function (btn) {
       var st = btn.getAttribute('style') || '';
@@ -485,6 +522,14 @@
         'position:relative!important;z-index:1!important;border:none!important;outline:none!important;',
         'animation:pg-cod-neon-pulse 1.2s ease-in-out infinite!important;',
         'width:100%!important;border-radius:15px!important',
+        '}',
+        '@media (max-width:900px){',
+        '.jaldi-modal-overlay>div{padding-left:0!important;padding-right:0!important;box-sizing:border-box!important}',
+        '.jaldi-form-scrollable-content{padding:6px 10px 14px!important;width:100%!important;max-width:100%!important;margin:0!important;box-sizing:border-box!important}',
+        '.jaldi-form-scrollable-content>*{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box!important}',
+        '.jaldi-field-row{width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}',
+        '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',
+        '.jaldi-field-row input,.jaldi-field-row select,.jaldi-field-row textarea,.jaldi-phone-wrapper input{width:100%!important;flex:1 1 0%!important;min-width:0!important;box-sizing:border-box!important}',
         '}'
       ].join('');
       document.head.appendChild(st);
