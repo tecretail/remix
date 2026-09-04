@@ -63,8 +63,11 @@
         --pg-font-display: "Frank Ruhl Libre", "Times New Roman", Times, serif;
         --pg-font-title: "Alfa Slab One", "Frank Ruhl Libre", "Times New Roman", Times, serif;
       }
+      html {
+        background: var(--pg-page-bg, #eef4fc);
+      }
       body.pg-body {
-        background: var(--pg-page-bg, #fff);
+        background: var(--pg-page-bg, #eef4fc) !important;
         color: var(--pg-text, #0b1a3a);
         font-size: var(--pg-body-size, 16px);
         font-family: var(--pg-font) !important;

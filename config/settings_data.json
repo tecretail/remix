@@ -1,1 +1,64 @@
-{"current":{"blocks":{"17754088914158789468":{"disabled":true,"settings":{},"type":"shopify:\/\/apps\/easysell-cod-form\/blocks\/app-embed\/7bfd0a95-6839-4f02-b2ee-896832dbe67e"},"6478312753674380289":{"disabled":true,"settings":{},"type":"shopify:\/\/apps\/gempages-builder\/blocks\/embed-gp-script-head\/20b379d4-1b20-474c-a6ca-665c331919f3"},"695895115113646532":{"disabled":true,"settings":{},"type":"shopify:\/\/apps\/codform-cod-form-upsells\/blocks\/CodForm\/80fcbf3f-4636-4422-91aa-9da0f7e04e23"},"8240775170660430883":{"disabled":true,"settings":{"phone":"+","prefill_message":"Hello! I have a question about your products","prefill_message_product_page":"Hello! I have a question about _product_","popup_text":"Chat with us on WhatsApp","bottom_offset":20,"right_offset":20,"button_color":"#25D366","badge_color":"#128C7E","badge_text":"Online","show_badge":true},"type":"shopify:\/\/apps\/codform-cod-form-upsells\/blocks\/codform-whatsapp\/80fcbf3f-4636-4422-91aa-9da0f7e04e23"},"9431604518343006754":{"disabled":false,"settings":{"app_path":"\/apps\/preventify\/"},"type":"shopify:\/\/apps\/preventify\/blocks\/preventify-app-embed\/019b22be-ac00-720e-b4ee-4f9d67691b79"}},"color_blue":"#054497","color_orange":"#f39200","color_page_bg":"#ffffff","color_red":"#d40000","color_text":"#0b1a3a","content_for_index":[],"font_body_size":16,"font_heading_scale":100,"section_gap":0,"whatsapp_url":"https:\/\/wa.me\/51926827615"},"presets":null}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "blocks": {
+      "17754088914158789468": {
+        "disabled": true,
+        "settings": {},
+        "type": "shopify://apps/easysell-cod-form/blocks/app-embed/7bfd0a95-6839-4f02-b2ee-896832dbe67e"
+      },
+      "6478312753674380289": {
+        "disabled": true,
+        "settings": {},
+        "type": "shopify://apps/gempages-builder/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3"
+      },
+      "695895115113646532": {
+        "disabled": true,
+        "settings": {},
+        "type": "shopify://apps/codform-cod-form-upsells/blocks/CodForm/80fcbf3f-4636-4422-91aa-9da0f7e04e23"
+      },
+      "8240775170660430883": {
+        "disabled": true,
+        "settings": {
+          "phone": "+",
+          "prefill_message": "Hello! I have a question about your products",
+          "prefill_message_product_page": "Hello! I have a question about _product_",
+          "popup_text": "Chat with us on WhatsApp",
+          "bottom_offset": 20,
+          "right_offset": 20,
+          "button_color": "#25D366",
+          "badge_color": "#128C7E",
+          "badge_text": "Online",
+          "show_badge": true
+        },
+        "type": "shopify://apps/codform-cod-form-upsells/blocks/codform-whatsapp/80fcbf3f-4636-4422-91aa-9da0f7e04e23"
+      },
+      "9431604518343006754": {
+        "disabled": false,
+        "settings": {
+          "app_path": "/apps/preventify/"
+        },
+        "type": "shopify://apps/preventify/blocks/preventify-app-embed/019b22be-ac00-720e-b4ee-4f9d67691b79"
+      }
+    },
+    "color_blue": "#054497",
+    "color_orange": "#f39200",
+    "color_page_bg": "#eef4fc",
+    "color_red": "#d40000",
+    "color_text": "#0b1a3a",
+    "content_for_index": [],
+    "font_body_size": 16,
+    "font_heading_scale": 100,
+    "section_gap": 0,
+    "whatsapp_url": "https://wa.me/51926827615"
+  },
+  "presets": null
+}

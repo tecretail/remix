@@ -2,8 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Frank+Ruhl+Libre:wght@400;500;600;700;900&display=swap");
 
 .shopify-section.pg-section-product,
-.pg-section-product {
-  background: #fff !important;
+.pg-section-product,
+.shopify-section.pg-main-product,
+.pg-main-product {
+  background: transparent !important;
   padding: 0 !important;
 }
 
@@ -12,7 +14,7 @@
   font-family: "Frank Ruhl Libre", "Times New Roman", Times, serif !important;
   font-weight: 700 !important;
   letter-spacing: 0.01em !important;
-  background: #fff !important;
+  background: transparent !important;
   color: #0b1a3a !important;
   max-width: 100% !important;
   overflow-x: clip !important;
