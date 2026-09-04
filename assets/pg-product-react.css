@@ -46,14 +46,22 @@
   align-items: stretch !important;
 }
 
-/* Desktop: imagen sticky hasta el bloque de videos */
+/* Desktop: imagen fija a la izquierda; el buybox derecho hace scroll */
 @media (min-width: 901px) {
+  html,
+  body.pg-body {
+    overflow-x: visible !important;
+  }
+
+  .shopify-section.pg-main-product,
+  .pg-main-product,
+  .pg-pdp-wrap,
+  .pg-sec-style,
   .lv-pe-root,
   .pg-buybox,
   .lv-preview-embed-wrap,
   .shopify-section.pg-section-product,
-  .pg-section-product,
-  .pg-sec-style {
+  .pg-section-product {
     overflow: visible !important;
     overflow-x: visible !important;
     overflow-y: visible !important;
@@ -67,16 +75,24 @@
 
   .pg-p-col-gallery {
     align-self: stretch !important;
+    position: relative !important;
     min-width: 0 !important;
     overflow: visible !important;
+    height: auto !important;
+  }
+
+  .pg-p-col-buy {
+    align-self: stretch !important;
+    min-width: 0 !important;
   }
 
   .lv-pe-gallery,
-  .pg-p-gallery {
+  .pg-p-gallery,
+  .pg-p-gallery.is-pg-sticky {
     position: sticky !important;
-    top: 24px !important;
-    z-index: 4 !important;
-    align-self: start !important;
+    top: 20px !important;
+    z-index: 5 !important;
+    width: 100% !important;
   }
 }
 
