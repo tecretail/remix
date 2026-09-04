@@ -306,26 +306,30 @@
         btn.style.setProperty('padding', '0', 'important');
         btn.style.setProperty('border-radius', '50%', 'important');
         btn.style.setProperty('background', '#6b7280', 'important');
+        btn.style.setProperty('background-color', '#6b7280', 'important');
         btn.style.setProperty('color', '#fff', 'important');
         btn.style.setProperty('border', '2px solid #fff', 'important');
         btn.style.setProperty('outline', 'none', 'important');
         btn.style.setProperty('box-shadow', '0 1px 4px rgba(0,0,0,0.2)', 'important');
         btn.style.setProperty('animation', 'none', 'important');
         btn.style.setProperty('transform', 'none', 'important');
-        /* En flujo flex, NO absolute → no se solapa con el precio */
-        btn.style.setProperty('position', 'relative', 'important');
-        btn.style.setProperty('top', 'auto', 'important');
-        btn.style.setProperty('right', 'auto', 'important');
+        /* Esquina de la card; el padding-right de la fila deja hueco libre del precio */
+        btn.style.setProperty('position', 'absolute', 'important');
+        btn.style.setProperty('top', '8px', 'important');
+        btn.style.setProperty('right', '8px', 'important');
         btn.style.setProperty('left', 'auto', 'important');
         btn.style.setProperty('bottom', 'auto', 'important');
-        btn.style.setProperty('margin', '0 0 0 6px', 'important');
-        btn.style.setProperty('flex', '0 0 22px', 'important');
-        btn.style.setProperty('align-self', 'center', 'important');
-        btn.style.setProperty('order', '99', 'important');
-        btn.style.setProperty('z-index', '2', 'important');
+        btn.style.setProperty('margin', '0', 'important');
+        btn.style.setProperty('z-index', '4', 'important');
         btn.style.setProperty('display', 'inline-flex', 'important');
         btn.style.setProperty('align-items', 'center', 'important');
         btn.style.setProperty('justify-content', 'center', 'important');
+        var row = btn.closest('[style*="gap: 12px"], [style*="gap:12px"]');
+        if (row) {
+          row.style.setProperty('position', 'relative', 'important');
+          row.style.setProperty('padding-right', '38px', 'important');
+          row.style.setProperty('box-sizing', 'border-box', 'important');
+        }
         return;
       }
 
@@ -376,7 +380,8 @@
         el.style.setProperty('background-color', '#eef3fb', 'important');
         el.style.setProperty('border', '2px solid #054497', 'important');
         el.style.setProperty('border-radius', mobile ? '12px' : '16px', 'important');
-        el.style.setProperty('padding', mobile ? '10px' : '14px 16px', 'important');
+        /* padding-right grande = hueco para la X; el precio no se mete debajo */
+        el.style.setProperty('padding', mobile ? '10px 38px 10px 10px' : '14px 40px 14px 16px', 'important');
         el.style.setProperty('box-shadow', '0 0 0 1px rgba(5, 68, 151, 0.12)', 'important');
         el.style.setProperty('max-width', '100%', 'important');
         el.style.setProperty('min-width', '0', 'important');
@@ -388,6 +393,28 @@
         el.style.setProperty('gap', '10px', 'important');
         el.style.setProperty('display', 'flex', 'important');
         el.style.setProperty('flex-wrap', 'nowrap', 'important');
+        /* X del producto: esquina, fuera del precio */
+        el.querySelectorAll('button').forEach(function (btn) {
+          var bst = btn.getAttribute('style') || '';
+          var btxt = (btn.textContent || '').trim();
+          var round = bst.indexOf('border-radius: 50%') !== -1 || bst.indexOf('border-radius:50%') !== -1 ||
+            btxt === '\u00d7' || btxt === '×' || btxt.toLowerCase() === 'x';
+          if (!round) return;
+          btn.style.setProperty('position', 'absolute', 'important');
+          btn.style.setProperty('top', '8px', 'important');
+          btn.style.setProperty('right', '8px', 'important');
+          btn.style.setProperty('left', 'auto', 'important');
+          btn.style.setProperty('bottom', 'auto', 'important');
+          btn.style.setProperty('margin', '0', 'important');
+          btn.style.setProperty('width', '22px', 'important');
+          btn.style.setProperty('height', '22px', 'important');
+          btn.style.setProperty('min-width', '22px', 'important');
+          btn.style.setProperty('min-height', '22px', 'important');
+          btn.style.setProperty('max-width', '22px', 'important');
+          btn.style.setProperty('background', '#6b7280', 'important');
+          btn.style.setProperty('background-color', '#6b7280', 'important');
+          btn.style.setProperty('z-index', '4', 'important');
+        });
         /* Título: 2 líneas (antes se forzaba completo y se veía mal) */
         el.querySelectorAll('div').forEach(function (d) {
           var st = d.getAttribute('style') || '';
@@ -591,8 +618,8 @@
         '.jaldi-field-row{width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}',
         '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',
         '.jaldi-field-row input,.jaldi-field-row select,.jaldi-field-row textarea,.jaldi-phone-wrapper input{width:100%!important;flex:1 1 0%!important;min-width:0!important;box-sizing:border-box!important}',
-        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button) > div:not([style*="52px"]) > div:first-child,.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) > div:not([style*="52px"]) > div:first-child,.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="ellipsis"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="ellipsis"]{white-space:normal!important;overflow:hidden!important;text-overflow:ellipsis!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-clamp:2!important;max-height:2.6em!important;line-height:1.3!important;word-break:break-word!important;max-width:100%!important;font-size:12.5px!important;font-weight:700!important;color:#0b1a3a!important}',
-        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[type="button"][style*="border-radius: 50%"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius:50%"]{position:relative!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;margin:0 0 0 6px!important;flex:0 0 22px!important;align-self:center!important;order:99!important}',
+        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button){padding:12px 38px 12px 12px!important;position:relative!important;box-sizing:border-box!important}',
+        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[style*="border-radius"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[style*="border-radius"]{position:absolute!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important;margin:0!important;width:22px!important;height:22px!important;min-width:22px!important;max-width:22px!important;background:#6b7280!important;z-index:4!important}',
         '}'
       ].join('');
       document.head.appendChild(st);

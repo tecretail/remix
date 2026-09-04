@@ -1331,22 +1331,28 @@ a.pg-p-cta--cod {
 .jaldi-modal-overlay [style*="gap: 12px"][style*="display: flex"]:has(> div > img),
 .jaldi-modal-overlay [style*="gap:12px"][style*="display:flex"]:has(> div > img),
 .jaldi-modal-overlay [style*="gap: 12px"][style*="display: flex"]:has(img):has(button),
-.jaldi-modal-overlay [style*="gap:12px"][style*="display:flex"]:has(img):has(button) {
+.jaldi-modal-overlay [style*="gap:12px"][style*="display:flex"]:has(img):has(button),
+.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),
+.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) {
   background: #eef3fb !important;
   background-color: #eef3fb !important;
   background-image: none !important;
   border: 2px solid #054497 !important;
   border-radius: 14px !important;
-  padding: 12px !important;
+  /* Derecha reservada para la X → el precio no queda debajo */
+  padding: 12px 38px 12px 12px !important;
   margin: 8px 0 12px !important;
   box-shadow: none !important;
   align-items: center !important;
+  gap: 10px !important;
   overflow: visible !important;
   position: relative !important;
   min-width: 0 !important;
   max-width: 100% !important;
   width: 100% !important;
   box-sizing: border-box !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
 }
 
 .jaldi-modal-overlay [style*="gap: 12px"]:has(img) > div,
@@ -1392,23 +1398,20 @@ a.pg-p-cta--cod {
   color: #0b1a3a !important;
 }
 
-.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),
-.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) {
-  align-items: center !important;
-  gap: 10px !important;
-}
-
-/* Precio fijo a la derecha (antes de la X) */
+/* Precio: a la derecha del texto, DENTRO del área útil (no bajo la X) */
 .jaldi-modal-overlay [style*="gap: 12px"]:has(img) > div:last-of-type:not(:has(img)):not(:has(button)),
 .jaldi-modal-overlay [style*="gap:12px"]:has(img) > div:last-of-type:not(:has(img)):not(:has(button)) {
+  flex: 0 0 auto !important;
   flex-shrink: 0 !important;
   align-self: center !important;
   font-weight: 800 !important;
   white-space: nowrap !important;
   font-size: 14px !important;
   color: #0b1a3a !important;
-  order: 50 !important;
-  margin-left: auto !important;
+  margin-left: 8px !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  max-width: none !important;
 }
 
 .jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
@@ -1704,31 +1707,33 @@ a.pg-p-cta--cod {
   justify-content: center !important;
 }
 
-/* X quitar producto — en la fila (junto al precio), sin solaparse */
+/* X quitar producto — esquina de la card, en el padding derecho (NO sobre el precio) */
 .jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[type="button"][style*="border-radius: 50%"],
 .jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius:50%"],
 .jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[type="button"][style*="border-radius:50%"],
-.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius: 50%"] {
+.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius: 50%"],
+.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[style*="border-radius: 50%"],
+.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[style*="border-radius:50%"] {
   width: 22px !important;
   height: 22px !important;
   min-width: 22px !important;
   min-height: 22px !important;
   max-width: 22px !important;
+  padding: 0 !important;
   background: #6b7280 !important;
   background-color: #6b7280 !important;
   border: 2px solid #fff !important;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
   font-size: 12px !important;
-  position: relative !important;
-  top: auto !important;
-  right: auto !important;
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
   left: auto !important;
   bottom: auto !important;
-  margin: 0 0 0 6px !important;
-  flex: 0 0 22px !important;
-  align-self: center !important;
-  order: 99 !important;
-  z-index: 2 !important;
+  margin: 0 !important;
+  z-index: 4 !important;
+  flex: none !important;
+  order: 0 !important;
 }
 
 .jaldi-modal-overlay .jaldi-field-row button,
