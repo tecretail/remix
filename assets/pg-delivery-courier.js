@@ -368,14 +368,48 @@
     });
 
     if (mobile) {
+      overlay.style.setProperty('padding', '0', 'important');
+      overlay.style.setProperty('align-items', 'flex-end', 'important');
+      var box = overlay.firstElementChild;
+      if (box) {
+        box.style.setProperty('max-width', '100%', 'important');
+        box.style.setProperty('width', '100%', 'important');
+        box.style.setProperty('margin', '0', 'important');
+        box.style.setProperty('border-radius', '18px 18px 0 0', 'important');
+        box.style.setProperty('max-height', '94dvh', 'important');
+      }
       overlay.querySelectorAll('.jaldi-field-label').forEach(function (lab) {
+        lab.style.setProperty('display', 'block', 'important');
         lab.style.setProperty('width', '100%', 'important');
         lab.style.setProperty('min-width', '0', 'important');
         lab.style.setProperty('max-width', '100%', 'important');
+        lab.style.setProperty('flex', '0 0 auto', 'important');
+        lab.style.setProperty('font-size', '14px', 'important');
+        lab.style.setProperty('white-space', 'normal', 'important');
+        lab.style.removeProperty('flex-basis');
       });
       overlay.querySelectorAll('.jaldi-field-row').forEach(function (row) {
+        row.style.setProperty('display', 'flex', 'important');
         row.style.setProperty('flex-direction', 'column', 'important');
         row.style.setProperty('align-items', 'stretch', 'important');
+        row.style.setProperty('justify-content', 'flex-start', 'important');
+        row.style.setProperty('flex-wrap', 'nowrap', 'important');
+        row.style.setProperty('gap', '8px', 'important');
+        row.style.setProperty('margin-bottom', '16px', 'important');
+        row.style.setProperty('width', '100%', 'important');
+        row.style.setProperty('grid-template-columns', 'none', 'important');
+        Array.prototype.forEach.call(row.children, function (child) {
+          if (child.classList && child.classList.contains('jaldi-field-label')) return;
+          child.style.setProperty('width', '100%', 'important');
+          child.style.setProperty('max-width', '100%', 'important');
+          child.style.setProperty('min-width', '0', 'important');
+          child.style.setProperty('flex', '1 1 auto', 'important');
+        });
+      });
+      overlay.querySelectorAll('input, select, textarea').forEach(function (inp) {
+        if (inp.type === 'checkbox') return;
+        inp.style.setProperty('font-size', '16px', 'important');
+        inp.style.setProperty('min-height', '48px', 'important');
       });
     }
   }

@@ -1708,16 +1708,16 @@ a.pg-p-cta--cod {
     0 8px 18px rgba(47, 158, 68, 0.18) !important;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .jaldi-modal-overlay,
   .jaldi-modal-overlay * {
     animation: none !important;
   }
 
   .jaldi-modal-overlay {
-    padding: 16px !important;
-    align-items: center !important;
-    justify-content: center !important;
+    padding: 0 !important;
+    align-items: flex-end !important;
+    justify-content: stretch !important;
     width: 100% !important;
     max-width: 100% !important;
     inset: 0 !important;
@@ -1728,80 +1728,101 @@ a.pg-p-cta--cod {
   }
 
   .jaldi-modal-overlay > div {
-    border-radius: 16px !important;
-    max-width: min(100%, 420px) !important;
+    border-radius: 18px 18px 0 0 !important;
+    max-width: 100% !important;
     width: 100% !important;
     height: auto !important;
-    max-height: 90dvh !important;
-    max-height: 90vh !important;
-    margin: 0 auto !important;
+    max-height: 94dvh !important;
+    max-height: 94vh !important;
+    margin: 0 !important;
     overflow: hidden !important;
     transform: none !important;
   }
 
   .jaldi-form-scrollable-content {
-    padding: 0 12px 16px !important;
+    padding: 8px 16px 20px !important;
     overflow-x: hidden !important;
   }
 
   .jaldi-modal-overlay h3 {
-    font-size: 13px !important;
-    letter-spacing: 0.05em !important;
-    margin: 6px 8px 12px !important;
-    padding: 11px 36px 11px 14px !important;
+    font-size: 14px !important;
+    letter-spacing: 0.04em !important;
+    margin: 10px 0 14px !important;
+    padding: 14px 44px 14px 16px !important;
+    border-radius: 12px !important;
   }
 
   .jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),
   .jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) {
-    padding: 10px !important;
-    gap: 8px !important;
+    padding: 12px !important;
+    gap: 10px !important;
     border-radius: 12px !important;
-    margin: 6px 0 10px !important;
+    margin: 8px 0 12px !important;
     flex-wrap: nowrap !important;
   }
 
   .jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
   .jaldi-modal-overlay [style*="width:52px"][style*="height:52px"] {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
     flex-shrink: 0 !important;
   }
 
   .jaldi-modal-overlay [style*="#F3F4F6"][style*="border-radius: 8px"],
   .jaldi-modal-overlay [style*="padding: 10px 12px"][style*="#F3F4F6"] {
-    padding: 12px 14px !important;
-    border-radius: 10px !important;
-    font-size: 13px !important;
-  }
-
-  .jaldi-modal-overlay [style*="padding: 16px"][style*="#E5E7EB"],
-  .jaldi-modal-overlay [style*="padding:16px"][style*="#E5E7EB"] {
-    padding: 14px 12px 10px !important;
+    padding: 14px 16px !important;
     border-radius: 12px !important;
+    font-size: 14px !important;
   }
 
-  .jaldi-field-row {
+  /* Card DATOS DE ENVIO — más aire */
+  .jaldi-modal-overlay [style*="padding: 16px"][style*="#E5E7EB"],
+  .jaldi-modal-overlay [style*="padding:16px"][style*="#E5E7EB"],
+  .jaldi-modal-overlay [style*="padding: 16px"][style*="#e5e7eb"] {
+    padding: 18px 14px 14px !important;
+    border-radius: 14px !important;
+    margin-top: 4px !important;
+  }
+
+  /* Labels arriba, inputs a todo el ancho (ya no lado a lado) */
+  .jaldi-field-row,
+  .jaldi-modal-overlay .jaldi-field-row {
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 6px !important;
-    margin-bottom: 12px !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    grid-template-columns: none !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
   }
 
-  .jaldi-field-label {
+  .jaldi-field-label,
+  .jaldi-modal-overlay .jaldi-field-label {
+    display: block !important;
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
-    font-size: 12px !important;
+    flex: 0 0 auto !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+    padding: 0 2px !important;
+    white-space: normal !important;
   }
 
   .jaldi-field-row > div,
   .jaldi-modal-overlay .jaldi-phone-wrapper,
   .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"] {
+    display: flex !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     flex: 1 1 auto !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-modal-overlay input,
@@ -1809,10 +1830,16 @@ a.pg-p-cta--cod {
   .jaldi-modal-overlay textarea,
   #preventify-popup input,
   #preventify-popup select,
-  #preventify-popup textarea {
+  #preventify-popup textarea,
+  #preventify-embedded input,
+  #preventify-embedded select,
+  #preventify-embedded textarea {
+    width: 100% !important;
     max-width: 100% !important;
     font-size: 16px !important;
-    min-height: 44px !important;
+    min-height: 48px !important;
+    padding: 13px 14px !important;
+    border-radius: 12px !important;
   }
 
   .jaldi-phone-wrapper input,
@@ -1820,8 +1847,26 @@ a.pg-p-cta--cod {
     width: auto !important;
     flex: 1 1 auto !important;
     min-width: 0 !important;
+    min-height: 46px !important;
     border: 0 !important;
     box-shadow: none !important;
+    padding-left: 10px !important;
+    padding-right: 12px !important;
+  }
+
+  .jaldi-modal-overlay [style*="#E9ECEF"],
+  .jaldi-modal-overlay [style*="#e9ecef"],
+  .jaldi-modal-overlay [style*="background-color: rgb(233, 236, 239)"] {
+    min-width: 44px !important;
+    padding: 0 12px !important;
+  }
+
+  .jaldi-modal-overlay input[type="checkbox"],
+  #preventify-popup input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    min-width: 20px !important;
   }
 
   .jaldi-modal-overlay button.jaldi-button-pulse,
@@ -1835,9 +1880,11 @@ a.pg-p-cta--cod {
   .jaldi-modal-overlay button.jaldi-button-bounce,
   .jaldi-modal-overlay button.jaldi-button-shake,
   .jaldi-modal-overlay button[type="submit"] {
-    min-height: 48px !important;
-    padding: 11px 14px !important;
-    font-size: 13px !important;
+    min-height: 54px !important;
+    padding: 14px 16px !important;
+    font-size: 14px !important;
+    border-radius: 14px !important;
+    margin-top: 6px !important;
   }
 }
 
@@ -3390,23 +3437,30 @@ a.pg-p-cta--cod {
 
   .jaldi-modal-overlay > div {
     width: 100% !important;
-    max-width: min(100%, 420px) !important;
+    max-width: 100% !important;
     height: auto !important;
-    max-height: 90dvh !important;
-    max-height: 90vh !important;
-    margin: 0 auto !important;
-    border-radius: 16px !important;
+    max-height: 94dvh !important;
+    max-height: 94vh !important;
+    margin: 0 !important;
+    border-radius: 18px 18px 0 0 !important;
     transform: none !important;
   }
 
-  .jaldi-field-row {
+  .jaldi-field-row,
+  .jaldi-modal-overlay .jaldi-field-row {
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
+    gap: 8px !important;
+    grid-template-columns: none !important;
   }
 
-  .jaldi-field-label {
+  .jaldi-field-label,
+  .jaldi-modal-overlay .jaldi-field-label {
     width: 100% !important;
     min-width: 0 !important;
+    max-width: 100% !important;
+    font-size: 14px !important;
   }
 
   .jaldi-modal-overlay input,
@@ -3414,6 +3468,7 @@ a.pg-p-cta--cod {
   .jaldi-modal-overlay textarea {
     font-size: 16px !important;
     max-width: 100% !important;
+    min-height: 48px !important;
   }
 
   .jaldi-button-pulse,
