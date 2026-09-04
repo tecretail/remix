@@ -42,14 +42,6 @@
   assign courier_icon = courier_icon | default: 'truck'
   assign delivery_tooltip_text = delivery_tooltip_text | default: 'Envío gratis a todo el Perú'
   assign delivery_gift_text = delivery_gift_text | default: 'Cada pedido tiene un regalo especial'
-  assign show_trust_accordion = show_trust_accordion
-  if show_trust_accordion == nil
-    assign show_trust_accordion = true
-  endif
-  assign acc_ship_title = acc_ship_title | default: 'Envíos Rápidos y Seguros'
-  assign acc_ship_body = acc_ship_body | default: 'Despachamos tu pedido de forma rápida y segura a todo el Perú. Seguimiento incluido para que sepas exactamente dónde va tu paquete.'
-  assign acc_guarantee_title = acc_guarantee_title | default: 'Garantía al 100%'
-  assign acc_guarantee_body = acc_guarantee_body | default: 'Compra con total confianza. Si no quedas satisfecho, te respaldamos con nuestra garantía al 100%.'
   assign hot_sale_label = hot_sale_label | default: '🔥 HOT SALE'
   assign hot_sale_text = hot_sale_text | default: 'Ordena hoy para asegurar tu descuento y regalos GRATIS'
   assign offer_badge = offer_badge | default: 'MEJOR OFERTA'
@@ -696,43 +688,6 @@
           {% endfor %}
         </div>
 
-        {% if show_trust_accordion %}
-          <div class="pg-p-accordion" data-pg-trust-accordion>
-            <details class="pg-p-acc-item">
-              <summary class="pg-p-acc-summary">
-                <span class="pg-p-acc-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M13 2L4 14h7l-1 8 10-14h-7l1-6z"/>
-                  </svg>
-                </span>
-                <span class="pg-p-acc-label">{{ acc_ship_title }}</span>
-                <span class="pg-p-acc-chevron" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9l6 6 6-6"/>
-                  </svg>
-                </span>
-              </summary>
-              <div class="pg-p-acc-body">{{ acc_ship_body }}</div>
-            </details>
-            <details class="pg-p-acc-item">
-              <summary class="pg-p-acc-summary">
-                <span class="pg-p-acc-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.4l8.8-8.7a5 5 0 0 0 0-7.1z"/>
-                  </svg>
-                </span>
-                <span class="pg-p-acc-label">{{ acc_guarantee_title }}</span>
-                <span class="pg-p-acc-chevron" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9l6 6 6-6"/>
-                  </svg>
-                </span>
-              </summary>
-              <div class="pg-p-acc-body">{{ acc_guarantee_body }}</div>
-            </details>
-          </div>
-        {% endif %}
-
         <div class="pg-p-bar pg-p-bar--urgency">{{ urgency_bar_text }}</div>
         {% if show_delivery_truck %}
           {% render 'pg-delivery-truck', courier_icon: courier_icon, delivery_tooltip_text: delivery_tooltip_text, delivery_gift_text: delivery_gift_text %}
@@ -807,6 +762,37 @@
             <img src="https://cdn.shopify.com/s/files/1/0629/7930/9629/files/5.png?v=1756506099" alt="Método 5" loading="lazy" width="48" height="32">
             <img src="https://cdn.shopify.com/s/files/1/0629/7930/9629/files/6.png?v=1756506101" alt="Método 6" loading="lazy" width="48" height="32">
             <img src="https://cdn.shopify.com/s/files/1/0629/7930/9629/files/7.png?v=1756506101" alt="Método 7" loading="lazy" width="48" height="32">
+          </div>
+
+          <div class="pg-p-accordions" data-pg-accordions>
+            <details class="pg-p-acc">
+              <summary class="pg-p-acc__summary">
+                <span class="pg-p-acc__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L4 14h7l-1 8 10-14h-7l1-6z"></path>
+                  </svg>
+                </span>
+                <span class="pg-p-acc__label">Envíos Rápidos y Seguros</span>
+                <span class="pg-p-acc__chev" aria-hidden="true"></span>
+              </summary>
+              <div class="pg-p-acc__body">
+                Despachamos tu pedido de forma rápida y segura a todo el Perú. Recibe tu compra en la comodidad de tu hogar.
+              </div>
+            </details>
+            <details class="pg-p-acc">
+              <summary class="pg-p-acc__summary">
+                <span class="pg-p-acc__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 0 0-7.4 7.4L12 21.8l8.8-8.8a5.2 5.2 0 0 0 0-7.4z"></path>
+                  </svg>
+                </span>
+                <span class="pg-p-acc__label">Garantía al 100%</span>
+                <span class="pg-p-acc__chev" aria-hidden="true"></span>
+              </summary>
+              <div class="pg-p-acc__body">
+                Compra con total confianza. Si no quedas satisfecho, te respaldamos con nuestra garantía al 100%.
+              </div>
+            </details>
           </div>
         {% endif %}
 
