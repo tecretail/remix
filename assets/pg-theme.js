@@ -313,6 +313,14 @@
       for (var j = 0; j < all.length; j++) {
         var n = all[j];
         if (n.id === "lvWaHost" || (n.className && String(n.className).indexOf("lv-wa") !== -1)) continue;
+        /* No comprimir el track del marquee de logos (necesita ser más ancho que el viewport) */
+        if (n.classList && (
+          n.classList.contains("pg-brand-slider-track") ||
+          n.classList.contains("pg-brand-set") ||
+          n.classList.contains("pg-brand-slide") ||
+          n.classList.contains("pg-brand-image")
+        )) continue;
+        if (n.closest && n.closest(".pg-brand-slider-track")) continue;
         if (!n.getBoundingClientRect) continue;
         var r = n.getBoundingClientRect();
         if (r.right > vw + 4 || r.left < -4 || r.width > vw + 8) {
@@ -323,6 +331,85 @@
       html.scrollLeft = 0;
       body.scrollLeft = 0;
       window.scrollTo(0, window.scrollY || 0);
+    }
+  }
+
+  function setupBrandMarquee() {
+    var wraps = document.querySelectorAll(".pg-brand-slider-wrap");
+    for (var w = 0; w < wraps.length; w++) {
+      (function (wrap) {
+        if (wrap.dataset.pgMarquee === "1") return;
+        var viewport = wrap.querySelector(".pg-brand-slider-viewport");
+        var track = wrap.querySelector(".pg-brand-slider-track");
+        var firstSet = track && track.querySelector(".pg-brand-set");
+        if (!viewport || !track || !firstSet) return;
+        wrap.dataset.pgMarquee = "1";
+
+        track.style.setProperty("animation", "none", "important");
+        track.style.setProperty("max-width", "none", "important");
+        track.style.setProperty("width", "max-content", "important");
+        track.style.setProperty("overflow", "visible", "important");
+
+        function ensureCopies() {
+          var base = track.querySelector(".pg-brand-set");
+          if (!base) return 0;
+          while (track.children.length > 1) track.removeChild(track.lastElementChild);
+          var need = Math.max(viewport.clientWidth * 2 + 80, base.scrollWidth * 2);
+          var guard = 0;
+          while (track.scrollWidth < need && guard < 10) {
+            var clone = base.cloneNode(true);
+            clone.setAttribute("aria-hidden", "true");
+            track.appendChild(clone);
+            guard++;
+          }
+          return base.getBoundingClientRect().width;
+        }
+
+        var loopWidth = ensureCopies();
+        var offset = 0;
+        var speed = 45;
+        var last = 0;
+
+        function frame(now) {
+          if (!last) last = now;
+          var dt = Math.min(0.05, (now - last) / 1000);
+          last = now;
+          if (loopWidth > 0) {
+            offset += speed * dt;
+            if (offset >= loopWidth) offset -= loopWidth;
+            track.style.setProperty("transform", "translate3d(" + (-offset).toFixed(2) + "px,0,0)", "important");
+          }
+          requestAnimationFrame(frame);
+        }
+
+        var imgs = firstSet.querySelectorAll("img");
+        var pending = 0;
+        function start() {
+          loopWidth = ensureCopies();
+          requestAnimationFrame(frame);
+        }
+        function onImg() {
+          pending -= 1;
+          if (pending <= 0) start();
+        }
+        for (var i = 0; i < imgs.length; i++) {
+          if (!imgs[i].complete) {
+            pending += 1;
+            imgs[i].addEventListener("load", onImg, { once: true });
+            imgs[i].addEventListener("error", onImg, { once: true });
+          }
+        }
+        if (pending === 0) start();
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            offset = 0;
+            loopWidth = ensureCopies();
+          }, 150);
+        });
+      })(wraps[w]);
     }
   }
 
@@ -354,6 +441,7 @@
     setupCheckoutButtons();
     tickHeroCounters();
     tickPgCountdowns();
+    setupBrandMarquee();
     lockHorizontalOverflow();
     bindNoHorizontalScroll();
     setTimeout(lockHorizontalOverflow, 300);
