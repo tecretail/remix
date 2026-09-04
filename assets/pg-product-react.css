@@ -1715,9 +1715,9 @@ a.pg-p-cta--cod {
   }
 
   .jaldi-modal-overlay {
-    padding: 0 !important;
-    align-items: flex-end !important;
-    justify-content: stretch !important;
+    padding: 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
     width: 100% !important;
     max-width: 100% !important;
     inset: 0 !important;
@@ -1728,27 +1728,27 @@ a.pg-p-cta--cod {
   }
 
   .jaldi-modal-overlay > div {
-    border-radius: 18px 18px 0 0 !important;
-    max-width: 100% !important;
+    border-radius: 16px !important;
+    max-width: min(100%, 400px) !important;
     width: 100% !important;
     height: auto !important;
-    max-height: 94dvh !important;
-    max-height: 94vh !important;
-    margin: 0 !important;
+    max-height: 92dvh !important;
+    max-height: 92vh !important;
+    margin: 0 auto !important;
     overflow: hidden !important;
     transform: none !important;
   }
 
   .jaldi-form-scrollable-content {
-    padding: 8px 16px 20px !important;
+    padding: 6px 14px 16px !important;
     overflow-x: hidden !important;
   }
 
   .jaldi-modal-overlay h3 {
     font-size: 14px !important;
     letter-spacing: 0.04em !important;
-    margin: 10px 0 14px !important;
-    padding: 14px 44px 14px 16px !important;
+    margin: 8px 0 12px !important;
+    padding: 12px 40px 12px 14px !important;
     border-radius: 12px !important;
   }
 
@@ -1776,16 +1776,16 @@ a.pg-p-cta--cod {
     font-size: 14px !important;
   }
 
-  /* Card DATOS DE ENVIO — más aire */
+  /* Card DATOS DE ENVIO — más aire interno */
   .jaldi-modal-overlay [style*="padding: 16px"][style*="#E5E7EB"],
   .jaldi-modal-overlay [style*="padding:16px"][style*="#E5E7EB"],
   .jaldi-modal-overlay [style*="padding: 16px"][style*="#e5e7eb"] {
-    padding: 18px 14px 14px !important;
+    padding: 16px 12px 12px !important;
     border-radius: 14px !important;
     margin-top: 4px !important;
   }
 
-  /* Labels arriba, inputs a todo el ancho (ya no lado a lado) */
+  /* Labels arriba, inputs anchos (sin apretar en 2 columnas) */
   .jaldi-field-row,
   .jaldi-modal-overlay .jaldi-field-row {
     display: flex !important;
@@ -1880,8 +1880,8 @@ a.pg-p-cta--cod {
   .jaldi-modal-overlay button.jaldi-button-bounce,
   .jaldi-modal-overlay button.jaldi-button-shake,
   .jaldi-modal-overlay button[type="submit"] {
-    min-height: 54px !important;
-    padding: 14px 16px !important;
+    min-height: 52px !important;
+    padding: 13px 16px !important;
     font-size: 14px !important;
     border-radius: 14px !important;
     margin-top: 6px !important;
@@ -3423,26 +3423,26 @@ a.pg-p-cta--cod {
   }
 
   .jaldi-modal-overlay {
-    padding: 0 !important;
+    padding: 12px !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
     max-width: 100% !important;
     overflow: hidden !important;
     transform: none !important;
-    align-items: flex-end !important;
-    justify-content: stretch !important;
+    align-items: center !important;
+    justify-content: center !important;
     box-sizing: border-box !important;
   }
 
   .jaldi-modal-overlay > div {
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: min(100%, 400px) !important;
     height: auto !important;
-    max-height: 94dvh !important;
-    max-height: 94vh !important;
-    margin: 0 !important;
-    border-radius: 18px 18px 0 0 !important;
+    max-height: 92dvh !important;
+    max-height: 92vh !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
     transform: none !important;
   }
 

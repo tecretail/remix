@@ -368,15 +368,16 @@
     });
 
     if (mobile) {
-      overlay.style.setProperty('padding', '0', 'important');
-      overlay.style.setProperty('align-items', 'flex-end', 'important');
+      overlay.style.setProperty('padding', '12px', 'important');
+      overlay.style.setProperty('align-items', 'center', 'important');
+      overlay.style.setProperty('justify-content', 'center', 'important');
       var box = overlay.firstElementChild;
       if (box) {
-        box.style.setProperty('max-width', '100%', 'important');
+        box.style.setProperty('max-width', 'min(100%, 400px)', 'important');
         box.style.setProperty('width', '100%', 'important');
-        box.style.setProperty('margin', '0', 'important');
-        box.style.setProperty('border-radius', '18px 18px 0 0', 'important');
-        box.style.setProperty('max-height', '94dvh', 'important');
+        box.style.setProperty('margin', '0 auto', 'important');
+        box.style.setProperty('border-radius', '16px', 'important');
+        box.style.setProperty('max-height', '92dvh', 'important');
       }
       overlay.querySelectorAll('.jaldi-field-label').forEach(function (lab) {
         lab.style.setProperty('display', 'block', 'important');
