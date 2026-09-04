@@ -2786,7 +2786,7 @@ a.pg-p-cta--cod {
 .pg-product-videos {
   --pg-vid-gap: 16px;
   --pg-vid-cols: 4;
-  --pg-videos-bg: #e8f1fb;
+  --pg-videos-bg: #f4f8fd;
   --pg-videos-heading: #054497;
   --pg-tiktok-cyan: #25f4ee;
   --pg-tiktok-pink: #fe2c55;
@@ -2800,50 +2800,17 @@ a.pg-p-cta--cod {
   border-radius: 22px;
   box-sizing: border-box;
   color: var(--pg-videos-heading, #054497);
-  background:
-    radial-gradient(ellipse 70% 55% at 15% 0%, rgba(37, 244, 238, 0.18), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(254, 44, 85, 0.14), transparent 50%),
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(5, 68, 151, 0.12), transparent 55%),
-    linear-gradient(165deg, #f7fbff 0%, #e8f2fc 42%, #eef0ff 100%);
-  border: 1px solid rgba(5, 68, 151, 0.12);
-  box-shadow:
-    0 18px 42px rgba(5, 68, 151, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f7fc 100%);
+  border: 1px solid rgba(5, 68, 151, 0.1);
+  box-shadow: 0 12px 28px rgba(5, 68, 151, 0.08);
 }
 
 .pg-vid::before,
-.pg-product-videos::before {
-  content: "";
-  display: block !important;
-  position: absolute;
-  inset: -20%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(37, 244, 238, 0.12), transparent 28%),
-    radial-gradient(circle at 80% 40%, rgba(254, 44, 85, 0.1), transparent 30%);
-  animation: pg-vid-ambient 7s ease-in-out infinite alternate;
-}
-
 .pg-vid::after,
+.pg-product-videos::before,
 .pg-product-videos::after {
-  content: "";
-  display: block !important;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  background-image:
-    linear-gradient(rgba(5, 68, 151, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(5, 68, 151, 0.035) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 75%);
-}
-
-@keyframes pg-vid-ambient {
-  from { transform: translate3d(-1%, -1%, 0) scale(1); }
-  to { transform: translate3d(2%, 1%, 0) scale(1.04); }
+  content: none !important;
+  display: none !important;
 }
 
 @keyframes pg-tiktok-glow {
@@ -2907,12 +2874,12 @@ a.pg-p-cta--cod {
 
 .pg-product-videos__carousel::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(247, 251, 255, 0.95), transparent);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), transparent);
 }
 
 .pg-product-videos__carousel::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(238, 240, 255, 0.95), transparent);
+  background: linear-gradient(270deg, rgba(243, 247, 252, 0.95), transparent);
 }
 
 .pg-vid__track,
