@@ -130,6 +130,24 @@
   box-sizing: border-box !important;
 }
 
+@media (min-width: 901px) {
+  .pg-p-thumbs,
+  .lv-pe-thumbs {
+    gap: 14px !important;
+  }
+
+  .pg-p-thumb,
+  .lv-pe-thumbs button {
+    width: 118px !important;
+    height: 118px !important;
+    min-width: 118px !important;
+    max-width: 118px !important;
+    flex: 0 0 118px !important;
+    border-radius: 12px !important;
+    padding: 5px !important;
+  }
+}
+
 .pg-p-thumb.is-active {
   border-color: #054497 !important;
 }
