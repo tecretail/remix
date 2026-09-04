@@ -345,44 +345,98 @@
         if (!viewport || !track || !firstSet) return;
         wrap.dataset.pgMarquee = "1";
 
-        // CSS marquee (más fiable en móvil que rAF). Solo asegurar 2+ sets.
-        function ensureCopies() {
+        track.style.setProperty("max-width", "none", "important");
+        track.style.setProperty("width", "max-content", "important");
+        track.style.setProperty("overflow", "visible", "important");
+        track.style.setProperty("will-change", "transform", "important");
+        // NUNCA fijar transform:none !important — mata la animación CSS/JS
+
+        // Exactamente 2 mitades idénticas → loop infinito sin hueco
+        function normalizeSets() {
           var base = track.querySelector(".pg-brand-set");
-          if (!base) return;
-          if (track.children.length < 2) {
-            var clone = base.cloneNode(true);
-            clone.setAttribute("aria-hidden", "true");
-            track.appendChild(clone);
+          if (!base) return 0;
+          while (track.children.length > 1) {
+            track.removeChild(track.lastElementChild);
           }
+          var clone = base.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          track.appendChild(clone);
+          return Math.round(base.getBoundingClientRect().width || base.scrollWidth || 0);
         }
 
-        function applyCssMarquee() {
-          ensureCopies();
-          track.style.setProperty("max-width", "none", "important");
-          track.style.setProperty("width", "max-content", "important");
-          track.style.setProperty("overflow", "visible", "important");
-          track.style.setProperty("transform", "none", "important");
-          track.style.setProperty("will-change", "transform", "important");
-          track.style.setProperty("animation", "pg-brand-scroll 22s linear infinite", "important");
-          track.style.setProperty("-webkit-animation", "pg-brand-scroll 22s linear infinite", "important");
-          if (window.matchMedia && !window.matchMedia("(max-width: 900px)").matches) {
-            track.style.setProperty("animation", "pg-brand-scroll 28s linear infinite", "important");
-            track.style.setProperty("-webkit-animation", "pg-brand-scroll 28s linear infinite", "important");
-          }        }
+        var loopWidth = 0;
+        var offset = 0;
+        var last = 0;
+        var running = false;
+        var speed = 60;
 
-        applyCssMarquee();
-        // Imágenes pueden cargar tarde en móvil
-        setTimeout(applyCssMarquee, 400);
-        setTimeout(applyCssMarquee, 1200);
+        function frame(now) {
+          if (!running) return;
+          if (!last) last = now;
+          var dt = Math.min(0.048, (now - last) / 1000);
+          last = now;
+          if (loopWidth > 2) {
+            offset += speed * dt;
+            if (offset >= loopWidth) offset -= loopWidth;
+            track.style.transform = "translate3d(" + (-offset).toFixed(2) + "px,0,0)";
+          }
+          requestAnimationFrame(frame);
+        }
+
+        function boot() {
+          speed = window.matchMedia("(max-width: 900px)").matches ? 55 : 70;
+          loopWidth = normalizeSets();
+          // Quitar animación CSS; movemos con rAF midiendo el set real
+          track.style.setProperty("animation", "none", "important");
+          track.style.setProperty("-webkit-animation", "none", "important");
+          if (loopWidth < 2) {
+            // Fallback CSS (sin tocar transform inline)
+            track.style.removeProperty("transform");
+            track.style.removeProperty("animation");
+            track.style.removeProperty("-webkit-animation");
+            track.style.setProperty("animation", "pg-brand-scroll 22s linear infinite");
+            return false;
+          }
+          if (!running) {
+            running = true;
+            last = 0;
+            requestAnimationFrame(frame);
+          }
+          return true;
+        }
+
+        var tries = 0;
+        function retry() {
+          tries += 1;
+          if (boot()) return;
+          if (tries < 16) setTimeout(retry, 200);
+        }
+        retry();
+        setTimeout(function () {
+          if (loopWidth < 2) retry();
+          else {
+            loopWidth = normalizeSets();
+          }
+        }, 800);
+
         track.querySelectorAll("img").forEach(function (img) {
           if (img.complete) return;
-          img.addEventListener("load", applyCssMarquee, { once: true });
+          img.addEventListener("load", function () {
+            var prev = loopWidth;
+            loopWidth = normalizeSets();
+            if (loopWidth >= 2 && !running) boot();
+            else if (prev !== loopWidth) offset = offset % Math.max(loopWidth, 1);
+          }, { once: true });
         });
 
         var resizeTimer;
         window.addEventListener("resize", function () {
           clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(applyCssMarquee, 150);
+          resizeTimer = setTimeout(function () {
+            offset = 0;
+            loopWidth = normalizeSets();
+            speed = window.matchMedia("(max-width: 900px)").matches ? 55 : 70;
+          }, 150);
         }, { passive: true });
       })(wraps[w]);
     }

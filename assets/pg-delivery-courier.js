@@ -312,10 +312,20 @@
         btn.style.setProperty('box-shadow', '0 1px 4px rgba(0,0,0,0.2)', 'important');
         btn.style.setProperty('animation', 'none', 'important');
         btn.style.setProperty('transform', 'none', 'important');
-        btn.style.setProperty('position', 'absolute', 'important');
-        btn.style.setProperty('top', '-4px', 'important');
-        btn.style.setProperty('right', '-4px', 'important');
-        btn.style.setProperty('z-index', '3', 'important');
+        /* En flujo flex, NO absolute → no se solapa con el precio */
+        btn.style.setProperty('position', 'relative', 'important');
+        btn.style.setProperty('top', 'auto', 'important');
+        btn.style.setProperty('right', 'auto', 'important');
+        btn.style.setProperty('left', 'auto', 'important');
+        btn.style.setProperty('bottom', 'auto', 'important');
+        btn.style.setProperty('margin', '0 0 0 6px', 'important');
+        btn.style.setProperty('flex', '0 0 22px', 'important');
+        btn.style.setProperty('align-self', 'center', 'important');
+        btn.style.setProperty('order', '99', 'important');
+        btn.style.setProperty('z-index', '2', 'important');
+        btn.style.setProperty('display', 'inline-flex', 'important');
+        btn.style.setProperty('align-items', 'center', 'important');
+        btn.style.setProperty('justify-content', 'center', 'important');
         return;
       }
 
@@ -376,6 +386,8 @@
         el.style.setProperty('box-sizing', 'border-box', 'important');
         el.style.setProperty('align-items', 'center', 'important');
         el.style.setProperty('gap', '10px', 'important');
+        el.style.setProperty('display', 'flex', 'important');
+        el.style.setProperty('flex-wrap', 'nowrap', 'important');
         /* Título: 2 líneas (antes se forzaba completo y se veía mal) */
         el.querySelectorAll('div').forEach(function (d) {
           var st = d.getAttribute('style') || '';
@@ -580,6 +592,7 @@
         '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',
         '.jaldi-field-row input,.jaldi-field-row select,.jaldi-field-row textarea,.jaldi-phone-wrapper input{width:100%!important;flex:1 1 0%!important;min-width:0!important;box-sizing:border-box!important}',
         '.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button) > div:not([style*="52px"]) > div:first-child,.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) > div:not([style*="52px"]) > div:first-child,.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="ellipsis"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="ellipsis"]{white-space:normal!important;overflow:hidden!important;text-overflow:ellipsis!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-clamp:2!important;max-height:2.6em!important;line-height:1.3!important;word-break:break-word!important;max-width:100%!important;font-size:12.5px!important;font-weight:700!important;color:#0b1a3a!important}',
+        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[type="button"][style*="border-radius: 50%"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius:50%"]{position:relative!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;margin:0 0 0 6px!important;flex:0 0 22px!important;align-self:center!important;order:99!important}',
         '}'
       ].join('');
       document.head.appendChild(st);
