@@ -1851,7 +1851,7 @@ a.pg-p-cta--cod {
 
   .jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),
   .jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) {
-    padding: 12px !important;
+    padding: 12px 38px 12px 12px !important;
     gap: 10px !important;
     border-radius: 12px !important;
     margin: 8px 0 12px !important;
@@ -1859,6 +1859,7 @@ a.pg-p-cta--cod {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+    position: relative !important;
   }
 
   .jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
