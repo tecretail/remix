@@ -1672,11 +1672,11 @@ a.pg-p-cta--cod {
   max-width: 100% !important;
 }
 
-/* X cerrar modal — dentro del cuadro, no colgando afuera */
-.jaldi-modal-overlay button[type="button"][style*="border-radius: 50%"],
-.jaldi-modal-overlay button[type="button"][style*="border-radius:50%"],
-#preventify-popup button[type="button"][style*="border-radius: 50%"],
-#preventify-popup button[type="button"][style*="border-radius:50%"] {
+/* X cerrar modal — NO aplicar a la X de quitar producto (top:-4px) */
+.jaldi-modal-overlay button[type="button"][style*="border-radius: 50%"]:not([style*="top: -4px"]):not([style*="top:-4px"]),
+.jaldi-modal-overlay button[type="button"][style*="border-radius:50%"]:not([style*="top: -4px"]):not([style*="top:-4px"]),
+#preventify-popup button[type="button"][style*="border-radius: 50%"]:not([style*="top: -4px"]):not([style*="top:-4px"]),
+#preventify-popup button[type="button"][style*="border-radius:50%"]:not([style*="top: -4px"]):not([style*="top:-4px"]) {
   width: 28px !important;
   height: 28px !important;
   min-width: 28px !important;
@@ -1707,33 +1707,60 @@ a.pg-p-cta--cod {
   justify-content: center !important;
 }
 
-/* X quitar producto — esquina de la card, en el padding derecho (NO sobre el precio) */
-.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[type="button"][style*="border-radius: 50%"],
-.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius:50%"],
-.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[type="button"][style*="border-radius:50%"],
-.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[type="button"][style*="border-radius: 50%"],
-.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[style*="border-radius: 50%"],
-.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[style*="border-radius:50%"] {
-  width: 22px !important;
-  height: 22px !important;
-  min-width: 22px !important;
-  min-height: 22px !important;
-  max-width: 22px !important;
+/* X quitar producto (Preventify: top:-4px right:-4px) — esquina, sin pisar precio */
+.jaldi-modal-overlay button[type="button"][style*="top: -4px"],
+.jaldi-modal-overlay button[type="button"][style*="top:-4px"],
+.jaldi-modal-overlay button[style*="top: -4px"][style*="right: -4px"],
+.jaldi-modal-overlay button[style*="top:-4px"][style*="right:-4px"] {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
   padding: 0 !important;
+  border-radius: 50% !important;
   background: #6b7280 !important;
   background-color: #6b7280 !important;
+  color: #fff !important;
   border: 2px solid #fff !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18) !important;
   font-size: 12px !important;
+  line-height: 1 !important;
   position: absolute !important;
-  top: 8px !important;
-  right: 8px !important;
+  top: 0 !important;
+  right: 0 !important;
   left: auto !important;
   bottom: auto !important;
   margin: 0 !important;
-  z-index: 4 !important;
-  flex: none !important;
-  order: 0 !important;
+  z-index: 6 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Precio del ítem: empujar a la izquierda para no quedar bajo la X */
+.jaldi-modal-overlay [style*="gap: 12px"][style*="position: relative"] > div[style*="align-self: center"],
+.jaldi-modal-overlay [style*="gap:12px"][style*="position:relative"] > div[style*="align-self:center"],
+.jaldi-modal-overlay [style*="gap: 12px"][style*="position: relative"] > div[style*="align-self: center"],
+.jaldi-modal-overlay [style*="gap: 12px"] > div[style*="font-weight: 600"][style*="white-space: nowrap"],
+.jaldi-modal-overlay [style*="gap:12px"] > div[style*="font-weight:600"][style*="white-space:nowrap"],
+.jaldi-modal-overlay [style*="gap: 12px"] > div[style*="font-weight: 600"][style*="text-align: right"],
+.jaldi-modal-overlay [style*="gap:12px"] > div[style*="font-weight:600"][style*="text-align:right"] {
+  margin-right: 28px !important;
+  padding-right: 2px !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Fila producto: hueco derecho + relative (contenedor de la X) */
+.jaldi-modal-overlay [style*="gap: 12px"][style*="position: relative"]:has(img),
+.jaldi-modal-overlay [style*="gap:12px"][style*="position:relative"]:has(img),
+.jaldi-modal-overlay [style*="gap: 12px"][style*="position: relative"][style*="margin-bottom"],
+.jaldi-modal-overlay [style*="gap:12px"][style*="position:relative"][style*="margin-bottom"] {
+  padding-right: 26px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
 }
 
 .jaldi-modal-overlay .jaldi-field-row button,

@@ -261,8 +261,10 @@
         btn.closest('[style*="gap: 12px"], [style*="gap:12px"]').querySelector('img'));
       var isRound = st.indexOf('border-radius: 50%') !== -1 || st.indexOf('border-radius:50%') !== -1 ||
         txt === '\u00d7' || txt === '×' || txt.toLowerCase() === 'x';
-      var isRemove = isRound && inProductRow;
-      var isClose = isRound && !inProductRow;
+      var isProductRemove = st.indexOf('top: -4px') !== -1 || st.indexOf('top:-4px') !== -1 ||
+        ((st.indexOf('right: -4px') !== -1 || st.indexOf('right:-4px') !== -1) && inProductRow);
+      var isRemove = (isRound && inProductRow) || isProductRemove;
+      var isClose = isRound && !inProductRow && !isProductRemove;
       var isCta = btn.classList.contains('jaldi-button-pulse') ||
         btn.classList.contains('jaldi-button-bounce') ||
         btn.classList.contains('jaldi-button-shake') ||
@@ -298,11 +300,11 @@
       }
 
       if (isRemove) {
-        btn.style.setProperty('width', '22px', 'important');
-        btn.style.setProperty('height', '22px', 'important');
-        btn.style.setProperty('min-width', '22px', 'important');
-        btn.style.setProperty('min-height', '22px', 'important');
-        btn.style.setProperty('max-width', '22px', 'important');
+        btn.style.setProperty('width', '20px', 'important');
+        btn.style.setProperty('height', '20px', 'important');
+        btn.style.setProperty('min-width', '20px', 'important');
+        btn.style.setProperty('min-height', '20px', 'important');
+        btn.style.setProperty('max-width', '20px', 'important');
         btn.style.setProperty('padding', '0', 'important');
         btn.style.setProperty('border-radius', '50%', 'important');
         btn.style.setProperty('background', '#6b7280', 'important');
@@ -310,25 +312,34 @@
         btn.style.setProperty('color', '#fff', 'important');
         btn.style.setProperty('border', '2px solid #fff', 'important');
         btn.style.setProperty('outline', 'none', 'important');
-        btn.style.setProperty('box-shadow', '0 1px 4px rgba(0,0,0,0.2)', 'important');
+        btn.style.setProperty('box-shadow', '0 1px 3px rgba(0,0,0,0.18)', 'important');
         btn.style.setProperty('animation', 'none', 'important');
         btn.style.setProperty('transform', 'none', 'important');
-        /* Esquina de la card; el padding-right de la fila deja hueco libre del precio */
         btn.style.setProperty('position', 'absolute', 'important');
-        btn.style.setProperty('top', '8px', 'important');
-        btn.style.setProperty('right', '8px', 'important');
+        btn.style.setProperty('top', '0', 'important');
+        btn.style.setProperty('right', '0', 'important');
         btn.style.setProperty('left', 'auto', 'important');
         btn.style.setProperty('bottom', 'auto', 'important');
         btn.style.setProperty('margin', '0', 'important');
-        btn.style.setProperty('z-index', '4', 'important');
+        btn.style.setProperty('z-index', '6', 'important');
         btn.style.setProperty('display', 'inline-flex', 'important');
         btn.style.setProperty('align-items', 'center', 'important');
         btn.style.setProperty('justify-content', 'center', 'important');
-        var row = btn.closest('[style*="gap: 12px"], [style*="gap:12px"]');
+        var row = btn.parentElement;
         if (row) {
           row.style.setProperty('position', 'relative', 'important');
-          row.style.setProperty('padding-right', '38px', 'important');
+          row.style.setProperty('padding-right', '26px', 'important');
           row.style.setProperty('box-sizing', 'border-box', 'important');
+          /* Empujar el precio (hermano con S/) lejos de la X */
+          Array.prototype.forEach.call(row.children, function (child) {
+            if (child === btn || child.tagName === 'BUTTON') return;
+            var t = (child.textContent || '').replace(/\s+/g, ' ').trim();
+            if (/S\/\s*[\d.,]+/i.test(t) && t.length < 40) {
+              child.style.setProperty('margin-right', '28px', 'important');
+              child.style.setProperty('padding-right', '2px', 'important');
+              child.style.setProperty('flex-shrink', '0', 'important');
+            }
+          });
         }
         return;
       }
@@ -393,27 +404,37 @@
         el.style.setProperty('gap', '10px', 'important');
         el.style.setProperty('display', 'flex', 'important');
         el.style.setProperty('flex-wrap', 'nowrap', 'important');
-        /* X del producto: esquina, fuera del precio */
+        /* X del producto + precio sin solape */
         el.querySelectorAll('button').forEach(function (btn) {
           var bst = btn.getAttribute('style') || '';
           var btxt = (btn.textContent || '').trim();
           var round = bst.indexOf('border-radius: 50%') !== -1 || bst.indexOf('border-radius:50%') !== -1 ||
+            bst.indexOf('top: -4px') !== -1 || bst.indexOf('top:-4px') !== -1 ||
             btxt === '\u00d7' || btxt === '×' || btxt.toLowerCase() === 'x';
           if (!round) return;
           btn.style.setProperty('position', 'absolute', 'important');
-          btn.style.setProperty('top', '8px', 'important');
-          btn.style.setProperty('right', '8px', 'important');
+          btn.style.setProperty('top', '0', 'important');
+          btn.style.setProperty('right', '0', 'important');
           btn.style.setProperty('left', 'auto', 'important');
           btn.style.setProperty('bottom', 'auto', 'important');
           btn.style.setProperty('margin', '0', 'important');
-          btn.style.setProperty('width', '22px', 'important');
-          btn.style.setProperty('height', '22px', 'important');
-          btn.style.setProperty('min-width', '22px', 'important');
-          btn.style.setProperty('min-height', '22px', 'important');
-          btn.style.setProperty('max-width', '22px', 'important');
+          btn.style.setProperty('width', '20px', 'important');
+          btn.style.setProperty('height', '20px', 'important');
+          btn.style.setProperty('min-width', '20px', 'important');
+          btn.style.setProperty('min-height', '20px', 'important');
+          btn.style.setProperty('max-width', '20px', 'important');
           btn.style.setProperty('background', '#6b7280', 'important');
           btn.style.setProperty('background-color', '#6b7280', 'important');
-          btn.style.setProperty('z-index', '4', 'important');
+          btn.style.setProperty('z-index', '6', 'important');
+        });
+        Array.prototype.forEach.call(el.children, function (child) {
+          if (child.tagName === 'BUTTON') return;
+          var t = (child.textContent || '').replace(/\s+/g, ' ').trim();
+          if (/S\/\s*[\d.,]+/i.test(t) && t.length < 40) {
+            child.style.setProperty('margin-right', '28px', 'important');
+            child.style.setProperty('padding-right', '2px', 'important');
+            child.style.setProperty('flex-shrink', '0', 'important');
+          }
         });
         /* Título: 2 líneas (antes se forzaba completo y se veía mal) */
         el.querySelectorAll('div').forEach(function (d) {
@@ -578,6 +599,27 @@
       var st = document.createElement('style');
       st.id = 'pg-cod-anim-kill';
       st.textContent = [
+        /* Siempre activo (no solo móvil): X producto vs precio */
+        '.jaldi-modal-overlay button[type="button"][style*="top: -4px"],',
+        '.jaldi-modal-overlay button[type="button"][style*="top:-4px"],',
+        '.jaldi-modal-overlay button[style*="top: -4px"][style*="right: -4px"],',
+        '.jaldi-modal-overlay button[style*="top:-4px"][style*="right:-4px"]{',
+        'position:absolute!important;top:0!important;right:0!important;left:auto!important;bottom:auto!important;',
+        'margin:0!important;width:20px!important;height:20px!important;min-width:20px!important;max-width:20px!important;',
+        'background:#6b7280!important;background-color:#6b7280!important;border:2px solid #fff!important;z-index:6!important;',
+        '}',
+        '.jaldi-modal-overlay [style*="gap: 12px"] > div[style*="align-self: center"],',
+        '.jaldi-modal-overlay [style*="gap:12px"] > div[style*="align-self:center"],',
+        '.jaldi-modal-overlay [style*="gap: 12px"] > div[style*="font-weight: 600"][style*="white-space: nowrap"],',
+        '.jaldi-modal-overlay [style*="gap:12px"] > div[style*="font-weight:600"][style*="white-space:nowrap"],',
+        '.jaldi-modal-overlay [style*="gap: 12px"] > div[style*="text-align: right"],',
+        '.jaldi-modal-overlay [style*="gap:12px"] > div[style*="text-align:right"]{',
+        'margin-right:28px!important;padding-right:2px!important;flex-shrink:0!important;',
+        '}',
+        '.jaldi-modal-overlay [style*="gap: 12px"][style*="position: relative"],',
+        '.jaldi-modal-overlay [style*="gap:12px"][style*="position:relative"]{',
+        'padding-right:26px!important;box-sizing:border-box!important;',
+        '}',
         '.jaldi-modal-overlay .jaldi-button-pulse,',
         '.jaldi-modal-overlay .jaldi-button-bounce,',
         '.jaldi-modal-overlay .jaldi-button-shake,',
@@ -618,8 +660,6 @@
         '.jaldi-field-row{width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}',
         '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',
         '.jaldi-field-row input,.jaldi-field-row select,.jaldi-field-row textarea,.jaldi-phone-wrapper input{width:100%!important;flex:1 1 0%!important;min-width:0!important;box-sizing:border-box!important}',
-        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button){padding:12px 38px 12px 12px!important;position:relative!important;box-sizing:border-box!important}',
-        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img) button[style*="border-radius"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) button[style*="border-radius"]{position:absolute!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important;margin:0!important;width:22px!important;height:22px!important;min-width:22px!important;max-width:22px!important;background:#6b7280!important;z-index:4!important}',
         '}'
       ].join('');
       document.head.appendChild(st);
