@@ -345,70 +345,42 @@
         if (!viewport || !track || !firstSet) return;
         wrap.dataset.pgMarquee = "1";
 
-        track.style.setProperty("animation", "none", "important");
-        track.style.setProperty("max-width", "none", "important");
-        track.style.setProperty("width", "max-content", "important");
-        track.style.setProperty("overflow", "visible", "important");
-
+        // CSS marquee (más fiable en móvil que rAF). Solo asegurar 2+ sets.
         function ensureCopies() {
           var base = track.querySelector(".pg-brand-set");
-          if (!base) return 0;
-          while (track.children.length > 1) track.removeChild(track.lastElementChild);
-          var need = Math.max(viewport.clientWidth * 2 + 80, base.scrollWidth * 2);
-          var guard = 0;
-          while (track.scrollWidth < need && guard < 10) {
+          if (!base) return;
+          if (track.children.length < 2) {
             var clone = base.cloneNode(true);
             clone.setAttribute("aria-hidden", "true");
             track.appendChild(clone);
-            guard++;
-          }
-          return base.getBoundingClientRect().width;
-        }
-
-        var loopWidth = ensureCopies();
-        var offset = 0;
-        var speed = 115;
-        var last = 0;
-
-        function frame(now) {
-          if (!last) last = now;
-          var dt = Math.min(0.05, (now - last) / 1000);
-          last = now;
-          if (loopWidth > 0) {
-            offset += speed * dt;
-            if (offset >= loopWidth) offset -= loopWidth;
-            track.style.setProperty("transform", "translate3d(" + (-offset).toFixed(2) + "px,0,0)", "important");
-          }
-          requestAnimationFrame(frame);
-        }
-
-        var imgs = firstSet.querySelectorAll("img");
-        var pending = 0;
-        function start() {
-          loopWidth = ensureCopies();
-          requestAnimationFrame(frame);
-        }
-        function onImg() {
-          pending -= 1;
-          if (pending <= 0) start();
-        }
-        for (var i = 0; i < imgs.length; i++) {
-          if (!imgs[i].complete) {
-            pending += 1;
-            imgs[i].addEventListener("load", onImg, { once: true });
-            imgs[i].addEventListener("error", onImg, { once: true });
           }
         }
-        if (pending === 0) start();
+
+        function applyCssMarquee() {
+          ensureCopies();
+          track.style.setProperty("max-width", "none", "important");
+          track.style.setProperty("width", "max-content", "important");
+          track.style.setProperty("overflow", "visible", "important");
+          track.style.setProperty("transform", "none", "important");
+          track.style.setProperty("will-change", "transform", "important");
+          track.style.setProperty("animation", "pg-brand-scroll 28s linear infinite", "important");
+          track.style.setProperty("-webkit-animation", "pg-brand-scroll 28s linear infinite", "important");
+        }
+
+        applyCssMarquee();
+        // Imágenes pueden cargar tarde en móvil
+        setTimeout(applyCssMarquee, 400);
+        setTimeout(applyCssMarquee, 1200);
+        track.querySelectorAll("img").forEach(function (img) {
+          if (img.complete) return;
+          img.addEventListener("load", applyCssMarquee, { once: true });
+        });
 
         var resizeTimer;
         window.addEventListener("resize", function () {
           clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(function () {
-            offset = 0;
-            loopWidth = ensureCopies();
-          }, 150);
-        });
+          resizeTimer = setTimeout(applyCssMarquee, 150);
+        }, { passive: true });
       })(wraps[w]);
     }
   }
@@ -445,6 +417,14 @@
     lockHorizontalOverflow();
     bindNoHorizontalScroll();
     setTimeout(lockHorizontalOverflow, 300);
+    setTimeout(function () {
+      lockHorizontalOverflow();
+      // Reintentar marquee por si el layout móvil tardó
+      document.querySelectorAll(".pg-brand-slider-wrap").forEach(function (wrap) {
+        wrap.dataset.pgMarquee = "";
+      });
+      setupBrandMarquee();
+    }, 800);
     setTimeout(lockHorizontalOverflow, 1200);
     window.addEventListener("resize", lockHorizontalOverflow);
     if (designMode) return;

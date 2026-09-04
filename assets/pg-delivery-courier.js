@@ -374,19 +374,31 @@
         el.style.setProperty('overflow', 'visible', 'important');
         el.style.setProperty('width', '100%', 'important');
         el.style.setProperty('box-sizing', 'border-box', 'important');
-        el.style.setProperty('align-items', 'flex-start', 'important');
-        /* Mostrar nombre completo del producto */
+        el.style.setProperty('align-items', 'center', 'important');
+        el.style.setProperty('gap', '10px', 'important');
+        /* Título: 2 líneas (antes se forzaba completo y se veía mal) */
         el.querySelectorAll('div').forEach(function (d) {
           var st = d.getAttribute('style') || '';
-          if (st.indexOf('ellipsis') === -1 && st.indexOf('nowrap') === -1) return;
+          if (st.indexOf('52px') !== -1) return;
+          if (d.querySelector('img') || d.querySelector('button')) return;
+          var txt = (d.textContent || '').replace(/\s+/g, ' ').trim();
+          if (txt.length < 28) return;
+          if (/^S\/\s*[\d.,]+$/i.test(txt) || /UNIDAD/i.test(txt)) return;
           d.style.setProperty('white-space', 'normal', 'important');
-          d.style.setProperty('overflow', 'visible', 'important');
-          d.style.setProperty('text-overflow', 'clip', 'important');
+          d.style.setProperty('overflow', 'hidden', 'important');
+          d.style.setProperty('text-overflow', 'ellipsis', 'important');
           d.style.setProperty('word-break', 'break-word', 'important');
           d.style.setProperty('overflow-wrap', 'anywhere', 'important');
-          d.style.setProperty('line-height', '1.35', 'important');
+          d.style.setProperty('line-height', '1.3', 'important');
           d.style.setProperty('max-width', '100%', 'important');
-          d.style.setProperty('display', 'block', 'important');
+          d.style.setProperty('display', '-webkit-box', 'important');
+          d.style.setProperty('-webkit-box-orient', 'vertical', 'important');
+          d.style.setProperty('-webkit-line-clamp', '2', 'important');
+          d.style.setProperty('line-clamp', '2', 'important');
+          d.style.setProperty('max-height', '2.6em', 'important');
+          d.style.setProperty('font-size', mobile ? '12.5px' : '13px', 'important');
+          d.style.setProperty('font-weight', '700', 'important');
+          d.style.setProperty('color', '#0b1a3a', 'important');
         });
       }
 
@@ -567,7 +579,7 @@
         '.jaldi-field-row{width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}',
         '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',
         '.jaldi-field-row input,.jaldi-field-row select,.jaldi-field-row textarea,.jaldi-phone-wrapper input{width:100%!important;flex:1 1 0%!important;min-width:0!important;box-sizing:border-box!important}',
-        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="ellipsis"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="ellipsis"]{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;word-break:break-word!important;overflow-wrap:anywhere!important;display:block!important;max-width:100%!important;line-height:1.35!important}',
+        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button) > div:not([style*="52px"]) > div:first-child,.jaldi-modal-overlay [style*="gap:12px"]:has(img):has(button) > div:not([style*="52px"]) > div:first-child,.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="ellipsis"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="ellipsis"]{white-space:normal!important;overflow:hidden!important;text-overflow:ellipsis!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-clamp:2!important;max-height:2.6em!important;line-height:1.3!important;word-break:break-word!important;max-width:100%!important;font-size:12.5px!important;font-weight:700!important;color:#0b1a3a!important}',
         '}'
       ].join('');
       document.head.appendChild(st);
