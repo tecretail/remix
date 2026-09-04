@@ -2383,9 +2383,9 @@ a.pg-p-cta--cod {
   margin: 8px 0 40px !important;
   padding: 16px 0 !important;
   overflow: hidden !important;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+  background: transparent !important;
   border: none !important;
-  border-radius: 14px !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
   box-sizing: border-box !important;
 }
@@ -2462,6 +2462,8 @@ a.pg-p-cta--cod {
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
+  /* Quita el rectángulo blanco embebido en los PNG */
+  mix-blend-mode: multiply !important;
   filter: none !important;
   opacity: 1 !important;
   transition: transform 0.2s ease, opacity 0.2s ease !important;
