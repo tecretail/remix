@@ -2419,20 +2419,25 @@ a.pg-p-cta--cod {
   display: flex !important;
   align-items: center !important;
   width: max-content !important;
-  min-width: 100% !important;
+  min-width: 0 !important;
   padding: 2px 0 !important;
   gap: 0 !important;
-  animation: pg-brand-scroll 10s linear infinite !important;
+  animation: pg-brand-scroll var(--pg-brand-duration, 18s) linear infinite !important;
   will-change: transform !important;
 }
 
 .pg-brand-set {
   display: flex !important;
   align-items: center !important;
-  justify-content: space-around !important;
+  justify-content: flex-start !important;
   gap: 56px !important;
-  padding: 0 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  /* Espacio uniforme entre el final de un set y el inicio del siguiente */
+  padding-right: 56px !important;
   flex-shrink: 0 !important;
+  width: max-content !important;
+  box-sizing: content-box !important;
 }
 
 .pg-brand-slide {
@@ -2441,10 +2446,10 @@ a.pg-p-cta--cod {
   justify-content: center !important;
   flex: 0 0 auto !important;
   width: auto !important;
-  min-width: 110px !important;
+  min-width: 0 !important;
   max-width: 160px !important;
   height: 44px !important;
-  padding: 0 8px !important;
+  padding: 0 !important;
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
@@ -2466,7 +2471,6 @@ a.pg-p-cta--cod {
   object-fit: contain !important;
   background: transparent !important;
   background-color: transparent !important;
-  /* Fondos blancos del PNG se funden con el azul de página */
   mix-blend-mode: darken !important;
   filter: none !important;
   opacity: 1 !important;
@@ -2481,13 +2485,14 @@ a.pg-p-cta--cod {
   opacity: 1 !important;
 }
 
+/* Avanza exactamente 1 set (px) → reinicio invisible, sin hueco */
 @keyframes pg-brand-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(calc(-1 * var(--pg-brand-shift, 50%)), 0, 0); }
 }
 
 .shopify-design-mode .pg-brand-slider-track {
-  animation: pg-brand-scroll 10s linear infinite !important;
+  animation: pg-brand-scroll var(--pg-brand-duration, 18s) linear infinite !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2499,10 +2504,11 @@ a.pg-p-cta--cod {
     flex-wrap: wrap !important;
     gap: 0 !important;
     padding: 0 12px !important;
+    transform: none !important;
   }
 
   .pg-brand-set {
-    justify-content: space-evenly !important;
+    justify-content: center !important;
     flex: 1 1 100% !important;
     gap: 32px !important;
     padding: 0 16px !important;
