@@ -331,7 +331,7 @@
   cursor: pointer !important;
   border: none !important;
   border-radius: 16px !important;
-  padding: 0 !important;
+  padding: 2.5px !important;
   position: relative !important;
   width: 100% !important;
   margin: 6px 0 0 !important;
@@ -340,12 +340,12 @@
   isolation: isolate !important;
   z-index: 0 !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
-  background: #fff !important;
+  background: #054497 !important;
   box-shadow: 0 0 14px rgba(5, 68, 151, 0.18) !important;
   transition: box-shadow 0.2s ease !important;
 }
 
-/* Disco conico que gira alrededor de la tarjeta */
+/* Disco conico que SI gira alrededor de la tarjeta */
 .lv-pe-deal-btn::before,
 .pg-p-deal::before {
   content: "" !important;
@@ -370,18 +370,6 @@
   transform: translate(-50%, -50%) rotate(0deg);
   animation: pg-deal-spin-rotate 2.4s linear infinite !important;
   will-change: transform !important;
-}
-
-/* Relleno interno: tapa huecos/lineas entre el brillo y el contenido */
-.lv-pe-deal-btn::after,
-.pg-p-deal::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 2.5px !important;
-  border-radius: 13.5px !important;
-  background: #fff !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
 }
 
 @keyframes pg-deal-spin-rotate {
@@ -414,11 +402,6 @@
   animation-duration: 2s !important;
 }
 
-.pg-p-deal.is-active::after,
-.lv-pe-deal-btn.is-active::after {
-  background: #eef3fb !important;
-}
-
 .pg-p-deals {
   display: flex !important;
   flex-direction: column !important;
@@ -429,15 +412,15 @@
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
-  background: transparent !important;
+  background: #eef3fb !important;
 }
 
 .pg-p-deal-body {
   position: relative !important;
-  z-index: 2 !important;
+  z-index: 1 !important;
   border-radius: 13.5px !important;
   overflow: hidden !important;
-  background: transparent !important;
+  background: #fff !important;
 }
 
 .pg-p-deal.has-footer .pg-p-deal-body {
@@ -456,7 +439,7 @@
   font-size: 10px !important;
   font-weight: 800 !important;
   letter-spacing: 0.3px !important;
-  z-index: 3 !important;
+  z-index: 2 !important;
   white-space: nowrap !important;
   max-width: calc(100% - 28px) !important;
   overflow: hidden !important;
@@ -475,7 +458,7 @@
   font-size: 10px !important;
   font-weight: 800 !important;
   letter-spacing: 0.8px !important;
-  z-index: 3 !important;
+  z-index: 2 !important;
   text-transform: uppercase !important;
 }
 
@@ -2436,11 +2419,11 @@ a.pg-p-cta--cod {
   }
   .pg-p-deal,
   .lv-pe-deal-btn {
-    padding: 0 !important;
+    padding: 2.5px !important;
     margin: 6px 0 0 !important;
     overflow: hidden !important;
     border: none !important;
-    background: #fff !important;
+    background: #054497 !important;
   }
 
   .pg-p-deal::before,
@@ -2470,27 +2453,10 @@ a.pg-p-cta--cod {
     will-change: transform !important;
   }
 
-  .pg-p-deal::after,
-  .lv-pe-deal-btn::after {
-    content: "" !important;
-    position: absolute !important;
-    inset: 2.5px !important;
-    border-radius: 13.5px !important;
-    background: #fff !important;
-    z-index: 1 !important;
-    pointer-events: none !important;
-  }
-
-  .pg-p-deal.is-active::after,
-  .lv-pe-deal-btn.is-active::after {
-    background: #eef3fb !important;
-  }
-
   .pg-p-deal-body {
     position: relative !important;
-    z-index: 2 !important;
+    z-index: 1 !important;
     border-radius: 13.5px !important;
-    background: transparent !important;
   }
   .pg-p-deal-row,
   .lv-pe-deal-row {
