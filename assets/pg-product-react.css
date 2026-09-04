@@ -2813,12 +2813,12 @@ a.pg-p-cta--cod {
   display: none !important;
 }
 
-@keyframes pg-tiktok-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 4px rgba(37, 244, 238, 0.55)) drop-shadow(0 0 10px rgba(254, 44, 85, 0.35));
+@keyframes pg-tiktok-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  50% {
-    filter: drop-shadow(0 0 8px rgba(37, 244, 238, 0.9)) drop-shadow(0 0 18px rgba(254, 44, 85, 0.65));
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -2926,65 +2926,64 @@ a.pg-p-cta--cod {
   flex-direction: column;
   gap: 10px;
   position: relative;
-  padding: 5px;
-  transition: transform 0.25s ease;
-  animation: pg-tiktok-glow 2.4s ease-in-out infinite;
-}
-
-/* Borde estilo TikTok con brillo cyan + rosa */
-.pg-vid__card::before,
-.pg-vid__card::after,
-.pg-product-video-card::before,
-.pg-product-video-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  pointer-events: none;
+  isolation: isolate;
   z-index: 0;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  padding: 3px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0b1a3a;
+  box-shadow:
+    0 0 14px rgba(37, 244, 238, 0.35),
+    0 0 22px rgba(254, 44, 85, 0.28),
+    0 10px 24px rgba(5, 68, 151, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Disco cyan/rosa que gira alrededor del video */
 .pg-vid__card::before,
 .pg-product-video-card::before {
-  border: 2.5px solid var(--pg-tiktok-cyan);
-  transform: translate(-2.5px, -2.5px);
-  box-shadow:
-    0 0 8px rgba(37, 244, 238, 0.75),
-    0 0 18px rgba(37, 244, 238, 0.4),
-    inset 0 0 8px rgba(37, 244, 238, 0.15);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260%;
+  height: 260%;
+  z-index: 0;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    #25f4ee 0deg,
+    #7ff9f5 40deg,
+    #fe2c55 90deg,
+    #ff6b8a 140deg,
+    #25f4ee 190deg,
+    #054497 240deg,
+    #fe2c55 300deg,
+    #25f4ee 360deg
+  );
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: pg-tiktok-spin 2.2s linear infinite;
+  will-change: transform;
 }
 
 .pg-vid__card::after,
 .pg-product-video-card::after {
-  border: 2.5px solid var(--pg-tiktok-pink);
-  transform: translate(2.5px, 2.5px);
-  box-shadow:
-    0 0 8px rgba(254, 44, 85, 0.7),
-    0 0 18px rgba(254, 44, 85, 0.35),
-    inset 0 0 8px rgba(254, 44, 85, 0.12);
+  content: none;
+  display: none;
 }
 
 .pg-vid__card:hover,
 .pg-product-video-card:hover {
   transform: translateY(-5px) scale(1.015);
-  animation-duration: 1.4s;
+  box-shadow:
+    0 0 18px rgba(37, 244, 238, 0.55),
+    0 0 28px rgba(254, 44, 85, 0.4),
+    0 14px 30px rgba(5, 68, 151, 0.18);
 }
 
 .pg-vid__card:hover::before,
 .pg-product-video-card:hover::before {
-  transform: translate(-3.5px, -3.5px);
-  box-shadow:
-    0 0 12px rgba(37, 244, 238, 0.95),
-    0 0 28px rgba(37, 244, 238, 0.55);
-}
-
-.pg-vid__card:hover::after,
-.pg-product-video-card:hover::after {
-  transform: translate(3.5px, 3.5px);
-  box-shadow:
-    0 0 12px rgba(254, 44, 85, 0.9),
-    0 0 28px rgba(254, 44, 85, 0.5);
+  animation-duration: 1.4s;
 }
 
 .pg-vid__media,
@@ -2992,20 +2991,16 @@ a.pg-p-cta--cod {
   position: relative;
   z-index: 1;
   aspect-ratio: 9 / 16;
-  border-radius: 15px;
+  border-radius: 17px;
   overflow: hidden;
   background: #0b1a3a;
-  box-shadow:
-    0 10px 26px rgba(5, 68, 151, 0.18),
-    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+  box-shadow: none;
   transition: box-shadow 0.25s ease;
 }
 
 .pg-vid__card:hover .pg-vid__media,
 .pg-product-video-card:hover .pg-product-video-card__media {
-  box-shadow:
-    0 16px 34px rgba(5, 68, 151, 0.26),
-    0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+  box-shadow: none;
 }
 
 .pg-vid__el,
