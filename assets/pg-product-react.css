@@ -2383,11 +2383,12 @@ a.pg-p-cta--cod {
   margin: 8px 0 40px !important;
   padding: 16px 0 !important;
   overflow: hidden !important;
-  background: transparent !important;
+  background: var(--pg-page-bg, #eef4fc) !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   box-sizing: border-box !important;
+  isolation: isolate !important;
 }
 
 .pg-brand-slider-viewport {
@@ -2445,6 +2446,7 @@ a.pg-p-cta--cod {
   height: 44px !important;
   padding: 0 8px !important;
   background: transparent !important;
+  background-color: transparent !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -2462,10 +2464,15 @@ a.pg-p-cta--cod {
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
-  /* Quita el rectángulo blanco embebido en los PNG */
-  mix-blend-mode: multiply !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  /* Fondos blancos del PNG se funden con el azul de página */
+  mix-blend-mode: darken !important;
   filter: none !important;
   opacity: 1 !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
   transition: transform 0.2s ease, opacity 0.2s ease !important;
 }
 
