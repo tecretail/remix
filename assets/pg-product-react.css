@@ -327,7 +327,6 @@
 
 .lv-pe-deal-btn,
 .pg-p-deal {
-  --pg-deal-angle: 0deg;
   text-align: left !important;
   cursor: pointer !important;
   border: none !important;
@@ -335,85 +334,81 @@
   padding: 2.5px !important;
   position: relative !important;
   width: 100% !important;
-  margin: 0 !important;
+  margin: 6px 0 0 !important;
   box-sizing: border-box !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   isolation: isolate !important;
+  z-index: 0 !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
-  background: transparent !important;
-  box-shadow: 0 0 12px rgba(5, 68, 151, 0.14) !important;
+  background: #054497 !important;
+  box-shadow: 0 0 14px rgba(5, 68, 151, 0.18) !important;
   transition: box-shadow 0.2s ease !important;
 }
 
+/* Disco conico que SI gira alrededor de la tarjeta */
 .lv-pe-deal-btn::before,
 .pg-p-deal::before {
   content: "" !important;
   position: absolute !important;
-  inset: 0 !important;
-  border-radius: 16px !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 240% !important;
+  height: 240% !important;
   z-index: 0 !important;
   pointer-events: none !important;
   background: conic-gradient(
-    from var(--pg-deal-angle, 0deg),
     #054497 0deg,
-    #054497 35deg,
-    #2bb8ff 55deg,
-    #39e85a 85deg,
-    #9dffb0 105deg,
-    #054497 145deg,
-    #054497 210deg,
-    #f39200 245deg,
+    #39e85a 55deg,
+    #f39200 100deg,
+    #7dff95 145deg,
+    #2bb8ff 190deg,
+    #054497 235deg,
     #39e85a 280deg,
-    #054497 320deg,
+    #f39200 320deg,
     #054497 360deg
   ) !important;
-  animation: pg-deal-angle-spin 2.6s linear infinite !important;
-  box-shadow: 0 0 14px rgba(57, 232, 90, 0.22) !important;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: pg-deal-spin-rotate 2.4s linear infinite !important;
+  will-change: transform !important;
 }
 
-@property --pg-deal-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes pg-deal-angle-spin {
+@keyframes pg-deal-spin-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
   to {
-    --pg-deal-angle: 360deg;
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
 .pg-p-deal.is-active,
 .lv-pe-deal-btn.is-active {
-  box-shadow: 0 0 18px rgba(57, 232, 90, 0.34) !important;
+  box-shadow: 0 0 20px rgba(57, 232, 90, 0.4) !important;
 }
 
 .pg-p-deal.is-active::before,
 .lv-pe-deal-btn.is-active::before {
   background: conic-gradient(
-    from var(--pg-deal-angle, 0deg),
     #054497 0deg,
-    #054497 25deg,
-    #39e85a 55deg,
-    #f39200 85deg,
-    #7dff95 110deg,
-    #054497 150deg,
-    #054497 200deg,
-    #39e85a 240deg,
+    #39e85a 45deg,
+    #f39200 90deg,
+    #7dff95 135deg,
+    #054497 180deg,
+    #39e85a 225deg,
     #f39200 270deg,
-    #054497 310deg,
+    #2bb8ff 315deg,
     #054497 360deg
   ) !important;
-  animation-duration: 2.2s !important;
+  animation-duration: 2s !important;
 }
 
 .pg-p-deals {
   display: flex !important;
   flex-direction: column !important;
-  gap: 16px !important;
+  gap: 14px !important;
   margin: 0 0 24px !important;
   overflow: visible !important;
-  padding: 4px 2px !important;
+  padding: 2px !important;
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
@@ -434,7 +429,7 @@
 
 .pg-p-deal-float {
   position: absolute !important;
-  top: -12px !important;
+  top: 10px !important;
   right: 14px !important;
   left: auto !important;
   background: #054497 !important;
@@ -454,7 +449,7 @@
 
 .pg-p-deal-badge {
   position: absolute !important;
-  top: -10px !important;
+  top: 10px !important;
   left: 14px !important;
   background: #054497 !important;
   color: #fff !important;
@@ -473,7 +468,7 @@
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 12px !important;
-  padding: 16px 14px !important;
+  padding: 28px 14px 16px !important;
 }
 
 .pg-p-deal-thumb {
@@ -2432,7 +2427,7 @@ a.pg-p-cta--cod {
     flex-wrap: nowrap !important;
     gap: 8px !important;
     align-items: center !important;
-    padding: 14px 10px !important;
+    padding: 26px 10px 14px !important;
   }
   .pg-p-deal-thumb {
     flex: 0 0 48px !important;
@@ -2454,7 +2449,7 @@ a.pg-p-cta--cod {
   }
   .pg-p-deal-float {
     font-size: 9px !important;
-    top: -10px !important;
+    top: 8px !important;
     right: 8px !important;
     max-width: 55% !important;
   }
