@@ -87,12 +87,16 @@
   }
 
   .lv-pe-gallery,
-  .pg-p-gallery,
-  .pg-p-gallery.is-pg-sticky {
-    position: sticky !important;
-    top: 20px !important;
+  .pg-p-gallery {
+    position: relative !important;
+    top: auto !important;
     z-index: 5 !important;
     width: 100% !important;
+    will-change: transform !important;
+  }
+
+  .pg-p-gallery.is-pg-pinned {
+    transition: none !important;
   }
 }
 
