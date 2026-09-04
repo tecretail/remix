@@ -406,14 +406,26 @@
         '}',
         '.pg-cod-bounce-wrap{',
         'display:block!important;width:100%!important;max-width:100%!important;',
-        'overflow:visible!important;padding:16px 0 12px!important;box-sizing:border-box!important;',
+        'position:relative!important;isolation:isolate!important;z-index:0!important;',
+        'overflow:hidden!important;padding:3px!important;margin:10px 0 8px!important;',
+        'border-radius:18px!important;background:#39e85a!important;box-sizing:border-box!important;',
+        'box-shadow:0 0 16px rgba(57,232,90,.35),0 0 28px rgba(5,68,151,.18)!important;',
         'will-change:transform!important;',
         '}',
+        '.pg-cod-bounce-wrap::before{',
+        'content:""!important;position:absolute!important;top:50%!important;left:50%!important;',
+        'width:260%!important;height:260%!important;z-index:0!important;pointer-events:none!important;',
+        'background:conic-gradient(#39e85a,#7dff95,#054497,#2bb8ff,#39e85a,#f39200,#7dff95,#054497,#39e85a)!important;',
+        'transform:translate(-50%,-50%) rotate(0deg);',
+        'animation:pg-deal-spin-rotate 2.2s linear infinite!important;will-change:transform!important;',
+        '}',
+        '@keyframes pg-deal-spin-rotate{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}',
         '.pg-preventify-host,.pg-preventify-host .quick-add{overflow:visible!important}',
         '.pg-cod-bounce-wrap > button,',
         '.pg-cod-bounce-wrap > [role="button"]{',
+        'position:relative!important;z-index:1!important;border:none!important;outline:none!important;',
         'animation:pg-cod-neon-pulse 1.2s ease-in-out infinite!important;',
-        'width:100%!important',
+        'width:100%!important;border-radius:15px!important',
         '}'
       ].join('');
       document.head.appendChild(st);
@@ -456,11 +468,18 @@
       btns.forEach(function (btn) {
         var wrap = pgEnsureBounceWrap(btn);
         wrap.style.setProperty('display', 'block', 'important');
-        wrap.style.setProperty('overflow', 'visible', 'important');
+        wrap.style.setProperty('overflow', 'hidden', 'important');
         wrap.style.setProperty('width', '100%', 'important');
+        wrap.style.setProperty('padding', '3px', 'important');
+        wrap.style.setProperty('border-radius', '18px', 'important');
+        wrap.style.setProperty('position', 'relative', 'important');
         wrap.style.setProperty('will-change', 'transform', 'important');
         btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.2s ease-in-out infinite', 'important');
         btn.style.setProperty('width', '100%', 'important');
+        btn.style.setProperty('position', 'relative', 'important');
+        btn.style.setProperty('z-index', '1', 'important');
+        btn.style.setProperty('border', 'none', 'important');
+        btn.style.setProperty('border-radius', '15px', 'important');
       });
       document.querySelectorAll('.pg-preventify-host, .pg-preventify-host .quick-add').forEach(function (host) {
         host.style.setProperty('overflow', 'visible', 'important');
