@@ -434,9 +434,9 @@
   left: auto !important;
   background: #054497 !important;
   color: #fff !important;
-  padding: 5px 12px !important;
+  padding: 6px 13px !important;
   border-radius: 999px !important;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 800 !important;
   letter-spacing: 0.3px !important;
   z-index: 2 !important;
@@ -453,9 +453,9 @@
   left: 12px !important;
   background: #054497 !important;
   color: #fff !important;
-  padding: 5px 12px !important;
+  padding: 6px 13px !important;
   border-radius: 999px !important;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 800 !important;
   letter-spacing: 0.7px !important;
   z-index: 2 !important;
@@ -470,7 +470,7 @@
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 12px !important;
-  padding: 44px 14px 16px !important;
+  padding: 48px 14px 16px !important;
 }
 
 .pg-p-deal-title-row {
@@ -2458,7 +2458,7 @@ a.pg-p-cta--cod {
     flex-wrap: nowrap !important;
     gap: 8px !important;
     align-items: center !important;
-    padding: 42px 10px 14px !important;
+    padding: 46px 10px 14px !important;
   }
   .pg-p-deal-thumb {
     flex: 0 0 48px !important;
@@ -2473,8 +2473,8 @@ a.pg-p-cta--cod {
     margin-bottom: 4px !important;
   }
   .pg-p-deal-tag {
-    font-size: 9px !important;
-    padding: 3px 8px !important;
+    font-size: 10px !important;
+    padding: 4px 9px !important;
   }
   .pg-p-deal-price {
     font-size: 17px !important;
@@ -2485,15 +2485,15 @@ a.pg-p-cta--cod {
   .pg-p-deal-badge {
     top: 8px !important;
     left: 10px !important;
-    font-size: 10px !important;
-    padding: 5px 11px !important;
+    font-size: 11px !important;
+    padding: 6px 12px !important;
   }
   .pg-p-deal-float {
-    font-size: 9px !important;
+    font-size: 10px !important;
     top: 8px !important;
     right: 8px !important;
     max-width: 48% !important;
-    padding: 4px 10px !important;
+    padding: 5px 11px !important;
   }
   .pg-p-cta,
   a.pg-p-cta {
