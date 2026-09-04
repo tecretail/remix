@@ -383,20 +383,24 @@
 
 .pg-p-deal.is-active,
 .lv-pe-deal-btn.is-active {
-  box-shadow: 0 0 20px rgba(57, 232, 90, 0.4) !important;
+  padding: 3.5px !important;
+  background: #054497 !important;
+  box-shadow:
+    0 0 0 2px rgba(5, 68, 151, 0.35),
+    0 0 22px rgba(5, 68, 151, 0.45) !important;
 }
 
 .pg-p-deal.is-active::before,
 .lv-pe-deal-btn.is-active::before {
   background: conic-gradient(
     #054497 0deg,
-    #39e85a 45deg,
-    #f39200 90deg,
-    #7dff95 135deg,
+    #0a66d1 40deg,
+    #2bb8ff 70deg,
+    #054497 110deg,
     #054497 180deg,
-    #39e85a 225deg,
-    #f39200 270deg,
-    #2bb8ff 315deg,
+    #0a66d1 220deg,
+    #2bb8ff 260deg,
+    #054497 300deg,
     #054497 360deg
   ) !important;
   animation-duration: 2s !important;
@@ -412,7 +416,11 @@
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
-  background: #eef3fb !important;
+  background: #d7e6fb !important;
+}
+
+.pg-p-deal:not(.is-active) .pg-p-deal-body {
+  background: #fff !important;
 }
 
 .pg-p-deal-body {
@@ -689,6 +697,9 @@
 
 .pg-p-deal.is-active .pg-p-radio {
   border-color: #054497 !important;
+  border-width: 3px !important;
+  background: #e8f1fc !important;
+  box-shadow: 0 0 0 3px rgba(5, 68, 151, 0.18) !important;
 }
 
 .pg-p-radio-dot {
@@ -701,6 +712,8 @@
 
 .pg-p-deal.is-active .pg-p-radio-dot {
   display: block !important;
+  width: 11px !important;
+  height: 11px !important;
 }
 
 .pg-p-cta,
