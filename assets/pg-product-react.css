@@ -1780,12 +1780,25 @@ a.pg-p-cta--cod {
   .jaldi-modal-overlay [style*="padding: 16px"][style*="#E5E7EB"],
   .jaldi-modal-overlay [style*="padding:16px"][style*="#E5E7EB"],
   .jaldi-modal-overlay [style*="padding: 16px"][style*="#e5e7eb"] {
-    padding: 16px 12px 12px !important;
+    padding: 14px 12px 12px !important;
     border-radius: 14px !important;
     margin-top: 4px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  /* Labels arriba, inputs anchos (sin apretar en 2 columnas) */
+  /* Título DATOS DE ENVIO a todo el ancho de la card */
+  .jaldi-modal-overlay [style*="#E5E7EB"] > h3,
+  .jaldi-modal-overlay [style*="#e5e7eb"] > h3 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Labels arriba, inputs a TODO el ancho del popup */
   .jaldi-field-row,
   .jaldi-modal-overlay .jaldi-field-row {
     display: flex !important;
@@ -1797,6 +1810,9 @@ a.pg-p-cta--cod {
     gap: 8px !important;
     margin-bottom: 16px !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-field-label,
@@ -1814,15 +1830,23 @@ a.pg-p-cta--cod {
     white-space: normal !important;
   }
 
+  .jaldi-field-row > *,
   .jaldi-field-row > div,
   .jaldi-modal-overlay .jaldi-phone-wrapper,
-  .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"] {
+  .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"],
+  .jaldi-modal-overlay .jaldi-field-row > div[style*="display"] {
     display: flex !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     flex: 1 1 auto !important;
+    align-self: stretch !important;
     box-sizing: border-box !important;
+  }
+
+  .jaldi-field-row > .jaldi-field-label {
+    display: block !important;
+    flex: 0 0 auto !important;
   }
 
   .jaldi-modal-overlay input,
@@ -1836,16 +1860,27 @@ a.pg-p-cta--cod {
   #preventify-embedded textarea {
     width: 100% !important;
     max-width: 100% !important;
+    flex: 1 1 auto !important;
     font-size: 16px !important;
     min-height: 48px !important;
     padding: 13px 14px !important;
     border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .jaldi-phone-wrapper,
+  .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    width: 100% !important;
   }
 
   .jaldi-phone-wrapper input,
   .jaldi-modal-overlay .jaldi-field-row > div[style*="overflow"] input {
-    width: auto !important;
-    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    flex: 1 1 0% !important;
     min-width: 0 !important;
     min-height: 46px !important;
     border: 0 !important;

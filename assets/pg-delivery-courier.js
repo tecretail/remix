@@ -345,8 +345,11 @@
         el.style.setProperty('background-color', '#ffffff', 'important');
         el.style.setProperty('border', '1px solid #dce3ee', 'important');
         el.style.setProperty('border-radius', mobile ? '12px' : '14px', 'important');
-        el.style.setProperty('padding', mobile ? '14px 12px 10px' : '18px 16px 12px', 'important');
+        el.style.setProperty('padding', mobile ? '14px 12px 12px' : '18px 16px 12px', 'important');
         el.style.setProperty('box-shadow', '0 1px 3px rgba(11, 26, 58, 0.05)', 'important');
+        el.style.setProperty('width', '100%', 'important');
+        el.style.setProperty('max-width', '100%', 'important');
+        el.style.setProperty('box-sizing', 'border-box', 'important');
       }
     });
 
@@ -357,7 +360,7 @@
       h.style.setProperty('letter-spacing', mobile ? '0.05em' : '0.08em', 'important');
       h.style.setProperty('text-transform', 'uppercase', 'important');
       h.style.setProperty('text-align', 'center', 'important');
-      h.style.setProperty('margin', mobile ? '6px 8px 12px' : '8px 12px 16px', 'important');
+      h.style.setProperty('margin', mobile ? '6px 0 12px' : '8px 12px 16px', 'important');
       h.style.setProperty('padding', mobile ? '11px 36px 11px 14px' : '12px 40px 12px 16px', 'important');
       h.style.setProperty('background', '#eef3fb', 'important');
       h.style.setProperty('background-color', '#eef3fb', 'important');
@@ -365,6 +368,11 @@
       h.style.setProperty('border-radius', '10px', 'important');
       h.style.setProperty('box-shadow', 'none', 'important');
       h.style.setProperty('line-height', '1.35', 'important');
+      if (mobile) {
+        h.style.setProperty('width', '100%', 'important');
+        h.style.setProperty('max-width', '100%', 'important');
+        h.style.setProperty('box-sizing', 'border-box', 'important');
+      }
     });
 
     if (mobile) {
@@ -398,19 +406,35 @@
         row.style.setProperty('gap', '8px', 'important');
         row.style.setProperty('margin-bottom', '16px', 'important');
         row.style.setProperty('width', '100%', 'important');
+        row.style.setProperty('max-width', '100%', 'important');
+        row.style.setProperty('min-width', '0', 'important');
         row.style.setProperty('grid-template-columns', 'none', 'important');
+        row.style.setProperty('box-sizing', 'border-box', 'important');
         Array.prototype.forEach.call(row.children, function (child) {
           if (child.classList && child.classList.contains('jaldi-field-label')) return;
+          child.style.setProperty('display', 'flex', 'important');
           child.style.setProperty('width', '100%', 'important');
           child.style.setProperty('max-width', '100%', 'important');
           child.style.setProperty('min-width', '0', 'important');
           child.style.setProperty('flex', '1 1 auto', 'important');
+          child.style.setProperty('align-self', 'stretch', 'important');
+          child.style.setProperty('box-sizing', 'border-box', 'important');
+          child.querySelectorAll('input, select, textarea').forEach(function (inp) {
+            if (inp.type === 'checkbox') return;
+            inp.style.setProperty('width', '100%', 'important');
+            inp.style.setProperty('max-width', 'none', 'important');
+            inp.style.setProperty('flex', '1 1 0%', 'important');
+            inp.style.setProperty('min-width', '0', 'important');
+            inp.style.setProperty('box-sizing', 'border-box', 'important');
+          });
         });
       });
       overlay.querySelectorAll('input, select, textarea').forEach(function (inp) {
         if (inp.type === 'checkbox') return;
         inp.style.setProperty('font-size', '16px', 'important');
         inp.style.setProperty('min-height', '48px', 'important');
+        inp.style.setProperty('width', '100%', 'important');
+        inp.style.setProperty('box-sizing', 'border-box', 'important');
       });
     }
   }
