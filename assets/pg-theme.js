@@ -367,7 +367,7 @@
 
         var loopWidth = ensureCopies();
         var offset = 0;
-        var speed = 45;
+        var speed = 80;
         var last = 0;
 
         function frame(now) {
