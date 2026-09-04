@@ -1360,6 +1360,23 @@ a.pg-p-cta--cod {
   padding: 0 !important;
 }
 
+/* Nombre del producto completo (Preventify lo corta con ellipsis) */
+.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="ellipsis"],
+.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="ellipsis"],
+.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="text-overflow"],
+.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="text-overflow"],
+.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="white-space: nowrap"],
+.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="white-space:nowrap"] {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.35 !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+
 .jaldi-modal-overlay [style*="width: 52px"][style*="height: 52px"],
 .jaldi-modal-overlay [style*="width:52px"][style*="height:52px"] {
   border-radius: 10px !important;

@@ -374,6 +374,20 @@
         el.style.setProperty('overflow', 'visible', 'important');
         el.style.setProperty('width', '100%', 'important');
         el.style.setProperty('box-sizing', 'border-box', 'important');
+        el.style.setProperty('align-items', 'flex-start', 'important');
+        /* Mostrar nombre completo del producto */
+        el.querySelectorAll('div').forEach(function (d) {
+          var st = d.getAttribute('style') || '';
+          if (st.indexOf('ellipsis') === -1 && st.indexOf('nowrap') === -1) return;
+          d.style.setProperty('white-space', 'normal', 'important');
+          d.style.setProperty('overflow', 'visible', 'important');
+          d.style.setProperty('text-overflow', 'clip', 'important');
+          d.style.setProperty('word-break', 'break-word', 'important');
+          d.style.setProperty('overflow-wrap', 'anywhere', 'important');
+          d.style.setProperty('line-height', '1.35', 'important');
+          d.style.setProperty('max-width', '100%', 'important');
+          d.style.setProperty('display', 'block', 'important');
+        });
       }
 
       if (cs.indexOf('#F3F4F6') !== -1 && cs.indexOf('border-radius: 8px') !== -1 && cs.indexOf('padding') !== -1) {
@@ -553,6 +567,7 @@
         '.jaldi-field-row{width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}',
         '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',
         '.jaldi-field-row input,.jaldi-field-row select,.jaldi-field-row textarea,.jaldi-phone-wrapper input{width:100%!important;flex:1 1 0%!important;min-width:0!important;box-sizing:border-box!important}',
+        '.jaldi-modal-overlay [style*="gap: 12px"]:has(img) [style*="ellipsis"],.jaldi-modal-overlay [style*="gap:12px"]:has(img) [style*="ellipsis"]{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;word-break:break-word!important;overflow-wrap:anywhere!important;display:block!important;max-width:100%!important;line-height:1.35!important}',
         '}'
       ].join('');
       document.head.appendChild(st);
