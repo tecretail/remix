@@ -363,9 +363,12 @@
           track.style.setProperty("overflow", "visible", "important");
           track.style.setProperty("transform", "none", "important");
           track.style.setProperty("will-change", "transform", "important");
-          track.style.setProperty("animation", "pg-brand-scroll 28s linear infinite", "important");
-          track.style.setProperty("-webkit-animation", "pg-brand-scroll 28s linear infinite", "important");
-        }
+          track.style.setProperty("animation", "pg-brand-scroll 22s linear infinite", "important");
+          track.style.setProperty("-webkit-animation", "pg-brand-scroll 22s linear infinite", "important");
+          if (window.matchMedia && !window.matchMedia("(max-width: 900px)").matches) {
+            track.style.setProperty("animation", "pg-brand-scroll 28s linear infinite", "important");
+            track.style.setProperty("-webkit-animation", "pg-brand-scroll 28s linear infinite", "important");
+          }        }
 
         applyCssMarquee();
         // Imágenes pueden cargar tarde en móvil

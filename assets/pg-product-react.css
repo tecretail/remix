@@ -2580,7 +2580,25 @@ a.pg-p-cta--cod {
   gap: 0 !important;
   overflow: visible !important;
   animation: pg-brand-scroll 35s linear infinite !important;
+  -webkit-animation: pg-brand-scroll 35s linear infinite !important;
   will-change: transform !important;
+}
+
+@media (max-width: 900px) {
+  .pg-brand-slider-track {
+    animation: pg-brand-scroll 22s linear infinite !important;
+    -webkit-animation: pg-brand-scroll 22s linear infinite !important;
+  }
+
+  .pg-brand-set {
+    gap: 36px !important;
+    padding: 0 36px 0 0 !important;
+  }
+
+  .pg-brand-image {
+    max-width: 110px !important;
+    max-height: 34px !important;
+  }
 }
 
 .pg-brand-set {
