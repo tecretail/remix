@@ -201,7 +201,7 @@
 
     /* Contenido interno a todo el ancho del popup (sin huecos laterales) */
     overlay.querySelectorAll('.jaldi-form-scrollable-content').forEach(function (sc) {
-      sc.style.setProperty('padding', mobile ? '6px 10px 14px' : '4px 8px 12px', 'important');
+      sc.style.setProperty('padding', '0', 'important');
       sc.style.setProperty('width', '100%', 'important');
       sc.style.setProperty('max-width', '100%', 'important');
       sc.style.setProperty('box-sizing', 'border-box', 'important');
@@ -213,7 +213,21 @@
         child.style.setProperty('margin-right', '0', 'important');
         child.style.setProperty('box-sizing', 'border-box', 'important');
         child.style.setProperty('align-self', 'stretch', 'important');
+        /* Preventify usa padding:16px 20px aquí → eso deja los huecos laterales */
+        var cs = child.getAttribute('style') || '';
+        if (cs.indexOf('16px 20px') !== -1 || cs.indexOf('20px 24px') !== -1 || /padding:\s*16px/.test(cs)) {
+          child.style.setProperty('padding', mobile ? '10px 10px 14px' : '14px 16px', 'important');
+        }
       });
+    });
+
+    overlay.querySelectorAll('form').forEach(function (form) {
+      var cs = form.getAttribute('style') || '';
+      if (cs.indexOf('20px 24px') !== -1 || cs.indexOf('24px') !== -1) {
+        form.style.setProperty('padding', mobile ? '12px 10px 16px' : '16px 18px 20px', 'important');
+        form.style.setProperty('width', '100%', 'important');
+        form.style.setProperty('box-sizing', 'border-box', 'important');
+      }
     });
 
     if (mobile) {
@@ -224,12 +238,19 @@
         var isTotals = cs.indexOf('#F3F4F6') !== -1 || cs.indexOf('#f3f4f6') !== -1;
         var hasFieldRows = el.querySelector(':scope > .jaldi-field-row, :scope > h3');
         var isProductWrap = (cs.indexOf('gap: 12px') !== -1 || cs.indexOf('gap:12px') !== -1) && el.querySelector('img');
-        if (isShippingCard || isTotals || hasFieldRows || isProductWrap) {
+        var isPadGutter = cs.indexOf('16px 20px') !== -1 || cs.indexOf('20px 24px') !== -1;
+        if (isShippingCard || isTotals || hasFieldRows || isProductWrap || isPadGutter) {
           el.style.setProperty('width', '100%', 'important');
           el.style.setProperty('max-width', '100%', 'important');
           el.style.setProperty('margin-left', '0', 'important');
           el.style.setProperty('margin-right', '0', 'important');
           el.style.setProperty('box-sizing', 'border-box', 'important');
+        }
+        if (isPadGutter) {
+          el.style.setProperty('padding', '10px 10px 14px', 'important');
+        }
+        if (isShippingCard && el.querySelector('.jaldi-field-row')) {
+          el.style.setProperty('padding', '14px 10px 12px', 'important');
         }
       });
     }
@@ -525,7 +546,9 @@
         '}',
         '@media (max-width:900px){',
         '.jaldi-modal-overlay>div{padding-left:0!important;padding-right:0!important;box-sizing:border-box!important}',
-        '.jaldi-form-scrollable-content{padding:6px 10px 14px!important;width:100%!important;max-width:100%!important;margin:0!important;box-sizing:border-box!important}',
+        '.jaldi-form-scrollable-content{padding:0!important;width:100%!important;max-width:100%!important;margin:0!important;box-sizing:border-box!important}',
+        '.jaldi-form-scrollable-content>div[style*="16px 20px"],.jaldi-form-scrollable-content>div[style*="padding:16px 20px"]{padding:10px 10px 14px!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important}',
+        '.jaldi-modal-overlay form[style*="20px 24px"]{padding:12px 10px 16px!important;width:100%!important;box-sizing:border-box!important}',
         '.jaldi-form-scrollable-content>*{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box!important}',
         '.jaldi-field-row{width:100%!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important}',
         '.jaldi-field-row>div,.jaldi-phone-wrapper{width:100%!important;max-width:100%!important;display:flex!important;box-sizing:border-box!important}',

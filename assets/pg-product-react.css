@@ -1743,12 +1743,30 @@ a.pg-p-cta--cod {
   }
 
   .jaldi-form-scrollable-content {
-    padding: 6px 10px 14px !important;
+    padding: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     overflow-x: hidden !important;
+  }
+
+  /* Preventify: wrapper interno con padding 16px 20px (causa el hueco) */
+  .jaldi-form-scrollable-content > div[style*="16px 20px"],
+  .jaldi-form-scrollable-content > div[style*="padding:16px 20px"],
+  .jaldi-form-scrollable-content > div[style*="padding: 16px 20px"] {
+    padding: 10px 10px 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .jaldi-modal-overlay form[style*="20px 24px"],
+  .jaldi-modal-overlay form[style*="24px 24px"] {
+    padding: 12px 10px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-form-scrollable-content > * {
@@ -1759,12 +1777,13 @@ a.pg-p-cta--cod {
     box-sizing: border-box !important;
   }
 
-  .jaldi-modal-overlay h3 {
-    font-size: 14px !important;
-    letter-spacing: 0.04em !important;
-    margin: 8px 10px 12px !important;
-    padding: 12px 40px 12px 14px !important;
-    border-radius: 12px !important;
+  /* Header COMPLETA TU PEDIDO — menos padding lateral */
+  .jaldi-modal-overlay > div > div[style*="20px 24px"],
+  .jaldi-modal-overlay [style*="padding: 20px 24px"][style*="borderBottom"],
+  .jaldi-modal-overlay [style*="padding:20px 24px"][style*="border-bottom"],
+  .jaldi-modal-overlay [style*="padding:20px 24px"][style*="borderBottom"] {
+    padding: 14px 12px !important;
+    box-sizing: border-box !important;
   }
 
   .jaldi-modal-overlay [style*="gap: 12px"]:has(img):has(button),
