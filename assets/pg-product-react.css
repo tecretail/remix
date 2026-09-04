@@ -570,14 +570,14 @@
 .pg-p-deal-compare {
   color: #d40000 !important;
   text-decoration: line-through !important;
-  font-size: 13px !important;
+  font-size: 14px !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
 }
 
 .pg-p-deal-price {
   font-weight: 900 !important;
-  font-size: 20px !important;
+  font-size: 24px !important;
   color: #0b1a3a !important;
   line-height: 1.15 !important;
 }
@@ -2481,10 +2481,10 @@ a.pg-p-cta--cod {
     padding: 4px 9px !important;
   }
   .pg-p-deal-price {
-    font-size: 17px !important;
+    font-size: 22px !important;
   }
   .pg-p-deal-compare {
-    font-size: 11px !important;
+    font-size: 13px !important;
   }
   .pg-p-deal-badge {
     top: 5px !important;
@@ -3117,11 +3117,11 @@ a.pg-p-cta--cod {
   }
 
   .pg-p-deal-price {
-    font-size: 16px !important;
+    font-size: 21px !important;
   }
 
   .pg-p-deal-compare {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 
   .pg-preventify-host button,
