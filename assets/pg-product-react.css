@@ -29,10 +29,35 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
   gap: 40px !important;
   direction: ltr !important;
+  align-items: start !important;
 }
 
 .pg-buybox--gallery-right .pg-p-main {
   direction: ltr !important;
+}
+
+/* Desktop: la galeria baja con el scroll hasta el bloque de videos */
+@media (min-width: 901px) {
+  .lv-pe-root,
+  .pg-buybox {
+    overflow: visible !important;
+  }
+
+  .pg-p-col-gallery {
+    position: sticky !important;
+    top: 16px !important;
+    align-self: start !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .lv-pe-gallery,
+  .pg-p-gallery {
+    position: sticky !important;
+    top: 16px !important;
+    align-self: start !important;
+  }
 }
 
 .lv-pe-gallery,
@@ -2460,6 +2485,12 @@ a.pg-p-cta--cod {
   .lv-pe-gallery {
     flex-direction: column !important;
     width: 100% !important;
+    position: static !important;
+    top: auto !important;
+  }
+  .pg-p-col-gallery {
+    position: static !important;
+    top: auto !important;
   }
   .pg-p-thumbs,
   .lv-pe-thumbs {
