@@ -135,109 +135,38 @@
   %}
 {% endcapture %}
 
-{% capture brand_slider_set %}
-  <div class="pg-brand-set">
-    <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'RP.png' | asset_url }}" alt="Clínica Ricardo Palma" loading="lazy" width="140" height="40">
-    </div>
-    <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'logo-essalud-v2.png' | asset_url }}" alt="EsSalud" loading="lazy" width="140" height="40">
-    </div>
-    <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'Logotipo.png' | asset_url }}" alt="Clínica Internacional" loading="lazy" width="140" height="40">
-    </div>
-    <div class="pg-brand-slide">
-      <img class="pg-brand-image" src="{{ 'logo.png' | asset_url }}" alt="Clínica Cayetano Heredia" loading="lazy" width="140" height="40">
-    </div>
+{% capture brand_logos %}
+  <div class="pg-brand-slide">
+    <img class="pg-brand-image" src="{{ 'Logotipo.png' | asset_url }}" alt="Clínica Internacional" loading="lazy" width="140" height="40">
+  </div>
+  <div class="pg-brand-slide">
+    <img class="pg-brand-image" src="{{ 'RP.png' | asset_url }}" alt="Clínica Ricardo Palma" loading="lazy" width="140" height="40">
+  </div>
+  <div class="pg-brand-slide">
+    <img class="pg-brand-image" src="{{ 'logo-essalud-v2.png' | asset_url }}" alt="EsSalud" loading="lazy" width="140" height="40">
+  </div>
+  <div class="pg-brand-slide">
+    <img class="pg-brand-image" src="{{ 'logo.png' | asset_url }}" alt="Clínica Cayetano Heredia" loading="lazy" width="140" height="40">
   </div>
 {% endcapture %}
 
+{% comment %}
+  Marquee infinito: 2 mitades idénticas (cada una con logos x3 para cubrir pantallas anchas).
+  La animación mueve exactamente -50% → loop sin hueco ni salto.
+{% endcomment %}
 {% capture brand_slider_panel %}
-  <div class="pg-brand-slider-wrap" data-pg-brand-slider aria-label="Instituciones de salud asociadas">
+  <div class="pg-brand-slider-wrap" aria-label="Instituciones de salud asociadas">
     <div class="pg-brand-slider-viewport">
       <div class="pg-brand-slider-track">
-        {{ brand_slider_set }}
+        <div class="pg-brand-set">
+          {{ brand_logos }}{{ brand_logos }}{{ brand_logos }}
+        </div>
         <div class="pg-brand-set" aria-hidden="true">
-          <div class="pg-brand-slide">
-            <img class="pg-brand-image" src="{{ 'RP.png' | asset_url }}" alt="" loading="lazy" width="140" height="40">
-          </div>
-          <div class="pg-brand-slide">
-            <img class="pg-brand-image" src="{{ 'logo-essalud-v2.png' | asset_url }}" alt="" loading="lazy" width="140" height="40">
-          </div>
-          <div class="pg-brand-slide">
-            <img class="pg-brand-image" src="{{ 'Logotipo.png' | asset_url }}" alt="" loading="lazy" width="140" height="40">
-          </div>
-          <div class="pg-brand-slide">
-            <img class="pg-brand-image" src="{{ 'logo.png' | asset_url }}" alt="" loading="lazy" width="140" height="40">
-          </div>
+          {{ brand_logos }}{{ brand_logos }}{{ brand_logos }}
         </div>
       </div>
     </div>
   </div>
-  <script>
-    (function () {
-      function syncBrandSlider(wrap) {
-        var track = wrap.querySelector('.pg-brand-slider-track');
-        var base = track && track.querySelector('.pg-brand-set');
-        if (!track || !base) return;
-
-        while (track.children.length > 1) track.removeChild(track.lastElementChild);
-
-        var setWidth = base.getBoundingClientRect().width;
-        if (!setWidth) return;
-
-        var need = wrap.offsetWidth * 2 + setWidth;
-        var guard = 0;
-        while (track.scrollWidth < need && guard < 12) {
-          var clone = base.cloneNode(true);
-          clone.setAttribute('aria-hidden', 'true');
-          clone.querySelectorAll('[alt]').forEach(function (img) { img.setAttribute('alt', ''); });
-          track.appendChild(clone);
-          guard++;
-        }
-
-        setWidth = base.getBoundingClientRect().width;
-        track.style.setProperty('--pg-brand-shift', setWidth + 'px');
-        track.style.setProperty('--pg-brand-duration', Math.max(12, Math.round(setWidth / 40)) + 's');
-        // Reinicia la animación para aplicar el nuevo shift sin salto visible
-        track.style.animation = 'none';
-        void track.offsetWidth;
-        track.style.animation = '';
-      }
-
-      function whenReady(wrap, cb) {
-        var imgs = wrap.querySelectorAll('.pg-brand-set:first-child img');
-        var pending = 0;
-        function done() {
-          pending -= 1;
-          if (pending <= 0) cb();
-        }
-        imgs.forEach(function (img) {
-          if (img.complete) return;
-          pending += 1;
-          img.addEventListener('load', done, { once: true });
-          img.addEventListener('error', done, { once: true });
-        });
-        if (pending === 0) cb();
-      }
-
-      function boot() {
-        document.querySelectorAll('[data-pg-brand-slider]').forEach(function (wrap) {
-          whenReady(wrap, function () { syncBrandSlider(wrap); });
-          if (wrap.dataset.pgBrandBound === '1') return;
-          wrap.dataset.pgBrandBound = '1';
-          var t;
-          window.addEventListener('resize', function () {
-            clearTimeout(t);
-            t = setTimeout(function () { syncBrandSlider(wrap); }, 150);
-          }, { passive: true });
-        });
-      }
-
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-      else boot();
-    })();
-  </script>
 {% endcapture %}
 
 {% capture description_panel %}
