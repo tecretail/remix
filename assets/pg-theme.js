@@ -313,14 +313,18 @@
       for (var j = 0; j < all.length; j++) {
         var n = all[j];
         if (n.id === "lvWaHost" || (n.className && String(n.className).indexOf("lv-wa") !== -1)) continue;
-        /* No comprimir el track del marquee de logos (necesita ser más ancho que el viewport) */
+        /* No comprimir tracks de marquee (necesitan ser más anchos que el viewport) */
         if (n.classList && (
           n.classList.contains("pg-brand-slider-track") ||
           n.classList.contains("pg-brand-set") ||
           n.classList.contains("pg-brand-slide") ||
-          n.classList.contains("pg-brand-image")
+          n.classList.contains("pg-brand-image") ||
+          n.classList.contains("lv-announce-rail") ||
+          n.classList.contains("lv-announce-track") ||
+          n.classList.contains("lv-announce-item") ||
+          n.classList.contains("lv-announce-sep")
         )) continue;
-        if (n.closest && n.closest(".pg-brand-slider-track")) continue;
+        if (n.closest && (n.closest(".pg-brand-slider-track") || n.closest(".lv-announce-rail"))) continue;
         if (!n.getBoundingClientRect) continue;
         var r = n.getBoundingClientRect();
         if (r.right > vw + 4 || r.left < -4 || r.width > vw + 8) {
@@ -442,6 +446,118 @@
     }
   }
 
+  function setupAnnounceMarquee() {
+    var bars = document.querySelectorAll(".lv-announce");
+    for (var i = 0; i < bars.length; i++) {
+      (function (bar) {
+        var rail = bar.querySelector(".lv-announce-rail");
+        var firstTrack = rail && rail.querySelector(".lv-announce-track");
+        if (!rail || !firstTrack) return;
+
+        // Evitar doble rAF al reintentar
+        if (bar.__pgAnnounceCtrl) {
+          bar.__pgAnnounceCtrl.refresh();
+          return;
+        }
+
+        rail.style.setProperty("max-width", "none", "important");
+        rail.style.setProperty("width", "max-content", "important");
+        rail.style.setProperty("overflow", "visible", "important");
+        rail.style.setProperty("will-change", "transform", "important");
+
+        function normalizeTracks() {
+          var base = rail.querySelector(".lv-announce-track");
+          if (!base) return 0;
+          while (rail.children.length > 1) {
+            rail.removeChild(rail.lastElementChild);
+          }
+          var clone = base.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          rail.appendChild(clone);
+          base.style.setProperty("max-width", "none", "important");
+          clone.style.setProperty("max-width", "none", "important");
+          base.style.setProperty("flex", "0 0 auto", "important");
+          clone.style.setProperty("flex", "0 0 auto", "important");
+          return Math.round(base.getBoundingClientRect().width || base.scrollWidth || 0);
+        }
+
+        var loopWidth = 0;
+        var offset = 0;
+        var last = 0;
+        var running = false;
+        var speed = 48;
+
+        function frame(now) {
+          if (!running) return;
+          if (!last) last = now;
+          var dt = Math.min(0.048, (now - last) / 1000);
+          last = now;
+          if (loopWidth > 2) {
+            offset += speed * dt;
+            if (offset >= loopWidth) offset -= loopWidth;
+            rail.style.transform = "translate3d(" + (-offset).toFixed(2) + "px,0,0)";
+          }
+          requestAnimationFrame(frame);
+        }
+
+        function boot() {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            running = false;
+            rail.style.setProperty("animation", "none", "important");
+            rail.style.removeProperty("transform");
+            return false;
+          }
+          speed = window.matchMedia("(max-width: 900px)").matches ? 42 : 52;
+          loopWidth = normalizeTracks();
+          rail.style.setProperty("animation", "none", "important");
+          rail.style.setProperty("-webkit-animation", "none", "important");
+          if (loopWidth < 2) {
+            rail.style.removeProperty("transform");
+            rail.style.removeProperty("animation");
+            rail.style.removeProperty("-webkit-animation");
+            rail.style.setProperty("animation", "lv-marquee 28s linear infinite");
+            return false;
+          }
+          if (!running) {
+            running = true;
+            last = 0;
+            requestAnimationFrame(frame);
+          }
+          return true;
+        }
+
+        bar.__pgAnnounceCtrl = {
+          refresh: function () {
+            offset = 0;
+            boot();
+          }
+        };
+
+        var tries = 0;
+        function retry() {
+          tries += 1;
+          if (boot()) return;
+          if (tries < 16) setTimeout(retry, 200);
+        }
+        retry();
+        setTimeout(function () {
+          if (loopWidth < 2) retry();
+          else loopWidth = normalizeTracks();
+        }, 800);
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            offset = 0;
+            loopWidth = normalizeTracks();
+            speed = window.matchMedia("(max-width: 900px)").matches ? 42 : 52;
+          }, 150);
+        }, { passive: true });
+      })(bars[i]);
+    }
+  }
+
   function bindNoHorizontalScroll() {
     if (window.__pgNoHScroll) return;
     window.__pgNoHScroll = true;
@@ -471,16 +587,18 @@
     tickHeroCounters();
     tickPgCountdowns();
     setupBrandMarquee();
+    setupAnnounceMarquee();
     lockHorizontalOverflow();
     bindNoHorizontalScroll();
     setTimeout(lockHorizontalOverflow, 300);
     setTimeout(function () {
       lockHorizontalOverflow();
-      // Reintentar marquee por si el layout móvil tardó
+      // Reintentar marquees por si el layout móvil tardó
       document.querySelectorAll(".pg-brand-slider-wrap").forEach(function (wrap) {
         wrap.dataset.pgMarquee = "";
       });
       setupBrandMarquee();
+      setupAnnounceMarquee();
     }, 800);
     setTimeout(lockHorizontalOverflow, 1200);
     window.addEventListener("resize", lockHorizontalOverflow);

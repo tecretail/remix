@@ -1579,22 +1579,26 @@
   left: 0;
   display: flex;
   flex-wrap: nowrap;
-  width: max-content;
+  width: max-content !important;
+  max-width: none !important;
   height: 36px;
   animation: lv-marquee 28s linear infinite;
   will-change: transform;
+  overflow: visible !important;
 }
 .lv-announce-track {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   gap: 0;
-  flex: 0 0 auto;
-  width: max-content;
+  flex: 0 0 auto !important;
+  width: max-content !important;
+  max-width: none !important;
   height: 36px;
   margin: 0;
   padding: 0;
   white-space: nowrap;
+  overflow: visible !important;
 }
 .lv-announce-item {
   padding: 0 20px;
