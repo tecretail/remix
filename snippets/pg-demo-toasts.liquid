@@ -1,270 +1,265 @@
 {% comment %}
-  Notificaciones falsas de prueba social — SOLO preview / editor,
-  y SOLO en página de producto (usa el producto actual).
+  Notificaciones falsas del producto actual — página de producto.
+  Activas en PDP; badge "Demo" para distinguirlas.
 {% endcomment %}
-{% liquid
-  assign pg_show_demo_toasts = false
-  if template.name == 'product' and product != blank
-    if request.design_mode or request.visual_preview_mode
-      assign pg_show_demo_toasts = true
-    endif
-    if theme.role != 'main'
-      assign pg_show_demo_toasts = true
-    endif
-  endif
-%}
-{% if pg_show_demo_toasts %}
+{% if template.name == 'product' and product != blank %}
   {% liquid
-    assign pg_toast_title = product.title | truncate: 52
+    assign pg_toast_title = product.title | truncate: 56
     assign pg_toast_img = ''
     if product.featured_image
-      assign pg_toast_img = product.featured_image | image_url: width: 120
+      assign pg_toast_img = product.featured_image | image_url: width: 160
     elsif product.images.first
-      assign pg_toast_img = product.images.first | image_url: width: 120
+      assign pg_toast_img = product.images.first | image_url: width: 160
     endif
   %}
-  <div id="pgDemoToasts" class="pg-demo-toasts" aria-live="polite" aria-atomic="true" hidden data-pg-demo="1"></div>
+  <div id="pgDemoToasts" class="pg-demo-toasts" aria-live="polite" aria-atomic="true" data-pg-demo="1"></div>
   <script type="application/json" id="pgDemoToastsData">
     {
-      "productTitle": {{ pg_toast_title | json }},
+      "productTitle": {{ product.title | json }},
       "productImage": {{ pg_toast_img | json }},
       "shop": {{ shop.name | json }}
     }
   </script>
-  <style>
-    .pg-demo-toasts {
-      position: fixed;
-      left: 14px;
-      bottom: max(18px, env(safe-area-inset-bottom, 0px));
-      z-index: 99990;
-      width: min(340px, calc(100vw - 28px));
-      pointer-events: none;
-      font-family: var(--pg-font, "Frank Ruhl Libre", Georgia, serif);
+  <style id="pg-demo-toasts-css">
+    #pgDemoToasts.pg-demo-toasts {
+      position: fixed !important;
+      left: 14px !important;
+      bottom: 20px !important;
+      z-index: 2147483000 !important;
+      width: min(360px, calc(100vw - 28px)) !important;
+      pointer-events: none !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      font-family: "Frank Ruhl Libre", Georgia, serif !important;
     }
-    .pg-demo-toast {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      background: #ffffff;
-      border: 1px solid rgba(5, 68, 151, 0.16);
-      border-radius: 14px;
-      box-shadow: 0 12px 32px rgba(11, 26, 58, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-      transform: translateY(18px);
+    #pgDemoToasts .pg-demo-toast {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 14px 14px 12px !important;
+      margin: 10px 0 0 !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(5, 68, 151, 0.2) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 14px 36px rgba(11, 26, 58, 0.22) !important;
+      transform: translate3d(0, 24px, 0);
       opacity: 0;
-      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
-      pointer-events: auto;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease !important;
+      pointer-events: auto !important;
+      position: relative !important;
+      box-sizing: border-box !important;
     }
-    .pg-demo-toast.is-in {
-      transform: translateY(0);
-      opacity: 1;
+    #pgDemoToasts .pg-demo-toast.is-in {
+      transform: translate3d(0, 0, 0) !important;
+      opacity: 1 !important;
     }
-    .pg-demo-toast.is-out {
-      transform: translateY(12px);
-      opacity: 0;
+    #pgDemoToasts .pg-demo-toast.is-out {
+      transform: translate3d(0, 16px, 0) !important;
+      opacity: 0 !important;
     }
-    .pg-demo-toast__img {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      object-fit: cover;
-      background: #eef3fb;
-      border: 1px solid #e3e8f0;
-      flex: 0 0 48px;
+    #pgDemoToasts .pg-demo-toast__img {
+      width: 52px !important;
+      height: 52px !important;
+      border-radius: 10px !important;
+      object-fit: cover !important;
+      background: #eef3fb !important;
+      border: 1px solid #e3e8f0 !important;
+      flex: 0 0 52px !important;
     }
-    .pg-demo-toast__img--empty {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #054497;
-      font-size: 18px;
-      font-weight: 800;
+    #pgDemoToasts .pg-demo-toast__img--empty {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #054497 !important;
+      font-size: 20px !important;
+      font-weight: 800 !important;
     }
-    .pg-demo-toast__body {
-      min-width: 0;
-      flex: 1 1 auto;
+    #pgDemoToasts .pg-demo-toast__body {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
     }
-    .pg-demo-toast__line1 {
-      font-size: 13px;
-      font-weight: 800;
-      color: #0b1a3a;
-      line-height: 1.25;
-      margin: 0 0 2px;
+    #pgDemoToasts .pg-demo-toast__line1 {
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      color: #0b1a3a !important;
+      line-height: 1.3 !important;
+      margin: 0 0 3px !important;
     }
-    .pg-demo-toast__line1 strong {
-      color: #054497;
-      font-weight: 800;
+    #pgDemoToasts .pg-demo-toast__line1 strong {
+      color: #054497 !important;
     }
-    .pg-demo-toast__line2 {
-      font-size: 12px;
-      font-weight: 600;
-      color: #5e6d7a;
-      line-height: 1.3;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    #pgDemoToasts .pg-demo-toast__line2 {
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      color: #4b5563 !important;
+      line-height: 1.35 !important;
+      margin: 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
     }
-    .pg-demo-toast__time {
-      display: block;
-      margin-top: 3px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #158a2e;
-      letter-spacing: 0.02em;
+    #pgDemoToasts .pg-demo-toast__time {
+      display: block !important;
+      margin-top: 4px !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      color: #158a2e !important;
     }
-    .pg-demo-toast__close {
-      flex: 0 0 auto;
-      width: 22px;
-      height: 22px;
-      border: 0;
-      border-radius: 50%;
-      background: #eef3fb;
-      color: #5e6d7a;
-      font-size: 14px;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0;
+    #pgDemoToasts .pg-demo-toast__close {
+      flex: 0 0 auto !important;
+      width: 24px !important;
+      height: 24px !important;
+      border: 0 !important;
+      border-radius: 50% !important;
+      background: #eef3fb !important;
+      color: #5e6d7a !important;
+      font-size: 16px !important;
+      line-height: 1 !important;
+      cursor: pointer !important;
+      padding: 0 !important;
     }
-    .pg-demo-toast__badge {
-      position: absolute;
-      top: -8px;
-      left: 12px;
-      background: #054497;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 3px 7px;
-      border-radius: 999px;
-    }
-    .pg-demo-toast {
-      position: relative;
+    #pgDemoToasts .pg-demo-toast__badge {
+      position: absolute !important;
+      top: -9px !important;
+      left: 12px !important;
+      background: #054497 !important;
+      color: #fff !important;
+      font-size: 9px !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      padding: 3px 8px !important;
+      border-radius: 999px !important;
     }
     @media (max-width: 900px) {
-      .pg-demo-toasts {
-        left: 10px;
-        right: 10px;
-        width: auto;
-        bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 64px));
+      #pgDemoToasts.pg-demo-toasts {
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        bottom: 78px !important;
       }
     }
   </style>
   <script>
     (function () {
-      // Solo preview / editor (doble chequeo por si el snippet se cachea)
-      var preview =
-        !!(window.Shopify && Shopify.designMode) ||
-        /[?&]preview_theme_id=/.test(location.search) ||
-        /[?&]pg_toasts=1/.test(location.search) ||
-        document.body.classList.contains('shopify-design-mode');
-      if (!preview && !document.getElementById('pgDemoToasts')) return;
-      // Si Liquid ya decidió mostrar, seguimos aunque no haya query (theme unpublished)
-      var host = document.getElementById('pgDemoToasts');
-      if (!host) return;
+      function boot() {
+        var host = document.getElementById('pgDemoToasts');
+        if (!host || host.dataset.pgReady === '1') return;
+        host.dataset.pgReady = '1';
 
-      var data = { productTitle: 'este producto', productImage: '', shop: '' };
-      try {
-        var raw = document.getElementById('pgDemoToastsData');
-        if (raw) data = JSON.parse(raw.textContent || '{}');
-      } catch (e) {}
+        var data = { productTitle: '', productImage: '', shop: '' };
+        try {
+          var raw = document.getElementById('pgDemoToastsData');
+          if (raw) data = JSON.parse(raw.textContent || '{}');
+        } catch (e) {}
 
-      var names = [
-        'María', 'Carlos', 'Lucía', 'José', 'Ana', 'Diego', 'Valeria', 'Miguel',
-        'Camila', 'Andrés', 'Sofía', 'Pedro', 'Elena', 'Jorge', 'Patricia', 'Luis'
-      ];
-      var cities = [
-        'Lima', 'Arequipa', 'Trujillo', 'Cusco', 'Piura', 'Chiclayo',
-        'Huancayo', 'Iquitos', 'Tacna', 'Callao', 'Surco', 'San Borja'
-      ];
-      var times = [
-        'hace 1 min', 'hace 2 min', 'hace 3 min', 'hace 5 min',
-        'hace 8 min', 'hace 12 min', 'hace unos momentos'
-      ];
+        // Fallback: leer del DOM del PDP si Liquid no trajo imagen/título
+        if (!data.productTitle) {
+          var h1 = document.querySelector('.pg-p-h1, h1.product__title, .product-title, h1');
+          if (h1) data.productTitle = (h1.textContent || '').trim();
+        }
+        if (!data.productImage) {
+          var hero = document.querySelector('.pg-p-hero img, .pg-buybox img, [data-pg-hero-default], .product__media img');
+          if (hero) data.productImage = hero.getAttribute('data-pg-hero-default') || hero.currentSrc || hero.src || '';
+        }
+        if (!data.productTitle) data.productTitle = 'este producto';
 
-      function pick(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-      }
+        var names = ['María', 'Carlos', 'Lucía', 'José', 'Ana', 'Diego', 'Valeria', 'Miguel', 'Camila', 'Andrés', 'Sofía', 'Pedro', 'Elena', 'Jorge', 'Patricia', 'Luis'];
+        var cities = ['Lima', 'Arequipa', 'Trujillo', 'Cusco', 'Piura', 'Chiclayo', 'Huancayo', 'Iquitos', 'Tacna', 'Callao', 'Surco', 'San Borja'];
+        var times = ['hace 1 min', 'hace 2 min', 'hace 3 min', 'hace 5 min', 'hace 8 min', 'hace unos momentos'];
 
-      function showOne() {
-        if (document.hidden) return;
-        host.hidden = false;
-        host.innerHTML = '';
-
-        var name = pick(names);
-        var city = pick(cities);
-        var when = pick(times);
-        var title = data.productTitle || 'este producto';
-
-        var card = document.createElement('div');
-        card.className = 'pg-demo-toast';
-        card.setAttribute('role', 'status');
-
-        var badge = document.createElement('span');
-        badge.className = 'pg-demo-toast__badge';
-        badge.textContent = 'Demo preview';
-        card.appendChild(badge);
-
-        if (data.productImage) {
-          var img = document.createElement('img');
-          img.className = 'pg-demo-toast__img';
-          img.src = data.productImage;
-          img.alt = '';
-          img.width = 48;
-          img.height = 48;
-          card.appendChild(img);
-        } else {
-          var ph = document.createElement('div');
-          ph.className = 'pg-demo-toast__img pg-demo-toast__img--empty';
-          ph.textContent = '✓';
-          card.appendChild(ph);
+        function pick(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        var body = document.createElement('div');
-        body.className = 'pg-demo-toast__body';
-        body.innerHTML =
-          '<p class="pg-demo-toast__line1"><strong>' + name + '</strong> de ' + city + ' compró</p>' +
-          '<p class="pg-demo-toast__line2">' + title.replace(/</g, '&lt;') + '</p>' +
-          '<span class="pg-demo-toast__time">' + when + '</span>';
-        card.appendChild(body);
+        function esc(s) {
+          return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
 
-        var close = document.createElement('button');
-        close.type = 'button';
-        close.className = 'pg-demo-toast__close';
-        close.setAttribute('aria-label', 'Cerrar');
-        close.textContent = '×';
-        close.addEventListener('click', function () {
-          hide(card, true);
-        });
-        card.appendChild(close);
+        function showOne() {
+          if (document.hidden) return;
+          host.innerHTML = '';
 
-        host.appendChild(card);
-        requestAnimationFrame(function () {
-          card.classList.add('is-in');
-        });
+          var card = document.createElement('div');
+          card.className = 'pg-demo-toast';
+          card.setAttribute('role', 'status');
 
-        setTimeout(function () {
-          hide(card, false);
-        }, 5200);
+          var badge = document.createElement('span');
+          badge.className = 'pg-demo-toast__badge';
+          badge.textContent = 'Demo';
+          card.appendChild(badge);
+
+          if (data.productImage) {
+            var img = document.createElement('img');
+            img.className = 'pg-demo-toast__img';
+            img.src = data.productImage;
+            img.alt = '';
+            img.width = 52;
+            img.height = 52;
+            card.appendChild(img);
+          } else {
+            var ph = document.createElement('div');
+            ph.className = 'pg-demo-toast__img pg-demo-toast__img--empty';
+            ph.textContent = '✓';
+            card.appendChild(ph);
+          }
+
+          var body = document.createElement('div');
+          body.className = 'pg-demo-toast__body';
+          body.innerHTML =
+            '<p class="pg-demo-toast__line1"><strong>' + esc(pick(names)) + '</strong> de ' + esc(pick(cities)) + ' compró</p>' +
+            '<p class="pg-demo-toast__line2">' + esc(data.productTitle) + '</p>' +
+            '<span class="pg-demo-toast__time">' + esc(pick(times)) + '</span>';
+          card.appendChild(body);
+
+          var close = document.createElement('button');
+          close.type = 'button';
+          close.className = 'pg-demo-toast__close';
+          close.setAttribute('aria-label', 'Cerrar');
+          close.textContent = '×';
+          close.addEventListener('click', function () {
+            hide(card);
+          });
+          card.appendChild(close);
+
+          host.appendChild(card);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              card.classList.add('is-in');
+            });
+          });
+
+          setTimeout(function () {
+            hide(card);
+          }, 6000);
+        }
+
+        function hide(card) {
+          if (!card || !card.parentNode) return;
+          card.classList.remove('is-in');
+          card.classList.add('is-out');
+          setTimeout(function () {
+            if (card.parentNode) card.parentNode.removeChild(card);
+          }, 350);
+        }
+
+        // Primera al segundo, luego cada ~8–12 s
+        setTimeout(showOne, 1000);
+        setInterval(function () {
+          if (host.querySelector('.pg-demo-toast')) return;
+          showOne();
+        }, 8000 + Math.floor(Math.random() * 4000));
       }
 
-      function hide(card, immediate) {
-        if (!card || !card.parentNode) return;
-        card.classList.remove('is-in');
-        card.classList.add('is-out');
-        setTimeout(function () {
-          if (card.parentNode) card.parentNode.removeChild(card);
-          if (!host.children.length) host.hidden = true;
-        }, immediate ? 80 : 320);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+      } else {
+        boot();
       }
-
-      // Primera notificación pronto, luego cada 9–14 s
-      setTimeout(showOne, 2500);
-      setInterval(function () {
-        if (host.querySelector('.pg-demo-toast')) return;
-        showOne();
-      }, 9000 + Math.floor(Math.random() * 5000));
+      // Por si el editor/Shopify reinyecta tarde
+      setTimeout(boot, 500);
     })();
   </script>
 {% endif %}
