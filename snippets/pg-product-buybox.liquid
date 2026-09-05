@@ -34,6 +34,11 @@
   endif
   assign social_sold = social_sold | default: '+20k Frascos vendidos en el último mes'
   assign social_guide = social_guide | default: 'Guías gratis para resultados en 15 días 📈🍑🍒'
+  assign social_extra = social_extra | default: ''
+  assign show_feature_icons = show_feature_icons
+  if show_feature_icons == nil
+    assign show_feature_icons = true
+  endif
   assign urgency_bar_text = urgency_bar_text | default: 'Ordena antes de hoy a medianoche para recibir regalos GRATIS'
   assign show_delivery_truck = show_delivery_truck
   if show_delivery_truck == nil
@@ -200,6 +205,34 @@
     if _mf_ob != blank
       assign offer_badge = _mf_ob
     endif
+
+    # Pills por producto (metafields) o fallback del theme
+    assign mf_social_1 = product.metafields.custom.social_1.value
+    assign mf_social_2 = product.metafields.custom.social_2.value
+    assign mf_social_3 = product.metafields.custom.social_3.value
+    if mf_social_1 != blank
+      assign social_sold = mf_social_1
+    endif
+    if mf_social_2 != blank
+      assign social_guide = mf_social_2
+    endif
+    if mf_social_3 != blank
+      assign social_extra = mf_social_3
+    endif
+
+    assign mf_f1_text = product.metafields.custom.feature_1_text.value
+    assign mf_f2_text = product.metafields.custom.feature_2_text.value
+    assign mf_f3_text = product.metafields.custom.feature_3_text.value
+    assign mf_f4_text = product.metafields.custom.feature_4_text.value
+    assign mf_f1_img = product.metafields.custom.feature_1_image.value
+    assign mf_f2_img = product.metafields.custom.feature_2_image.value
+    assign mf_f3_img = product.metafields.custom.feature_3_image.value
+    assign mf_f4_img = product.metafields.custom.feature_4_image.value
+    assign has_product_features = false
+    if mf_f1_text != blank or mf_f2_text != blank or mf_f3_text != blank or mf_f4_text != blank or mf_f1_img != blank or mf_f2_img != blank or mf_f3_img != blank or mf_f4_img != blank
+      assign has_product_features = true
+    endif
+
     assign first_variant = product.selected_or_first_available_variant
     assign first_price = first_variant.price
     assign first_compare = first_variant.compare_at_price
@@ -387,7 +420,7 @@
         {% endif %}
 
         {% if show_social_stack %}
-          {% if social_sold != blank or social_guide != blank %}
+          {% if social_sold != blank or social_guide != blank or social_extra != blank %}
             <div class="pg-p-social-stack">
               {% if social_sold != blank %}
                 <div class="pg-p-social-pill pg-p-social-pill--sold">
@@ -406,8 +439,70 @@
                   <span class="pg-p-social-pill__text">{{ social_guide }}</span>
                 </div>
               {% endif %}
+
+              {% if social_extra != blank %}
+                <div class="pg-p-social-pill pg-p-social-pill--extra">
+                  <span class="pg-p-social-pill__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 2.5 2 4.9 4 6.5 1.5 1.2 2.5 2.8 2.5 4.5a6.5 6.5 0 1 1-13 0c0-1.5.8-3 2-4.2C9.2 7.8 11 5.8 12 3z"/><path d="M9 16c.8 1.2 1.8 2 3 2s2.2-.8 3-2"/></svg>
+                  </span>
+                  <span class="pg-p-social-pill__text">{{ social_extra }}</span>
+                </div>
+              {% endif %}
             </div>
           {% endif %}
+        {% endif %}
+
+        {% if show_feature_icons and has_product_features %}
+          <div class="pg-p-features" aria-label="Beneficios del producto">
+            {% if mf_f1_img != blank or mf_f1_text != blank %}
+              <div class="pg-p-feature">
+                {% if mf_f1_img != blank %}
+                  <div class="pg-p-feature__media">
+                    {{ mf_f1_img | image_url: width: 280 | image_tag: loading: 'lazy', widths: '140,220,280', sizes: '(max-width: 600px) 28vw, 120px', alt: mf_f1_text }}
+                  </div>
+                {% endif %}
+                {% if mf_f1_text != blank %}
+                  <p class="pg-p-feature__text">{{ mf_f1_text }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if mf_f2_img != blank or mf_f2_text != blank %}
+              <div class="pg-p-feature">
+                {% if mf_f2_img != blank %}
+                  <div class="pg-p-feature__media">
+                    {{ mf_f2_img | image_url: width: 280 | image_tag: loading: 'lazy', widths: '140,220,280', sizes: '(max-width: 600px) 28vw, 120px', alt: mf_f2_text }}
+                  </div>
+                {% endif %}
+                {% if mf_f2_text != blank %}
+                  <p class="pg-p-feature__text">{{ mf_f2_text }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if mf_f3_img != blank or mf_f3_text != blank %}
+              <div class="pg-p-feature">
+                {% if mf_f3_img != blank %}
+                  <div class="pg-p-feature__media">
+                    {{ mf_f3_img | image_url: width: 280 | image_tag: loading: 'lazy', widths: '140,220,280', sizes: '(max-width: 600px) 28vw, 120px', alt: mf_f3_text }}
+                  </div>
+                {% endif %}
+                {% if mf_f3_text != blank %}
+                  <p class="pg-p-feature__text">{{ mf_f3_text }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if mf_f4_img != blank or mf_f4_text != blank %}
+              <div class="pg-p-feature">
+                {% if mf_f4_img != blank %}
+                  <div class="pg-p-feature__media">
+                    {{ mf_f4_img | image_url: width: 280 | image_tag: loading: 'lazy', widths: '140,220,280', sizes: '(max-width: 600px) 28vw, 120px', alt: mf_f4_text }}
+                  </div>
+                {% endif %}
+                {% if mf_f4_text != blank %}
+                  <p class="pg-p-feature__text">{{ mf_f4_text }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
         {% endif %}
 
         {% if show_benefits %}
