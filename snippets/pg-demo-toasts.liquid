@@ -1,31 +1,26 @@
 {% comment %}
-  Notificaciones falsas de prueba social — SOLO preview / editor.
-  No se cargan en la tienda publicada (theme role main + sin design mode).
+  Notificaciones falsas de prueba social — SOLO preview / editor,
+  y SOLO en página de producto (usa el producto actual).
 {% endcomment %}
 {% liquid
   assign pg_show_demo_toasts = false
-  if request.design_mode or request.visual_preview_mode
-    assign pg_show_demo_toasts = true
-  endif
-  if theme.role != 'main'
-    assign pg_show_demo_toasts = true
+  if template.name == 'product' and product != blank
+    if request.design_mode or request.visual_preview_mode
+      assign pg_show_demo_toasts = true
+    endif
+    if theme.role != 'main'
+      assign pg_show_demo_toasts = true
+    endif
   endif
 %}
 {% if pg_show_demo_toasts %}
   {% liquid
+    assign pg_toast_title = product.title | truncate: 52
     assign pg_toast_img = ''
-    assign pg_toast_title = shop.name
-    if product != blank
-      assign pg_toast_title = product.title | truncate: 48
-      if product.featured_image
-        assign pg_toast_img = product.featured_image | image_url: width: 120
-      endif
-    elsif collections.all.products.first != blank
-      assign _p = collections.all.products.first
-      assign pg_toast_title = _p.title | truncate: 48
-      if _p.featured_image
-        assign pg_toast_img = _p.featured_image | image_url: width: 120
-      endif
+    if product.featured_image
+      assign pg_toast_img = product.featured_image | image_url: width: 120
+    elsif product.images.first
+      assign pg_toast_img = product.images.first | image_url: width: 120
     endif
   %}
   <div id="pgDemoToasts" class="pg-demo-toasts" aria-live="polite" aria-atomic="true" hidden data-pg-demo="1"></div>
