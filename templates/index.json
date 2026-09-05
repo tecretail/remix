@@ -11,6 +11,7 @@
   "sections": {
     "announce": {
       "type": "pg-announce",
+      "disabled": true,
       "blocks": {
         "a1": {
           "type": "item",

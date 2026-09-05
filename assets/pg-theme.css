@@ -291,17 +291,21 @@
   .pg-p-benefits { grid-template-columns: repeat(var(--pg-benefits-n, 3), minmax(0, 1fr)) !important; gap: 6px; }
 }
 
-/* Announcement bar: sin vacios arriba/abajo */
-.shopify-section.pg-section-announce {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.pg-section-announce .pg-sec-style {
-  padding: 0 !important;
-  margin: 0 !important;
+/* Announcement bar: OCULTA (barra azul superior) */
+.shopify-section.pg-section-announce,
+.pg-section-announce,
+.pg-section-announce .pg-sec-style,
+.lv-announce {
+  display: none !important;
+  height: 0 !important;
   min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow: hidden !important;
-  background: transparent !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  border: 0 !important;
   line-height: 0 !important;
 }
 .shopify-design-mode .lv-announce-track {
