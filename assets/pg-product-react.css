@@ -2097,8 +2097,8 @@ a.pg-p-cta--cod {
 .pg-p-social-stack {
   display: flex !important;
   flex-direction: column !important;
-  gap: 6px !important;
-  margin: 0 0 14px !important;
+  gap: 8px !important;
+  margin: 0 0 16px !important;
 }
 
 .pg-p-social-card {
@@ -2186,14 +2186,35 @@ a.pg-p-cta--cod {
 .pg-p-social-pill {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 5px 12px !important;
-  background: #eef4fc !important;
-  border: 1px solid rgba(5, 68, 151, 0.14) !important;
+  gap: 10px !important;
+  padding: 8px 16px 8px 8px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%) !important;
+  border: 1px solid rgba(5, 68, 151, 0.12) !important;
   border-radius: 999px !important;
+  box-shadow:
+    0 1px 2px rgba(5, 68, 151, 0.04),
+    0 6px 16px rgba(5, 68, 151, 0.08) !important;
   width: fit-content !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.pg-p-social-pill:hover {
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 2px 4px rgba(5, 68, 151, 0.06),
+    0 10px 22px rgba(5, 68, 151, 0.12) !important;
+}
+
+.pg-p-social-pill--sold {
+  border-color: rgba(227, 99, 18, 0.18) !important;
+  background: linear-gradient(135deg, #fffaf6 0%, #fff3ea 100%) !important;
+}
+
+.pg-p-social-pill--guide {
+  border-color: rgba(5, 68, 151, 0.16) !important;
+  background: linear-gradient(135deg, #f7faff 0%, #eaf2fc 100%) !important;
 }
 
 .pg-p-social-pill__icon {
@@ -2201,9 +2222,21 @@ a.pg-p-cta--cod {
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
-  width: 16px !important;
-  height: 16px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
   color: #054497 !important;
+  background: rgba(5, 68, 151, 0.1) !important;
+}
+
+.pg-p-social-pill--sold .pg-p-social-pill__icon {
+  color: #e36312 !important;
+  background: rgba(227, 99, 18, 0.12) !important;
+}
+
+.pg-p-social-pill--guide .pg-p-social-pill__icon {
+  color: #054497 !important;
+  background: rgba(5, 68, 151, 0.12) !important;
 }
 
 .pg-p-social-pill__icon svg {
@@ -2214,9 +2247,11 @@ a.pg-p-cta--cod {
 
 .pg-p-social-pill__text {
   color: #0b1a3a !important;
+  font-family: 'Montserrat', system-ui, sans-serif !important;
   font-weight: 700 !important;
-  font-size: 12px !important;
-  line-height: 1.25 !important;
+  font-size: 12.5px !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.3 !important;
 }
 
 @media (max-width: 600px) {

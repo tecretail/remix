@@ -96,11 +96,7 @@
       overflow: hidden !important;
     }
     #pgDemoToasts .pg-demo-toast__time {
-      display: block !important;
-      margin-top: 4px !important;
-      font-size: 11px !important;
-      font-weight: 700 !important;
-      color: #158a2e !important;
+      display: none !important;
     }
     #pgDemoToasts .pg-demo-toast__close {
       flex: 0 0 auto !important;
@@ -149,7 +145,6 @@
 
         var names = ['María', 'Carlos', 'Lucía', 'José', 'Ana', 'Diego', 'Valeria', 'Miguel', 'Camila', 'Andrés', 'Sofía', 'Pedro', 'Elena', 'Jorge', 'Patricia', 'Luis'];
         var cities = ['Lima', 'Arequipa', 'Trujillo', 'Cusco', 'Piura', 'Chiclayo', 'Huancayo', 'Iquitos', 'Tacna', 'Callao', 'Surco', 'San Borja'];
-        var times = ['hace 1 min', 'hace 2 min', 'hace 3 min', 'hace 5 min', 'hace 8 min', 'hace unos momentos'];
 
         function pick(arr) {
           return arr[Math.floor(Math.random() * arr.length)];
@@ -185,8 +180,7 @@
           body.className = 'pg-demo-toast__body';
           body.innerHTML =
             '<p class="pg-demo-toast__line1"><strong>' + esc(pick(names)) + '</strong> de ' + esc(pick(cities)) + ' compró</p>' +
-            '<p class="pg-demo-toast__line2">' + esc(data.productTitle) + '</p>' +
-            '<span class="pg-demo-toast__time">' + esc(pick(times)) + '</span>';
+            '<p class="pg-demo-toast__line2">' + esc(data.productTitle) + '</p>';
           card.appendChild(body);
 
           var close = document.createElement('button');
