@@ -11,7 +11,6 @@
   "sections": {
     "announce": {
       "type": "pg-announce",
-      "disabled": true,
       "blocks": {
         "a1": {
           "type": "item",
@@ -140,7 +139,7 @@
         "vb1"
       ],
       "settings": {
-        "show_bar": true,
+        "show_bar": false,
         "show_rating": true,
         "show_benefits": false,
         "show_hot_sale": false,

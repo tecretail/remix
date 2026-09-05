@@ -1558,20 +1558,20 @@
   overflow: hidden !important;
   position: relative;
   padding: 0;
-  /* Oculta la barra azul superior (pedido del cliente) */
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-.pg-section-announce {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
+  margin: 0;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  border: 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  display: block;
+  height: 36px;
+  isolation: isolate;
 }
 .lv-announce-rail {
   position: absolute;

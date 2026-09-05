@@ -2248,6 +2248,16 @@ a.pg-p-cta--cod {
   box-sizing: border-box !important;
 }
 
+/* GREAT DEAL del producto — oculta; el carrusel lv-announce se mantiene */
+.pg-p-bar:not(.pg-p-bar--urgency) {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+}
+
 /* Barra urgencia del buybox (debajo de ofertas) */
 .pg-p-col-buy > .pg-p-bar--urgency {
   padding: 18px 20px !important;

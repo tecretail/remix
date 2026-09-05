@@ -34,18 +34,14 @@
 }
 
 /* ——— PDP ——— */
-.pg-p-bar {
-  background: var(--pg-bar-bg, var(--pg-blue, #054497));
-  color: #fff;
-  text-align: center;
-  padding: 12px 16px;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  line-height: 1.45;
-  border-radius: 0;
-  margin: 0;
-  box-sizing: border-box;
+/* Barra GREAT DEAL del producto — oculta (pedido del cliente) */
+.pg-p-bar:not(.pg-p-bar--urgency) {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
 }
 .pg-p-deals {
   display: flex;
@@ -291,21 +287,17 @@
   .pg-p-benefits { grid-template-columns: repeat(var(--pg-benefits-n, 3), minmax(0, 1fr)) !important; gap: 6px; }
 }
 
-/* Announcement bar: OCULTA (barra azul superior) */
-.shopify-section.pg-section-announce,
-.pg-section-announce,
-.pg-section-announce .pg-sec-style,
-.lv-announce {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
+/* Announcement bar: sin vacios arriba/abajo */
+.shopify-section.pg-section-announce {
   margin: 0 !important;
   padding: 0 !important;
+}
+.pg-section-announce .pg-sec-style {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 0 !important;
   overflow: hidden !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  border: 0 !important;
+  background: transparent !important;
   line-height: 0 !important;
 }
 .shopify-design-mode .lv-announce-track {
