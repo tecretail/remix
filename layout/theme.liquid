@@ -275,10 +275,6 @@
     {% endif %}
 
     <script src="{{ 'pg-theme.js' | asset_url }}" defer></script>
-    {% comment %} Notificaciones falsas del producto — solo preview en PDP {% endcomment %}
-    {% if template.name == 'product' %}
-      {% render 'pg-demo-toasts' %}
-    {% endif %}
     {% comment %} cache-bust offers react 2026-07-20 {% endcomment %}
   </body>
 </html>
