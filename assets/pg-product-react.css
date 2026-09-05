@@ -1032,6 +1032,36 @@ a.pg-p-cta--cod {
   font-weight: 500 !important;
 }
 
+.pg-p-acc__shipping {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.pg-p-acc__shipping p {
+  margin: 0 !important;
+  color: #3b4554 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  font-weight: 500 !important;
+}
+
+.pg-p-acc__shipping p strong {
+  color: #0b1a3a !important;
+  font-weight: 800 !important;
+}
+
+.pg-p-acc__shipping-img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-top: 6px !important;
+  border-radius: 12px !important;
+  background: #000 !important;
+  object-fit: contain !important;
+}
+
 /* Boton COD unificado: estilo neon con bordes + movimiento */
 @keyframes pg-cod-neon-pulse {
   0%, 100% {
