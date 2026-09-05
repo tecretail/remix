@@ -116,7 +116,17 @@
         left: 10px !important;
         right: 10px !important;
         width: auto !important;
-        bottom: 78px !important;
+        top: max(12px, env(safe-area-inset-top, 0px)) !important;
+        bottom: auto !important;
+      }
+      #pgDemoToasts .pg-demo-toast {
+        transform: translate3d(0, -24px, 0);
+      }
+      #pgDemoToasts .pg-demo-toast.is-in {
+        transform: translate3d(0, 0, 0) !important;
+      }
+      #pgDemoToasts .pg-demo-toast.is-out {
+        transform: translate3d(0, -16px, 0) !important;
       }
     }
   </style>
