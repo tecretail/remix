@@ -2143,6 +2143,19 @@ a.pg-p-cta--cod {
   background: linear-gradient(135deg, #faf7ff 0%, #f3ecff 100%) !important;
 }
 
+.pg-p-social-pill--tinted {
+  background: color-mix(in srgb, var(--pg-pill-color, #054497) 14%, #ffffff) !important;
+  border-color: color-mix(in srgb, var(--pg-pill-color, #054497) 42%, #ffffff) !important;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--pg-pill-color, #054497) 10%, transparent),
+    0 6px 16px color-mix(in srgb, var(--pg-pill-color, #054497) 12%, transparent) !important;
+}
+
+.pg-p-social-pill--tinted:not(.pg-p-social-pill--custom-icon) .pg-p-social-pill__icon {
+  color: var(--pg-pill-color, #054497) !important;
+  background: color-mix(in srgb, var(--pg-pill-color, #054497) 16%, #ffffff) !important;
+}
+
 .pg-p-social-pill--extra .pg-p-social-pill__icon {
   color: #6d28d9 !important;
   background: rgba(109, 40, 217, 0.12) !important;

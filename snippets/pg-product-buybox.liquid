@@ -213,6 +213,9 @@
     assign mf_social_1_icon = product.metafields.custom.social_1_icon.value
     assign mf_social_2_icon = product.metafields.custom.social_2_icon.value
     assign mf_social_3_icon = product.metafields.custom.social_3_icon.value
+    assign mf_social_1_color = product.metafields.custom.social_1_color.value
+    assign mf_social_2_color = product.metafields.custom.social_2_color.value
+    assign mf_social_3_color = product.metafields.custom.social_3_color.value
     if mf_social_1 != blank
       assign social_sold = mf_social_1
     endif
@@ -437,7 +440,10 @@
           {% if social_sold != blank or social_guide != blank or social_extra != blank %}
             <div class="pg-p-social-stack">
               {% if social_sold != blank %}
-                <div class="pg-p-social-pill pg-p-social-pill--sold{% if mf_social_1_icon != blank %} pg-p-social-pill--custom-icon{% endif %}">
+                <div
+                  class="pg-p-social-pill pg-p-social-pill--sold{% if mf_social_1_icon != blank %} pg-p-social-pill--custom-icon{% endif %}{% if mf_social_1_color != blank %} pg-p-social-pill--tinted{% endif %}"
+                  {% if mf_social_1_color != blank %}style="--pg-pill-color: {{ mf_social_1_color }};"{% endif %}
+                >
                   {% if mf_social_1_icon != blank %}
                     <span class="pg-p-social-pill__icon" aria-hidden="true">
                       {{ mf_social_1_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '28px', alt: '' }}
@@ -448,7 +454,10 @@
               {% endif %}
 
               {% if social_guide != blank %}
-                <div class="pg-p-social-pill pg-p-social-pill--guide{% if mf_social_2_icon != blank %} pg-p-social-pill--custom-icon{% endif %}">
+                <div
+                  class="pg-p-social-pill pg-p-social-pill--guide{% if mf_social_2_icon != blank %} pg-p-social-pill--custom-icon{% endif %}{% if mf_social_2_color != blank %} pg-p-social-pill--tinted{% endif %}"
+                  {% if mf_social_2_color != blank %}style="--pg-pill-color: {{ mf_social_2_color }};"{% endif %}
+                >
                   {% if mf_social_2_icon != blank %}
                     <span class="pg-p-social-pill__icon" aria-hidden="true">
                       {{ mf_social_2_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '28px', alt: '' }}
@@ -459,7 +468,10 @@
               {% endif %}
 
               {% if social_extra != blank %}
-                <div class="pg-p-social-pill pg-p-social-pill--extra{% if mf_social_3_icon != blank %} pg-p-social-pill--custom-icon{% endif %}">
+                <div
+                  class="pg-p-social-pill pg-p-social-pill--extra{% if mf_social_3_icon != blank %} pg-p-social-pill--custom-icon{% endif %}{% if mf_social_3_color != blank %} pg-p-social-pill--tinted{% endif %}"
+                  {% if mf_social_3_color != blank %}style="--pg-pill-color: {{ mf_social_3_color }};"{% endif %}
+                >
                   {% if mf_social_3_icon != blank %}
                     <span class="pg-p-social-pill__icon" aria-hidden="true">
                       {{ mf_social_3_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '28px', alt: '' }}
