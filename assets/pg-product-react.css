@@ -1025,9 +1025,9 @@ a.pg-p-cta--cod {
 
 .pg-p-acc__body {
   padding: 0 4px 14px 38px !important;
-  font-size: 13px !important;
-  line-height: 1.45 !important;
-  color: #555 !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: #3b4554 !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
   font-weight: 500 !important;
 }
@@ -1035,19 +1035,20 @@ a.pg-p-cta--cod {
 .pg-p-acc__shipping {
   display: flex !important;
   flex-direction: column !important;
-  gap: 10px !important;
+  gap: 12px !important;
 }
 
 .pg-p-acc__shipping p {
   margin: 0 !important;
-  color: #3b4554 !important;
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  font-weight: 500 !important;
+  color: #2a3548 !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", system-ui, sans-serif !important;
 }
 
 .pg-p-acc__shipping p strong {
-  color: #0b1a3a !important;
+  color: #054497 !important;
   font-weight: 800 !important;
 }
 
@@ -1056,17 +1057,22 @@ a.pg-p-cta--cod {
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-  margin-top: 8px !important;
-  border-radius: 12px !important;
-  background: #fff !important;
-  border: 1px solid rgba(5, 68, 151, 0.1) !important;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06) !important;
+  margin-top: 6px !important;
+  border-radius: 14px !important;
+  background: #eef4fc !important;
+  border: 1px solid rgba(5, 68, 151, 0.12) !important;
+  box-shadow: 0 4px 14px rgba(5, 68, 151, 0.08) !important;
   object-fit: contain !important;
 }
 
 @media (max-width: 600px) {
   .pg-p-acc__body {
     padding-left: 8px !important;
+    font-size: 14.5px !important;
+  }
+
+  .pg-p-acc__shipping p {
+    font-size: 14.5px !important;
   }
 }
 
