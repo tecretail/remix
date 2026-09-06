@@ -558,11 +558,11 @@
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
-  background: #fff !important;
+  background: var(--pg-deal-active-bg, rgba(5, 68, 151, 0.18)) !important;
 }
 
 .pg-p-deal.is-active .pg-p-deal-row {
-  background: var(--pg-deal-active-bg, rgba(5, 68, 151, 0.14)) !important;
+  background: transparent !important;
 }
 
 .pg-p-deal:not(.is-active) .pg-p-deal-body {
