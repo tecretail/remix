@@ -2256,24 +2256,28 @@ a.pg-p-cta--cod {
 
 @media (max-width: 700px) {
   .pg-p-features {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 14px 12px !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 8px 6px !important;
+    margin: 0 0 14px !important;
   }
 
   .pg-p-feature__media {
-    max-width: 130px !important;
+    max-width: 72px !important;
   }
 
   .pg-p-feature__text {
-    font-size: 11.5px !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
   }
 }
 
 .pg-p-social-stack {
   display: flex !important;
   flex-direction: column !important;
+  align-items: stretch !important;
   gap: 8px !important;
   margin: 0 0 16px !important;
+  width: 100% !important;
 }
 
 .pg-p-social-card {
@@ -2447,6 +2451,31 @@ a.pg-p-cta--cod {
   .pg-p-social-card,
   .pg-p-social-pill {
     width: 100% !important;
+  }
+
+  .pg-p-social-stack {
+    gap: 7px !important;
+  }
+
+  .pg-p-social-pill {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    min-height: 42px !important;
+    padding: 8px 14px 8px 8px !important;
+    border-radius: 14px !important;
+  }
+
+  .pg-p-social-pill__icon {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .pg-p-social-pill__text {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
   }
 
   .pg-p-rating-row {
