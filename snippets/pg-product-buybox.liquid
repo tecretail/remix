@@ -87,7 +87,7 @@
   assign color_desc_title = color_desc_title | default: '#054497'
   assign color_title = color_title | default: '#0b1a3a'
   assign color_deal_title = color_deal_title | default: '#054497'
-  assign color_deal_active_bg = color_deal_title | color_mix: '#ffffff', 84
+  assign color_deal_active_bg = color_deal_title | color_mix: '#ffffff', 14
   assign color_badge = color_badge | default: '#054497'
   assign color_off = color_off | default: '#d40000'
   assign show_videos = show_videos
@@ -803,7 +803,7 @@
                     endif
                     if block.settings.subtext_color != blank
                       assign v_subtext_color = block.settings.subtext_color | color_to_hex
-                      assign v_subtext_bg = v_subtext_color | color_mix: '#ffffff', 88
+                      assign v_subtext_bg = v_subtext_color | color_mix: '#ffffff', 12
                     endif
                     assign v_tag_shipping = block.settings.tag_shipping
                     assign v_tag_bonus = block.settings.tag_bonus
@@ -862,7 +862,7 @@
                 assign v_stock_color = product.metafields.custom.etiqueta_stock_color.value | color_to_hex
               endif
               if v_stock_color != blank
-                assign v_stock_bg = v_stock_color | color_mix: '#ffffff', 88
+                assign v_stock_bg = v_stock_color | color_mix: '#ffffff', 12
               endif
             %}
             <button
