@@ -247,7 +247,7 @@
   box-sizing: border-box; overflow: visible;
 }
 .pg-p-deal.is-active { border-color: var(--pg-blue, #054497); box-shadow: 0 0 0 1px rgba(5, 68, 151, 0.12); }
-.pg-p-deal.is-active .pg-p-deal-body { background: var(--pg-deal-active-bg, rgba(5, 68, 151, 0.18)); }
+.pg-p-deal.is-active .pg-p-deal-body { background: var(--pg-deal-active-bg, #e8f0fa); }
 .pg-p-deal.is-active .pg-p-deal-row { background: transparent; }
 .pg-p-deal-body { border-radius: 14px; overflow: hidden; background: #fff; }
 .pg-p-deal-badge {

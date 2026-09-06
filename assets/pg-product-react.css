@@ -558,7 +558,7 @@
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
-  background: var(--pg-deal-active-bg, rgba(5, 68, 151, 0.18)) !important;
+  background: var(--pg-deal-active-bg, #e8f0fa) !important;
 }
 
 .pg-p-deal.is-active .pg-p-deal-row {
