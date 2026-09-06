@@ -219,8 +219,8 @@
       assign mf_social_1_border = blank
     else
       assign mf_social_1_color = product.metafields.custom.social_1_color.value | color_to_hex
-      assign mf_social_1_bg = mf_social_1_color | color_mix: '#ffffff', 86
-      assign mf_social_1_border = mf_social_1_color | color_mix: '#ffffff', 55
+      assign mf_social_1_bg = mf_social_1_color | color_modify: 'alpha', 0.12
+      assign mf_social_1_border = mf_social_1_color | color_modify: 'alpha', 0.28
     endif
     if product.metafields.custom.social_2_color.value == blank
       assign mf_social_2_color = blank
@@ -228,8 +228,8 @@
       assign mf_social_2_border = blank
     else
       assign mf_social_2_color = product.metafields.custom.social_2_color.value | color_to_hex
-      assign mf_social_2_bg = mf_social_2_color | color_mix: '#ffffff', 86
-      assign mf_social_2_border = mf_social_2_color | color_mix: '#ffffff', 55
+      assign mf_social_2_bg = mf_social_2_color | color_modify: 'alpha', 0.12
+      assign mf_social_2_border = mf_social_2_color | color_modify: 'alpha', 0.28
     endif
     if product.metafields.custom.social_3_color.value == blank
       assign mf_social_3_color = blank
@@ -237,8 +237,8 @@
       assign mf_social_3_border = blank
     else
       assign mf_social_3_color = product.metafields.custom.social_3_color.value | color_to_hex
-      assign mf_social_3_bg = mf_social_3_color | color_mix: '#ffffff', 86
-      assign mf_social_3_border = mf_social_3_color | color_mix: '#ffffff', 55
+      assign mf_social_3_bg = mf_social_3_color | color_modify: 'alpha', 0.12
+      assign mf_social_3_border = mf_social_3_color | color_modify: 'alpha', 0.28
     endif
     if product.metafields.custom.title_color.value == blank
       assign mf_title_color = blank
