@@ -2143,9 +2143,12 @@ a.pg-p-cta--cod {
   background: linear-gradient(135deg, #faf7ff 0%, #f3ecff 100%) !important;
 }
 
-.pg-p-social-pill--tinted {
-  background: color-mix(in srgb, var(--pg-pill-color, #054497) 14%, #ffffff) !important;
-  border-color: color-mix(in srgb, var(--pg-pill-color, #054497) 42%, #ffffff) !important;
+.pg-p-social-pill--tinted,
+.pg-p-social-pill--tinted.pg-p-social-pill--sold,
+.pg-p-social-pill--tinted.pg-p-social-pill--guide,
+.pg-p-social-pill--tinted.pg-p-social-pill--extra {
+  background: var(--pg-pill-bg, color-mix(in srgb, var(--pg-pill-color, #054497) 14%, #ffffff)) !important;
+  border-color: var(--pg-pill-border, color-mix(in srgb, var(--pg-pill-color, #054497) 42%, #ffffff)) !important;
   box-shadow:
     0 1px 2px color-mix(in srgb, var(--pg-pill-color, #054497) 10%, transparent),
     0 6px 16px color-mix(in srgb, var(--pg-pill-color, #054497) 12%, transparent) !important;
