@@ -2412,6 +2412,11 @@ a.pg-p-cta--cod {
   background: linear-gradient(135deg, #f7faff 0%, #eaf2fc 100%) !important;
 }
 
+.pg-p-social-pill.pg-p-social-pill--tinted {
+  background: var(--pg-pill-bg) !important;
+  border-color: var(--pg-pill-border) !important;
+}
+
 .pg-p-social-pill__icon {
   display: flex !important;
   align-items: center !important;
