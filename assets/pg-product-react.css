@@ -106,14 +106,65 @@
 .pg-p-thumbs {
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap !important;
   gap: 10px !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   align-items: center !important;
   width: 100% !important;
   max-width: 100% !important;
-  overflow: visible !important;
-  flex: 0 0 auto !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  flex: 1 1 auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  padding: 2px 2px 6px !important;
+  box-sizing: border-box !important;
+}
+
+.pg-p-thumbs::-webkit-scrollbar,
+.lv-pe-thumbs::-webkit-scrollbar {
+  display: none !important;
+  height: 0 !important;
+}
+
+.pg-p-thumbs-carousel {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 4px !important;
+  box-sizing: border-box !important;
+}
+
+.pg-p-thumbs-nav {
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: #054497 !important;
+  color: #fff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  box-shadow: 0 4px 12px rgba(5, 68, 151, 0.22) !important;
+  opacity: 1 !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+.pg-p-thumbs-nav.is-disabled,
+.pg-p-thumbs-nav:disabled {
+  opacity: 0.35 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+.pg-p-thumbs-carousel:not(.is-scrollable) .pg-p-thumbs-nav {
+  display: none !important;
 }
 
 .pg-p-thumb,
@@ -135,18 +186,24 @@
 @media (min-width: 901px) {
   .pg-p-thumbs,
   .lv-pe-thumbs {
-    gap: 14px !important;
+    gap: 12px !important;
   }
 
   .pg-p-thumb,
   .lv-pe-thumbs button {
-    width: 118px !important;
-    height: 118px !important;
-    min-width: 118px !important;
-    max-width: 118px !important;
-    flex: 0 0 118px !important;
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    max-width: 100px !important;
+    flex: 0 0 100px !important;
     border-radius: 12px !important;
     padding: 5px !important;
+  }
+
+  .pg-p-thumbs-nav {
+    width: 38px !important;
+    height: 38px !important;
+    flex-basis: 38px !important;
   }
 }
 
@@ -3043,14 +3100,22 @@ a.pg-p-cta--cod {
   .pg-p-thumbs,
   .lv-pe-thumbs {
     flex-direction: row !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
     overflow-x: auto !important;
     max-width: 100% !important;
   }
   .pg-p-thumb {
-    width: 56px !important;
-    height: 56px !important;
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    max-width: 64px !important;
+    flex: 0 0 64px !important;
+  }
+  .pg-p-thumbs-nav {
+    width: 30px !important;
+    height: 30px !important;
+    flex-basis: 30px !important;
   }
   .lv-pe-hero,
   .pg-p-hero {

@@ -159,6 +159,28 @@
       if (gallery.getAttribute("data-pg-bound")) return;
       gallery.setAttribute("data-pg-bound", "1");
       var hero = gallery.querySelector("[data-pg-hero]");
+      var track = gallery.querySelector("[data-pg-thumbs-track]") || gallery.querySelector(".pg-p-thumbs");
+      var prev = gallery.querySelector("[data-pg-thumbs-prev]");
+      var next = gallery.querySelector("[data-pg-thumbs-next]");
+
+      function updateNav() {
+        if (!track) return;
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        var atStart = track.scrollLeft <= 2;
+        var atEnd = track.scrollLeft >= maxScroll - 2;
+        if (prev) {
+          prev.disabled = atStart;
+          prev.classList.toggle("is-disabled", atStart);
+        }
+        if (next) {
+          next.disabled = atEnd || maxScroll <= 0;
+          next.classList.toggle("is-disabled", atEnd || maxScroll <= 0);
+        }
+        if (gallery.querySelector("[data-pg-thumbs-carousel]")) {
+          gallery.querySelector("[data-pg-thumbs-carousel]").classList.toggle("is-scrollable", maxScroll > 4);
+        }
+      }
+
       gallery.querySelectorAll("[data-pg-thumb]").forEach(function (btn) {
         btn.addEventListener("click", function () {
           gallery.querySelectorAll("[data-pg-thumb]").forEach(function (b) {
@@ -166,8 +188,29 @@
           });
           btn.classList.add("is-active");
           if (hero) hero.src = btn.getAttribute("data-src") || hero.src;
+          if (btn.scrollIntoView) {
+            btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+          }
+          setTimeout(updateNav, 280);
         });
       });
+
+      if (track) {
+        if (prev) {
+          prev.addEventListener("click", function () {
+            track.scrollBy({ left: -Math.max(160, track.clientWidth * 0.7), behavior: "smooth" });
+          });
+        }
+        if (next) {
+          next.addEventListener("click", function () {
+            track.scrollBy({ left: Math.max(160, track.clientWidth * 0.7), behavior: "smooth" });
+          });
+        }
+        track.addEventListener("scroll", updateNav, { passive: true });
+        window.addEventListener("resize", updateNav, { passive: true });
+        setTimeout(updateNav, 50);
+        setTimeout(updateNav, 400);
+      }
     });
   }
 
