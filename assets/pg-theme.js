@@ -532,7 +532,7 @@
         var offset = 0;
         var last = 0;
         var running = false;
-        var speed = 48;
+        var speed = 78;
 
         function frame(now) {
           if (!running) return;
@@ -554,7 +554,7 @@
             rail.style.removeProperty("transform");
             return false;
           }
-          speed = window.matchMedia("(max-width: 900px)").matches ? 42 : 52;
+          speed = window.matchMedia("(max-width: 900px)").matches ? 72 : 86;
           loopWidth = normalizeTracks();
           rail.style.setProperty("animation", "none", "important");
           rail.style.setProperty("-webkit-animation", "none", "important");
@@ -562,7 +562,7 @@
             rail.style.removeProperty("transform");
             rail.style.removeProperty("animation");
             rail.style.removeProperty("-webkit-animation");
-            rail.style.setProperty("animation", "lv-marquee 28s linear infinite");
+            rail.style.setProperty("animation", "lv-marquee 16s linear infinite");
             return false;
           }
           if (!running) {
