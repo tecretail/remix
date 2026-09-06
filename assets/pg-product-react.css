@@ -122,6 +122,17 @@
   box-sizing: border-box !important;
 }
 
+.pg-p-thumbs.is-centered,
+.lv-pe-thumbs.is-centered,
+.pg-p-thumbs-carousel.is-centered .pg-p-thumbs {
+  justify-content: center !important;
+  overflow-x: hidden !important;
+}
+
+.pg-p-thumbs-carousel.is-centered {
+  justify-content: center !important;
+}
+
 .pg-p-thumbs::-webkit-scrollbar,
 .lv-pe-thumbs::-webkit-scrollbar {
   display: none !important;

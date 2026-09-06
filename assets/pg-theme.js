@@ -168,17 +168,21 @@
         var maxScroll = track.scrollWidth - track.clientWidth;
         var atStart = track.scrollLeft <= 2;
         var atEnd = track.scrollLeft >= maxScroll - 2;
+        var scrollable = maxScroll > 4;
         if (prev) {
           prev.disabled = atStart;
           prev.classList.toggle("is-disabled", atStart);
         }
         if (next) {
-          next.disabled = atEnd || maxScroll <= 0;
-          next.classList.toggle("is-disabled", atEnd || maxScroll <= 0);
+          next.disabled = atEnd || !scrollable;
+          next.classList.toggle("is-disabled", atEnd || !scrollable);
         }
-        if (gallery.querySelector("[data-pg-thumbs-carousel]")) {
-          gallery.querySelector("[data-pg-thumbs-carousel]").classList.toggle("is-scrollable", maxScroll > 4);
+        var carousel = gallery.querySelector("[data-pg-thumbs-carousel]");
+        if (carousel) {
+          carousel.classList.toggle("is-scrollable", scrollable);
+          carousel.classList.toggle("is-centered", !scrollable);
         }
+        track.classList.toggle("is-centered", !scrollable);
       }
 
       gallery.querySelectorAll("[data-pg-thumb]").forEach(function (btn) {
