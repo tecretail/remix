@@ -2366,9 +2366,9 @@ a.pg-p-cta--cod {
 .pg-p-social-stack {
   display: flex !important;
   flex-direction: column !important;
-  align-items: stretch !important;
-  gap: 8px !important;
-  margin: 0 0 16px !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  margin: 0 0 14px !important;
   width: 100% !important;
 }
 
@@ -2457,18 +2457,18 @@ a.pg-p-cta--cod {
 .pg-p-social-pill {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 10px !important;
-  padding: 8px 16px 8px 8px !important;
+  gap: 8px !important;
+  padding: 5px 12px 5px 6px !important;
   background: linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%) !important;
   border: 0 !important;
   border-radius: 999px !important;
-  box-shadow:
-    0 1px 2px rgba(5, 68, 151, 0.04),
-    0 6px 16px rgba(5, 68, 151, 0.08) !important;
+  box-shadow: none !important;
   width: fit-content !important;
   max-width: 100% !important;
+  min-height: 0 !important;
+  height: auto !important;
   box-sizing: border-box !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
 }
 
 .pg-p-social-pill:hover {
@@ -2498,7 +2498,8 @@ a.pg-p-cta--cod {
 
 .pg-p-social-pill.pg-p-social-pill--tinted {
   background: var(--pg-pill-bg) !important;
-  border-color: var(--pg-pill-border) !important;
+  border: 0 !important;
+  border-color: transparent !important;
 }
 
 .pg-p-social-pill__icon {
@@ -2506,8 +2507,8 @@ a.pg-p-cta--cod {
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
-  width: 28px !important;
-  height: 28px !important;
+  width: 22px !important;
+  height: 22px !important;
   border-radius: 50% !important;
   color: #054497 !important;
   background: rgba(5, 68, 151, 0.1) !important;
@@ -2547,40 +2548,42 @@ a.pg-p-cta--cod {
   color: #0b1a3a !important;
   font-family: 'Montserrat', system-ui, sans-serif !important;
   font-weight: 700 !important;
-  font-size: 12.5px !important;
+  font-size: 12px !important;
   letter-spacing: 0.01em !important;
-  line-height: 1.3 !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
 }
 
 @media (max-width: 600px) {
-  .pg-p-social-card,
-  .pg-p-social-pill {
+  .pg-p-social-card {
     width: 100% !important;
   }
 
   .pg-p-social-stack {
-    gap: 7px !important;
+    gap: 5px !important;
+    align-items: flex-start !important;
   }
 
   .pg-p-social-pill {
+    width: fit-content !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    padding: 4px 11px 4px 5px !important;
     justify-content: flex-start !important;
-    align-items: center !important;
-    min-height: 42px !important;
-    padding: 8px 14px 8px 8px !important;
-    border-radius: 14px !important;
   }
 
   .pg-p-social-pill__icon {
-    width: 30px !important;
-    height: 30px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
 
   .pg-p-social-pill__text {
-    flex: 1 1 auto !important;
+    flex: 0 1 auto !important;
     min-width: 0 !important;
-    font-size: 13px !important;
-    line-height: 1.3 !important;
+    font-size: 11.5px !important;
+    line-height: 1.25 !important;
     text-align: left !important;
+    white-space: normal !important;
   }
 
   .pg-p-rating-row {
