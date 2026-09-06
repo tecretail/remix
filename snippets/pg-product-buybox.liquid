@@ -801,10 +801,8 @@
                     if block.settings.subtext_image != blank
                       assign v_subtext_image = block.settings.subtext_image | image_url: width: 80
                     endif
-                    if block.settings.subtext_color != blank
-                      assign v_subtext_color = block.settings.subtext_color | color_to_hex
-                      assign v_subtext_bg = v_subtext_color | color_mix: '#ffffff', 12
-                    endif
+                    assign v_subtext_color = '#000000'
+                    assign v_subtext_bg = '#f3f3f3'
                     assign v_tag_shipping = block.settings.tag_shipping
                     assign v_tag_bonus = block.settings.tag_bonus
                     assign v_gift_text = block.settings.gift_text
@@ -856,14 +854,11 @@
                 assign v_stock_bar = mf_stock_label
               endif
 
-              if variant.metafields.custom.etiqueta_stock_color.value != blank
-                assign v_stock_color = variant.metafields.custom.etiqueta_stock_color.value | color_to_hex
-              elsif product.metafields.custom.etiqueta_stock_color.value != blank
-                assign v_stock_color = product.metafields.custom.etiqueta_stock_color.value | color_to_hex
-              endif
-              if v_stock_color != blank
-                assign v_stock_bg = v_stock_color | color_mix: '#ffffff', 12
-              endif
+              comment
+                Letra barra inferior: siempre negro (fondo gris suave).
+              endcomment
+              assign v_stock_color = '#000000'
+              assign v_stock_bg = '#f3f3f3'
             %}
             <button
               type="button"
@@ -919,8 +914,8 @@
                 </div>
                 {% if v_subtext != blank %}
                   <div
-                    class="pg-p-deal-desc{% if v_subtext_color != blank %} pg-p-deal-desc--tinted{% endif %}"
-                    {% if v_subtext_color != blank %}style="--pg-deal-footer-color: {{ v_subtext_color }}; --pg-deal-footer-bg: {{ v_subtext_bg }}; color: {{ v_subtext_color }} !important; background: {{ v_subtext_bg }} !important;"{% endif %}
+                    class="pg-p-deal-desc pg-p-deal-desc--tinted"
+                    style="--pg-deal-footer-color: {{ v_subtext_color }}; --pg-deal-footer-bg: {{ v_subtext_bg }}; background: {{ v_subtext_bg }} !important;"
                   >
                     {% if v_subtext_image != blank %}
                       <img class="pg-p-deal-desc-img" src="{{ v_subtext_image }}" alt="" width="36" height="36" loading="lazy">
@@ -930,8 +925,8 @@
                 {% endif %}
                 {% if v_stock_bar != blank %}
                   <div
-                    class="pg-p-deal-stock-bar{% if v_stock_color != blank %} pg-p-deal-stock-bar--tinted{% endif %}"
-                    {% if v_stock_color != blank %}style="--pg-deal-footer-color: {{ v_stock_color }}; --pg-deal-footer-bg: {{ v_stock_bg }}; color: {{ v_stock_color }} !important; background: {{ v_stock_bg }} !important;"{% endif %}
+                    class="pg-p-deal-stock-bar pg-p-deal-stock-bar--tinted"
+                    style="--pg-deal-footer-color: {{ v_stock_color }}; --pg-deal-footer-bg: {{ v_stock_bg }}; background: {{ v_stock_bg }} !important;"
                   >
                     <span class="pg-p-deal-stock-bar-text">{{ v_stock_bar }}</span>
                   </div>

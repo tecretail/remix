@@ -759,8 +759,12 @@
 
 .pg-p-deal-desc.pg-p-deal-desc--tinted {
   background: var(--pg-deal-footer-bg, #f3f3f3) !important;
-  color: var(--pg-deal-footer-color, #000000) !important;
-  border-top: 1px solid color-mix(in srgb, var(--pg-deal-footer-color, #000000) 18%, transparent) !important;
+  color: #000000 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.pg-p-deal-desc.pg-p-deal-desc--tinted .pg-p-deal-desc-text {
+  color: #000000 !important;
 }
 
 .pg-p-deal-desc-img {
@@ -811,8 +815,13 @@
 
 .pg-p-deal-stock-bar.pg-p-deal-stock-bar--tinted {
   background: var(--pg-deal-footer-bg, #f3f3f3) !important;
-  color: var(--pg-deal-footer-color, #000000) !important;
-  border-top: 1px solid color-mix(in srgb, var(--pg-deal-footer-color, #000000) 18%, transparent) !important;
+  color: #000000 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.pg-p-deal-stock-bar.pg-p-deal-stock-bar--tinted .pg-p-deal-stock-bar-text,
+.pg-p-deal-stock-bar .pg-p-deal-stock-bar-text {
+  color: #000000 !important;
 }
 
 .pg-p-deal-stock-bar-text {
