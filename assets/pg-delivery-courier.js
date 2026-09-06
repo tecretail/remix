@@ -697,8 +697,13 @@
       return wrap;
     }
 
+    function pgIsMobileCod() {
+      return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+    }
+
     function pgAnimateCodButton() {
       var btns = pgFindCodButtons();
+      var mobile = pgIsMobileCod();
       btns.forEach(function (btn) {
         var wrap = pgEnsureBounceWrap(btn);
         wrap.style.setProperty('display', 'block', 'important');
@@ -707,8 +712,17 @@
         wrap.style.setProperty('padding', '3px', 'important');
         wrap.style.setProperty('border-radius', '18px', 'important');
         wrap.style.setProperty('position', 'relative', 'important');
-        wrap.style.setProperty('will-change', 'transform', 'important');
-        btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.2s ease-in-out infinite', 'important');
+        if (mobile) {
+          wrap.classList.add('pg-cod-bounce-wrap--lite');
+          wrap.style.removeProperty('will-change');
+          wrap.style.removeProperty('transform');
+          btn.style.removeProperty('animation');
+          btn.style.setProperty('animation', 'none', 'important');
+        } else {
+          wrap.classList.remove('pg-cod-bounce-wrap--lite');
+          wrap.style.setProperty('will-change', 'transform', 'important');
+          btn.style.setProperty('animation', 'pg-cod-neon-pulse 1.2s ease-in-out infinite', 'important');
+        }
         btn.style.setProperty('width', '100%', 'important');
         btn.style.setProperty('position', 'relative', 'important');
         btn.style.setProperty('z-index', '1', 'important');
@@ -720,15 +734,20 @@
       });
     }
 
-    /* Movimiento suave continuo (sin cortes) */
+    /* Bounce continuo solo en desktop: en móvil congela el scroll */
     if (!window.__pgCodRafBounce) {
       window.__pgCodRafBounce = true;
       var pgCodT0 = performance.now();
       function pgCodRafTick(now) {
-        /* Ciclo largo y fluido: sube y baja con ease, sin pausas secas */
+        if (pgIsMobileCod()) {
+          document.querySelectorAll('.pg-cod-bounce-wrap').forEach(function (wrap) {
+            wrap.style.removeProperty('transform');
+          });
+          requestAnimationFrame(pgCodRafTick);
+          return;
+        }
         var period = 1200;
         var t = ((now - pgCodT0) % period) / period;
-        /* seno más marcado: movimiento llamativo pero suave */
         var wave = Math.sin(t * Math.PI * 2);
         var wave2 = Math.sin(t * Math.PI * 4);
         var y = wave * -11 - wave2 * 2.2;
@@ -739,6 +758,23 @@
         requestAnimationFrame(pgCodRafTick);
       }
       requestAnimationFrame(pgCodRafTick);
+    }
+
+    /* Pausar borde giratorio mientras hay scroll (móvil) */
+    if (!window.__pgCodScrollPause) {
+      window.__pgCodScrollPause = true;
+      var scrollPauseTimer = null;
+      window.addEventListener(
+        'scroll',
+        function () {
+          document.documentElement.classList.add('pg-is-scrolling');
+          if (scrollPauseTimer) clearTimeout(scrollPauseTimer);
+          scrollPauseTimer = setTimeout(function () {
+            document.documentElement.classList.remove('pg-is-scrolling');
+          }, 180);
+        },
+        { passive: true }
+      );
     }
 
     pgAnimateCodButton();

@@ -981,6 +981,65 @@ a.pg-p-cta--cod {
   will-change: transform !important;
 }
 
+/* Móvil: sin bounce JS ni pulse de sombra (evita freeze al scrollear) */
+@media (max-width: 900px) {
+  .pg-cod-bounce-wrap,
+  .pg-cod-bounce-wrap--lite {
+    transform: none !important;
+    will-change: auto !important;
+    box-shadow:
+      0 0 10px rgba(57, 232, 90, 0.28),
+      0 0 18px rgba(5, 68, 151, 0.12) !important;
+    animation: pg-cod-bounce-lite 2.8s ease-in-out infinite !important;
+  }
+
+  .pg-cod-bounce-wrap::before {
+    width: 180% !important;
+    height: 180% !important;
+    animation: pg-deal-spin-rotate 4.5s linear infinite !important;
+    will-change: auto !important;
+  }
+
+  .pg-cod-bounce-wrap > button,
+  .pg-cod-bounce-wrap > [role="button"],
+  .pg-preventify-host button,
+  .pg-preventify-host [role="button"],
+  .pg-p-cta,
+  a.pg-p-cta {
+    animation: none !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 0 0 3px rgba(57, 232, 90, 0.22),
+      0 4px 12px rgba(5, 68, 151, 0.1) !important;
+    will-change: auto !important;
+    transform: none !important;
+  }
+
+  html.pg-is-scrolling .pg-cod-bounce-wrap,
+  html.pg-is-scrolling .pg-cod-bounce-wrap::before {
+    animation-play-state: paused !important;
+  }
+}
+
+@keyframes pg-cod-bounce-lite {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-cod-bounce-wrap,
+  .pg-cod-bounce-wrap::before,
+  .pg-cod-bounce-wrap > button,
+  .pg-cod-bounce-wrap > [role="button"] {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 .pg-cod-bounce-wrap > button,
 .pg-cod-bounce-wrap > [role="button"] {
   position: relative !important;
@@ -1270,13 +1329,45 @@ a.pg-p-cta--cod {
   cursor: pointer !important;
   font-family: "Montserrat", system-ui, sans-serif !important;
   transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
-  animation:
-    pg-cod-neon-pulse 1.8s ease-in-out infinite,
-    pg-cod-bounce 2.2s ease-in-out infinite,
-    pg-cod-shine 2.8s linear infinite !important;
-  will-change: transform, box-shadow, background-position !important;
   overflow: hidden !important;
   padding: 12px 14px !important;
+}
+
+@media (min-width: 901px) {
+  .pg-preventify-host .preventify-product-card-button button,
+  .pg-preventify-host .preventify-product-card-button [role="button"],
+  .pg-preventify-host .quick-add button,
+  .pg-preventify-host .quick-add [role="button"],
+  .pg-preventify-host .quick-add a,
+  .pg-preventify-host button,
+  .pg-preventify-host [role="button"],
+  .pg-preventify-host a[href*="rsi"],
+  .pg-preventify-host [class*="preventify"] button,
+  .pg-preventify-host [class*="Preventify"] button,
+  .pg-preventify-host [class*="cod"] button,
+  .pg-preventify-host [class*="COD"] button {
+    animation:
+      pg-cod-neon-pulse 1.8s ease-in-out infinite,
+      pg-cod-bounce 2.2s ease-in-out infinite,
+      pg-cod-shine 2.8s linear infinite !important;
+    will-change: transform, box-shadow, background-position !important;
+  }
+
+  .pg-preventify-host .preventify-product-card-button button.jaldi-button-pulse,
+  .pg-preventify-host .preventify-product-card-button button.jaldi-button-bounce,
+  .pg-preventify-host .preventify-product-card-button button.jaldi-button-shake,
+  .pg-preventify-host button.jaldi-button-pulse,
+  .pg-preventify-host button.jaldi-button-bounce,
+  .pg-preventify-host button.jaldi-button-shake,
+  .pg-preventify-host .jaldi-button-pulse,
+  .pg-preventify-host .jaldi-button-bounce,
+  .pg-preventify-host .jaldi-button-shake {
+    animation:
+      pg-cod-neon-pulse 1.8s ease-in-out infinite,
+      pg-cod-bounce 2s ease-in-out infinite,
+      pg-cod-shine 2.6s linear infinite !important;
+    will-change: transform, box-shadow, background-position !important;
+  }
 }
 
 .pg-preventify-host .preventify-product-card-button button *,
@@ -1288,22 +1379,6 @@ a.pg-p-cta--cod {
   display: inline-flex !important;
   align-items: center !important;
   vertical-align: middle !important;
-}
-
-.pg-preventify-host .preventify-product-card-button button.jaldi-button-pulse,
-.pg-preventify-host .preventify-product-card-button button.jaldi-button-bounce,
-.pg-preventify-host .preventify-product-card-button button.jaldi-button-shake,
-.pg-preventify-host button.jaldi-button-pulse,
-.pg-preventify-host button.jaldi-button-bounce,
-.pg-preventify-host button.jaldi-button-shake,
-.pg-preventify-host .jaldi-button-pulse,
-.pg-preventify-host .jaldi-button-bounce,
-.pg-preventify-host .jaldi-button-shake {
-  animation:
-    pg-cod-neon-pulse 1.8s ease-in-out infinite,
-    pg-cod-bounce 2s ease-in-out infinite,
-    pg-cod-shine 2.6s linear infinite !important;
-  will-change: transform, box-shadow, background-position !important;
 }
 
 .pg-preventify-host {
@@ -1363,11 +1438,9 @@ a.pg-p-cta--cod {
   .pg-preventify-host [class*="COD"] button {
     outline: none !important;
     outline-offset: 0 !important;
-    animation:
-      pg-cod-neon-pulse 1.8s ease-in-out infinite,
-      pg-cod-bounce 2.2s ease-in-out infinite,
-      pg-cod-shine 2.8s linear infinite !important;
-    will-change: transform, box-shadow, background-position !important;
+    animation: none !important;
+    will-change: auto !important;
+    transform: none !important;
     max-width: 100% !important;
     font-size: 12px !important;
     letter-spacing: 0.15px !important;
@@ -1378,6 +1451,10 @@ a.pg-p-cta--cod {
     align-items: center !important;
     justify-content: center !important;
     gap: 6px !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 0 0 3px rgba(57, 232, 90, 0.28),
+      0 4px 12px rgba(5, 68, 151, 0.1) !important;
   }
 
   .pg-preventify-host .quick-add {
@@ -3988,10 +4065,7 @@ a.pg-p-cta--cod {
   .pg-preventify-host [role="button"],
   .pg-p-cta,
   a.pg-p-cta {
-    animation:
-      pg-cod-neon-pulse 1.8s ease-in-out infinite,
-      pg-cod-bounce 2.2s ease-in-out infinite,
-      pg-cod-shine 2.8s linear infinite !important;
+    animation: none !important;
     outline: none !important;
     max-width: 100% !important;
     white-space: nowrap !important;
