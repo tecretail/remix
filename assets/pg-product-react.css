@@ -558,11 +558,19 @@
 }
 
 .pg-p-deal.is-active .pg-p-deal-body {
-  background: #d7e6fb !important;
+  background: #fff !important;
+}
+
+.pg-p-deal.is-active .pg-p-deal-row {
+  background: var(--pg-deal-active-bg, rgba(5, 68, 151, 0.14)) !important;
 }
 
 .pg-p-deal:not(.is-active) .pg-p-deal-body {
   background: #fff !important;
+}
+
+.pg-p-deal:not(.is-active) .pg-p-deal-row {
+  background: transparent !important;
 }
 
 .pg-p-deal-body {
@@ -660,7 +668,7 @@
 .pg-p-deal-title {
   font-weight: 900 !important;
   font-size: 14px !important;
-  color: #0b1a3a !important;
+  color: var(--pg-deal-title-color, #054497) !important;
   line-height: 1.2 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.2px !important;
