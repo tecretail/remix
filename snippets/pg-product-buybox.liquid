@@ -216,6 +216,7 @@
     assign mf_social_1_color = product.metafields.custom.social_1_color.value
     assign mf_social_2_color = product.metafields.custom.social_2_color.value
     assign mf_social_3_color = product.metafields.custom.social_3_color.value
+    assign mf_title_color = product.metafields.custom.title_color.value
     if mf_social_1 != blank
       assign social_sold = mf_social_1
     endif
@@ -431,7 +432,7 @@
           {% endif %}
         {% endif %}
 
-        <h1 class="pg-p-h1">{{ product.title }}</h1>
+        <h1 class="pg-p-h1"{% if mf_title_color != blank %} style="color: {{ mf_title_color }} !important;"{% endif %}>{{ product.title }}</h1>
         {% if pitch != blank %}
           <p style="margin:0 0 14px;color:#555;font-size:15px;font-weight:600;">{{ pitch }}</p>
         {% endif %}
