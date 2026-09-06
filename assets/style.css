@@ -1582,7 +1582,7 @@
   width: max-content !important;
   max-width: none !important;
   height: 44px;
-  animation: lv-marquee 16s linear infinite;
+  animation: lv-marquee 12s linear infinite;
   will-change: transform;
   overflow: visible !important;
 }
