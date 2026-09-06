@@ -715,7 +715,9 @@
         if (mobile) {
           wrap.classList.add('pg-cod-bounce-wrap--lite');
           wrap.style.removeProperty('will-change');
+          /* Dejar el bounce al CSS; no forzar transform estático */
           wrap.style.removeProperty('transform');
+          wrap.style.removeProperty('animation');
           btn.style.removeProperty('animation');
           btn.style.setProperty('animation', 'none', 'important');
         } else {
@@ -740,9 +742,7 @@
       var pgCodT0 = performance.now();
       function pgCodRafTick(now) {
         if (pgIsMobileCod()) {
-          document.querySelectorAll('.pg-cod-bounce-wrap').forEach(function (wrap) {
-            wrap.style.removeProperty('transform');
-          });
+          /* En móvil el CSS anima; no tocar transform por JS */
           requestAnimationFrame(pgCodRafTick);
           return;
         }

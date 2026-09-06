@@ -981,23 +981,22 @@ a.pg-p-cta--cod {
   will-change: transform !important;
 }
 
-/* Móvil: sin bounce JS ni pulse de sombra (evita freeze al scrollear) */
+/* Móvil: bounce CSS suave (sin RAF ni pulse de sombra) */
 @media (max-width: 900px) {
   .pg-cod-bounce-wrap,
   .pg-cod-bounce-wrap--lite {
-    transform: none !important;
-    will-change: auto !important;
+    will-change: transform !important;
     box-shadow:
       0 0 10px rgba(57, 232, 90, 0.28),
       0 0 18px rgba(5, 68, 151, 0.12) !important;
-    animation: pg-cod-bounce-lite 2.8s ease-in-out infinite !important;
+    animation: pg-cod-bounce-lite 2.4s ease-in-out infinite !important;
   }
 
   .pg-cod-bounce-wrap::before {
     width: 180% !important;
     height: 180% !important;
     animation: pg-deal-spin-rotate 4.5s linear infinite !important;
-    will-change: auto !important;
+    will-change: transform !important;
   }
 
   .pg-cod-bounce-wrap > button,
@@ -1026,7 +1025,7 @@ a.pg-p-cta--cod {
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -7px, 0);
   }
 }
 
