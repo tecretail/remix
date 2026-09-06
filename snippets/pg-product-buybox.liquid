@@ -210,6 +210,9 @@
     assign mf_social_1 = product.metafields.custom.social_1.value
     assign mf_social_2 = product.metafields.custom.social_2.value
     assign mf_social_3 = product.metafields.custom.social_3.value
+    assign mf_social_1_icon = product.metafields.custom.social_1_icon.value
+    assign mf_social_2_icon = product.metafields.custom.social_2_icon.value
+    assign mf_social_3_icon = product.metafields.custom.social_3_icon.value
     if mf_social_1 != blank
       assign social_sold = mf_social_1
     endif
@@ -423,28 +426,34 @@
           {% if social_sold != blank or social_guide != blank or social_extra != blank %}
             <div class="pg-p-social-stack">
               {% if social_sold != blank %}
-                <div class="pg-p-social-pill pg-p-social-pill--sold">
-                  <span class="pg-p-social-pill__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14 0-5.5 1-7 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.5-2.5 1.5-3.5z"/></svg>
-                  </span>
+                <div class="pg-p-social-pill pg-p-social-pill--sold{% if mf_social_1_icon != blank %} pg-p-social-pill--custom-icon{% endif %}">
+                  {% if mf_social_1_icon != blank %}
+                    <span class="pg-p-social-pill__icon" aria-hidden="true">
+                      {{ mf_social_1_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '28px', alt: '' }}
+                    </span>
+                  {% endif %}
                   <span class="pg-p-social-pill__text">{{ social_sold }}</span>
                 </div>
               {% endif %}
 
               {% if social_guide != blank %}
-                <div class="pg-p-social-pill pg-p-social-pill--guide">
-                  <span class="pg-p-social-pill__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.6 11.4a2.5 2.5 0 1 0-3.5-3.5l-8.2 8.2a2.5 2.5 0 1 0 3.5 3.5z"/><path d="m15 9 6 6"/></svg>
-                  </span>
+                <div class="pg-p-social-pill pg-p-social-pill--guide{% if mf_social_2_icon != blank %} pg-p-social-pill--custom-icon{% endif %}">
+                  {% if mf_social_2_icon != blank %}
+                    <span class="pg-p-social-pill__icon" aria-hidden="true">
+                      {{ mf_social_2_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '28px', alt: '' }}
+                    </span>
+                  {% endif %}
                   <span class="pg-p-social-pill__text">{{ social_guide }}</span>
                 </div>
               {% endif %}
 
               {% if social_extra != blank %}
-                <div class="pg-p-social-pill pg-p-social-pill--extra">
-                  <span class="pg-p-social-pill__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 2.5 2 4.9 4 6.5 1.5 1.2 2.5 2.8 2.5 4.5a6.5 6.5 0 1 1-13 0c0-1.5.8-3 2-4.2C9.2 7.8 11 5.8 12 3z"/><path d="M9 16c.8 1.2 1.8 2 3 2s2.2-.8 3-2"/></svg>
-                  </span>
+                <div class="pg-p-social-pill pg-p-social-pill--extra{% if mf_social_3_icon != blank %} pg-p-social-pill--custom-icon{% endif %}">
+                  {% if mf_social_3_icon != blank %}
+                    <span class="pg-p-social-pill__icon" aria-hidden="true">
+                      {{ mf_social_3_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '28px', alt: '' }}
+                    </span>
+                  {% endif %}
                   <span class="pg-p-social-pill__text">{{ social_extra }}</span>
                 </div>
               {% endif %}

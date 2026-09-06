@@ -2357,6 +2357,20 @@ a.pg-p-cta--cod {
   display: block !important;
 }
 
+.pg-p-social-pill--custom-icon .pg-p-social-pill__icon {
+  background: transparent !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.pg-p-social-pill--custom-icon .pg-p-social-pill__icon img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 50% !important;
+}
+
 .pg-p-social-pill__text {
   color: #0b1a3a !important;
   font-family: 'Montserrat', system-ui, sans-serif !important;
