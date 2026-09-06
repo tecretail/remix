@@ -236,6 +236,17 @@
       assign has_product_features = true
     endif
 
+    # Lista con check (aparte de las pills)
+    assign mf_bullet_1 = product.metafields.custom.bullet_1.value
+    assign mf_bullet_2 = product.metafields.custom.bullet_2.value
+    assign mf_bullet_3 = product.metafields.custom.bullet_3.value
+    assign mf_bullet_4 = product.metafields.custom.bullet_4.value
+    assign mf_bullet_icon = product.metafields.custom.bullet_icon.value
+    assign has_product_bullets = false
+    if mf_bullet_1 != blank or mf_bullet_2 != blank or mf_bullet_3 != blank or mf_bullet_4 != blank
+      assign has_product_bullets = true
+    endif
+
     assign first_variant = product.selected_or_first_available_variant
     assign first_price = first_variant.price
     assign first_compare = first_variant.compare_at_price
@@ -459,6 +470,71 @@
               {% endif %}
             </div>
           {% endif %}
+        {% endif %}
+
+        {% if has_product_bullets %}
+          <ul class="pg-p-bullets">
+            {% if mf_bullet_1 != blank %}
+              <li class="pg-p-bullet">
+                <span class="pg-p-bullet__icon{% if mf_bullet_icon != blank %} pg-p-bullet__icon--custom{% endif %}" aria-hidden="true">
+                  {% if mf_bullet_icon != blank %}
+                    {{ mf_bullet_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '24px', alt: '' }}
+                  {% else %}
+                    <svg class="pg-p-bullet__check" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="12" fill="#a61d55"/>
+                      <path d="M6.8 12.4 10.2 15.8 17.2 8.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </span>
+                <span class="pg-p-bullet__text">{{ mf_bullet_1 }}</span>
+              </li>
+            {% endif %}
+            {% if mf_bullet_2 != blank %}
+              <li class="pg-p-bullet">
+                <span class="pg-p-bullet__icon{% if mf_bullet_icon != blank %} pg-p-bullet__icon--custom{% endif %}" aria-hidden="true">
+                  {% if mf_bullet_icon != blank %}
+                    {{ mf_bullet_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '24px', alt: '' }}
+                  {% else %}
+                    <svg class="pg-p-bullet__check" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="12" fill="#a61d55"/>
+                      <path d="M6.8 12.4 10.2 15.8 17.2 8.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </span>
+                <span class="pg-p-bullet__text">{{ mf_bullet_2 }}</span>
+              </li>
+            {% endif %}
+            {% if mf_bullet_3 != blank %}
+              <li class="pg-p-bullet">
+                <span class="pg-p-bullet__icon{% if mf_bullet_icon != blank %} pg-p-bullet__icon--custom{% endif %}" aria-hidden="true">
+                  {% if mf_bullet_icon != blank %}
+                    {{ mf_bullet_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '24px', alt: '' }}
+                  {% else %}
+                    <svg class="pg-p-bullet__check" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="12" fill="#a61d55"/>
+                      <path d="M6.8 12.4 10.2 15.8 17.2 8.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </span>
+                <span class="pg-p-bullet__text">{{ mf_bullet_3 }}</span>
+              </li>
+            {% endif %}
+            {% if mf_bullet_4 != blank %}
+              <li class="pg-p-bullet">
+                <span class="pg-p-bullet__icon{% if mf_bullet_icon != blank %} pg-p-bullet__icon--custom{% endif %}" aria-hidden="true">
+                  {% if mf_bullet_icon != blank %}
+                    {{ mf_bullet_icon | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,64,96', sizes: '24px', alt: '' }}
+                  {% else %}
+                    <svg class="pg-p-bullet__check" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="12" fill="#a61d55"/>
+                      <path d="M6.8 12.4 10.2 15.8 17.2 8.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </span>
+                <span class="pg-p-bullet__text">{{ mf_bullet_4 }}</span>
+              </li>
+            {% endif %}
+          </ul>
         {% endif %}
 
         {% if show_feature_icons and has_product_features %}
