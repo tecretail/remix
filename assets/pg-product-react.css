@@ -2148,14 +2148,16 @@ a.pg-p-cta--cod {
 .pg-p-social-pill--tinted.pg-p-social-pill--guide,
 .pg-p-social-pill--tinted.pg-p-social-pill--extra {
   background: var(--pg-pill-bg, rgba(5, 68, 151, 0.12)) !important;
-  border-color: var(--pg-pill-border, rgba(5, 68, 151, 0.28)) !important;
+  border: 0 !important;
+  border-color: transparent !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
 }
 
 .pg-p-social-pill.pg-p-social-pill--tinted {
   background: var(--pg-pill-bg) !important;
-  border-color: var(--pg-pill-border) !important;
+  border: 0 !important;
+  border-color: transparent !important;
   box-shadow: none !important;
 }
 
@@ -2389,7 +2391,7 @@ a.pg-p-cta--cod {
   gap: 10px !important;
   padding: 8px 16px 8px 8px !important;
   background: linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%) !important;
-  border: 1px solid rgba(5, 68, 151, 0.12) !important;
+  border: 0 !important;
   border-radius: 999px !important;
   box-shadow:
     0 1px 2px rgba(5, 68, 151, 0.04),
@@ -2408,13 +2410,21 @@ a.pg-p-cta--cod {
 }
 
 .pg-p-social-pill--sold {
-  border-color: rgba(227, 99, 18, 0.18) !important;
+  border: 0 !important;
+  border-color: transparent !important;
   background: linear-gradient(135deg, #fffaf6 0%, #fff3ea 100%) !important;
 }
 
 .pg-p-social-pill--guide {
-  border-color: rgba(5, 68, 151, 0.16) !important;
+  border: 0 !important;
+  border-color: transparent !important;
   background: linear-gradient(135deg, #f7faff 0%, #eaf2fc 100%) !important;
+}
+
+.pg-p-social-pill--extra {
+  border: 0 !important;
+  border-color: transparent !important;
+  background: linear-gradient(135deg, #faf7ff 0%, #f3ecff 100%) !important;
 }
 
 .pg-p-social-pill.pg-p-social-pill--tinted {
