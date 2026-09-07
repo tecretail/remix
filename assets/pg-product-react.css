@@ -1035,16 +1035,6 @@ a.pg-p-cta--cod {
     will-change: auto !important;
     transform: none !important;
   }
-
-  /* Solo mientras scrollea: pausar (luego vuelve la animación) */
-  html.pg-is-scrolling .pg-cod-bounce-wrap,
-  html.pg-is-scrolling .pg-cod-bounce-wrap--lite {
-    animation-play-state: paused !important;
-  }
-
-  html.pg-is-scrolling .pg-cod-bounce-wrap::before {
-    animation-play-state: paused !important;
-  }
 }
 
 @keyframes pg-cod-bounce-lite {

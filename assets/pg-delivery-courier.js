@@ -661,8 +661,6 @@
         'background:conic-gradient(#39e85a,#7dff95,#054497,#2bb8ff,#39e85a,#f39200,#39e85a)!important',
         '}',
         '.pg-cod-bounce-wrap > button,.pg-cod-bounce-wrap > [role="button"]{animation:none!important}',
-        'html.pg-is-scrolling .pg-cod-bounce-wrap,html.pg-is-scrolling .pg-cod-bounce-wrap--lite,',
-        'html.pg-is-scrolling .pg-cod-bounce-wrap::before{animation-play-state:paused!important}',
         '@keyframes pg-cod-bounce-lite{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-9px,0)}}',
         '.jaldi-modal-overlay>div{padding-left:0!important;padding-right:0!important;box-sizing:border-box!important}',
         '.jaldi-form-scrollable-content{padding:0!important;width:100%!important;max-width:100%!important;margin:0!important;box-sizing:border-box!important}',
@@ -755,7 +753,6 @@
       var pgCodRafId = 0;
       function pgCodRafTick(now) {
         if (pgIsMobileCod()) {
-          /* No seguir el loop en móvil */
           pgCodRafId = 0;
           return;
         }
@@ -788,24 +785,6 @@
           }
         });
       }
-    }
-
-    /* Pausar animaciones solo con scroll real (no al tocar la pantalla) */
-    if (!window.__pgCodScrollPause) {
-      window.__pgCodScrollPause = true;
-      var scrollPauseTimer = null;
-      var lastScrollY = window.scrollY || 0;
-      function pgCodMarkScrolling() {
-        var y = window.scrollY || 0;
-        if (Math.abs(y - lastScrollY) < 2) return;
-        lastScrollY = y;
-        document.documentElement.classList.add('pg-is-scrolling');
-        if (scrollPauseTimer) clearTimeout(scrollPauseTimer);
-        scrollPauseTimer = setTimeout(function () {
-          document.documentElement.classList.remove('pg-is-scrolling');
-        }, 160);
-      }
-      window.addEventListener('scroll', pgCodMarkScrolling, { passive: true });
     }
 
     pgAnimateCodButton();
