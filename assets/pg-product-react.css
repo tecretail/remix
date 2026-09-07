@@ -1007,7 +1007,6 @@ a.pg-p-cta--cod {
     height: 160% !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
     animation: pg-deal-spin-rotate 3.6s linear infinite !important;
     will-change: transform !important;
     background: conic-gradient(

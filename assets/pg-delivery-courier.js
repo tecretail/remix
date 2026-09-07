@@ -657,7 +657,6 @@
         '}',
         '.pg-cod-bounce-wrap::before{',
         'width:160%!important;height:160%!important;top:50%!important;left:50%!important;',
-        'transform:translate(-50%,-50%)!important;',
         'animation:pg-deal-spin-rotate 3.6s linear infinite!important;will-change:transform!important;',
         'background:conic-gradient(#39e85a,#7dff95,#054497,#2bb8ff,#39e85a,#f39200,#39e85a)!important',
         '}',
