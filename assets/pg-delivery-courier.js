@@ -790,20 +790,22 @@
       }
     }
 
-    /* Pausar animaciones al scrollear / touch (móvil) */
+    /* Pausar animaciones solo con scroll real (no al tocar la pantalla) */
     if (!window.__pgCodScrollPause) {
       window.__pgCodScrollPause = true;
       var scrollPauseTimer = null;
+      var lastScrollY = window.scrollY || 0;
       function pgCodMarkScrolling() {
+        var y = window.scrollY || 0;
+        if (Math.abs(y - lastScrollY) < 2) return;
+        lastScrollY = y;
         document.documentElement.classList.add('pg-is-scrolling');
         if (scrollPauseTimer) clearTimeout(scrollPauseTimer);
         scrollPauseTimer = setTimeout(function () {
           document.documentElement.classList.remove('pg-is-scrolling');
-        }, 220);
+        }, 160);
       }
       window.addEventListener('scroll', pgCodMarkScrolling, { passive: true });
-      window.addEventListener('touchmove', pgCodMarkScrolling, { passive: true });
-      document.addEventListener('touchmove', pgCodMarkScrolling, { passive: true });
     }
 
     pgAnimateCodButton();
