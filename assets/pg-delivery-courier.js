@@ -652,6 +652,14 @@
         'width:100%!important;border-radius:15px!important',
         '}',
         '@media (max-width:900px){',
+        '.pg-cod-bounce-wrap,.pg-cod-bounce-wrap--lite{will-change:auto!important;contain:layout style!important}',
+        '.pg-cod-bounce-wrap::before{',
+        'animation:none!important;will-change:auto!important;transform:none!important;',
+        'width:100%!important;height:100%!important;top:0!important;left:0!important;',
+        'background:linear-gradient(135deg,#39e85a,#054497,#2bb8ff,#39e85a)!important;border-radius:18px!important',
+        '}',
+        '.pg-cod-bounce-wrap > button,.pg-cod-bounce-wrap > [role="button"]{animation:none!important}',
+        'html.pg-is-scrolling .pg-cod-bounce-wrap,html.pg-is-scrolling .pg-cod-bounce-wrap--lite{animation:none!important;transform:none!important}',
         '.jaldi-modal-overlay>div{padding-left:0!important;padding-right:0!important;box-sizing:border-box!important}',
         '.jaldi-form-scrollable-content{padding:0!important;width:100%!important;max-width:100%!important;margin:0!important;box-sizing:border-box!important}',
         '.jaldi-form-scrollable-content>div[style*="16px 20px"],.jaldi-form-scrollable-content>div[style*="padding:16px 20px"]{padding:10px 10px 14px!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important}',
@@ -736,14 +744,15 @@
       });
     }
 
-    /* Bounce continuo solo en desktop: en móvil congela el scroll */
+    /* Bounce continuo solo en desktop */
     if (!window.__pgCodRafBounce) {
       window.__pgCodRafBounce = true;
       var pgCodT0 = performance.now();
+      var pgCodRafId = 0;
       function pgCodRafTick(now) {
         if (pgIsMobileCod()) {
-          /* En móvil el CSS anima; no tocar transform por JS */
-          requestAnimationFrame(pgCodRafTick);
+          /* No seguir el loop en móvil */
+          pgCodRafId = 0;
           return;
         }
         var period = 1200;
@@ -755,33 +764,49 @@
           wrap.style.setProperty('transform', 'translate3d(0,' + y.toFixed(2) + 'px,0)', 'important');
           wrap.style.setProperty('transition', 'none', 'important');
         });
-        requestAnimationFrame(pgCodRafTick);
+        pgCodRafId = requestAnimationFrame(pgCodRafTick);
       }
-      requestAnimationFrame(pgCodRafTick);
+      function pgCodStartDesktopRaf() {
+        if (pgIsMobileCod() || pgCodRafId) return;
+        pgCodRafId = requestAnimationFrame(pgCodRafTick);
+      }
+      pgCodStartDesktopRaf();
+      if (window.matchMedia) {
+        window.matchMedia('(max-width: 900px)').addEventListener('change', function () {
+          if (pgIsMobileCod()) {
+            if (pgCodRafId) cancelAnimationFrame(pgCodRafId);
+            pgCodRafId = 0;
+            document.querySelectorAll('.pg-cod-bounce-wrap').forEach(function (wrap) {
+              wrap.style.removeProperty('transform');
+            });
+          } else {
+            pgCodStartDesktopRaf();
+          }
+        });
+      }
     }
 
-    /* Pausar borde giratorio mientras hay scroll (móvil) */
+    /* Pausar animaciones al scrollear / touch (móvil) */
     if (!window.__pgCodScrollPause) {
       window.__pgCodScrollPause = true;
       var scrollPauseTimer = null;
-      window.addEventListener(
-        'scroll',
-        function () {
-          document.documentElement.classList.add('pg-is-scrolling');
-          if (scrollPauseTimer) clearTimeout(scrollPauseTimer);
-          scrollPauseTimer = setTimeout(function () {
-            document.documentElement.classList.remove('pg-is-scrolling');
-          }, 180);
-        },
-        { passive: true }
-      );
+      function pgCodMarkScrolling() {
+        document.documentElement.classList.add('pg-is-scrolling');
+        if (scrollPauseTimer) clearTimeout(scrollPauseTimer);
+        scrollPauseTimer = setTimeout(function () {
+          document.documentElement.classList.remove('pg-is-scrolling');
+        }, 220);
+      }
+      window.addEventListener('scroll', pgCodMarkScrolling, { passive: true });
+      window.addEventListener('touchmove', pgCodMarkScrolling, { passive: true });
+      document.addEventListener('touchmove', pgCodMarkScrolling, { passive: true });
     }
 
     pgAnimateCodButton();
     setTimeout(pgAnimateCodButton, 500);
     setTimeout(pgAnimateCodButton, 1500);
     setTimeout(pgAnimateCodButton, 3000);
-    setInterval(pgAnimateCodButton, 2500);
+    setInterval(pgAnimateCodButton, 4000);
   }
 
   /* Desktop: imagen izquierda fija; solo el buybox derecho se mueve con el scroll */
