@@ -8,14 +8,16 @@
  * ------------------------------------------------------------
  */
 {
+  "order": [
+    "offers_main"
+  ],
   "sections": {
     "offers_main": {
-      "type": "pg-offers-page",
       "settings": {
-        "heading": "Special Internet-Only Offer",
-        "guarantee_text": "90 DAY MONEY BACK GUARANTEE"
-      }
+        "guarantee_text": "90 DAY MONEY BACK GUARANTEE",
+        "heading": "Special Internet-Only Offer"
+      },
+      "type": "pg-offers-page"
     }
-  },
-  "order": ["offers_main"]
+  }
 }
